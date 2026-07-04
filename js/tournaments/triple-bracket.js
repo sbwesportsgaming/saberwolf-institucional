@@ -1,4 +1,4 @@
-// v1.6.82 — Fase todos contra todos do Sistema de 3 Chaves da plataforma -SBW-
+// v1.6.84 — Geração das chaves do Sistema de 3 Chaves da plataforma -SBW-
 (function () {
   "use strict";
 
@@ -29,7 +29,7 @@
       advantageUnit: "games"
     },
     mvpScope: "8_equipes",
-    automationStage: "round_robin_ready"
+    automationStage: "round_robin_officialization_ready"
   });
 
   const PLAYOFF_BLUEPRINT = Object.freeze([
@@ -330,7 +330,8 @@
     const completedParticipants = completeGroupStageParticipants(participants);
     const sourcePlayers = completedParticipants.map((participant, index) => normalizeMatchPlayer(participant, index));
     const placeholderSlots = sourcePlayers.filter((player) => player && (player.placeholder || player.isPlaceholder)).length;
-    const templateMode = placeholderSlots > 0;
+    const modeState = getStructureModeFromCounts(validation.count, placeholderSlots);
+    const templateMode = modeState.templateMode;
     const prefix = normalizePlayerKey(tournament.slug || tournament.id || tournament.title || "triple-bracket", "triple-bracket");
     const matchFormat = options.matchFormat || tournament?.settings?.matchFormat || tournament?.matchFormat || "MD3";
     const rounds = buildRoundRobinRounds(sourcePlayers, { prefix, matchFormat });
@@ -341,9 +342,16 @@
     const groupStage = {
       type: "round_robin",
       label: "Fase todos contra todos",
-      status: templateMode ? "template_generated" : "generated",
+      status: modeState.status,
       generatedAt: now,
       templateMode,
+      officialMode: modeState.officialMode,
+      resultLocked: modeState.resultLocked,
+      resultLock: {
+        locked: modeState.resultLocked,
+        reason: modeState.resultLocked ? "template_slots_open" : null,
+        message: modeState.message
+      },
       realTeams: validation.count,
       placeholderSlots,
       teams: sourcePlayers,
@@ -376,8 +384,15 @@
         realPlayersUsed: validation.count,
         placeholderSlots,
         templateMode,
+        officialMode: modeState.officialMode,
+        resultLocked: modeState.resultLocked,
+        resultLock: {
+          locked: modeState.resultLocked,
+          reason: modeState.resultLocked ? "template_slots_open" : null,
+          message: modeState.message
+        },
         currentStep: "group_stage",
-        automationStage: templateMode ? "group_stage_template_generated" : "group_stage_generated",
+        automationStage: modeState.automationStage,
         settings: config,
         groupStage,
         standings,
@@ -397,10 +412,359 @@
         notes: {
           templateMode,
           message: templateMode
-            ? "Estrutura modelo gerada com vagas em aberto. Antes de lançar resultados reais, preencha as inscrições e regenere/atualize a estrutura com as 8 equipes reais."
-            : "Estrutura oficial gerada com 8 equipes reais."
+            ? "Estrutura modelo gerada com vagas em aberto. Resultados oficiais ficam bloqueados até regenerar a estrutura com 8 equipes reais."
+            : "Estrutura oficial gerada com 8 equipes reais. Resultados oficiais da fase inicial estão liberados."
         }
       }
+    };
+  }
+
+  function getStructureModeFromCounts(realTeams, placeholderSlots) {
+    const safeRealTeams = Number(realTeams || 0);
+    const safePlaceholderSlots = Number(placeholderSlots || 0);
+    const templateMode = safePlaceholderSlots > 0 || safeRealTeams < DEFAULT_CONFIG.requiredTeams;
+
+    return {
+      templateMode,
+      officialMode: !templateMode,
+      resultLocked: templateMode,
+      status: templateMode ? "template_generated" : "official_generated",
+      automationStage: templateMode ? "group_stage_template_generated" : "group_stage_official_generated",
+      label: templateMode ? "Modelo com vagas em aberto" : "Estrutura oficial",
+      message: templateMode
+        ? "Estrutura modelo gerada com vagas em aberto. Resultados oficiais ficam bloqueados até regenerar a estrutura com 8 equipes reais."
+        : "Estrutura oficial gerada com 8 equipes reais. Resultados da fase todos contra todos estão liberados."
+    };
+  }
+
+  function isTemplateStructure(structure = {}) {
+    if (!structure || typeof structure !== "object") return false;
+    const groupStage = structure.groupStage || {};
+    const resultLock = structure.resultLock || groupStage.resultLock || {};
+    const placeholderSlots = Number(structure.placeholderSlots || groupStage.placeholderSlots || 0);
+    const realPlayersUsed = Number(structure.realPlayersUsed || groupStage.realTeams || 0);
+
+    return Boolean(
+      structure.templateMode ||
+      groupStage.templateMode ||
+      resultLock.locked ||
+      placeholderSlots > 0 ||
+      (structure.type === FORMAT_KEY && realPlayersUsed > 0 && realPlayersUsed < DEFAULT_CONFIG.requiredTeams)
+    );
+  }
+
+  function canRecordGroupStageResults(structure = {}) {
+    return !isTemplateStructure(structure);
+  }
+
+  function buildOfficializationSummary(structure = {}) {
+    const groupStage = structure.groupStage || {};
+    const placeholderSlots = Number(structure.placeholderSlots || groupStage.placeholderSlots || 0);
+    const realPlayersUsed = Number(structure.realPlayersUsed || groupStage.realTeams || 0);
+    const templateMode = isTemplateStructure(structure);
+
+    return {
+      templateMode,
+      officialMode: !templateMode,
+      resultLocked: templateMode,
+      realPlayersUsed,
+      placeholderSlots,
+      requiredTeams: DEFAULT_CONFIG.requiredTeams,
+      title: templateMode ? "Modelo com vagas em aberto" : "Estrutura oficial",
+      message: templateMode
+        ? `Este modelo tem ${realPlayersUsed} inscrito(s) real(is) e ${placeholderSlots} vaga(s) em aberto. Resultados ficam bloqueados até regenerar com 8 equipes reais.`
+        : "Esta estrutura foi gerada com 8 equipes reais. Resultados oficiais da fase todos contra todos estão liberados."
+    };
+  }
+
+  function getMatchPlayerKey(player) {
+    if (!player) return "";
+    return String(player.id || player.participantId || player.playerId || player.profileId || player.nickname || player.name || "");
+  }
+
+  function standingToSeedPlayer(row, seedIndex) {
+    if (!row) return null;
+    const seed = seedIndex + 1;
+    const id = getMatchPlayerKey(row) || `seed-${seed}`;
+
+    return {
+      id,
+      participantId: row.participantId || row.id || id,
+      profileId: row.profileId || "",
+      profileSlug: row.profileSlug || row.playerSlug || "",
+      playerSlug: row.playerSlug || row.profileSlug || "",
+      authUserId: row.authUserId || "",
+      nickname: row.nickname || row.name || `Seed ${seed}`,
+      team: row.team || "",
+      seed,
+      seedLabel: `${seed}º geral`,
+      sourceStanding: clone(row)
+    };
+  }
+
+  function createWaitingSlot(label, extra = {}) {
+    return {
+      id: normalizePlayerKey(label, "slot"),
+      nickname: label,
+      seedLabel: extra.seedLabel || "A definir",
+      placeholder: true,
+      isPlaceholder: true,
+      slotStatus: "waiting",
+      waitingSlot: true,
+      ...extra
+    };
+  }
+
+  function createPlayoffMatch(id, label, stage, playerA, playerB, options = {}) {
+    const waiting = Boolean(options.waiting || !playerA || !playerB || playerA.waitingSlot || playerB.waitingSlot);
+    return {
+      id,
+      label,
+      name: label,
+      stage,
+      phaseKey: stage,
+      phaseLabel: options.phaseLabel || label,
+      roundName: options.roundName || label,
+      order: options.order || 1,
+      matchFormat: options.matchFormat || "MD3",
+      bestOf: options.matchFormat || "MD3",
+      playerA: playerA || null,
+      playerB: playerB || null,
+      slotA: options.slotA || playerA?.seedLabel || playerA?.nickname || "A definir",
+      slotB: options.slotB || playerB?.seedLabel || playerB?.nickname || "A definir",
+      status: waiting ? "waiting" : "pending",
+      scoreA: null,
+      scoreB: null,
+      winnerId: null,
+      nextMatchId: options.nextMatchId || null,
+      nextSlot: options.nextSlot || null,
+      loserNextMatchId: options.loserNextMatchId || null,
+      loserNextSlot: options.loserNextSlot || null,
+      winnerTo: options.winnerTo || null,
+      loserTo: options.loserTo || null,
+      source: "triple_bracket_playoff_seed",
+      resultLocked: true,
+      resultLockReason: "triple_bracket_playoff_progression_pending"
+    };
+  }
+
+  function areGroupStageMatchesCompleted(structure = {}) {
+    const groupStage = structure.groupStage || {};
+    const rounds = groupStage.rounds || structure.rounds || [];
+    const matches = rounds.flatMap((round) => round.matches || []).filter((match) => match && match.playerA && match.playerB);
+    return matches.length === DEFAULT_CONFIG.groupStageMatches && matches.every((match) => String(match.status || "").toLowerCase() === "completed" && match.winnerId);
+  }
+
+  function buildPlayoffBracketsFromGroupStage(structure = {}, options = {}) {
+    if (!structure || structure.type !== FORMAT_KEY) {
+      return { success: false, message: "Estrutura do Sistema de 3 Chaves não encontrada." };
+    }
+
+    if (isTemplateStructure(structure)) {
+      return { success: false, message: "Não gere chaves oficiais em uma estrutura modelo. Regenere com 8 equipes reais primeiro." };
+    }
+
+    if (!areGroupStageMatchesCompleted(structure)) {
+      return { success: false, message: "Finalize as 28 partidas da fase todos contra todos antes de gerar as Chaves Alta, Média e Baixa." };
+    }
+
+    const standings = Array.isArray(structure.groupStage?.standings)
+      ? structure.groupStage.standings
+      : (Array.isArray(structure.standings) ? structure.standings : []);
+
+    if (standings.length < DEFAULT_CONFIG.requiredTeams) {
+      return { success: false, message: "Classificação geral incompleta. São necessárias 8 equipes classificadas." };
+    }
+
+    const seeds = standings.slice(0, DEFAULT_CONFIG.requiredTeams).map(standingToSeedPlayer);
+    const [s1, s2, s3, s4, s5, s6, s7, s8] = seeds;
+    const matchFormat = options.matchFormat || structure.settings?.matchFormat || "MD3";
+    const generatedAt = new Date().toISOString();
+
+    const highBracket = {
+      status: "generated",
+      label: "Chave Alta",
+      generatedAt,
+      rules: {
+        entrants: "1º ao 4º geral",
+        lossDestination: "Perdedores descem para a Chave Média"
+      },
+      rounds: [
+        {
+          id: "triple-high-r1",
+          name: "Chave Alta — Semifinais",
+          stage: "high_bracket",
+          matches: [
+            createPlayoffMatch("HA1", "HA1 · 1º vs 4º", "high_bracket", s1, s4, { order: 1, matchFormat, loserTo: "HM4", loserNextMatchId: "HM4", loserNextSlot: "B" }),
+            createPlayoffMatch("HA2", "HA2 · 2º vs 3º", "high_bracket", s2, s3, { order: 2, matchFormat, loserTo: "HM3", loserNextMatchId: "HM3", loserNextSlot: "B" })
+          ]
+        },
+        {
+          id: "triple-high-r2",
+          name: "Final da Chave Alta",
+          stage: "high_bracket",
+          matches: [
+            createPlayoffMatch("HA3", "HA3 · Final da Chave Alta", "high_bracket", createWaitingSlot("Vencedor HA1"), createWaitingSlot("Vencedor HA2"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final", loserTo: "HM6", loserNextMatchId: "HM6", loserNextSlot: "B" })
+          ]
+        }
+      ]
+    };
+
+    const middleBracket = {
+      status: "generated",
+      label: "Chave Média",
+      generatedAt,
+      rules: {
+        entrants: "5º ao 8º geral + quedas da Chave Alta",
+        lossDestination: "Perdedores descem para a Chave Baixa"
+      },
+      rounds: [
+        {
+          id: "triple-middle-r1",
+          name: "Chave Média — Entrada",
+          stage: "middle_bracket",
+          matches: [
+            createPlayoffMatch("HM1", "HM1 · 5º vs 8º", "middle_bracket", s5, s8, { order: 1, matchFormat, loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "A" }),
+            createPlayoffMatch("HM2", "HM2 · 6º vs 7º", "middle_bracket", s6, s7, { order: 2, matchFormat, loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "B" })
+          ]
+        },
+        {
+          id: "triple-middle-r2",
+          name: "Chave Média — Quedas da Alta",
+          stage: "middle_bracket",
+          matches: [
+            createPlayoffMatch("HM3", "HM3 · Vencedor HM1 vs Perdedor HA2", "middle_bracket", createWaitingSlot("Vencedor HM1"), createWaitingSlot("Perdedor HA2"), { order: 1, matchFormat, waiting: true, loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "A" }),
+            createPlayoffMatch("HM4", "HM4 · Vencedor HM2 vs Perdedor HA1", "middle_bracket", createWaitingSlot("Vencedor HM2"), createWaitingSlot("Perdedor HA1"), { order: 2, matchFormat, waiting: true, loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "B" })
+          ]
+        },
+        {
+          id: "triple-middle-r3",
+          name: "Chave Média — Final parcial",
+          stage: "middle_bracket",
+          matches: [
+            createPlayoffMatch("HM5", "HM5 · Vencedor HM3 vs Vencedor HM4", "middle_bracket", createWaitingSlot("Vencedor HM3"), createWaitingSlot("Vencedor HM4"), { order: 1, matchFormat, waiting: true, loserTo: "HB4", loserNextMatchId: "HB4", loserNextSlot: "B" })
+          ]
+        },
+        {
+          id: "triple-middle-r4",
+          name: "Final da Chave Média",
+          stage: "middle_bracket",
+          matches: [
+            createPlayoffMatch("HM6", "HM6 · Vencedor HM5 vs Perdedor HA3", "middle_bracket", createWaitingSlot("Vencedor HM5"), createWaitingSlot("Perdedor HA3"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", loserTo: "HB5", loserNextMatchId: "HB5", loserNextSlot: "B" })
+          ]
+        }
+      ]
+    };
+
+    const lowBracket = {
+      status: "generated",
+      label: "Chave Baixa",
+      generatedAt,
+      rules: {
+        entrants: "Quedas da Chave Média",
+        lossDestination: "Perdedor na Chave Baixa está eliminado"
+      },
+      rounds: [
+        {
+          id: "triple-low-r1",
+          name: "Chave Baixa — Primeira eliminação",
+          stage: "low_bracket",
+          matches: [
+            createPlayoffMatch("HB1", "HB1 · Perdedor HM1 vs Perdedor HM2", "low_bracket", createWaitingSlot("Perdedor HM1"), createWaitingSlot("Perdedor HM2"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+          ]
+        },
+        {
+          id: "triple-low-r2",
+          name: "Chave Baixa — Segunda eliminação",
+          stage: "low_bracket",
+          matches: [
+            createPlayoffMatch("HB2", "HB2 · Perdedor HM3 vs Perdedor HM4", "low_bracket", createWaitingSlot("Perdedor HM3"), createWaitingSlot("Perdedor HM4"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+          ]
+        },
+        {
+          id: "triple-low-r3",
+          name: "Chave Baixa — Sobrevivência",
+          stage: "low_bracket",
+          matches: [
+            createPlayoffMatch("HB3", "HB3 · Vencedor HB1 vs Vencedor HB2", "low_bracket", createWaitingSlot("Vencedor HB1"), createWaitingSlot("Vencedor HB2"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+          ]
+        },
+        {
+          id: "triple-low-r4",
+          name: "Chave Baixa — Queda da Média",
+          stage: "low_bracket",
+          matches: [
+            createPlayoffMatch("HB4", "HB4 · Vencedor HB3 vs Perdedor HM5", "low_bracket", createWaitingSlot("Vencedor HB3"), createWaitingSlot("Perdedor HM5"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+          ]
+        },
+        {
+          id: "triple-low-r5",
+          name: "Final da Chave Baixa",
+          stage: "low_bracket",
+          matches: [
+            createPlayoffMatch("HB5", "HB5 · Vencedor HB4 vs Perdedor HM6", "low_bracket", createWaitingSlot("Vencedor HB4"), createWaitingSlot("Perdedor HM6"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", loserTo: "Eliminado" })
+          ]
+        }
+      ]
+    };
+
+    const intermediaryFinal = {
+      status: "waiting_playoff_results",
+      label: "Final Intermediária",
+      generatedAt,
+      rounds: [
+        {
+          id: "triple-intermediary-final-r1",
+          name: "Final Intermediária",
+          stage: "intermediary_final",
+          matches: [
+            createPlayoffMatch("FI1", "FI1 · Vencedor Chave Média vs Vencedor Chave Baixa", "intermediary_final", createWaitingSlot("Vencedor Chave Média"), createWaitingSlot("Vencedor Chave Baixa"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final" })
+          ]
+        }
+      ]
+    };
+
+    const grandFinal = {
+      status: "waiting_intermediary_final",
+      label: "Grande Final",
+      generatedAt,
+      rules: {
+        matchFormat: "FT5",
+        noReset: true,
+        highAdvantageVsMiddle: 1,
+        highAdvantageVsLow: 2,
+        note: "A vantagem real será aplicada quando o desafiante da Final Intermediária for conhecido."
+      },
+      rounds: [
+        {
+          id: "triple-grand-final-r1",
+          name: "Grande Final",
+          stage: "grand_final",
+          matches: [
+            createPlayoffMatch("GF1", "GF1 · Vencedor Chave Alta vs Vencedor Final Intermediária", "grand_final", createWaitingSlot("Vencedor Chave Alta"), createWaitingSlot("Vencedor Final Intermediária"), { order: 1, matchFormat: "FT5", waiting: true })
+          ]
+        }
+      ]
+    };
+
+    return {
+      success: true,
+      generatedAt,
+      seeds,
+      playoffSummary: {
+        status: "generated",
+        generatedAt,
+        highBracketSeeds: seeds.slice(0, 4),
+        middleBracketSeeds: seeds.slice(4, 8),
+        resultAutomation: "pending_next_patch",
+        resultLocked: true,
+        message: "Chaves geradas com base na classificação final. Resultados das chaves serão liberados após a automação de avanço entre Alta, Média e Baixa."
+      },
+      highBracket,
+      middleBracket,
+      lowBracket,
+      intermediaryFinal,
+      grandFinal
     };
   }
 
@@ -437,6 +801,12 @@
     createStandingRow,
     buildRoundRobinRounds,
     validateGroupStageParticipants,
+    getStructureModeFromCounts,
+    isTemplateStructure,
+    canRecordGroupStageResults,
+    buildOfficializationSummary,
+    areGroupStageMatchesCompleted,
+    buildPlayoffBracketsFromGroupStage,
     buildGroupStageStructure
   });
 })();

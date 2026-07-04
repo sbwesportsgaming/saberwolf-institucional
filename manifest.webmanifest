@@ -3,7 +3,7 @@
   "short_name": "-SBW-",
   "description": "Acesse a plataforma -SBW- pelo celular ou computador, direto da tela inicial.",
   "id": "/?source=pwa",
-  "start_url": "/index.html?source=pwa&app=v0.2&site=v1.6.82",
+  "start_url": "/index.html?source=pwa&app=v0.2&site=v1.6.84",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",

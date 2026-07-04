@@ -3954,6 +3954,29 @@ function renderStructureMeta(tournament) {
 }
 
 
+  function getTripleBracketOfficializationSummaryPublic(tournament) {
+    const structure = getTournamentStructure(tournament) || {};
+    const groupStage = structure.groupStage || {};
+    const placeholderSlots = Number(structure.placeholderSlots || groupStage.placeholderSlots || 0);
+    const realPlayersUsed = Number(structure.realPlayersUsed || groupStage.realTeams || 0);
+    const locked = Boolean(
+      structure.templateMode ||
+      groupStage.templateMode ||
+      structure.resultLock?.locked ||
+      groupStage.resultLock?.locked ||
+      placeholderSlots > 0 ||
+      (realPlayersUsed > 0 && realPlayersUsed < 8)
+    );
+
+    return {
+      locked,
+      title: locked ? "Modelo com vagas em aberto" : "Estrutura oficial",
+      message: locked
+        ? `Este torneio ainda exibe um modelo de estrutura com ${realPlayersUsed} inscrito(s) real(is) e ${placeholderSlots} vaga(s) em aberto. Resultados oficiais serão liberados quando o organizador regenerar com 8 equipes reais.`
+        : "Estrutura gerada com 8 equipes reais. A fase todos contra todos pode receber resultados oficiais."
+    };
+  }
+
   function getTripleBracketGroupStage(tournament) {
     const structure = getTournamentStructure(tournament) || {};
     return structure.groupStage || {
@@ -3962,12 +3985,79 @@ function renderStructureMeta(tournament) {
     };
   }
 
+  function renderTripleBracketPublicPlayer(player, fallback = "A definir") {
+    if (!player) {
+      return `<div class="playoff-player empty">${escapeHTML(fallback)}</div>`;
+    }
+
+    const isWaiting = Boolean(player.waitingSlot || player.placeholder || player.isPlaceholder || player.slotStatus === "waiting");
+    return `
+      <div class="playoff-player ${isWaiting ? "empty" : ""}">
+        ${escapeHTML(player.nickname || fallback)}
+        <span>${escapeHTML(player.seedLabel || player.team || (isWaiting ? "A definir" : ""))}</span>
+      </div>
+    `;
+  }
+
+  function renderTripleBracketPublicMatch(match) {
+    return `
+      <div class="playoff-match triple-bracket-playoff-match">
+        <div class="playoff-bracket-round-title">${escapeHTML(match.label || match.name || match.id || "Partida")}</div>
+        ${renderTripleBracketPublicPlayer(match.playerA, match.slotA)}
+        <div class="playoff-vs">vs</div>
+        ${renderTripleBracketPublicPlayer(match.playerB, match.slotB)}
+      </div>
+    `;
+  }
+
+  function renderTripleBracketPublicBracket(title, bracket, description = "") {
+    if (!bracket || bracket.status !== "generated") return "";
+
+    return `
+      <div class="detail-card structure-meta-card">
+        <div>
+          <strong>${escapeHTML(title || bracket.label || "Chave")}</strong>
+          ${description ? `<p>${escapeHTML(description)}</p>` : ""}
+        </div>
+        <div class="match-list">
+          ${(bracket.rounds || []).map((round) => `
+            <div class="match-round-title">${escapeHTML(round.name || round.label || "Rodada")}</div>
+            ${(round.matches || []).map(renderTripleBracketPublicMatch).join("")}
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderTripleBracketPublicPlayoffs(structure) {
+    const generated = structure?.highBracket?.status === "generated" ||
+      structure?.middleBracket?.status === "generated" ||
+      structure?.lowBracket?.status === "generated";
+
+    if (!generated) return "";
+
+    return `
+      <div class="detail-section-header">
+        <span>Playoffs</span>
+        <h3>Chave Alta, Média e Baixa</h3>
+        <p>Chaves geradas com base na classificação final. Os resultados das chaves entram na próxima etapa operacional.</p>
+      </div>
+      ${renderTripleBracketPublicBracket("Chave Alta", structure.highBracket, "1º ao 4º geral. Perdeu, desce para a Chave Média.")}
+      ${renderTripleBracketPublicBracket("Chave Média", structure.middleBracket, "5º ao 8º geral + quedas da Chave Alta.")}
+      ${renderTripleBracketPublicBracket("Chave Baixa", structure.lowBracket, "Última chance antes da eliminação.")}
+      ${renderTripleBracketPublicBracket("Final Intermediária", structure.intermediaryFinal, "Vencedor da Média contra vencedor da Baixa.")}
+      ${renderTripleBracketPublicBracket("Grande Final", structure.grandFinal, "FT5 sem reset, com vantagem para a Chave Alta.")}
+    `;
+  }
+
   function renderTripleBracketPublic(tournament) {
+    const structure = getTournamentStructure(tournament) || {};
     const groupStage = getTripleBracketGroupStage(tournament);
     const standings = Array.isArray(groupStage.standings) ? groupStage.standings : [];
     const rounds = Array.isArray(groupStage.rounds) ? groupStage.rounds : [];
     const playableMatches = rounds.flatMap((round) => round.matches || []).filter((match) => match.playerA && match.playerB);
     const completedMatches = playableMatches.filter((match) => String(match.status || "").toLowerCase() === "completed");
+    const officialization = getTripleBracketOfficializationSummaryPublic(tournament);
 
     return `
       <div class="structure-block">
@@ -3984,12 +4074,21 @@ function renderStructureMeta(tournament) {
 
         <div class="detail-card structure-meta-card">
           <div>
+            <strong>${escapeHTML(officialization.title)}</strong>
+            <p>${escapeHTML(officialization.message)}</p>
+          </div>
+        </div>
+
+        <div class="detail-card structure-meta-card">
+          <div>
             <strong>Progresso da fase inicial</strong>
             <p>${escapeHTML(completedMatches.length)} / ${escapeHTML(playableMatches.length || 28)} partida(s) concluída(s). As três chaves serão exibidas após a geração dos playoffs pelo organizador.</p>
           </div>
         </div>
 
         ${renderLeagueTable(tournament)}
+
+        ${renderTripleBracketPublicPlayoffs(structure)}
 
         <details class="sbw-structure-secondary-groups" open>
           <summary>
