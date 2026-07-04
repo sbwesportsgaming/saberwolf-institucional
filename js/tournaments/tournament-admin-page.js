@@ -3186,6 +3186,17 @@ function findEditableMatch(tournament, matchId) {
         };
       }
 
+      if (isTripleBracketGrandFinalAdvantageMatch(match)) {
+        const advantageScoreA = getTripleBracketGrandFinalAdvantageScoreA(match);
+
+        if (scoreA < advantageScoreA) {
+          return {
+            valid: false,
+            message: `Grande Final com vantagem: a Chave Alta começa em ${advantageScoreA}–0. Informe o placar final já incluindo essa vantagem.`
+          };
+        }
+      }
+
       if (scoreA === scoreB) {
         return {
           valid: false,
@@ -3559,6 +3570,58 @@ function applyAutomaticDoubleEliminationByes(tournament) {
   });
 }
 
+function isTripleBracketPlayoffMatch(tournament, match) {
+  if (!tournament || !match || tournament.structure?.type !== "triple-bracket") return false;
+  if (String(match.stage || "") === "group_stage") return false;
+  if (String(match.phaseKey || "") === "triple_group_stage") return false;
+  return Boolean(tournament.structure.highBracket || tournament.structure.middleBracket || tournament.structure.lowBracket);
+}
+
+function isTripleBracketWaitingPlayer(player) {
+  return Boolean(player && (player.waitingSlot || player.placeholder || player.isPlaceholder || player.slotStatus === "waiting"));
+}
+
+function isTripleBracketMatchWaiting(match) {
+  return Boolean(
+    match &&
+    (!match.playerA || !match.playerB || isTripleBracketWaitingPlayer(match.playerA) || isTripleBracketWaitingPlayer(match.playerB))
+  );
+}
+
+function isTripleBracketGrandFinalAdvantageMatch(match) {
+  return Boolean(
+    match &&
+    String(match.id || "") === "GF1" &&
+    match.advantage &&
+    match.advantage.applied
+  );
+}
+
+function getTripleBracketGrandFinalAdvantageText(match) {
+  if (!isTripleBracketGrandFinalAdvantageMatch(match)) return "";
+
+  const scoreA = Number(match.advantage.scoreA || match.initialScoreA || match.advantageScoreA || 0);
+  const scoreB = Number(match.advantage.scoreB || match.initialScoreB || match.advantageScoreB || 0);
+  const label = match.advantage.label || "Chave Alta inicia com vantagem na Grande Final.";
+
+  return `${label} Placar inicial: ${scoreA}–${scoreB}. Lance o placar final já incluindo essa vantagem.`;
+}
+
+function getTripleBracketGrandFinalAdvantageScoreA(match) {
+  if (!isTripleBracketGrandFinalAdvantageMatch(match)) return 0;
+  return Number(match.advantage.scoreA || match.initialScoreA || match.advantageScoreA || 0);
+}
+
+function recalculateTripleBracketPlayoffProgression(tournament) {
+  if (!tournament || tournament.structure?.type !== "triple-bracket") return;
+  if (!window.SBWTripleBracket || typeof window.SBWTripleBracket.recalculatePlayoffProgression !== "function") return;
+
+  const result = window.SBWTripleBracket.recalculatePlayoffProgression(tournament.structure);
+  if (result?.success) {
+    tournament.structure.playoffProgression = result.summary;
+  }
+}
+
 function applyMatchResult(match, scoreA, scoreB, tournament = null) {
   match.scoreA = scoreA;
   match.scoreB = scoreB;
@@ -3582,11 +3645,19 @@ function applyMatchResult(match, scoreA, scoreB, tournament = null) {
   advanceDoubleEliminationWinner(tournament, match);
   advanceDoubleEliminationLoser(tournament, match);
   syncGrandFinalResetAfterMain(tournament, match);
+
+  if (isTripleBracketPlayoffMatch(tournament, match)) {
+    recalculateTripleBracketPlayoffProgression(tournament);
+  }
 }
 
 function clearMatchObject(match, tournament = null) {
   clearDoubleEliminationProgression(tournament, match);
   resetMatchResultOnly(match);
+
+  if (isTripleBracketPlayoffMatch(tournament, match)) {
+    recalculateTripleBracketPlayoffProgression(tournament);
+  }
 
   if (isGrandFinalMainMatch(match)) {
     resetGrandFinalResetMatch(tournament);
@@ -3856,6 +3927,36 @@ function buildDoubleEliminationFinalPlacements(structure) {
   }));
 }
 
+function findTripleBracketMatchForSummary(structure, matchId) {
+  if (!structure || !matchId) return null;
+  if (window.SBWTripleBracket && typeof window.SBWTripleBracket.findTriplePlayoffMatch === "function") {
+    return window.SBWTripleBracket.findTriplePlayoffMatch(structure, matchId);
+  }
+  return flattenStructureMatches(structure).find((match) => String(match.id) === String(matchId)) || null;
+}
+
+function buildTripleBracketFinalPlacements(structure) {
+  const placements = [];
+  const grandFinal = findTripleBracketMatchForSummary(structure, "GF1");
+  const intermediaryFinal = findTripleBracketMatchForSummary(structure, "FI1");
+  const lowFinal = findTripleBracketMatchForSummary(structure, "HB5");
+  const middleFinal = findTripleBracketMatchForSummary(structure, "HM6");
+
+  appendUniqueFinalPlacement(placements, getCompletedMatchWinner(grandFinal), "Campeão", { source: "triple-grand-final" });
+  appendUniqueFinalPlacement(placements, getCompletedMatchLoser(grandFinal), "Vice-campeão", { source: "triple-grand-final" });
+  appendUniqueFinalPlacement(placements, getCompletedMatchLoser(intermediaryFinal), "3º lugar", { source: "triple-intermediary-final" });
+  appendUniqueFinalPlacement(placements, getCompletedMatchLoser(lowFinal), "4º lugar", { source: "triple-low-final" });
+  appendUniqueFinalPlacement(placements, getCompletedMatchLoser(middleFinal), "5º lugar", { source: "triple-middle-final" });
+
+  return placements.map((item, index) => ({
+    ...item,
+    placement: index + 1,
+    placementLabel: index === 0
+      ? "Campeão"
+      : (index === 1 ? "Vice-campeão" : `${index + 1}º lugar`)
+  }));
+}
+
 function getTournamentCompletionSummary(tournament) {
   const structure = tournament?.structure || null;
   const existingFinalResults = getExistingFinalResults(tournament);
@@ -3983,29 +4084,43 @@ function getTournamentCompletionSummary(tournament) {
 
   if (structure.type === "triple-bracket") {
     const rounds = structure.groupStage?.rounds || structure.rounds || [];
-    const matches = rounds.flatMap((round) => round.matches || []).filter((match) => match && match.playerA && match.playerB);
-    const counts = countCompletedPlayableMatches(matches);
-    const groupDone = counts.total > 0 && counts.completed === counts.total;
+    const groupMatches = rounds.flatMap((round) => round.matches || []).filter((match) => match && match.playerA && match.playerB);
+    const groupCounts = countCompletedPlayableMatches(groupMatches);
+    const groupDone = groupCounts.total > 0 && groupCounts.completed === groupCounts.total;
+    const playoffMatches = flattenStructureMatches(structure).filter((match) => match && match.stage !== "group_stage" && match.playerA && match.playerB);
+    const playoffCounts = countCompletedPlayableMatches(playoffMatches);
+    const grandFinal = findTripleBracketMatchForSummary(structure, "GF1");
+    const finalCompleted = isCompletedPlayableMatch(grandFinal);
+    const placements = buildTripleBracketFinalPlacements(structure);
+    const ready = groupDone && finalCompleted && placements.length > 0;
     const standings = structure.groupStage?.standings || structure.standings || [];
 
     return {
-      ready: false,
+      ready,
       completed: false,
-      reason: groupDone
-        ? "Fase todos contra todos concluída. A geração das três chaves entra na próxima etapa do modo."
-        : "Finalize a fase todos contra todos antes de gerar Chave Alta, Chave Média e Chave Baixa.",
-      totalMatches: counts.total,
-      completedMatches: counts.completed,
-      champion: null,
+      reason: ready
+        ? "Sistema de 3 Chaves concluído com Grande Final finalizada."
+        : (groupDone
+          ? "Finalize as partidas liberadas das chaves até concluir a Grande Final."
+          : "Finalize a fase todos contra todos antes de gerar Chave Alta, Chave Média e Chave Baixa."),
+      totalMatches: groupCounts.total + playoffCounts.total,
+      completedMatches: groupCounts.completed + playoffCounts.completed,
+      champion: placements[0] || null,
       finalResults: {
         format: "triple-bracket",
+        champion: placements[0] || null,
+        runnerUp: placements[1] || null,
+        thirdPlace: placements[2] || null,
+        placements,
         groupStageCompleted: groupDone,
         highBracketSeeds: standings.slice(0, 4),
         middleBracketSeeds: standings.slice(4, 8),
+        progressionSummary: structure.playoffs?.progressionSummary || structure.playoffProgression || null,
         matchesSummary: {
-          totalPlayableMatches: counts.total,
-          completedMatches: counts.completed,
-          groupStageMatches: matches.length
+          totalPlayableMatches: groupCounts.total + playoffCounts.total,
+          completedMatches: groupCounts.completed + playoffCounts.completed,
+          groupStageMatches: groupMatches.length,
+          playoffMatches: playoffMatches.length
         }
       }
     };
@@ -4321,6 +4436,7 @@ function getResultMatchSafetyInfo(match, tournament) {
   const isPlayable = Boolean(match?.playerA && match?.playerB);
   const isCompleted = Boolean(match?.status === "completed" && match?.winnerId);
   const matchFormat = getEffectiveMatchFormat(tournament, match);
+  const grandFinalAdvantageText = getTripleBracketGrandFinalAdvantageText(match);
 
   if (!isPlayable) {
     return {
@@ -4334,15 +4450,15 @@ function getResultMatchSafetyInfo(match, tournament) {
     return {
       className: "done",
       label: "Resultado lançado",
-      hint: "Editar este resultado pode alterar progressões dependentes.",
+      hint: grandFinalAdvantageText || "Editar este resultado pode alterar progressões dependentes.",
       format: matchFormat
     };
   }
 
   return {
-    className: "ready",
-    label: "Pronta para resultado",
-    hint: `Formato esperado: ${getMatchFormatLabel(matchFormat)}.`,
+    className: grandFinalAdvantageText ? "warning" : "ready",
+    label: grandFinalAdvantageText ? "Grande Final com vantagem" : "Pronta para resultado",
+    hint: grandFinalAdvantageText || `Formato esperado: ${getMatchFormatLabel(matchFormat)}.`,
     format: matchFormat
   };
 }
@@ -4353,8 +4469,10 @@ function describeMatchForResultAction(match, scoreA = null, scoreB = null, tourn
   const formatLabel = getMatchFormatLabel(getEffectiveMatchFormat(tournament, match));
   const phaseLabel = match?.phaseLabel || match?.roundName || match?.name || "Partida";
   const scoreLabel = scoreA !== null && scoreB !== null ? ` — placar ${scoreA} x ${scoreB}` : "";
+  const advantageLabel = getTripleBracketGrandFinalAdvantageText(match);
+  const advantageSuffix = advantageLabel ? ` — ${advantageLabel}` : "";
 
-  return `${phaseLabel}: ${playerA} vs ${playerB} (${formatLabel})${scoreLabel}`;
+  return `${phaseLabel}: ${playerA} vs ${playerB} (${formatLabel})${scoreLabel}${advantageSuffix}`;
 }
 
 function hasDoubleEliminationDependentProgression(tournament, match) {
@@ -4374,10 +4492,11 @@ function confirmResultSaveAction(tournament, updates) {
   }
 
   const isDouble = tournament?.structure?.type === "double-elimination";
+  const isTriplePlayoff = tournament?.structure?.type === "triple-bracket" && updates.some((update) => isTripleBracketPlayoffMatch(tournament, update.match));
   const hasCompletedEdit = updates.some((update) => update.match?.status === "completed" || update.match?.winnerId);
   const hasDependentProgression = updates.some((update) => hasDoubleEliminationDependentProgression(tournament, update.match));
 
-  if (!isDouble && !hasCompletedEdit) {
+  if (!isDouble && !isTriplePlayoff && !hasCompletedEdit) {
     return true;
   }
 
@@ -4393,6 +4512,7 @@ function confirmResultSaveAction(tournament, updates) {
     extraCount,
     "",
     isDouble ? "Atenção: em Double Elimination, vencedores avançam e perdedores podem cair para a Lower Bracket automaticamente." : "",
+    isTriplePlayoff ? "Atenção: no Sistema de 3 Chaves, vencedores e perdedores avançam automaticamente entre Chave Alta, Média, Baixa e finais." : "",
     hasCompletedEdit ? "Você está editando uma partida que já tinha resultado lançado." : "",
     hasDependentProgression ? "Existem progressões dependentes desta partida. O sistema pode limpar/recalcular partidas seguintes." : "",
     "",
@@ -4927,10 +5047,17 @@ async function finalizeTournament() {
           const matchFormat = getEffectiveMatchFormat(activeTournament, match);
           const matchPhaseLabel = match.phaseLabel || "Regra padrão";
           const safetyInfo = getResultMatchSafetyInfo(match, activeTournament);
+          const grandFinalAdvantageText = getTripleBracketGrandFinalAdvantageText(match);
+          const scoreAMin = getTripleBracketGrandFinalAdvantageScoreA(match);
           const isSelected = isMatchDraftSelected(match.id);
           const tripleTemplateLocked = Boolean(
             activeTournament?.structure?.type === "triple-bracket" &&
             isTripleBracketTemplateStructure(activeTournament)
+          );
+          const tripleProgressionLocked = Boolean(
+            activeTournament?.structure?.type === "triple-bracket" &&
+            isTripleBracketPlayoffMatch(activeTournament, match) &&
+            (match.resultLocked || isTripleBracketMatchWaiting(match))
           );
 
           if (isBye) {
@@ -4966,6 +5093,28 @@ async function finalizeTournament() {
             `;
           }
 
+          if (tripleProgressionLocked) {
+            return `
+              <div class="result-match-card is-result-locked" data-match-card="${match.id}">
+                <div class="result-format-line">
+                  <span>${escapeHTML(matchPhaseLabel)}</span>
+                  <strong>Aguardando avanço</strong>
+                </div>
+
+                <div class="result-safety-line warning">
+                  <strong>Partida ainda não liberada</strong>
+                  <span>Esta partida depende de vencedores ou perdedores das chaves anteriores.</span>
+                </div>
+
+                <div class="result-match-top">
+                  <div class="result-player">${getPlayerName(match.playerA)}</div>
+                  <div class="match-vs">vs</div>
+                  <div class="result-player right">${getPlayerName(match.playerB)}</div>
+                </div>
+              </div>
+            `;
+          }
+
           return `
             <div class="result-match-card" data-match-card="${match.id}">
               <label class="match-select-line">
@@ -4982,6 +5131,12 @@ async function finalizeTournament() {
                 <strong>${escapeHTML(safetyInfo.label)}</strong>
                 <span>${escapeHTML(safetyInfo.hint)}</span>
               </div>
+
+              ${grandFinalAdvantageText ? `
+                <div class="results-safety-notes">
+                  <span>${escapeHTML(grandFinalAdvantageText)}</span>
+                </div>
+              ` : ""}
 
               <div class="result-match-top">
                 <div class="result-player">
@@ -5000,7 +5155,7 @@ async function finalizeTournament() {
               <div class="result-controls">
                 <div class="score-box">
                   <label>Placar A</label>
-                  <input class="score-input" type="number" min="0" value="${escapeHTML(scoreAValue)}" data-score-a="${match.id}" />
+                  <input class="score-input" type="number" min="${escapeHTML(scoreAMin)}" value="${escapeHTML(scoreAValue)}" data-score-a="${match.id}" />
                 </div>
 
                 <div class="score-box">
@@ -5100,7 +5255,23 @@ async function finalizeTournament() {
     }
 
     function renderTripleBracketPlayoffMatch(match) {
-      const locked = match.resultLocked !== false;
+      const locked = match.resultLocked !== false || isTripleBracketMatchWaiting(match);
+
+      if (!locked) {
+        return `
+          <div class="triple-bracket-playoff-match triple-bracket-playoff-editable">
+            <div class="playoff-bracket-round-title">${escapeHTML(match.label || match.name || match.id)}</div>
+            ${renderEditableMatchRows([match])}
+            ${(match.winnerTo || match.loserTo) ? `
+              <div class="results-safety-notes">
+                ${match.winnerTo ? `<span>Vencedor → ${escapeHTML(match.winnerTo)}</span>` : ""}
+                ${match.loserTo ? `<span>Perdedor → ${escapeHTML(match.loserTo)}</span>` : ""}
+              </div>
+            ` : ""}
+          </div>
+        `;
+      }
+
       return `
         <div class="playoff-match triple-bracket-playoff-match">
           <div class="playoff-bracket-round-title">${escapeHTML(match.label || match.name || match.id)}</div>
@@ -5108,7 +5279,7 @@ async function finalizeTournament() {
           <div class="playoff-vs">vs</div>
           ${renderTripleBracketPlayoffPlayer(match.playerB, match.slotB)}
           <div class="match-status">
-            ${locked ? "Resultados das chaves bloqueados nesta etapa" : escapeHTML(match.status || "pendente")}
+            ${isTripleBracketMatchWaiting(match) ? "Aguardando classificados" : escapeHTML(match.status || "pendente")}
           </div>
           ${(match.winnerTo || match.loserTo) ? `
             <div class="results-safety-notes">
@@ -5152,7 +5323,7 @@ async function finalizeTournament() {
         <div class="structure-card triple-bracket-summary-card">
           <h4>Chaves geradas</h4>
           <p class="manager-meta">
-            As chaves foram criadas com base na classificação final da fase todos contra todos. Nesta versão, elas são visualmente oficiais, mas os resultados das chaves ainda ficam bloqueados até a próxima etapa de automação.
+            As chaves foram criadas com base na classificação final da fase todos contra todos. O avanço automático entre Chave Alta, Chave Média, Chave Baixa, Final Intermediária e Grande Final está ativo. A Grande Final aplica automaticamente a vantagem da Chave Alta.
           </p>
         </div>
 
@@ -5206,7 +5377,7 @@ async function finalizeTournament() {
           ${officialization.resultLocked
             ? `<p class="structure-empty">Modelo de visualização ativo. Quando houver 8 equipes reais, gere novamente a estrutura oficial antes de lançar resultados.</p>`
             : renderBulkResultActions(playoffsGenerated
-              ? "Fase todos contra todos salva. As chaves já foram geradas; resultados das chaves entram na próxima etapa."
+              ? "Fase todos contra todos salva. As chaves já foram geradas; lance os resultados liberados para avançar automaticamente."
               : "Salve os resultados da fase todos contra todos. Depois, gere Chave Alta, Média e Baixa.")}
 
           ${canGeneratePlayoffs ? `
@@ -5600,12 +5771,15 @@ async function finalizeTournament() {
       structure.lowBracket = playoffResult.lowBracket;
       structure.intermediaryFinal = playoffResult.intermediaryFinal;
       structure.grandFinal = playoffResult.grandFinal;
+      if (typeof window.SBWTripleBracket.recalculatePlayoffProgression === "function") {
+        window.SBWTripleBracket.recalculatePlayoffProgression(structure);
+      }
       structure.currentStep = "triple_playoffs";
-      structure.automationStage = "triple_playoff_brackets_generated";
+      structure.automationStage = "triple_playoff_progression_active";
       structure.playoffGeneratedAt = playoffResult.generatedAt;
       structure.notes = {
         ...(structure.notes || {}),
-        playoffMessage: "Chaves geradas com base na classificação final da fase todos contra todos. Resultados das chaves ainda ficam bloqueados até a automação de avanço entre chaves."
+        playoffMessage: "Chaves geradas com base na classificação final da fase todos contra todos. Avanço automático entre chaves ativo."
       };
 
       tournament.structure = structure;

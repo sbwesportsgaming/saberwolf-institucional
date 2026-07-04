@@ -3999,13 +3999,30 @@ function renderStructureMeta(tournament) {
     `;
   }
 
+  function getTripleBracketPublicAdvantageLabel(match) {
+    if (!match || String(match.id || "") !== "GF1" || !match.advantage?.applied) return "";
+
+    const scoreA = Number(match.advantage.scoreA || match.initialScoreA || match.advantageScoreA || 0);
+    const scoreB = Number(match.advantage.scoreB || match.initialScoreB || match.advantageScoreB || 0);
+    const label = match.advantage.label || "Chave Alta inicia com vantagem na Grande Final.";
+
+    return `${label} Placar inicial: ${scoreA}–${scoreB}.`;
+  }
+
   function renderTripleBracketPublicMatch(match) {
+    const completed = String(match.status || "").toLowerCase() === "completed";
+    const waiting = !match.playerA || !match.playerB || match.playerA?.waitingSlot || match.playerB?.waitingSlot || match.playerA?.placeholder || match.playerB?.placeholder;
+    const statusLabel = waiting ? "Aguardando classificados" : (match.status === "pending" ? "Pendente" : (match.status || "aguardando"));
+    const advantageLabel = getTripleBracketPublicAdvantageLabel(match);
+    const scoreLabel = completed ? `${escapeHTML(match.scoreA)} x ${escapeHTML(match.scoreB)}` : escapeHTML(statusLabel);
     return `
       <div class="playoff-match triple-bracket-playoff-match">
         <div class="playoff-bracket-round-title">${escapeHTML(match.label || match.name || match.id || "Partida")}</div>
         ${renderTripleBracketPublicPlayer(match.playerA, match.slotA)}
         <div class="playoff-vs">vs</div>
         ${renderTripleBracketPublicPlayer(match.playerB, match.slotB)}
+        ${advantageLabel ? `<div class="match-status">${escapeHTML(advantageLabel)}</div>` : ""}
+        <div class="match-status">${scoreLabel}</div>
       </div>
     `;
   }
@@ -4040,13 +4057,13 @@ function renderStructureMeta(tournament) {
       <div class="detail-section-header">
         <span>Playoffs</span>
         <h3>Chave Alta, Média e Baixa</h3>
-        <p>Chaves geradas com base na classificação final. Os resultados das chaves entram na próxima etapa operacional.</p>
+        <p>Chaves geradas com base na classificação final. O avanço automático entre Chave Alta, Média, Baixa e finais está ativo no painel do organizador. A Grande Final aplica a vantagem automática da Chave Alta.</p>
       </div>
       ${renderTripleBracketPublicBracket("Chave Alta", structure.highBracket, "1º ao 4º geral. Perdeu, desce para a Chave Média.")}
       ${renderTripleBracketPublicBracket("Chave Média", structure.middleBracket, "5º ao 8º geral + quedas da Chave Alta.")}
       ${renderTripleBracketPublicBracket("Chave Baixa", structure.lowBracket, "Última chance antes da eliminação.")}
       ${renderTripleBracketPublicBracket("Final Intermediária", structure.intermediaryFinal, "Vencedor da Média contra vencedor da Baixa.")}
-      ${renderTripleBracketPublicBracket("Grande Final", structure.grandFinal, "FT5 sem reset, com vantagem para a Chave Alta.")}
+      ${renderTripleBracketPublicBracket("Grande Final", structure.grandFinal, "FT5 sem reset, com vantagem automática para a Chave Alta.")}
     `;
   }
 

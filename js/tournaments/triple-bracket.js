@@ -1,4 +1,4 @@
-// v1.6.84 — Geração das chaves do Sistema de 3 Chaves da plataforma -SBW-
+// v1.6.86 — Vantagem automática da Grande Final do Sistema de 3 Chaves da plataforma -SBW-
 (function () {
   "use strict";
 
@@ -543,8 +543,10 @@
       winnerTo: options.winnerTo || null,
       loserTo: options.loserTo || null,
       source: "triple_bracket_playoff_seed",
-      resultLocked: true,
-      resultLockReason: "triple_bracket_playoff_progression_pending"
+      resultLocked: Boolean(waiting || options.resultLocked),
+      resultLockReason: (waiting || options.resultLocked)
+        ? (options.resultLockReason || "triple_bracket_waiting_for_progression")
+        : null
     };
   }
 
@@ -595,8 +597,8 @@
           name: "Chave Alta — Semifinais",
           stage: "high_bracket",
           matches: [
-            createPlayoffMatch("HA1", "HA1 · 1º vs 4º", "high_bracket", s1, s4, { order: 1, matchFormat, loserTo: "HM4", loserNextMatchId: "HM4", loserNextSlot: "B" }),
-            createPlayoffMatch("HA2", "HA2 · 2º vs 3º", "high_bracket", s2, s3, { order: 2, matchFormat, loserTo: "HM3", loserNextMatchId: "HM3", loserNextSlot: "B" })
+            createPlayoffMatch("HA1", "HA1 · 1º vs 4º", "high_bracket", s1, s4, { order: 1, matchFormat, nextMatchId: "HA3", nextSlot: "A", loserTo: "HM4", loserNextMatchId: "HM4", loserNextSlot: "B" }),
+            createPlayoffMatch("HA2", "HA2 · 2º vs 3º", "high_bracket", s2, s3, { order: 2, matchFormat, nextMatchId: "HA3", nextSlot: "B", loserTo: "HM3", loserNextMatchId: "HM3", loserNextSlot: "B" })
           ]
         },
         {
@@ -604,7 +606,7 @@
           name: "Final da Chave Alta",
           stage: "high_bracket",
           matches: [
-            createPlayoffMatch("HA3", "HA3 · Final da Chave Alta", "high_bracket", createWaitingSlot("Vencedor HA1"), createWaitingSlot("Vencedor HA2"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final", loserTo: "HM6", loserNextMatchId: "HM6", loserNextSlot: "B" })
+            createPlayoffMatch("HA3", "HA3 · Final da Chave Alta", "high_bracket", createWaitingSlot("Vencedor HA1"), createWaitingSlot("Vencedor HA2"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final", nextMatchId: "GF1", nextSlot: "A", loserTo: "HM6", loserNextMatchId: "HM6", loserNextSlot: "B" })
           ]
         }
       ]
@@ -624,8 +626,8 @@
           name: "Chave Média — Entrada",
           stage: "middle_bracket",
           matches: [
-            createPlayoffMatch("HM1", "HM1 · 5º vs 8º", "middle_bracket", s5, s8, { order: 1, matchFormat, loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "A" }),
-            createPlayoffMatch("HM2", "HM2 · 6º vs 7º", "middle_bracket", s6, s7, { order: 2, matchFormat, loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "B" })
+            createPlayoffMatch("HM1", "HM1 · 5º vs 8º", "middle_bracket", s5, s8, { order: 1, matchFormat, nextMatchId: "HM3", nextSlot: "A", loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "A" }),
+            createPlayoffMatch("HM2", "HM2 · 6º vs 7º", "middle_bracket", s6, s7, { order: 2, matchFormat, nextMatchId: "HM4", nextSlot: "A", loserTo: "HB1", loserNextMatchId: "HB1", loserNextSlot: "B" })
           ]
         },
         {
@@ -633,8 +635,8 @@
           name: "Chave Média — Quedas da Alta",
           stage: "middle_bracket",
           matches: [
-            createPlayoffMatch("HM3", "HM3 · Vencedor HM1 vs Perdedor HA2", "middle_bracket", createWaitingSlot("Vencedor HM1"), createWaitingSlot("Perdedor HA2"), { order: 1, matchFormat, waiting: true, loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "A" }),
-            createPlayoffMatch("HM4", "HM4 · Vencedor HM2 vs Perdedor HA1", "middle_bracket", createWaitingSlot("Vencedor HM2"), createWaitingSlot("Perdedor HA1"), { order: 2, matchFormat, waiting: true, loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "B" })
+            createPlayoffMatch("HM3", "HM3 · Vencedor HM1 vs Perdedor HA2", "middle_bracket", createWaitingSlot("Vencedor HM1"), createWaitingSlot("Perdedor HA2"), { order: 1, matchFormat, waiting: true, nextMatchId: "HM5", nextSlot: "A", loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "A" }),
+            createPlayoffMatch("HM4", "HM4 · Vencedor HM2 vs Perdedor HA1", "middle_bracket", createWaitingSlot("Vencedor HM2"), createWaitingSlot("Perdedor HA1"), { order: 2, matchFormat, waiting: true, nextMatchId: "HM5", nextSlot: "B", loserTo: "HB2", loserNextMatchId: "HB2", loserNextSlot: "B" })
           ]
         },
         {
@@ -642,7 +644,7 @@
           name: "Chave Média — Final parcial",
           stage: "middle_bracket",
           matches: [
-            createPlayoffMatch("HM5", "HM5 · Vencedor HM3 vs Vencedor HM4", "middle_bracket", createWaitingSlot("Vencedor HM3"), createWaitingSlot("Vencedor HM4"), { order: 1, matchFormat, waiting: true, loserTo: "HB4", loserNextMatchId: "HB4", loserNextSlot: "B" })
+            createPlayoffMatch("HM5", "HM5 · Vencedor HM3 vs Vencedor HM4", "middle_bracket", createWaitingSlot("Vencedor HM3"), createWaitingSlot("Vencedor HM4"), { order: 1, matchFormat, waiting: true, nextMatchId: "HM6", nextSlot: "A", loserTo: "HB4", loserNextMatchId: "HB4", loserNextSlot: "B" })
           ]
         },
         {
@@ -650,7 +652,7 @@
           name: "Final da Chave Média",
           stage: "middle_bracket",
           matches: [
-            createPlayoffMatch("HM6", "HM6 · Vencedor HM5 vs Perdedor HA3", "middle_bracket", createWaitingSlot("Vencedor HM5"), createWaitingSlot("Perdedor HA3"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", loserTo: "HB5", loserNextMatchId: "HB5", loserNextSlot: "B" })
+            createPlayoffMatch("HM6", "HM6 · Vencedor HM5 vs Perdedor HA3", "middle_bracket", createWaitingSlot("Vencedor HM5"), createWaitingSlot("Perdedor HA3"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", nextMatchId: "FI1", nextSlot: "A", loserTo: "HB5", loserNextMatchId: "HB5", loserNextSlot: "B" })
           ]
         }
       ]
@@ -670,7 +672,7 @@
           name: "Chave Baixa — Primeira eliminação",
           stage: "low_bracket",
           matches: [
-            createPlayoffMatch("HB1", "HB1 · Perdedor HM1 vs Perdedor HM2", "low_bracket", createWaitingSlot("Perdedor HM1"), createWaitingSlot("Perdedor HM2"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+            createPlayoffMatch("HB1", "HB1 · Perdedor HM1 vs Perdedor HM2", "low_bracket", createWaitingSlot("Perdedor HM1"), createWaitingSlot("Perdedor HM2"), { order: 1, matchFormat, waiting: true, nextMatchId: "HB3", nextSlot: "A", loserTo: "Eliminado" })
           ]
         },
         {
@@ -678,7 +680,7 @@
           name: "Chave Baixa — Segunda eliminação",
           stage: "low_bracket",
           matches: [
-            createPlayoffMatch("HB2", "HB2 · Perdedor HM3 vs Perdedor HM4", "low_bracket", createWaitingSlot("Perdedor HM3"), createWaitingSlot("Perdedor HM4"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+            createPlayoffMatch("HB2", "HB2 · Perdedor HM3 vs Perdedor HM4", "low_bracket", createWaitingSlot("Perdedor HM3"), createWaitingSlot("Perdedor HM4"), { order: 1, matchFormat, waiting: true, nextMatchId: "HB3", nextSlot: "B", loserTo: "Eliminado" })
           ]
         },
         {
@@ -686,7 +688,7 @@
           name: "Chave Baixa — Sobrevivência",
           stage: "low_bracket",
           matches: [
-            createPlayoffMatch("HB3", "HB3 · Vencedor HB1 vs Vencedor HB2", "low_bracket", createWaitingSlot("Vencedor HB1"), createWaitingSlot("Vencedor HB2"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+            createPlayoffMatch("HB3", "HB3 · Vencedor HB1 vs Vencedor HB2", "low_bracket", createWaitingSlot("Vencedor HB1"), createWaitingSlot("Vencedor HB2"), { order: 1, matchFormat, waiting: true, nextMatchId: "HB4", nextSlot: "A", loserTo: "Eliminado" })
           ]
         },
         {
@@ -694,7 +696,7 @@
           name: "Chave Baixa — Queda da Média",
           stage: "low_bracket",
           matches: [
-            createPlayoffMatch("HB4", "HB4 · Vencedor HB3 vs Perdedor HM5", "low_bracket", createWaitingSlot("Vencedor HB3"), createWaitingSlot("Perdedor HM5"), { order: 1, matchFormat, waiting: true, loserTo: "Eliminado" })
+            createPlayoffMatch("HB4", "HB4 · Vencedor HB3 vs Perdedor HM5", "low_bracket", createWaitingSlot("Vencedor HB3"), createWaitingSlot("Perdedor HM5"), { order: 1, matchFormat, waiting: true, nextMatchId: "HB5", nextSlot: "A", loserTo: "Eliminado" })
           ]
         },
         {
@@ -702,7 +704,7 @@
           name: "Final da Chave Baixa",
           stage: "low_bracket",
           matches: [
-            createPlayoffMatch("HB5", "HB5 · Vencedor HB4 vs Perdedor HM6", "low_bracket", createWaitingSlot("Vencedor HB4"), createWaitingSlot("Perdedor HM6"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", loserTo: "Eliminado" })
+            createPlayoffMatch("HB5", "HB5 · Vencedor HB4 vs Perdedor HM6", "low_bracket", createWaitingSlot("Vencedor HB4"), createWaitingSlot("Perdedor HM6"), { order: 1, matchFormat, waiting: true, winnerTo: "Final Intermediária", nextMatchId: "FI1", nextSlot: "B", loserTo: "Eliminado" })
           ]
         }
       ]
@@ -718,7 +720,7 @@
           name: "Final Intermediária",
           stage: "intermediary_final",
           matches: [
-            createPlayoffMatch("FI1", "FI1 · Vencedor Chave Média vs Vencedor Chave Baixa", "intermediary_final", createWaitingSlot("Vencedor Chave Média"), createWaitingSlot("Vencedor Chave Baixa"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final" })
+            createPlayoffMatch("FI1", "FI1 · Vencedor Chave Média vs Vencedor Chave Baixa", "intermediary_final", createWaitingSlot("Vencedor Chave Média"), createWaitingSlot("Vencedor Chave Baixa"), { order: 1, matchFormat, waiting: true, winnerTo: "Grande Final", nextMatchId: "GF1", nextSlot: "B" })
           ]
         }
       ]
@@ -733,7 +735,7 @@
         noReset: true,
         highAdvantageVsMiddle: 1,
         highAdvantageVsLow: 2,
-        note: "A vantagem real será aplicada quando o desafiante da Final Intermediária for conhecido."
+        note: "A vantagem é aplicada automaticamente quando o desafiante da Final Intermediária for conhecido."
       },
       rounds: [
         {
@@ -756,9 +758,9 @@
         generatedAt,
         highBracketSeeds: seeds.slice(0, 4),
         middleBracketSeeds: seeds.slice(4, 8),
-        resultAutomation: "pending_next_patch",
-        resultLocked: true,
-        message: "Chaves geradas com base na classificação final. Resultados das chaves serão liberados após a automação de avanço entre Alta, Média e Baixa."
+        resultAutomation: "enabled_with_grand_final_advantage",
+        resultLocked: false,
+        message: "Chaves geradas com base na classificação final. Resultados das chaves liberam avanço automático entre Alta, Média, Baixa, Final Intermediária e Grande Final."
       },
       highBracket,
       middleBracket,
@@ -766,6 +768,413 @@
       intermediaryFinal,
       grandFinal
     };
+  }
+
+
+  const TRIPLE_PLAYOFF_INITIAL_MATCHES = Object.freeze(["HA1", "HA2", "HM1", "HM2"]);
+  const TRIPLE_PLAYOFF_PROCESS_ORDER = Object.freeze([
+    "HA1", "HA2", "HM1", "HM2",
+    "HA3", "HM3", "HM4", "HB1",
+    "HM5", "HB2", "HB3",
+    "HM6", "HB4",
+    "HB5",
+    "FI1",
+    "GF1"
+  ]);
+  const TRIPLE_DYNAMIC_WAITING_SLOTS = Object.freeze({
+    HA3: ["Vencedor HA1", "Vencedor HA2"],
+    HM3: ["Vencedor HM1", "Perdedor HA2"],
+    HM4: ["Vencedor HM2", "Perdedor HA1"],
+    HM5: ["Vencedor HM3", "Vencedor HM4"],
+    HM6: ["Vencedor HM5", "Perdedor HA3"],
+    HB1: ["Perdedor HM1", "Perdedor HM2"],
+    HB2: ["Perdedor HM3", "Perdedor HM4"],
+    HB3: ["Vencedor HB1", "Vencedor HB2"],
+    HB4: ["Vencedor HB3", "Perdedor HM5"],
+    HB5: ["Vencedor HB4", "Perdedor HM6"],
+    FI1: ["Vencedor Chave Média", "Vencedor Chave Baixa"],
+    GF1: ["Vencedor Chave Alta", "Vencedor Final Intermediária"]
+  });
+
+  const TRIPLE_GRAND_FINAL_ID = "GF1";
+  const TRIPLE_FINAL_INTERMEDIARY_ID = "FI1";
+
+  function getTripleBracketSourceFromMatchSide(match, player) {
+    if (!match || !player) return "";
+    const winnerKey = getTriplePlayerKey(player);
+    const playerAKey = getTriplePlayerKey(match.playerA);
+    const playerBKey = getTriplePlayerKey(match.playerB);
+
+    if (match.id === "HA3" && winnerKey) {
+      return "high_bracket";
+    }
+
+    if (match.id === TRIPLE_FINAL_INTERMEDIARY_ID && winnerKey) {
+      if (String(winnerKey) === String(playerAKey)) return "middle_bracket";
+      if (String(winnerKey) === String(playerBKey)) return "low_bracket";
+    }
+
+    return player.tripleBracketSource || player.sourceBracket || player.finalSource || "";
+  }
+
+  function getGrandFinalAdvantageValue(challenger = {}) {
+    const source = String(
+      challenger.tripleBracketFinalSource ||
+      challenger.tripleBracketSource ||
+      challenger.sourceBracket ||
+      challenger.finalSource ||
+      ""
+    ).toLowerCase();
+
+    if (source.includes("low") || source.includes("baixa")) return DEFAULT_CONFIG.finalSeries.highAdvantageVsLow || 2;
+    if (source.includes("middle") || source.includes("media") || source.includes("média")) return DEFAULT_CONFIG.finalSeries.highAdvantageVsMiddle || 1;
+
+    return DEFAULT_CONFIG.finalSeries.highAdvantageVsMiddle || 1;
+  }
+
+  function getGrandFinalAdvantageLabel(challenger = {}) {
+    const source = String(
+      challenger.tripleBracketFinalSource ||
+      challenger.tripleBracketSource ||
+      challenger.sourceBracket ||
+      challenger.finalSource ||
+      ""
+    ).toLowerCase();
+
+    if (source.includes("low") || source.includes("baixa")) {
+      return "Chave Alta inicia 2–0 porque o desafiante veio da Chave Baixa.";
+    }
+
+    return "Chave Alta inicia 1–0 porque o desafiante veio da Chave Média.";
+  }
+
+  function applyGrandFinalAdvantage(match) {
+    if (!match || match.id !== TRIPLE_GRAND_FINAL_ID || !hasTwoRealPlayers(match)) return match;
+
+    const advantageScore = getGrandFinalAdvantageValue(match.playerB);
+    const advantageLabel = getGrandFinalAdvantageLabel(match.playerB);
+
+    match.matchFormat = "FT5";
+    match.bestOf = "FT5";
+    match.advantage = {
+      type: "triple_bracket_high_seed_start",
+      applied: true,
+      slot: "A",
+      scoreA: advantageScore,
+      scoreB: 0,
+      unit: "games",
+      label: advantageLabel,
+      source: match.playerB?.tripleBracketFinalSource || match.playerB?.tripleBracketSource || "middle_bracket",
+      noReset: true
+    };
+    match.initialScoreA = advantageScore;
+    match.initialScoreB = 0;
+    match.advantageScoreA = advantageScore;
+    match.advantageScoreB = 0;
+    match.phaseLabel = "Grande Final · FT5 com vantagem";
+    match.resultLockReason = null;
+
+    if (String(match.status || "").toLowerCase() !== "completed") {
+      match.resultLocked = false;
+      match.status = "pending";
+
+      if (match.scoreA === null || match.scoreA === undefined || Number(match.scoreA) < advantageScore) {
+        match.scoreA = advantageScore;
+      }
+
+      if (match.scoreB === null || match.scoreB === undefined) {
+        match.scoreB = 0;
+      }
+    }
+
+    return match;
+  }
+
+
+  function isWaitingPlayer(player) {
+    return Boolean(player && (player.waitingSlot || player.placeholder || player.isPlaceholder || player.slotStatus === "waiting"));
+  }
+
+  function getTriplePlayerKey(player) {
+    return getMatchPlayerKey(player);
+  }
+
+  function normalizeProgressionPlayer(player, extra = {}) {
+    if (!player) return null;
+
+    return {
+      ...clone(player),
+      placeholder: false,
+      isPlaceholder: false,
+      waitingSlot: false,
+      slotStatus: "filled",
+      id: getTriplePlayerKey(player),
+      playerId: player.playerId || player.participantId || player.id || getTriplePlayerKey(player),
+      nickname: player.nickname || player.name || player.playerName || "Jogador",
+      name: player.name || player.nickname || player.playerName || "Jogador",
+      ...extra
+    };
+  }
+
+  function getTripleBracketMatchCollections(structure = {}) {
+    return [
+      ...(structure.highBracket?.rounds || []),
+      ...(structure.middleBracket?.rounds || []),
+      ...(structure.lowBracket?.rounds || []),
+      ...(structure.intermediaryFinal?.rounds || []),
+      ...(structure.grandFinal?.rounds || [])
+    ];
+  }
+
+  function getTriplePlayoffMatches(structure = {}) {
+    return getTripleBracketMatchCollections(structure)
+      .flatMap((round) => Array.isArray(round.matches) ? round.matches : [])
+      .filter(Boolean);
+  }
+
+  function findTriplePlayoffMatch(structure = {}, matchId = "") {
+    return getTriplePlayoffMatches(structure).find((match) => String(match.id) === String(matchId)) || null;
+  }
+
+  function hasTwoRealPlayers(match) {
+    return Boolean(match && match.playerA && match.playerB && !isWaitingPlayer(match.playerA) && !isWaitingPlayer(match.playerB));
+  }
+
+  function markTripleMatchAvailability(match) {
+    if (!match) return;
+
+    if (hasTwoRealPlayers(match)) {
+      if (String(match.status || "").toLowerCase() === "waiting") {
+        match.status = "pending";
+      }
+      if (String(match.status || "").toLowerCase() !== "completed") {
+        match.status = "pending";
+      }
+      match.resultLocked = false;
+      match.resultLockReason = null;
+
+      if (match.id === TRIPLE_GRAND_FINAL_ID) {
+        applyGrandFinalAdvantage(match);
+      }
+
+      return;
+    }
+
+    match.status = "waiting";
+    match.resultLocked = true;
+    match.resultLockReason = "triple_bracket_waiting_for_progression";
+  }
+
+  function resetTripleMatchResult(match) {
+    if (!match) return;
+
+    match.scoreA = null;
+    match.scoreB = null;
+    match.winnerId = null;
+    match.updatedAt = null;
+
+    if (match.id === TRIPLE_GRAND_FINAL_ID) {
+      match.advantage = null;
+      match.initialScoreA = null;
+      match.initialScoreB = null;
+      match.advantageScoreA = null;
+      match.advantageScoreB = null;
+    }
+    if (match.resultWorkflow) {
+      match.resultWorkflow.resultStatus = "none";
+      match.resultWorkflow.report = {
+        scoreA: null,
+        scoreB: null,
+        winnerId: null,
+        createdAt: null,
+        updatedAt: null
+      };
+      match.resultWorkflow.confirmedBy = [];
+      match.resultWorkflow.adminResolved = false;
+      match.resultWorkflow.resultLocked = false;
+    }
+  }
+
+  function resetDynamicTripleMatch(match) {
+    if (!match) return;
+    const labels = TRIPLE_DYNAMIC_WAITING_SLOTS[match.id] || [match.slotA || "A definir", match.slotB || "A definir"];
+    match.playerA = createWaitingSlot(labels[0]);
+    match.playerB = createWaitingSlot(labels[1]);
+    match.slotA = labels[0];
+    match.slotB = labels[1];
+    resetTripleMatchResult(match);
+    markTripleMatchAvailability(match);
+  }
+
+  function buildTripleMatchSnapshots(structure = {}) {
+    const snapshots = {};
+    getTriplePlayoffMatches(structure).forEach((match) => {
+      snapshots[match.id] = {
+        scoreA: match.scoreA,
+        scoreB: match.scoreB,
+        winnerId: match.winnerId,
+        status: match.status,
+        updatedAt: match.updatedAt,
+        resultWorkflow: match.resultWorkflow ? clone(match.resultWorkflow) : null,
+        playerAKey: getTriplePlayerKey(match.playerA),
+        playerBKey: getTriplePlayerKey(match.playerB)
+      };
+    });
+    return snapshots;
+  }
+
+  function restoreTripleSnapshotIfCompatible(match, snapshots = {}) {
+    if (!match || !hasTwoRealPlayers(match)) return false;
+    if (String(match.status || "").toLowerCase() === "completed" && match.winnerId) return true;
+
+    const snapshot = snapshots[match.id];
+    if (!snapshot || String(snapshot.status || "").toLowerCase() !== "completed") return false;
+    if (snapshot.scoreA === null || snapshot.scoreA === undefined || snapshot.scoreB === null || snapshot.scoreB === undefined) return false;
+    if (String(snapshot.playerAKey || "") !== String(getTriplePlayerKey(match.playerA) || "")) return false;
+    if (String(snapshot.playerBKey || "") !== String(getTriplePlayerKey(match.playerB) || "")) return false;
+
+    match.scoreA = snapshot.scoreA;
+    match.scoreB = snapshot.scoreB;
+    match.winnerId = snapshot.winnerId;
+    match.status = "completed";
+    match.updatedAt = snapshot.updatedAt || new Date().toISOString();
+    if (snapshot.resultWorkflow) {
+      match.resultWorkflow = clone(snapshot.resultWorkflow);
+    }
+    match.resultLocked = false;
+    match.resultLockReason = null;
+    return true;
+  }
+
+  function getTripleMatchWinner(match) {
+    if (!match || String(match.status || "").toLowerCase() !== "completed" || !match.winnerId) return null;
+    const winnerKey = String(match.winnerId || "");
+    if (String(getTriplePlayerKey(match.playerA)) === winnerKey) return match.playerA;
+    if (String(getTriplePlayerKey(match.playerB)) === winnerKey) return match.playerB;
+    return null;
+  }
+
+  function getTripleMatchLoser(match) {
+    if (!match || String(match.status || "").toLowerCase() !== "completed" || !match.winnerId) return null;
+    const winnerKey = String(match.winnerId || "");
+    if (String(getTriplePlayerKey(match.playerA)) === winnerKey) return match.playerB;
+    if (String(getTriplePlayerKey(match.playerB)) === winnerKey) return match.playerA;
+    return null;
+  }
+
+  function setTripleTargetSlot(structure, targetMatchId, slot, player, sourceLabel = "") {
+    const target = findTriplePlayoffMatch(structure, targetMatchId);
+    if (!target || !player) return false;
+
+    const sourceBracket = getTripleBracketSourceFromMatchSide(findTriplePlayoffMatch(structure, String(sourceLabel || "").replace(/^Vencedor\s+|^Perdedor\s+/, "")), player);
+    const normalized = normalizeProgressionPlayer(player, {
+      lastSource: sourceLabel || targetMatchId,
+      advancedAt: new Date().toISOString(),
+      tripleBracketSource: sourceBracket || player.tripleBracketSource || player.sourceBracket || "",
+      tripleBracketFinalSource: targetMatchId === TRIPLE_GRAND_FINAL_ID
+        ? (sourceBracket || player.tripleBracketFinalSource || player.tripleBracketSource || player.sourceBracket || "")
+        : (player.tripleBracketFinalSource || player.tripleBracketSource || sourceBracket || "")
+    });
+
+    if (String(slot || "A").toUpperCase() === "B") {
+      target.playerB = normalized;
+      target.slotB = normalized.seedLabel || normalized.nickname || "Classificado";
+    } else {
+      target.playerA = normalized;
+      target.slotA = normalized.seedLabel || normalized.nickname || "Classificado";
+    }
+
+    markTripleMatchAvailability(target);
+
+    if (target.id === TRIPLE_GRAND_FINAL_ID) {
+      applyGrandFinalAdvantage(target);
+    }
+
+    return true;
+  }
+
+  function applyTripleMatchProgression(structure, match) {
+    if (!structure || !match || String(match.status || "").toLowerCase() !== "completed") return;
+
+    const winner = getTripleMatchWinner(match);
+    const loser = getTripleMatchLoser(match);
+
+    if (winner && match.nextMatchId && match.nextSlot) {
+      setTripleTargetSlot(structure, match.nextMatchId, match.nextSlot, winner, `Vencedor ${match.id}`);
+    }
+
+    if (loser && match.loserNextMatchId && match.loserNextSlot) {
+      setTripleTargetSlot(structure, match.loserNextMatchId, match.loserNextSlot, loser, `Perdedor ${match.id}`);
+    }
+  }
+
+  function buildTripleProgressionSummary(structure = {}) {
+    const matches = getTriplePlayoffMatches(structure);
+    const playable = matches.filter(hasTwoRealPlayers);
+    const completed = playable.filter((match) => String(match.status || "").toLowerCase() === "completed" && match.winnerId);
+    const waiting = matches.filter((match) => !hasTwoRealPlayers(match));
+    const grandFinal = findTriplePlayoffMatch(structure, TRIPLE_GRAND_FINAL_ID);
+    const champion = getTripleMatchWinner(grandFinal);
+    const grandFinalAdvantage = grandFinal?.advantage || null;
+
+    return {
+      status: champion ? "completed" : (completed.length > 0 ? "in_progress" : "generated"),
+      playableMatches: playable.length,
+      completedMatches: completed.length,
+      waitingMatches: waiting.length,
+      grandFinalAdvantage,
+      champion: champion ? normalizeProgressionPlayer(champion, { placementLabel: "Campeão" }) : null,
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  function recalculatePlayoffProgression(structure = {}) {
+    if (!structure || structure.type !== FORMAT_KEY) {
+      return { success: false, message: "Estrutura do Sistema de 3 Chaves não encontrada." };
+    }
+
+    if (!structure.highBracket || !structure.middleBracket || !structure.lowBracket) {
+      return { success: false, message: "As chaves ainda não foram geradas." };
+    }
+
+    const snapshots = buildTripleMatchSnapshots(structure);
+
+    getTriplePlayoffMatches(structure).forEach((match) => {
+      if (!TRIPLE_PLAYOFF_INITIAL_MATCHES.includes(match.id)) {
+        resetDynamicTripleMatch(match);
+      } else {
+        markTripleMatchAvailability(match);
+      }
+    });
+
+    TRIPLE_PLAYOFF_PROCESS_ORDER.forEach((matchId) => {
+      const match = findTriplePlayoffMatch(structure, matchId);
+      if (!match) return;
+
+      restoreTripleSnapshotIfCompatible(match, snapshots);
+      markTripleMatchAvailability(match);
+
+      if (String(match.status || "").toLowerCase() === "completed" && match.winnerId) {
+        applyTripleMatchProgression(structure, match);
+      }
+    });
+
+    const summary = buildTripleProgressionSummary(structure);
+    structure.playoffs = {
+      ...(structure.playoffs || {}),
+      status: summary.status,
+      resultAutomation: "enabled_with_grand_final_advantage",
+      resultLocked: false,
+      progressionSummary: summary,
+      message: summary.champion
+        ? `Sistema de 3 Chaves concluído. Campeão: ${summary.champion.nickname}.`
+        : "Avanço automático ativo para todas as chaves, com vantagem automática na Grande Final."
+    };
+    structure.automationStage = summary.champion ? "triple_bracket_completed" : "triple_playoff_progression_active";
+    structure.currentStep = summary.champion ? "completed" : "triple_playoffs";
+    structure.updatedAt = new Date().toISOString();
+
+    return { success: true, summary };
   }
 
   function buildCreationPreview() {
@@ -807,6 +1216,13 @@
     buildOfficializationSummary,
     areGroupStageMatchesCompleted,
     buildPlayoffBracketsFromGroupStage,
+    getTriplePlayoffMatches,
+    findTriplePlayoffMatch,
+    recalculatePlayoffProgression,
+    buildTripleProgressionSummary,
+    applyGrandFinalAdvantage,
+    getGrandFinalAdvantageValue,
+    getGrandFinalAdvantageLabel,
     buildGroupStageStructure
   });
 })();
