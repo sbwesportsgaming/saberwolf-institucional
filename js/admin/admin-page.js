@@ -1351,6 +1351,7 @@
         countries: [],
         states: [],
         regions: [],
+        quality: {},
         period: {}
       };
     }
@@ -1369,7 +1370,8 @@
       locations: Array.isArray(source.locations) ? source.locations : [],
       countries: Array.isArray(source.countries) ? source.countries : [],
       states: Array.isArray(source.states) ? source.states : [],
-      regions: Array.isArray(source.regions) ? source.regions : []
+      regions: Array.isArray(source.regions) ? source.regions : [],
+      quality: asObject(source.quality)
     };
   }
 
@@ -1384,7 +1386,7 @@
     } catch (error) {
       return normalizeAnalyticsSummary({
         ok: false,
-        message: error?.message || "Não foi possível carregar o resumo de analytics. Verifique se o SQL da v1.6.80.8 foi rodado."
+        message: error?.message || "Não foi possível carregar o resumo de analytics. Verifique se o SQL da v1.6.80.9 foi rodado."
       });
     }
   }
@@ -1392,15 +1394,45 @@
   function getPracticalPageLabel(item) {
     const path = String(item?.path || "").toLowerCase();
     const rawLabel = String(item?.label || item?.page_title || "").trim();
+    const normalizedLabels = {
+      home: "Início",
+      admin: "Admin Master",
+      teams: "Equipes",
+      team_public: "Perfil público de equipe",
+      team_my: "Minha equipe",
+      team_create: "Criar equipe",
+      tournament_list: "Torneios",
+      tournament_detail: "Detalhe do torneio",
+      tournament_create: "Criar torneio",
+      organizers: "Organizadores",
+      rankings: "Rankings",
+      profiles: "Perfis",
+      profile_public: "Perfil público",
+      communities: "Comunidades",
+      creators: "Creators",
+      news: "Notícias",
+      news_detail: "Notícia",
+      shop: "Loja",
+      transfers: "Transferências",
+      about: "Sobre"
+    };
+
+    if (normalizedLabels[path]) return normalizedLabels[path];
+    if (rawLabel) {
+      return rawLabel
+        .replace(/\s*\|\s*-?SBW-?.*$/i, "")
+        .replace(/\s*\|\s*SaberWolf.*$/i, "")
+        .trim() || rawLabel;
+    }
 
     if (path === "/" || path.endsWith("/index.html") || path === "index.html") return "Início";
     if (path.includes("/admin/")) return "Admin Master";
     if (path.includes("/equipes/minha-equipe")) return "Minha equipe";
-    if (path.includes("/equipes/equipe")) return "Perfil público de equipe";
-    if (path.includes("/equipes/criar-equipe")) return "Criar equipe";
+    if (path.includes("/equipes/criar-equipe") || path.includes("/equipes/criar-subequipe")) return "Criar equipe";
     if (path.includes("/equipes/equipes")) return "Equipes";
-    if (path.includes("/torneios/torneio")) return "Detalhe do torneio";
+    if (path.includes("/equipes/equipe")) return "Perfil público de equipe";
     if (path.includes("/torneios/criar")) return "Criar torneio";
+    if (path.includes("/torneios/torneio")) return "Detalhe do torneio";
     if (path.includes("/torneios/")) return "Torneios";
     if (path.includes("/organizadores/")) return "Organizadores";
     if (path.includes("/rankings/")) return "Rankings";
@@ -1413,13 +1445,6 @@
     if (path.includes("/pages/loja") || path.includes("/loja")) return "Loja";
     if (path.includes("/transferencias/")) return "Transferências";
     if (path.includes("/sobre")) return "Sobre";
-
-    if (rawLabel) {
-      return rawLabel
-        .replace(/\s*\|\s*-?SBW-?.*$/i, "")
-        .replace(/\s*\|\s*SaberWolf.*$/i, "")
-        .trim() || rawLabel;
-    }
 
     return path || "Página não informada";
   }
@@ -1507,6 +1532,25 @@
     `;
   }
 
+  function renderAnalyticsDataQuality(summary) {
+    const quality = asObject(summary?.quality);
+    const total = safeNumber(quality.page_views || summary?.totals?.page_views);
+    const geoKnown = safeNumber(quality.geo_known_views);
+    const geoUnknown = Math.max(0, safeNumber(quality.geo_unknown_views || (total - geoKnown)));
+    const ipLookup = safeNumber(quality.ip_lookup_views);
+    const geoRate = total > 0 ? (geoKnown / total) * 100 : 0;
+
+    if (total <= 0) return "";
+
+    return `
+      <div class="sbw-admin-message sbw-admin-message--info sbw-admin-analytics-quality">
+        <strong>Qualidade dos dados:</strong>
+        origem geográfica identificada em ${escapeHtml(formatShortNumber(geoKnown))}/${escapeHtml(formatShortNumber(total))} page views (${escapeHtml(formatPercent(geoRate))}).
+        IP temporário usado em ${escapeHtml(formatShortNumber(ipLookup))} page views; ${escapeHtml(formatShortNumber(geoUnknown))} page views ainda estão sem país/estado identificado.
+      </div>
+    `;
+  }
+
   function updateAnalyticsButtons() {
     $all("[data-admin-action='analytics-days']").forEach((button) => {
       const isActive = state.analyticsRangeMode !== "custom" && Number(button.dataset.analyticsDays || 0) === Number(state.analyticsDays || 7);
@@ -1537,7 +1581,7 @@
       root.innerHTML = `
         <div class="sbw-admin-message sbw-admin-message--warning">
           <strong>Analytics ainda não disponível.</strong><br />
-          ${escapeHtml(summary.message || "Rode o SQL da v1.6.80.8 no Supabase e atualize esta aba.")}
+          ${escapeHtml(summary.message || "Rode o SQL da v1.6.80.9 no Supabase e atualize esta aba.")}
         </div>
       `;
       return;
@@ -1556,6 +1600,8 @@
         <article><span>PWA/App</span><strong>${escapeHtml(formatPercent(pwaRate))}</strong></article>
       </section>
 
+      ${renderAnalyticsDataQuality(summary)}
+
       <section class="sbw-admin-analytics-grid">
         <article class="sbw-admin-analytics-card sbw-admin-analytics-card--wide">
           <div class="sbw-admin-analytics-card__head">
@@ -1566,12 +1612,12 @@
         </article>
 
         <article class="sbw-admin-analytics-card">
-          <div class="sbw-admin-analytics-card__head"><h3>Páginas mais acessadas</h3></div>
+          <div class="sbw-admin-analytics-card__head"><h3>Top 10 páginas</h3></div>
           ${renderAnalyticsBarList(summary.pages, "path", "views", "Sem páginas registradas ainda.", { formatLabel: (item) => getPracticalPageLabel(item) })}
         </article>
 
         <article class="sbw-admin-analytics-card">
-          <div class="sbw-admin-analytics-card__head"><h3>Categorias</h3></div>
+          <div class="sbw-admin-analytics-card__head"><h3>Top categorias</h3></div>
           ${renderAnalyticsBarList(summary.categories, "category", "views", "Sem categorias registradas ainda.", { formatLabel: (_item, value) => getCategoryLabel(value) })}
         </article>
 
@@ -1586,21 +1632,21 @@
         </article>
 
         <article class="sbw-admin-analytics-card">
-          <div class="sbw-admin-analytics-card__head"><h3>Países</h3></div>
+          <div class="sbw-admin-analytics-card__head"><h3>Top 10 países</h3></div>
           <p class="sbw-admin-analytics-card__hint">Origem aproximada por IP temporário. O IP bruto não é salvo no banco da -SBW-.</p>
-          ${renderAnalyticsBarList(summary.countries, "label", "views", "Sem país registrado ainda.")}
+          ${renderAnalyticsBarList(summary.countries, "label", "views", "Sem país identificado nos eventos deste período.")}
         </article>
 
         <article class="sbw-admin-analytics-card">
-          <div class="sbw-admin-analytics-card__head"><h3>Estados</h3></div>
+          <div class="sbw-admin-analytics-card__head"><h3>Top 10 estados</h3></div>
           <p class="sbw-admin-analytics-card__hint">Para Brasil, mostra UF/estado quando a consulta aproximada conseguir identificar.</p>
-          ${renderAnalyticsBarList(summary.states, "label", "views", "Sem estado registrado ainda.")}
+          ${renderAnalyticsBarList(summary.states, "label", "views", "Sem estado identificado nos eventos deste período.")}
         </article>
 
         <article class="sbw-admin-analytics-card">
           <div class="sbw-admin-analytics-card__head"><h3>Regiões BR</h3></div>
           <p class="sbw-admin-analytics-card__hint">Agrupamento nacional por região brasileira, quando o estado for identificado.</p>
-          ${renderAnalyticsBarList(summary.regions, "label", "views", "Sem região brasileira registrada ainda.")}
+          ${renderAnalyticsBarList(summary.regions, "label", "views", "Sem região brasileira identificada neste período.")}
         </article>
       </section>
     `;
