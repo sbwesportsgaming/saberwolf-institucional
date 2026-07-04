@@ -1176,6 +1176,25 @@ function sbwBuildUniqueLocalTournamentSlug(baseSlug) {
   return `${normalizedBase}-${Date.now()}`;
 }
 
+
+function sbwIsTripleBracketTournamentFormat(format) {
+  const normalized = String(format || "").trim().toLowerCase();
+  return ["triple-bracket", "triple_bracket", "triple-bracket-8", "sistema-3-chaves", "sistema-de-3-chaves"].includes(normalized);
+}
+
+function sbwGetTripleBracketPayloadData(tournament = {}) {
+  const settings = tournament.settings && typeof tournament.settings === "object" ? tournament.settings : {};
+  const metadata = tournament.metadata && typeof tournament.metadata === "object" ? tournament.metadata : {};
+
+  return (
+    settings.tripleBracket ||
+    settings.triple_bracket ||
+    metadata.tripleBracket ||
+    metadata.triple_bracket ||
+    null
+  );
+}
+
 function sbwBuildSupabaseTournamentPayload(tournament, options = {}) {
   const authUser = options.authUser || null;
   const profile = options.profile || null;
@@ -1209,6 +1228,9 @@ function sbwBuildSupabaseTournamentPayload(tournament, options = {}) {
   const organizerSlug = selectedOrganizer?.slug || tournament?.organizerSlug || tournament?.organizer?.slug || "";
   const organizerName = selectedOrganizer?.name || selectedOrganizer?.displayName || tournament?.organizerName || tournament?.organizer?.name || tournament?.organizer || "SaberWolf";
   const slug = sbwNormalizeTournamentSlug(tournament?.slug || title || tournament?.id);
+  const formatValue = tournament?.format || settings.formatKey || "double-elimination";
+  const isTripleBracket = sbwIsTripleBracketTournamentFormat(formatValue);
+  const tripleBracketData = sbwGetTripleBracketPayloadData(tournament);
 
   const normalizedStatus = String(tournament?.status || "draft").trim() || "draft";
 
@@ -1222,16 +1244,16 @@ function sbwBuildSupabaseTournamentPayload(tournament, options = {}) {
     game_id: typeof sbwGenerateSlug === "function" ? sbwGenerateSlug(game) : sbwNormalizeTournamentOrganizerKey(game),
     game_name: game,
     platform: tournament?.platform || "crossplay",
-    format: tournament?.format || "double-elimination",
+    format: isTripleBracket ? "triple-bracket" : formatValue,
     status: normalizedStatus,
     visibility: tournament?.visibility || "public",
 
     tournament_organizer_id: sbwLooksLikeSupabaseUuid(organizerId) ? organizerId : null,
-    organizer_id: String(organizerId || ""),
+    organizer_id: sbwLooksLikeSupabaseUuid(organizerId) ? organizerId : null,
     organizer_slug: String(organizerSlug || ""),
     organizer_name: String(organizerName || "SaberWolf"),
 
-    max_participants: Number(tournament?.maxParticipants || settings.maxPlayers || tournament?.limit || 0) || null,
+    max_participants: isTripleBracket ? 8 : (Number(tournament?.maxParticipants || settings.maxPlayers || tournament?.limit || 0) || null),
     current_participants: Array.isArray(tournament?.participants) ? tournament.participants.length : 0,
 
     starts_at: startsAt,
@@ -1244,6 +1266,16 @@ function sbwBuildSupabaseTournamentPayload(tournament, options = {}) {
 
     settings: {
       ...settings,
+      ...(isTripleBracket ? {
+        maxPlayers: 8,
+        maxParticipants: 8,
+        participantCapacityUnit: "teams",
+        capacityUnit: "teams",
+        formatKey: "triple-bracket",
+        schemaVersion: "triplebracket.v1",
+        tripleBracket: tripleBracketData,
+        triple_bracket: tripleBracketData
+      } : {}),
       matchFormat: settings.matchFormat || tournament?.matchFormat || "",
       schedule: {
         startDate: schedule.startDate || tournament?.startDate || "",
@@ -1260,6 +1292,12 @@ function sbwBuildSupabaseTournamentPayload(tournament, options = {}) {
       ...(tournament?.metadata || {}),
       source: "site-admin",
       localId: tournament?.id || "",
+      ...(isTripleBracket ? {
+        formatKey: "triple-bracket",
+        schemaVersion: "triplebracket.v1",
+        tripleBracket: tripleBracketData,
+        triple_bracket: tripleBracketData
+      } : {}),
       formatLabel: tournament?.formatLabel || "",
       createdFrom: window.location.pathname + window.location.search,
       organizer: selectedOrganizer ? {

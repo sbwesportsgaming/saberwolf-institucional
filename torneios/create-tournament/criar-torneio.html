@@ -354,6 +354,59 @@
 
 
 
+
+    .format-box__triple-preview {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 14px;
+      border: 1px solid rgba(56, 232, 255, 0.2);
+      background: linear-gradient(145deg, rgba(56, 232, 255, 0.08), rgba(2, 6, 23, 0.42));
+    }
+
+    .format-box__triple-cards,
+    .format-box__triple-flow {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .format-box__triple-cards article,
+    .format-box__triple-flow article {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .format-box__triple-cards small,
+    .format-box__triple-flow span {
+      display: block;
+      margin-bottom: 5px;
+      color: #67e8f9;
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .format-box__triple-cards p,
+    .format-box__triple-flow p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 720px) {
+      .format-box__triple-cards,
+      .format-box__triple-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
     .format-box__team-battle-preview {
       display: grid;
       gap: 12px;
@@ -2059,6 +2112,7 @@
             <option value="double-elimination">Double Elimination</option>
             <option value="groups-playoffs">Grupos + Playoffs</option>
             <option value="league">Pontos Corridos / Liga</option>
+            <option value="triple-bracket">Sistema de 3 Chaves (8 equipes beta)</option>
             <option value="team-battle-league-4v4">Team Battle League 4v4 (beta controlado)</option>
           </select>
         </div>
@@ -2398,10 +2452,11 @@ Torneio criado.
 <script src="../../js/tournaments/tournaments-demo-data.js"></script>
 <script src="../../js/tournaments/tournaments-utils.js"></script>
 <script src="../../js/tournaments/tournaments-models.js"></script>
-<script src="../../js/tournaments/tournament-formats.js?v=1.6.76.0"></script>
+<script src="../../js/tournaments/tournament-formats.js?v=1.6.81.0"></script>
+<script src="../../js/tournaments/triple-bracket.js?v=1.6.81.0"></script>
 <script src="../../js/tournaments/team-battle-league.js?v=1.6.76.3"></script>
-<script src="../../js/tournaments/tournaments-storage.js?v=1.6.76.14"></script>
-<script src="../../js/tournaments/tournament-admin-page.js?v=1.6.76.14"></script>
+<script src="../../js/tournaments/tournaments-storage.js?v=1.6.81.0"></script>
+<script src="../../js/tournaments/tournament-admin-page.js?v=1.6.81.0"></script>
 
   <script src="../../js/core/sbw-site-compliance.js"></script>
 </body>

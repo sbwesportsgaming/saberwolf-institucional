@@ -21,9 +21,30 @@ let requestedOrganizerKey = "";
         let activeMatchChatId = null;
 
     const TEAM_BATTLE_LEAGUE_4V4_FORMAT = "team-battle-league-4v4";
+    const TRIPLE_BRACKET_FORMAT = "triple-bracket";
 
     function isTeamBattleLeague4v4Format(format) {
       return String(format || "").trim().toLowerCase() === TEAM_BATTLE_LEAGUE_4V4_FORMAT;
+    }
+
+    function isTripleBracketFormat(format) {
+      const helper = window.SBWTripleBracket;
+      if (helper && typeof helper.isTripleBracketFormat === "function") {
+        return helper.isTripleBracketFormat(format);
+      }
+
+      const normalized = String(format || "").trim().toLowerCase();
+      return [TRIPLE_BRACKET_FORMAT, "triple_bracket", "triple-bracket-8", "sistema-3-chaves", "sistema-de-3-chaves"].includes(normalized);
+    }
+
+    function isTeamEntryTournamentFormat(format) {
+      return isTeamBattleLeague4v4Format(format) || isTripleBracketFormat(format);
+    }
+
+    function getDefaultCapacityForFormat(format) {
+      if (isTripleBracketFormat(format)) return 8;
+      if (isTeamBattleLeague4v4Format(format)) return 8;
+      return 32;
     }
 
     function normalizeEvenTournamentCapacity(value, options = {}) {
@@ -76,6 +97,15 @@ let requestedOrganizerKey = "";
         category: "core",
         status: "active",
         teamMode: "solo"
+      },
+      "triple-bracket": {
+        title: "Sistema de 3 Chaves",
+        description:
+          "Formato avançado para 8 equipes com fase todos contra todos, Chave Alta, Chave Média, Chave Baixa e Grande Final com vantagem.",
+        family: "triple_bracket",
+        category: "advanced",
+        status: "beta",
+        teamMode: "team"
       }
     };
 
@@ -1002,6 +1032,57 @@ async function initAccessControl() {
       `;
     }
 
+    function renderTripleBracketCreationPreview(info) {
+      if (!isTripleBracketFormat(info?.key || info?.implementationKey)) return "";
+
+      const helper = window.SBWTripleBracket;
+      const preview = helper && typeof helper.buildCreationPreview === "function"
+        ? helper.buildCreationPreview()
+        : {
+            badge: "MVP 8 equipes",
+            cards: [
+              { label: "Fase inicial", value: "Todos contra todos", detail: "8 equipes · 28 partidas" },
+              { label: "Corte", value: "Top 4 / Bottom 4", detail: "1º–4º Alta; 5º–8º Média" },
+              { label: "Quedas", value: "Alta → Média → Baixa", detail: "Baixa é eliminação" },
+              { label: "Final", value: "FT5 sem reset", detail: "Alta começa com vantagem" }
+            ],
+            flow: []
+          };
+
+      const cards = Array.isArray(preview.cards) ? preview.cards.slice(0, 4) : [];
+      const flow = Array.isArray(preview.flow) ? preview.flow.slice(0, 4) : [];
+
+      return `
+        <div class="format-box__triple-preview" aria-label="Prévia do Sistema de 3 Chaves">
+          <div class="format-box__team-battle-head">
+            <strong>Sistema de 3 Chaves — base 8 equipes</strong>
+            <span>${escapeHTML(preview.badge || "MVP 8 equipes")}</span>
+          </div>
+          <div class="format-box__triple-cards">
+            ${cards.map((card) => `
+              <article>
+                <small>${escapeHTML(card.label || "Etapa")}</small>
+                <strong>${escapeHTML(card.value || "—")}</strong>
+                <p>${escapeHTML(card.detail || "Regra do formato.")}</p>
+              </article>
+            `).join("")}
+          </div>
+          ${flow.length ? `
+            <div class="format-box__triple-flow">
+              ${flow.map((step, index) => `
+                <article>
+                  <span>${escapeHTML(index + 1)}</span>
+                  <strong>${escapeHTML(step.label || "Etapa")}</strong>
+                  <p>${escapeHTML(step.description || "Fluxo do formato.")}</p>
+                </article>
+              `).join("")}
+            </div>
+          ` : ""}
+          <div class="format-box__notice">Nesta primeira base, o modo nasce travado em 8 equipes. A geração/avanço automático completo deve entrar nos próximos patches, depois de validar a configuração salva no Supabase.</div>
+        </div>
+      `;
+    }
+
     function renderFormatInfoDetails(info) {
       const features = Array.isArray(info.features) ? info.features.slice(0, 5) : [];
       const requirements = Array.isArray(info.requirements) ? info.requirements.slice(0, 5) : [];
@@ -1009,9 +1090,11 @@ async function initAccessControl() {
       const categoryLabel = info.category === "advanced" ? "Formato avançado" : info.category === "core" ? "Formato base" : "Formato customizado";
       const notice = info.status === "planned"
         ? "Este formato aparece no roadmap da plataforma -SBW-, mas ainda não deve ser usado para criação real de torneio."
-        : info.status === "beta"
-          ? "MVP básico liberado para criação controlada: divisão única, equipes reais após check-in e sem equipes demo/fake."
-          : "Formato disponível para criação dentro da estrutura atual da plataforma -SBW-.";
+        : isTripleBracketFormat(info.key)
+          ? "MVP estrutural liberado para criação controlada: exatamente 8 equipes, base Supabase e configuração salva para geração futura das chaves."
+          : info.status === "beta"
+            ? "MVP básico liberado para criação controlada: divisão única, equipes reais após check-in e sem equipes demo/fake."
+            : "Formato disponível para criação dentro da estrutura atual da plataforma -SBW-.";
 
       return `
         <div class="format-box__title">
@@ -1025,6 +1108,7 @@ async function initAccessControl() {
             ${requirements.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
           </ul>
         ` : ""}
+        ${renderTripleBracketCreationPreview(info)}
         ${renderTeamBattleLeagueCreationPreview(info)}
         <div class="format-box__notice">${escapeHTML(notice)}</div>
       `;
@@ -1034,26 +1118,40 @@ async function initAccessControl() {
       if (!maxPlayersInput) return;
 
       const isTeamBattle = isTeamBattleLeague4v4Format(format);
-      maxPlayersInput.min = "2";
-      maxPlayersInput.max = "256";
-      maxPlayersInput.step = "2";
-      maxPlayersInput.placeholder = isTeamBattle ? "Ex: 8 equipes" : "Ex: 32";
+      const isTripleBracket = isTripleBracketFormat(format);
+      const isTeamMode = isTeamEntryTournamentFormat(format);
+
+      maxPlayersInput.min = isTripleBracket ? "8" : "2";
+      maxPlayersInput.max = isTripleBracket ? "8" : "256";
+      maxPlayersInput.step = isTripleBracket ? "1" : "2";
+      maxPlayersInput.placeholder = isTripleBracket ? "8 equipes" : isTeamBattle ? "Ex: 8 equipes" : "Ex: 32";
+
+      if (isTripleBracket) {
+        maxPlayersInput.value = "8";
+        maxPlayersInput.readOnly = true;
+      } else {
+        maxPlayersInput.readOnly = false;
+      }
 
       if (maxPlayersLabel) {
-        maxPlayersLabel.textContent = isTeamBattle ? "Limite de equipes *" : "Limite de participantes *";
+        maxPlayersLabel.textContent = isTeamMode ? "Limite de equipes *" : "Limite de participantes *";
       }
 
       if (maxPlayersHint) {
-        maxPlayersHint.textContent = isTeamBattle
-          ? "Neste formato, o limite representa equipes reais 4v4. Use sempre número par; se a quantidade final confirmada for ímpar, a tabela/bracket aplica bye/encaixe conforme planejado."
-          : "Use capacidade em número par. Se o torneio terminar com número ímpar de inscritos reais, a bracket usa bye/encaixe normalmente.";
-        maxPlayersHint.classList.toggle("is-team-mode", isTeamBattle);
+        maxPlayersHint.textContent = isTripleBracket
+          ? "Sistema de 3 Chaves nasce travado em exatamente 8 equipes no MVP. Não use este modo para torneio rápido ou quantidade variável."
+          : isTeamBattle
+            ? "Neste formato, o limite representa equipes reais 4v4. Use sempre número par; se a quantidade final confirmada for ímpar, a tabela/bracket aplica bye/encaixe conforme planejado."
+            : "Use capacidade em número par. Se o torneio terminar com número ímpar de inscritos reais, a bracket usa bye/encaixe normalmente.";
+        maxPlayersHint.classList.toggle("is-team-mode", isTeamMode);
       }
 
       if (String(maxPlayersInput.value || "").trim()) {
-        const normalized = normalizeEvenTournamentCapacity(maxPlayersInput.value, {
-          fallback: isTeamBattle ? 8 : 32
-        });
+        const normalized = isTripleBracket
+          ? 8
+          : normalizeEvenTournamentCapacity(maxPlayersInput.value, {
+              fallback: getDefaultCapacityForFormat(format)
+            });
         if (String(normalized) !== String(maxPlayersInput.value)) {
           maxPlayersInput.value = normalized;
         }
@@ -1061,9 +1159,11 @@ async function initAccessControl() {
     }
 
     function getTournamentCapacityFromInput(format = formatSelect?.value || "") {
-      const normalized = normalizeEvenTournamentCapacity(maxPlayersInput?.value, {
-        fallback: isTeamBattleLeague4v4Format(format) ? 8 : 32
-      });
+      const normalized = isTripleBracketFormat(format)
+        ? 8
+        : normalizeEvenTournamentCapacity(maxPlayersInput?.value, {
+            fallback: getDefaultCapacityForFormat(format)
+          });
 
       if (maxPlayersInput) {
         maxPlayersInput.value = normalized;
@@ -1236,6 +1336,41 @@ async function initAccessControl() {
         updateGroupPresetOptions();
       }
 
+      if (isTripleBracketFormat(format)) {
+        dynamicSettings.innerHTML = `
+          <div class="phase-rules-panel">
+            <h3>Sistema de 3 Chaves — configuração do MVP</h3>
+            <p>
+              Este modo está travado em 8 equipes. A fase inicial será todos contra todos; depois, Top 4 entram na Chave Alta e 5º ao 8º entram na Chave Média.
+            </p>
+            <div class="row">
+              <div class="form-group">
+                <label for="tripleBracketGroupStage">Fase inicial</label>
+                <input id="tripleBracketGroupStage" type="text" value="Todos contra todos — 8 equipes / 28 partidas" readonly />
+              </div>
+              <div class="form-group">
+                <label for="tripleBracketFinalFormat">Grande Final</label>
+                <input id="tripleBracketFinalFormat" type="text" value="FT5 sem reset, com vantagem da Chave Alta" readonly />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label for="tripleBracketAdvantageVsMiddle">Vantagem Alta vs Média</label>
+                <input id="tripleBracketAdvantageVsMiddle" type="number" min="1" max="1" value="1" readonly />
+              </div>
+              <div class="form-group">
+                <label for="tripleBracketAdvantageVsLow">Vantagem Alta vs Baixa</label>
+                <input id="tripleBracketAdvantageVsLow" type="number" min="2" max="2" value="2" readonly />
+              </div>
+            </div>
+            <div class="phase-rules-note">
+              Base Supabase/configuração. Geração automática da tabela todos contra todos, três chaves e avanço entre chaves entram nas próximas etapas.
+            </div>
+          </div>
+        `;
+        return;
+      }
+
       if (format === "league") {
         dynamicSettings.innerHTML = `
           <div class="row">
@@ -1276,6 +1411,55 @@ async function initAccessControl() {
           advancePerGroup,
           playoffFormat: document.getElementById("playoffFormat").value,
           thirdPlaceMatch: document.getElementById("thirdPlaceMatch").value === "true"
+        };
+      }
+
+      if (isTripleBracketFormat(format)) {
+        const helper = window.SBWTripleBracket;
+        const draft = helper && typeof helper.buildCreationDraft === "function"
+          ? helper.buildCreationDraft({
+              title: document.getElementById("title")?.value || "",
+              game: document.getElementById("game")?.value || ""
+            })
+          : null;
+
+        const config = draft?.config || {
+          formatKey: "triple-bracket",
+          schemaVersion: "triplebracket.v1",
+          requiredTeams: 8,
+          groupStageType: "round_robin",
+          groupStageMatches: 28,
+          highBracketQualifiers: 4,
+          middleBracketQualifiers: 4,
+          finalSeries: {
+            type: "single_series_with_advantage",
+            matchFormat: "FT5",
+            noReset: true,
+            highAdvantageVsMiddle: 1,
+            highAdvantageVsLow: 2,
+            advantageUnit: "games"
+          },
+          automationStage: "base_config"
+        };
+
+        return {
+          tripleBracket: draft || { config },
+          triple_bracket: draft || { config },
+          formatKey: "triple-bracket",
+          schemaVersion: "triplebracket.v1",
+          requiredTeams: 8,
+          exactTeamCount: true,
+          groupStageType: "round_robin",
+          groupStageMatches: 28,
+          highBracketQualifiers: 4,
+          middleBracketQualifiers: 4,
+          finalSeriesTarget: 5,
+          grandFinalReset: false,
+          finalAdvantage: {
+            highAdvantageVsMiddle: 1,
+            highAdvantageVsLow: 2,
+            advantageUnit: "games"
+          }
         };
       }
 
@@ -1325,6 +1509,12 @@ async function initAccessControl() {
 
       const selectedFormat = document.getElementById("format")?.value || "";
 
+      if (isTripleBracketFormat(selectedFormat) && Number(document.getElementById("maxPlayers")?.value || 0) !== 8) {
+        alert("Sistema de 3 Chaves exige exatamente 8 equipes nesta primeira versão.");
+        document.getElementById("maxPlayers")?.focus();
+        return false;
+      }
+
       if (!isTournamentFormatAvailableForCreation(selectedFormat)) {
         alert(getTournamentFormatCreationBlockReason(selectedFormat));
         if (formatSelect) {
@@ -1336,7 +1526,7 @@ async function initAccessControl() {
       }
 
       const maxPlayers = getTournamentCapacityFromInput(selectedFormat);
-      const capacityLabel = isTeamBattleLeague4v4Format(selectedFormat) ? "equipes" : "participantes";
+      const capacityLabel = isTeamEntryTournamentFormat(selectedFormat) ? "equipes" : "participantes";
 
       if (!Number.isInteger(maxPlayers) || maxPlayers < 2 || maxPlayers > 256 || maxPlayers % 2 !== 0) {
         alert(`O limite de ${capacityLabel} precisa estar entre 2 e 256 e sempre em número par.`);
@@ -1349,6 +1539,41 @@ async function initAccessControl() {
       }
 
       return true;
+    }
+
+    function buildTripleBracketCreationDraft(format, context = {}) {
+      if (!isTripleBracketFormat(format)) return null;
+
+      const helper = window.SBWTripleBracket;
+      if (helper && typeof helper.buildCreationDraft === "function") {
+        return helper.buildCreationDraft(context);
+      }
+
+      return {
+        formatKey: "triple-bracket",
+        schemaVersion: "triplebracket.v1",
+        title: context.title || "Sistema de 3 Chaves",
+        game: context.game || "",
+        status: "base_config",
+        config: {
+          formatKey: "triple-bracket",
+          schemaVersion: "triplebracket.v1",
+          requiredTeams: 8,
+          groupStageType: "round_robin",
+          groupStageMatches: 28,
+          highBracketQualifiers: 4,
+          middleBracketQualifiers: 4,
+          finalSeries: {
+            type: "single_series_with_advantage",
+            matchFormat: "FT5",
+            noReset: true,
+            highAdvantageVsMiddle: 1,
+            highAdvantageVsLow: 2,
+            advantageUnit: "games"
+          },
+          automationStage: "base_config"
+        }
+      };
     }
 
     function buildTeamBattleLeagueCreationDraft(format, context = {}) {
@@ -1462,8 +1687,16 @@ async function initAccessControl() {
         organizerName,
         rankingEnabled
       });
+      const tripleBracketDraft = buildTripleBracketCreationDraft(format, {
+        title,
+        game,
+        organizerName,
+        rankingEnabled
+      });
       const tournamentCapacity = getTournamentCapacityFromInput(format);
       const isTeamBattleLeagueTournament = isTeamBattleLeague4v4Format(format);
+      const isTripleBracketTournament = isTripleBracketFormat(format);
+      const isTeamEntryTournament = isTeamEntryTournamentFormat(format);
       const registrationOpensAt = buildOptionalDateTimeValue("registrationOpensDate", "registrationOpensTime");
       const registrationClosesAt = buildOptionalDateTimeValue("registrationClosesDate", "registrationClosesTime");
       const checkinStartsAt = buildOptionalDateTimeValue("checkinStartsDate", "checkinStartsTime");
@@ -1516,8 +1749,8 @@ async function initAccessControl() {
         settings: {
           maxPlayers: tournamentCapacity,
           maxParticipants: tournamentCapacity,
-          participantCapacityUnit: isTeamBattleLeagueTournament ? "teams" : "participants",
-          capacityUnit: isTeamBattleLeagueTournament ? "teams" : "participants",
+          participantCapacityUnit: isTeamEntryTournament ? "teams" : "participants",
+          capacityUnit: isTeamEntryTournament ? "teams" : "participants",
           ...(isTeamBattleLeagueTournament ? {
             matchScheduling: teamBattleLeagueDraft?.settings?.matchScheduling || {
               organizerManaged: true,
@@ -1564,6 +1797,10 @@ async function initAccessControl() {
             teamBattleLeague: teamBattleLeagueDraft.settings,
             team_battle_league: teamBattleLeagueDraft.settings
           } : {}),
+          ...(tripleBracketDraft ? {
+            tripleBracket: tripleBracketDraft,
+            triple_bracket: tripleBracketDraft
+          } : {}),
           ...getDynamicSettings(format)
         },
 
@@ -1571,8 +1808,9 @@ async function initAccessControl() {
           format: formatMetadata,
           capacity: {
             value: tournamentCapacity,
-            unit: isTeamBattleLeagueTournament ? "teams" : "participants",
-            evenOnly: true
+            unit: isTeamEntryTournament ? "teams" : "participants",
+            evenOnly: !isTripleBracketTournament,
+            exactRequired: isTripleBracketTournament ? 8 : null
           },
           registration: {
             opensAt: registrationOpensAt,
@@ -1596,6 +1834,10 @@ async function initAccessControl() {
           ...(teamBattleLeagueDraft ? {
             teamBattleLeague: teamBattleLeagueDraft.metadata,
             team_battle_league: teamBattleLeagueDraft.metadata
+          } : {}),
+          ...(tripleBracketDraft ? {
+            tripleBracket: tripleBracketDraft,
+            triple_bracket: tripleBracketDraft
           } : {}),
           ranking: {
             enabled: rankingEnabled,

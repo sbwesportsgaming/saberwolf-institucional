@@ -3,7 +3,7 @@
 
   const CONSENT_KEY = "sbw_cookie_consent_v1";
   const CONSENT_VERSION = "2026-06-10";
-  const SBW_SITE_VERSION = "v1.6.80.9";
+  const SBW_SITE_VERSION = "v1.6.81";
   const SBW_APP_VERSION = "App -SBW- Beta v0.2";
   const SBW_PWA_SW_URL = "/service-worker.js?v=20260630-16808";
 
