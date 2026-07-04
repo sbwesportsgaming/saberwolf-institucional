@@ -1,15 +1,15 @@
 /*
-  -SBW- PWA Beta Service Worker v1.6.81
+  -SBW- PWA Beta Service Worker v1.6.82
   - Cache conservador com versionamento para evitar assets antigos no app instalado.
   - HTML/pages usam network-first e caem para offline.html somente sem conexão.
   - Não cacheia Supabase, Auth, Admin, dados privados ou páginas dinâmicas de forma agressiva.
 */
 
-const SBW_PWA_CACHE = "sbw-pwa-beta-v11";
+const SBW_PWA_CACHE = "sbw-pwa-beta-v12";
 const SBW_PWA_PRECACHE = [
   "/offline.html",
   "/index.html",
-  "/manifest.webmanifest?v=20260704-16809",
+  "/manifest.webmanifest?v=20260704-1682",
   "/assets/icons/icon-192-v3.png",
   "/assets/icons/icon-512-v3.png",
   "/assets/icons/apple-touch-icon-v3.png",

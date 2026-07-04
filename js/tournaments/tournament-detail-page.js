@@ -376,6 +376,18 @@ function sbwCollectPublicMatchesFromStructure(tournament) {
     });
   }
 
+
+  if (Array.isArray(structure.groupStage?.rounds)) {
+    structure.groupStage.rounds.forEach((round, roundIndex) => {
+      sbwAddPublicMatches(matches, round.matches, {
+        roundName: round.name || round.label || `Rodada ${roundIndex + 1}`,
+        bracketLabel: "Sistema de 3 Chaves · Todos contra todos",
+        stageLabel: "Fase inicial",
+        prefix: `triple-group-stage-${roundIndex + 1}`
+      });
+    });
+  }
+
   if (Array.isArray(structure.groups)) {
     structure.groups.forEach((group, groupIndex) => {
       const groupName = group.name || group.label || `Grupo ${String.fromCharCode(65 + groupIndex)}`;
@@ -572,6 +584,19 @@ function getTournamentFormat(tournament) {
     }
   }
 
+
+  if (
+    normalized === "triple-bracket" ||
+    normalized === "triple_bracket" ||
+    normalized === "triple-bracket-8" ||
+    normalized === "sistema-3-chaves" ||
+    normalized === "sistema-de-3-chaves" ||
+    normalized.includes("3 chaves") ||
+    normalized.includes("triple")
+  ) {
+    return "triple-bracket";
+  }
+
   if (
     normalized === "groups-playoffs" ||
     normalized === "groups_playoffs" ||
@@ -621,6 +646,7 @@ function getTournamentFormat(tournament) {
     }
 
     const labels = {
+      "triple-bracket": "Sistema de 3 Chaves",
       "groups-playoffs": "Grupos + Playoffs",
       league: "Liga / Pontos Corridos",
       "double-elimination": "Double Elimination",
@@ -3927,10 +3953,74 @@ function renderStructureMeta(tournament) {
   `;
 }
 
+
+  function getTripleBracketGroupStage(tournament) {
+    const structure = getTournamentStructure(tournament) || {};
+    return structure.groupStage || {
+      standings: structure.standings || [],
+      rounds: structure.rounds || []
+    };
+  }
+
+  function renderTripleBracketPublic(tournament) {
+    const groupStage = getTripleBracketGroupStage(tournament);
+    const standings = Array.isArray(groupStage.standings) ? groupStage.standings : [];
+    const rounds = Array.isArray(groupStage.rounds) ? groupStage.rounds : [];
+    const playableMatches = rounds.flatMap((round) => round.matches || []).filter((match) => match.playerA && match.playerB);
+    const completedMatches = playableMatches.filter((match) => String(match.status || "").toLowerCase() === "completed");
+
+    return `
+      <div class="structure-block">
+        ${renderStructureMeta(tournament)}
+        ${renderFinalResultsSummary(tournament)}
+
+        <div class="detail-section-header">
+          <span>Sistema de 3 Chaves</span>
+          <h3>Fase todos contra todos</h3>
+          <p>
+            Esta fase define a vantagem competitiva: 1º ao 4º entram na Chave Alta; 5º ao 8º entram na Chave Média.
+          </p>
+        </div>
+
+        <div class="detail-card structure-meta-card">
+          <div>
+            <strong>Progresso da fase inicial</strong>
+            <p>${escapeHTML(completedMatches.length)} / ${escapeHTML(playableMatches.length || 28)} partida(s) concluída(s). As três chaves serão exibidas após a geração dos playoffs pelo organizador.</p>
+          </div>
+        </div>
+
+        ${renderLeagueTable(tournament)}
+
+        <details class="sbw-structure-secondary-groups" open>
+          <summary>
+            <span>Rodadas</span>
+            Ver confrontos todos contra todos
+          </summary>
+          <div class="sbw-structure-secondary-body">
+            ${renderLeagueRounds({
+              ...tournament,
+              structure: {
+                ...(getTournamentStructure(tournament) || {}),
+                rounds,
+                standings
+              },
+              standings
+            })}
+          </div>
+        </details>
+      </div>
+    `;
+  }
+
   function renderStructure(tournament) {
         const format = getTournamentFormat(tournament);
         const metaHtml = renderStructureMeta(tournament);
         const finalResultsHtml = renderFinalResultsSummary(tournament);
+
+
+    if (format === "triple-bracket") {
+      return renderTripleBracketPublic(tournament);
+    }
 
     if (format === "league") {
       return `
