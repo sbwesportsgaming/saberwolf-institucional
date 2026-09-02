@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const VERSION = 'v1.6.80.9';
+  const VERSION = 'v1.6.84.1';
   const MAX_META_KEYS = 12;
   const MAX_META_VALUE = 160;
   const DEFAULT_CATEGORY = 'site';
@@ -63,6 +63,7 @@
     if (path.includes('/blog/') || path.includes('/noticia')) return 'noticias';
     if (path.includes('/creators/')) return 'creators';
     if (path.includes('/comunidades/')) return 'comunidades';
+    if (path === '/links' || path.includes('/links/')) return 'links';
     if (path.includes('/admin/')) return 'admin';
     if (path.includes('/pages/loja')) return 'loja';
     if (path === '/' || path.endsWith('/index.html')) return 'home';

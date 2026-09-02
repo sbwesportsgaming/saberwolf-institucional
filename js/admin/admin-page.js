@@ -1410,6 +1410,7 @@
       profile_public: "Perfil público",
       communities: "Comunidades",
       creators: "Creators",
+      links: "Links",
       news: "Notícias",
       news_detail: "Notícia",
       shop: "Loja",
@@ -1440,6 +1441,8 @@
     if (path.includes("/perfis/")) return "Perfis";
     if (path.includes("/comunidades/")) return "Comunidades";
     if (path.includes("/creators/")) return "Creators";
+    if (path.includes("/links/dlucca")) return "Links · D’Lucca";
+    if (path.includes("/links/")) return "Links oficiais";
     if (path.includes("/blog/noticia")) return "Notícia";
     if (path.includes("/blog/")) return "Notícias";
     if (path.includes("/pages/loja") || path.includes("/loja")) return "Loja";
@@ -1461,6 +1464,7 @@
       noticias: "Notícias",
       creators: "Creators",
       comunidades: "Comunidades",
+      links: "Links",
       loja: "Loja",
       site: "Site"
     };

@@ -104,7 +104,7 @@
     if (window.location.protocol === 'file:') return;
 
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/service-worker.js?v=20260629-16806', { scope: '/', updateViaCache: 'none' })
+      navigator.serviceWorker.register('/service-worker.js?v=20260902-16841', { scope: '/', updateViaCache: 'none' })
         .then(function (registration) {
           if (registration && typeof registration.update === 'function') {
             registration.update().catch(function () {});
