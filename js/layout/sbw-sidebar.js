@@ -1,23 +1,33 @@
 (function () {
   "use strict";
 
-  const sidebarLinks = [
-    { id: "home", label: "Início", href: "/index.html", icon: "⌂" },
-    { id: "news", label: "Notícias", href: "/blog/noticias.html", icon: "▤" },
-    { id: "about", label: "Sobre", href: "/pages/sobre.html", icon: "ⓘ" },
-    { id: "creators", label: "Creators", href: "/creators/creators.html", icon: "✦" },
-    { id: "profiles", label: "Perfis", href: "/perfis/perfis.html", icon: "♙", beta: true },
-    { id: "teams", label: "Equipes", href: "/equipes/equipes.html", icon: "♟", beta: true },
-    { id: "organizers", label: "Organizadores", href: "/organizadores/organizadores.html", icon: "♜", beta: true },
-    { id: "tournaments", label: "Torneios", href: "/torneios/torneios.html", icon: "🏆", beta: true },
-    { id: "communities", label: "Comunidades", href: "/comunidades/comunidades.html", icon: "◎" },
-    { id: "rankings", label: "Rankings", href: "/rankings/rankings.html", icon: "▥", beta: true },
-    { id: "transfers", label: "Transferências", href: "/transferencias/transferencias.html", icon: "⇄", beta: true },
-    { id: "shop", label: "Loja", href: "/pages/loja.html", icon: "🛒" }
-  ];
+  /*
+   * Identifica a pasta do site a partir deste arquivo:
+   * js/layout/sbw-sidebar.js
+   *
+   * A identificação acontece antes do DOMContentLoaded,
+   * enquanto document.currentScript está disponível.
+   */
+  const scriptElement =
+    document.currentScript ||
+    Array.from(document.scripts).find((script) =>
+      /\/js\/layout\/sbw-sidebar\.js(?:[?#]|$)/i.test(script.src)
+    );
+
+  const siteBaseUrl = scriptElement?.src
+    ? new URL("../../", scriptElement.src)
+    : new URL(
+        window.SBWRoutes?.getBasePath?.() || "./",
+        window.location.href
+      );
+
+  function siteUrl(relativePath) {
+    const cleanPath = String(relativePath || "").replace(/^\/+/, "");
+    return new URL(cleanPath, siteBaseUrl).href;
+  }
 
   function escapeHtml(value) {
-    return String(value || "")
+    return String(value ?? "")
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
@@ -25,474 +35,203 @@
       .replaceAll("'", "&#039;");
   }
 
+  function getChampionshipUrl() {
+    const localHosts = [
+      "localhost",
+      "127.0.0.1",
+      "0.0.0.0",
+      "::1",
+      "[::1]"
+    ];
+
+    const isLocalHttp =
+      localHosts.includes(window.location.hostname) &&
+      ["http:", "https:"].includes(window.location.protocol);
+
+    if (isLocalHttp) {
+      const url = new URL("/", window.location.href);
+      url.port = "5501";
+      return url.href;
+    }
+
+    /*
+     * Quando o domínio oficial estiver configurado,
+     * o endereço será fornecido pelo arquivo de rotas.
+     */
+    try {
+      const configuredUrl = window.SBWRoutes?.championship?.("/");
+
+      if (
+        typeof configuredUrl === "string" &&
+        /^https?:\/\//i.test(configuredUrl)
+      ) {
+        return new URL(configuredUrl).href;
+      }
+    } catch (error) {
+      console.warn(
+        "[SaberWolf] Não foi possível resolver o endereço da Championship:",
+        error
+      );
+    }
+
+    return "";
+  }
+
+  const localLinks = [
+    {
+      id: "home",
+      label: "Início",
+      href: siteUrl("index.html"),
+      icon: "⌂"
+    },
+    {
+      id: "news",
+      label: "Notícias",
+      href: siteUrl("blog/noticias.html"),
+      icon: "▤"
+    },
+    {
+      id: "about",
+      label: "Sobre",
+      href: siteUrl("pages/sobre.html"),
+      icon: "ⓘ"
+    },
+    {
+      id: "creators",
+      label: "Creators",
+      href: siteUrl("creators/creators.html"),
+      icon: "✦"
+    },
+    {
+      id: "athletes",
+      label: "Atletas",
+      href: siteUrl("atletas/atletas-sbw.html"),
+      icon: "♟"
+    },
+    {
+      id: "communities",
+      label: "Comunidades",
+      href: siteUrl("comunidades/comunidades.html"),
+      icon: "◎"
+    },
+    {
+      id: "content",
+      label: "Conteúdo",
+      href: siteUrl("pages/conteudo.html"),
+      icon: "▶"
+    },
+    {
+      id: "shop",
+      label: "Loja",
+      href: siteUrl("pages/loja.html"),
+      icon: "◇"
+    },
+    {
+      id: "championship",
+      label: "SBW Championship",
+      href: getChampionshipUrl(),
+      icon: "🏆",
+      external: true
+    },
+    {
+      id: "links",
+      label: "Links oficiais",
+      href: siteUrl("links/index.html"),
+      icon: "↗"
+    }
+  ];
+
   function getActivePage() {
     return document.body.dataset.sbwActivePage || "home";
   }
 
-  function wait(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  function setMobileSidebarOpen(isOpen) {
+    document.body.classList.toggle("sbw-sidebar-open", isOpen);
 
-  async function waitForSupabaseClient() {
-    for (let attempt = 0; attempt < 30; attempt += 1) {
-      const client = window.SBWSupabase?.client;
+    const toggle = document.querySelector("[data-sbw-sidebar-toggle]");
 
-      if (client?.auth) {
-        return client;
-      }
-
-      await wait(100);
-    }
-
-    return null;
-  }
-
-  function getInitialFromUser(user) {
-    const raw =
-      user?.user_metadata?.display_name ||
-      user?.user_metadata?.full_name ||
-      user?.user_metadata?.name ||
-      user?.user_metadata?.nickname ||
-      user?.email ||
-      "SBW";
-
-    return String(raw).trim().charAt(0).toUpperCase() || "S";
-  }
-
-  function getDisplayNameFromUser(user) {
-    const metadata = user?.user_metadata || {};
-
-    return (
-      metadata.display_name ||
-      metadata.full_name ||
-      metadata.name ||
-      metadata.nickname ||
-      user?.email?.split("@")[0] ||
-      "Usuário SBW"
-    );
-  }
-
-  function asObject(value) {
-    return value && typeof value === "object" && !Array.isArray(value) ? value : {};
-  }
-
-  function getAvatarUrlFromProfile(profile, user) {
-    const userMetadata = asObject(user?.user_metadata);
-    const profileMetadata = asObject(profile?.metadata);
-    const profileAssets = asObject(profileMetadata.profileAssets || profileMetadata.profile_assets || profileMetadata.assets);
-    const assetFrames = asObject(profileMetadata.assetFrames || profileMetadata.asset_frames);
-    const avatarAsset = asObject(profileAssets.avatar || profileAssets.profile || profileAssets.photo);
-    const photoAsset = asObject(profileMetadata.photo || profileMetadata.avatar || profileMetadata.profilePhoto);
-
-    return String(
-      profile?.avatar_url ||
-      profile?.avatarUrl ||
-      profile?.photo_url ||
-      profile?.photoUrl ||
-      profile?.profile_image_url ||
-      profile?.profileImageUrl ||
-      profile?.image_url ||
-      profile?.imageUrl ||
-      profileMetadata.avatar_url ||
-      profileMetadata.avatarUrl ||
-      profileMetadata.photo_url ||
-      profileMetadata.photoUrl ||
-      profileMetadata.profile_image_url ||
-      profileMetadata.profileImageUrl ||
-      profileMetadata.picture ||
-      profileMetadata.imageUrl ||
-      profileMetadata.image_url ||
-      profileAssets.avatarUrl ||
-      profileAssets.avatar_url ||
-      profileAssets.photoUrl ||
-      profileAssets.photo_url ||
-      avatarAsset.url ||
-      avatarAsset.src ||
-      avatarAsset.publicUrl ||
-      avatarAsset.public_url ||
-      avatarAsset.signedUrl ||
-      avatarAsset.signed_url ||
-      photoAsset.url ||
-      photoAsset.src ||
-      photoAsset.publicUrl ||
-      photoAsset.public_url ||
-      photoAsset.signedUrl ||
-      photoAsset.signed_url ||
-      assetFrames.avatarUrl ||
-      assetFrames.avatar_url ||
-      userMetadata.avatar_url ||
-      userMetadata.picture ||
-      ""
-    ).trim();
-  }
-
-  function mergeSidebarContexts(primary, fallback) {
-    if (!primary) return fallback;
-    if (!fallback) return primary;
-
-    const primaryPermissions = asObject(primary.permissions);
-    const fallbackPermissions = asObject(fallback.permissions);
-
-    return {
-      ...fallback,
-      ...primary,
-      user: primary.user || fallback.user,
-      profile: primary.profile || fallback.profile,
-      displayName: primary.displayName || fallback.displayName,
-      email: primary.email || fallback.email,
-      avatarUrl:
-        primary.avatarUrl ||
-        getAvatarUrlFromProfile(primary.profile, primary.user) ||
-        fallback.avatarUrl ||
-        getAvatarUrlFromProfile(fallback.profile, fallback.user),
-      permissions: mergePermissionObjects(primaryPermissions, fallbackPermissions)
-    };
-  }
-
-  function normalizePermissionSource(source) {
-    const raw = asObject(source);
-    const roles = Array.isArray(raw.roles) ? raw.roles.map((role) => String(role || "").toLowerCase()) : [];
-    const permissionKey = String(raw.permission_key || raw.permissionKey || raw.permission || raw.role || raw.type || "").toLowerCase();
-
-    return {
-      isMasterAdmin: Boolean(raw.isMasterAdmin || raw.is_master_admin || raw.master_admin || roles.includes("master_admin") || roles.includes("owner") || ["master", "master_admin", "owner", "super_admin"].includes(permissionKey)),
-      isAdminSbw: Boolean(raw.isAdminSbw || raw.is_admin_sbw || raw.isAdmin || raw.is_admin || raw.admin_sbw || roles.includes("admin_sbw") || roles.includes("site_admin") || ["admin", "admin_sbw", "site_admin", "staff_admin"].includes(permissionKey)),
-      canManagePermissions: Boolean(raw.canManagePermissions || raw.can_manage_permissions || roles.includes("can_manage_permissions") || ["can_manage_permissions", "permission_admin", "permissions_admin"].includes(permissionKey))
-    };
-  }
-
-  function mergePermissionObjects(...sources) {
-    const normalized = sources.map(normalizePermissionSource);
-    const isMasterAdmin = normalized.some((item) => item.isMasterAdmin);
-    const isAdminSbw = isMasterAdmin || normalized.some((item) => item.isAdminSbw);
-    const canManagePermissions = isMasterAdmin || normalized.some((item) => item.canManagePermissions);
-
-    return {
-      isMasterAdmin,
-      isAdminSbw,
-      canManagePermissions
-    };
-  }
-
-  function canAccessAdmin(context) {
-    const permissions = context?.permissions || {};
-
-    return Boolean(
-      permissions.isMasterAdmin ||
-      permissions.is_master_admin ||
-      permissions.isAdminSbw ||
-      permissions.is_admin_sbw ||
-      permissions.isAdmin ||
-      permissions.is_admin ||
-      permissions.canManagePermissions ||
-      permissions.can_manage_permissions
-    );
-  }
-
-  async function getCurrentContextSafely() {
-    try {
-      if (window.SBWSessionContext?.getCurrentContext) {
-        return await window.SBWSessionContext.getCurrentContext({ refresh: true });
-      }
-    } catch (error) {
-      console.warn("[SBW Sidebar] Não foi possível carregar contexto central:", error);
-    }
-
-    return null;
-  }
-
-  async function canManageAdminViaRpc(client) {
-    if (!client?.rpc) return false;
-
-    try {
-      const result = await client.rpc("sbw_admin_panel_can_manage");
-      return !result?.error && result?.data === true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  async function getSidebarContextViaRpc(client) {
-    if (!client?.rpc) return null;
-
-    try {
-      const result = await client.rpc("sbw_get_sidebar_context");
-      if (result?.error || !result?.data) return null;
-
-      const data = result.data && typeof result.data === "object" ? result.data : {};
-      const profile = data.profile && typeof data.profile === "object" ? data.profile : null;
-      const userData = data.user && typeof data.user === "object" ? data.user : null;
-      const permissions = mergePermissionObjects(
-        asObject(profile?.permissions || profile?.metadata?.permissions),
-        asObject(data.permissions),
-        data.canAdmin === true || data.can_admin === true ? { isAdminSbw: true, canManagePermissions: true } : null
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute(
+        "aria-label",
+        isOpen ? "Fechar menu" : "Abrir menu"
       );
-
-      return {
-        profile,
-        userData,
-        displayName:
-          profile?.display_name ||
-          profile?.displayName ||
-          profile?.nickname ||
-          profile?.username ||
-          userData?.display_name ||
-          userData?.name ||
-          "",
-        email: data.email || userData?.email || "",
-        avatarUrl: getAvatarUrlFromProfile(profile, userData),
-        permissions
-      };
-    } catch (error) {
-      return null;
     }
   }
 
-  async function buildFallbackContextFromSupabase(user) {
-    if (!user) return null;
-
-    const client = await waitForSupabaseClient();
-    const rpcContext = await getSidebarContextViaRpc(client);
-    const adminAllowedByRpc = await canManageAdminViaRpc(client);
-
-    const profile = rpcContext?.profile || null;
-    const mergedUser = Object.assign({}, rpcContext?.userData || {}, user || {});
-    const permissions = mergePermissionObjects(
-      asObject(profile?.permissions || profile?.metadata?.permissions),
-      rpcContext?.permissions,
-      adminAllowedByRpc ? { isAdminSbw: true, canManagePermissions: true } : null
-    );
-
-    return {
-      user: mergedUser,
-      profile,
-      displayName:
-        rpcContext?.displayName ||
-        profile?.display_name ||
-        profile?.displayName ||
-        profile?.nickname ||
-        profile?.username ||
-        getDisplayNameFromUser(user),
-      avatarUrl: rpcContext?.avatarUrl || getAvatarUrlFromProfile(profile, user),
-      email: user.email || rpcContext?.email || "",
-      permissions
-    };
-  }
-
-  async function getCurrentUserSafely() {
-    try {
-      const client = await waitForSupabaseClient();
-
-      if (client?.auth?.getSession) {
-        const sessionResult = await client.auth.getSession();
-        const sessionUser = sessionResult?.data?.session?.user;
-
-        if (sessionUser) {
-          return sessionUser;
-        }
-      }
-
-      if (client?.auth?.getUser) {
-        const userResult = await client.auth.getUser();
-        const user = userResult?.data?.user;
-
-        if (user) {
-          return user;
-        }
-      }
-
-      if (window.SBWAuth?.getUser) {
-        const result = await window.SBWAuth.getUser();
-
-        if (result?.user) return result.user;
-        if (result?.data?.user) return result.data.user;
-        if (result?.id || result?.email) return result;
-      }
-    } catch (error) {
-      console.warn("[SBW Sidebar] Não foi possível carregar usuário:", error);
-    }
-
-    return null;
-  }
-
-  async function signOutSafely() {
-    try {
-      const client = await waitForSupabaseClient();
-
-      if (window.SBWAuth?.signOut) {
-        await window.SBWAuth.signOut();
-      } else if (window.SBWAuth?.logout) {
-        await window.SBWAuth.logout();
-      } else if (client?.auth?.signOut) {
-        await client.auth.signOut();
-      }
-    } catch (error) {
-      console.warn("[SBW Sidebar] Erro ao sair:", error);
-    } finally {
-      window.location.href = "/index.html";
-    }
+  function closeMobileSidebar() {
+    setMobileSidebarOpen(false);
   }
 
   function renderLinks(activePage) {
-    return sidebarLinks
+    return localLinks
       .map((link) => {
-        const isActive = link.id === activePage ? "is-active" : "";
-        const betaBadge = link.beta
-          ? `<span class="sbw-sidebar__beta-badge" aria-label="Área em beta">Beta</span>`
+        const isActive = link.id === activePage && !link.external;
+
+        const className =
+          "sbw-sidebar__link" + (isActive ? " is-active" : "");
+
+        const content = `
+          <span class="sbw-sidebar__icon" aria-hidden="true">
+            ${escapeHtml(link.icon)}
+          </span>
+          <span class="sbw-sidebar__label">
+            <span>${escapeHtml(link.label)}</span>
+          </span>
+        `;
+
+        if (!link.href) {
+          return `
+            <span
+              class="${className}"
+              role="link"
+              aria-disabled="true"
+              title="SBW Championship em preparação"
+            >
+              ${content}
+            </span>
+          `;
+        }
+
+        const activeAttribute = isActive
+          ? ' aria-current="page"'
+          : "";
+
+        const externalAttributes = link.external
+          ? `
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="${escapeHtml(link.label)} — abre em nova aba"
+            `
           : "";
 
         return `
-          <a class="sbw-sidebar__link ${isActive}" href="${link.href}" data-sbw-sidebar-nav>
-            <span class="sbw-sidebar__icon">${link.icon}</span>
-            <span class="sbw-sidebar__label">
-              <span>${link.label}</span>
-              ${betaBadge}
-            </span>
+          <a
+            class="${className}"
+            href="${escapeHtml(link.href)}"
+            data-sbw-sidebar-nav
+            ${activeAttribute}
+            ${externalAttributes}
+          >
+            ${content}
           </a>
         `;
       })
       .join("");
   }
 
-  function renderLoggedOutAccount() {
-    return `
-      <div class="sbw-account-card">
-        <div class="sbw-account-card__top">
-          <div class="sbw-account-card__avatar">S</div>
+  function ensureVisualBalanceStyles() {
+    if (document.getElementById("sbwVisualBalanceStyles")) return;
 
-          <div>
-            <strong>Conta -SBW-</strong>
-            <small>Entre para acessar perfil, inscrições e torneios.</small>
-          </div>
-        </div>
+    const link = document.createElement("link");
 
-        <div class="sbw-account-card__actions">
-          <a class="sbw-sidebar-button" href="/auth/login.html">
-            Entrar / Criar conta
-          </a>
-        </div>
-      </div>
-    `;
-  }
+    link.id = "sbwVisualBalanceStyles";
+    link.rel = "stylesheet";
+    link.href = siteUrl(
+      "css/core/sbw-visual-balance.css?v=manual-1"
+    );
 
-  function renderAccountAvatar(user, context = null) {
-    const displayName = context?.displayName || getDisplayNameFromUser(user);
-    const avatarUrl = context?.avatarUrl || getAvatarUrlFromProfile(context?.profile, user);
-    const initial = escapeHtml(String(displayName || getInitialFromUser(user)).trim().charAt(0).toUpperCase() || "S");
-
-    if (avatarUrl) {
-      return `<span class="sbw-account-card__avatar sbw-account-card__avatar--image"><img src="${escapeHtml(avatarUrl)}" alt="" loading="lazy" /></span>`;
-    }
-
-    return `<span class="sbw-account-card__avatar">${initial}</span>`;
-  }
-
-  function renderLoggedInAccount(user, context = null) {
-    const displayName = context?.displayName || getDisplayNameFromUser(user);
-    const name = escapeHtml(displayName);
-    const avatar = renderAccountAvatar(user, context);
-    const canOpenAdmin = canAccessAdmin(context);
-    const adminItem = canOpenAdmin
-      ? `
-          <a class="sbw-account-dropdown__item sbw-account-dropdown__item--primary" href="/admin/admin.html">
-            <span>⚙️</span>
-            <strong>Administrador</strong>
-          </a>
-        `
-      : "";
-    return `
-      <div class="sbw-account-compact" data-sbw-account-compact>
-        <button
-          class="sbw-account-compact__button"
-          type="button"
-          aria-expanded="false"
-          data-sbw-account-toggle
-        >
-          ${avatar}
-
-          <span class="sbw-account-compact__name">
-            ${name}
-          </span>
-
-          <span class="sbw-account-compact__chevron">▾</span>
-        </button>
-
-        <nav class="sbw-account-dropdown" aria-label="Menu do perfil" data-sbw-account-menu hidden>
-          <a class="sbw-account-dropdown__item sbw-account-dropdown__item--primary" href="/perfis/meu-perfil.html">
-            <span>👤</span>
-            <strong>Meu perfil</strong>
-          </a>
-
-          <a class="sbw-account-dropdown__item" href="/equipes/minha-equipe.html">
-            <span>🛡️</span>
-            <strong>Minha equipe</strong>
-          </a>
-
-          <a class="sbw-account-dropdown__item" href="/perfis/meu-perfil.html#inscricoes">
-            <span>🎟️</span>
-            <strong>Minhas inscrições</strong>
-          </a>
-
-          <a class="sbw-account-dropdown__item" href="/perfis/meu-perfil.html#convites">
-            <span>✉️</span>
-            <strong>Convites</strong>
-          </a>
-
-
-          ${adminItem}
-
-          <button class="sbw-account-dropdown__item sbw-account-dropdown__item--danger" type="button" data-sbw-logout>
-            <span>⏻</span>
-            <strong>Sair</strong>
-          </button>
-        </nav>
-      </div>
-    `;
-  }
-
-  async function updateAccountArea(sidebarElement) {
-    const accountArea = sidebarElement.querySelector("[data-sbw-sidebar-account]");
-
-    if (!accountArea) return;
-
-    accountArea.innerHTML = renderLoggedOutAccount();
-
-    let context = await getCurrentContextSafely();
-    const user = context?.user || await getCurrentUserSafely();
-
-    if (!user) return;
-
-    const fallbackContext = await buildFallbackContextFromSupabase(user);
-    context = mergeSidebarContexts(context, fallbackContext) || { user };
-
-    accountArea.innerHTML = renderLoggedInAccount(user, context);
-
-    const logoutButton = accountArea.querySelector("[data-sbw-logout]");
-
-    if (logoutButton) {
-      logoutButton.addEventListener("click", signOutSafely);
-    }
-
-    const accountToggle = accountArea.querySelector("[data-sbw-account-toggle]");
-    const accountMenu = accountArea.querySelector("[data-sbw-account-menu]");
-
-    if (accountToggle && accountMenu) {
-      accountToggle.addEventListener("click", () => {
-        const isOpen = accountToggle.getAttribute("aria-expanded") === "true";
-
-        accountToggle.setAttribute("aria-expanded", String(!isOpen));
-        accountMenu.hidden = isOpen;
-        accountArea.classList.toggle("is-account-menu-open", !isOpen);
-      });
-
-      accountMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", closeMobileSidebar);
-      });
-    }
-  }
-
-  function closeMobileSidebar() {
-    document.body.classList.remove("sbw-sidebar-open");
+    document.head.appendChild(link);
   }
 
   function initSidebarControls() {
@@ -500,87 +239,95 @@
     const backdrop = document.querySelector("[data-sbw-sidebar-close]");
 
     if (toggle) {
+      toggle.setAttribute("aria-controls", "sbwSidebar");
+
       toggle.addEventListener("click", () => {
-        document.body.classList.toggle("sbw-sidebar-open");
+        const isOpen = document.body.classList.contains(
+          "sbw-sidebar-open"
+        );
+
+        setMobileSidebarOpen(!isOpen);
       });
     }
 
-    if (backdrop) {
-      backdrop.addEventListener("click", closeMobileSidebar);
-    }
+    backdrop?.addEventListener("click", closeMobileSidebar);
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
+      if (
+        event.key === "Escape" &&
+        document.body.classList.contains("sbw-sidebar-open")
+      ) {
         closeMobileSidebar();
+        toggle?.focus();
       }
     });
+
+    setMobileSidebarOpen(false);
   }
 
-  async function listenToAuthChanges(sidebarElement) {
-    const client = await waitForSupabaseClient();
-
-    if (!client?.auth?.onAuthStateChange) return;
-
-    client.auth.onAuthStateChange(() => {
-      updateAccountArea(sidebarElement);
-    });
-  }
-
-
-  function ensureVisualBalanceStyles() {
-    const id = "sbwVisualBalanceStyles";
-
-    if (document.getElementById(id)) return;
-
-    const link = document.createElement("link");
-    link.id = id;
-    link.rel = "stylesheet";
-    link.href = "/css/core/sbw-visual-balance.css?v=1634";
-
-    document.head.appendChild(link);
-  }
-
-  async function initSidebar() {
-    ensureVisualBalanceStyles();
-
+  function initSidebar() {
     const mount = document.getElementById("sbwSidebarMount");
 
-    if (!mount) return;
+    if (!mount || mount.dataset.sbwSidebarReady === "true") return;
 
-    const activePage = getActivePage();
+    ensureVisualBalanceStyles();
 
     document.body.classList.add("sbw-has-sidebar");
 
     mount.innerHTML = `
-      <aside class="sbw-sidebar" aria-label="Menu principal SaberWolf">
-        <div class="sbw-sidebar__top sbw-sidebar__top--account-only">
-          <div class="sbw-sidebar__account sbw-sidebar__account--top" data-sbw-sidebar-account>
-            ${renderLoggedOutAccount()}
-          </div>
-        </div>
+      <aside
+        id="sbwSidebar"
+        class="sbw-sidebar"
+        aria-label="Menu principal SaberWolf Esports"
+      >
+        <a
+          class="sbw-sidebar__brand"
+          href="${escapeHtml(siteUrl("index.html"))}"
+          aria-label="SaberWolf Esports — início"
+        >
+          <span
+            class="sbw-sidebar__brand-mark"
+            aria-hidden="true"
+          >
+            <img
+              src="${escapeHtml(siteUrl("assets/images/logo-sbw.png"))}"
+              alt=""
+            />
+          </span>
 
-        <nav class="sbw-sidebar__nav" aria-label="Navegação principal">
-          ${renderLinks(activePage)}
+          <span class="sbw-sidebar__brand-text">
+            <strong>SaberWolf</strong>
+            <span>Esports</span>
+          </span>
+        </a>
+
+        <nav
+          class="sbw-sidebar__nav"
+          aria-label="Navegação institucional"
+        >
+          ${renderLinks(getActivePage())}
         </nav>
       </aside>
     `;
-
-    const sidebarElement = mount.querySelector(".sbw-sidebar");
-
-    if (!sidebarElement) return;
 
     mount.querySelectorAll("[data-sbw-sidebar-nav]").forEach((link) => {
       link.addEventListener("click", closeMobileSidebar);
     });
 
     initSidebarControls();
-    await updateAccountArea(sidebarElement);
-    listenToAuthChanges(sidebarElement);
+
+    mount.dataset.sbwSidebarReady = "true";
 
     requestAnimationFrame(() => {
       document.body.classList.remove("sbw-sidebar-no-transition");
     });
   }
 
-  document.addEventListener("DOMContentLoaded", initSidebar);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSidebar, {
+      once: true
+    });
+  } else {
+    initSidebar();
+  }
 })();

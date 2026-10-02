@@ -4,20 +4,195 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Comunidades | -SBW-</title>
+  <title>Comunidades | SaberWolf Esports</title>
+
   <meta
     name="description"
-    content="Descubra hubs, grupos e cenas conectadas ao ecossistema SaberWolf. Encontre comunidades por jogo, região, tipo e atividade."
+    content="Descubra comunidades, grupos e cenas conectadas à SaberWolf Esports. Explore por jogo, região, tipo e atividade."
   />
 
-  <link rel="icon" href="../assets/images/logo-sbw.jpg" type="image/jpeg" />
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/comunidades/comunidades.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="Comunidades | SaberWolf Esports" />
+  <meta
+    property="og:description"
+    content="Encontre comunidades, conecte-se e jogue junto com cenas parceiras da SaberWolf Esports."
+  />
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/comunidades/comunidades.html"
+  />
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
+  />
 
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
   <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/comunidades.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-communities-institutional-body {
+      margin: 0;
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-communities-institutional-body [hidden] {
+      display: none !important;
+    }
+
+    .sbw-communities-institutional-body .sbw-communities-page {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-communities-institutional-body :where(
+      .sbw-communities-hero > *,
+      .sbw-communities-filters > *,
+      .sbw-communities-category-card,
+      .sbw-communities-card,
+      .sbw-communities-cta > *
+    ) {
+      min-width: 0;
+    }
+
+    .sbw-communities-institutional-body .sbw-communities-hero h1 {
+      font-size: clamp(2.2rem, 7vw, 6.6rem);
+    }
+
+    .sbw-communities-institutional-body .sbw-communities-heading--row {
+      flex-wrap: wrap;
+    }
+
+    .sbw-communities-institutional-body :where(
+      .sbw-communities-hero-card a,
+      .sbw-communities-cta a
+    ) {
+      max-width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
+    .sbw-communities-institutional-body .sbw-communities-cta > a {
+      flex-shrink: 0;
+    }
+
+    .sbw-communities-institutional-body #communitiesList {
+      scroll-margin-top: 84px;
+    }
+
+    .sbw-communities-institutional-body :where(
+      a,
+      button,
+      input,
+      select
+    ):focus-visible {
+      outline: 2px solid #53d7ff;
+      outline-offset: 4px;
+    }
+
+    .sbw-communities-institutional-body .sbw-communities-empty a {
+      color: #7de8ff;
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 1280px) {
+      .sbw-communities-institutional-body .sbw-communities-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-communities-institutional-body :where(
+        .sbw-communities-filters,
+        .sbw-communities-category-grid,
+        .sbw-communities-grid
+      ) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sbw-communities-institutional-body .sbw-communities-cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .sbw-communities-institutional-body .sbw-communities-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .sbw-communities-institutional-body :where(
+        .sbw-communities-filters,
+        .sbw-communities-category-grid,
+        .sbw-communities-grid
+      ) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.sbw-communities-institutional-body.sbw-page-ready main {
+        animation: none;
+      }
+
+      .sbw-communities-institutional-body .sbw-communities-card {
+        transition: none;
+      }
+
+      .sbw-communities-institutional-body .sbw-communities-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/core/sbw-page-state.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/communities/communities-page.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
-<body class="sbw-communities-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="communities">
+
+<body
+  class="sbw-communities-body sbw-communities-institutional-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="communities"
+>
   <div id="sbwSidebarMount"></div>
 
   <button
@@ -29,114 +204,238 @@
     ☰
   </button>
 
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
 
-  <main class="sbw-communities-page">
-    <section class="sbw-communities-hero" aria-labelledby="communitiesPageTitle">
+  <main class="sbw-communities-page" id="sbwCommunitiesPage">
+    <section
+      class="sbw-communities-hero"
+      aria-labelledby="communitiesPageTitle"
+    >
       <div class="sbw-communities-hero__content">
-        <span class="sbw-communities-kicker">● Ecossistema Gamer ●</span>
+        <span class="sbw-communities-kicker">
+          Ecossistema Gamer
+        </span>
+
         <h1 id="communitiesPageTitle">Comunidades</h1>
+
         <p>
-          Descubra hubs, grupos e cenas que fazem parte do ecossistema -SBW-.
+          Descubra grupos e cenas conectadas à SaberWolf Esports.
           Encontre seu lugar, conecte-se e jogue junto.
         </p>
       </div>
 
-      <aside class="sbw-communities-hero-card" aria-label="Chamada para comunidades">
-        <span>◎</span>
+      <aside
+        class="sbw-communities-hero-card"
+        aria-label="Chamada para comunidades"
+      >
+        <span aria-hidden="true">◎</span>
+
         <strong>Entre em comunidades e jogue junto!</strong>
-        <p>Explore grupos por jogo, região, tipo de cena e atividade.</p>
+
+        <p>
+          Explore grupos por jogo, região, tipo de cena e atividade.
+        </p>
+
         <a href="#communitiesList">Explorar comunidades</a>
       </aside>
     </section>
 
-    <section class="sbw-communities-search" aria-label="Busca e filtros de comunidades">
-      <label class="sbw-communities-search__field">
+    <section
+      class="sbw-communities-search"
+      aria-label="Busca e filtros de comunidades"
+    >
+      <label
+        class="sbw-communities-search__field"
+        for="sbwCommunitySearch"
+      >
         <span>Buscar comunidades</span>
+
         <input
+          id="sbwCommunitySearch"
+          name="community-search"
           type="search"
-          placeholder="Buscar comunidades por nome ou palavra-chave..."
+          placeholder="Buscar por nome ou palavra-chave..."
+          autocomplete="off"
+          aria-controls="sbwCommunitiesGrid"
           data-community-search
         />
       </label>
 
       <div class="sbw-communities-filters">
-        <label>
+        <label for="sbwCommunityGame">
           <span>Jogo</span>
-          <select data-community-filter="game">
+
+          <select
+            id="sbwCommunityGame"
+            name="game"
+            aria-controls="sbwCommunitiesGrid"
+            data-community-filter="game"
+          >
             <option value="all">Todos os jogos</option>
           </select>
         </label>
 
-        <label>
+        <label for="sbwCommunityRegion">
           <span>Região</span>
-          <select data-community-filter="region">
+
+          <select
+            id="sbwCommunityRegion"
+            name="region"
+            aria-controls="sbwCommunitiesGrid"
+            data-community-filter="region"
+          >
             <option value="all">Todas as regiões</option>
           </select>
         </label>
 
-        <label>
+        <label for="sbwCommunityType">
           <span>Tipo</span>
-          <select data-community-filter="type">
+
+          <select
+            id="sbwCommunityType"
+            name="type"
+            aria-controls="sbwCommunitiesGrid"
+            data-community-filter="type"
+          >
             <option value="all">Todos os tipos</option>
           </select>
         </label>
 
-        <label>
+        <label for="sbwCommunityActivity">
           <span>Atividade</span>
-          <select data-community-filter="activity">
+
+          <select
+            id="sbwCommunityActivity"
+            name="activity"
+            aria-controls="sbwCommunitiesGrid"
+            data-community-filter="activity"
+          >
             <option value="all">Todas</option>
           </select>
         </label>
 
-        <button type="button" data-community-clear>Limpar filtros</button>
+        <button
+          type="button"
+          aria-controls="sbwCommunitiesGrid"
+          data-community-clear
+        >
+          Limpar filtros
+        </button>
       </div>
     </section>
 
-    <section class="sbw-communities-quick" aria-labelledby="communityCategoriesTitle">
+    <section
+      class="sbw-communities-quick"
+      aria-labelledby="communityCategoriesTitle"
+    >
       <div class="sbw-communities-heading">
-        <span class="sbw-communities-kicker">Categorias rápidas</span>
+        <span class="sbw-communities-kicker">
+          Categorias rápidas
+        </span>
+
         <h2 id="communityCategoriesTitle">Encontre sua cena</h2>
       </div>
 
-      <div class="sbw-communities-category-grid" data-community-categories></div>
+      <div
+        class="sbw-communities-category-grid"
+        data-community-categories
+      ></div>
     </section>
 
-    <section class="sbw-communities-all" id="communitiesList" aria-labelledby="allCommunitiesTitle">
+    <section
+      class="sbw-communities-all"
+      id="communitiesList"
+      aria-labelledby="allCommunitiesTitle"
+    >
       <div class="sbw-communities-heading sbw-communities-heading--row">
         <div>
-          <span class="sbw-communities-kicker">Diretório público</span>
+          <span class="sbw-communities-kicker">
+            Diretório público
+          </span>
+
           <h2 id="allCommunitiesTitle">Todas as comunidades</h2>
         </div>
-        <small data-community-count>Carregando comunidades...</small>
+
+        <small
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-community-count
+        >
+          Diretório de comunidades
+        </small>
       </div>
 
-      <div class="sbw-communities-grid" data-community-grid></div>
+      <div
+        class="sbw-communities-grid"
+        id="sbwCommunitiesGrid"
+        data-community-grid
+      >
+        <noscript>
+          <div class="sbw-communities-empty">
+            <p>
+              Ative o JavaScript para utilizar a busca e os filtros
+              de comunidades.
+            </p>
+
+            <a href="./comunidade-fighting-girls.html">
+              Conhecer a Fighting Girls Community
+            </a>
+          </div>
+        </noscript>
+      </div>
     </section>
 
-    <section class="sbw-communities-cta" aria-labelledby="communityCtaTitle">
+    <section
+      class="sbw-communities-cta"
+      aria-labelledby="communityCtaTitle"
+    >
       <div>
-        <span class="sbw-communities-kicker">Não encontrou o que procurava?</span>
-        <h2 id="communityCtaTitle">Fortaleça sua comunidade no ecossistema -SBW-</h2>
+        <span class="sbw-communities-kicker">
+          Sua comunidade e a SaberWolf
+        </span>
+
+        <h2 id="communityCtaTitle">
+          Vamos fortalecer nossas comunidades
+        </h2>
+
         <p>
-          A área de comunidades está sendo preparada para receber hubs, parceiros e cenas
-          alinhadas ao projeto. Novas solicitações poderão ser analisadas pela equipe -SBW-.
+          Conheça nossos canais oficiais, acompanhe as iniciativas
+          da organização e converse com a equipe sobre sua comunidade.
         </p>
       </div>
 
-      <a href="../auth/login.html">Tenho interesse</a>
+      <a href="../links/index.html">
+        Acessar canais oficiais
+      </a>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-  <script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-  <script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-page-state.js"></script>
-  <script src="../js/communities/communities-page.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* =========================================================
-   v1.6.70.9 — Página Sobre / plataforma -SBW-
-   Texto institucional completo + visual premium refinado.
+   Página Sobre — SaberWolf Esports
+   Estilos específicos da página institucional.
 ========================================================= */
 
 :root {
@@ -20,13 +20,31 @@
   --sbw-about-deep: #020713;
 }
 
+body.sbw-about-body,
+.sbw-about-page,
+.sbw-about-page::before,
+.sbw-about-page::after,
+.sbw-about-page *,
+.sbw-about-page *::before,
+.sbw-about-page *::after {
+  box-sizing: border-box;
+}
+
+.sbw-about-page,
+.sbw-about-page * {
+  min-width: 0;
+}
+
 body.sbw-about-body {
   min-height: 100vh;
+  min-height: 100svh;
   color: var(--sbw-about-text);
   background:
     radial-gradient(circle at 58% -12%, rgba(14, 165, 233, 0.18), transparent 34rem),
     radial-gradient(circle at 9% 6%, rgba(34, 211, 238, 0.10), transparent 26rem),
     linear-gradient(180deg, #020713 0%, #020814 44%, #030a16 100%);
+  margin: 0;
+  isolation: isolate;
 }
 
 .sbw-about-body::before {
@@ -49,6 +67,7 @@ body.sbw-about-body {
     linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.026) 1px, transparent 1px);
   background-size: 74px 74px;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 72%);
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 72%);
   z-index: -1;
 }
@@ -57,17 +76,20 @@ body.sbw-about-body {
   width: min(1480px, calc(100% - 56px));
   margin: 0 auto;
   padding: 36px 0 48px;
+  padding-bottom: max(48px, env(safe-area-inset-bottom, 0px));
+  overflow-wrap: anywhere;
 }
 
 .sbw-about-hero {
   position: relative;
   min-height: 430px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(350px, 0.48fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.48fr);
   align-items: center;
   gap: 32px;
-  padding: 46px 0 32px;
+  padding: 46px 8px 32px;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .sbw-about-hero::before {
@@ -93,6 +115,7 @@ body.sbw-about-body {
   background:
     linear-gradient(90deg, rgba(2, 7, 19, 0.05), rgba(2, 7, 19, 0.76)),
     url("../assets/home/sbw-home-banner.png") center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 70%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 70%, transparent 100%);
   pointer-events: none;
   z-index: -1;
@@ -128,6 +151,9 @@ body.sbw-about-body {
   font-weight: 900;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  max-width: 100%;
+  line-height: 1.45;
+  white-space: normal;
 }
 
 .sbw-about-hero h1 {
@@ -135,7 +161,7 @@ body.sbw-about-body {
   margin: 18px 0 16px;
   color: #ffffff;
   font-size: clamp(3.45rem, 7.4vw, 6.4rem);
-  line-height: 0.92;
+  line-height: 1.04;
   letter-spacing: -0.075em;
   text-shadow: 0 20px 70px rgba(0, 0, 0, 0.44);
 }
@@ -166,7 +192,9 @@ body.sbw-about-body {
     linear-gradient(145deg, rgba(8, 25, 46, 0.88), rgba(2, 7, 19, 0.68)),
     radial-gradient(circle at 78% 0%, rgba(34, 211, 238, 0.18), transparent 18rem);
   box-shadow: 0 22px 74px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-brand-mark {
@@ -183,6 +211,10 @@ body.sbw-about-body {
   font-size: clamp(1.55rem, 3vw, 2.3rem);
   font-weight: 950;
   letter-spacing: 0.14em;
+  padding: 12px;
+  text-align: center;
+  line-height: 1.2;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-pillar-row {
@@ -192,6 +224,7 @@ body.sbw-about-body {
   border: 1px solid rgba(148, 163, 184, 0.13);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.035);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-pillar-row span {
@@ -200,6 +233,7 @@ body.sbw-about-body {
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  line-height: 1.45;
 }
 
 .sbw-about-pillar-row strong {
@@ -226,6 +260,7 @@ body.sbw-about-body {
     linear-gradient(135deg, rgba(10, 26, 47, 0.82), rgba(4, 13, 27, 0.72)),
     rgba(8, 20, 38, 0.84);
   box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   overflow: hidden;
 }
@@ -264,7 +299,7 @@ body.sbw-about-body {
   margin: 13px 0 0;
   color: #ffffff;
   font-size: clamp(1.75rem, 2.45vw, 2.55rem);
-  line-height: 1.05;
+  line-height: 1.15;
   letter-spacing: -0.045em;
 }
 
@@ -289,7 +324,7 @@ body.sbw-about-body {
 
 .sbw-about-section-heading--split {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.48fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.48fr);
   gap: 24px;
   align-items: end;
 }
@@ -302,7 +337,7 @@ body.sbw-about-body {
 .sbw-about-two-columns,
 .sbw-about-future-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.44fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.44fr);
   gap: 22px;
   align-items: stretch;
 }
@@ -318,13 +353,14 @@ body.sbw-about-body {
   background:
     radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.18), transparent 18rem),
     rgba(2, 7, 19, 0.44);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-quote-box strong {
   color: #ffffff;
   font-size: clamp(1.28rem, 1.8vw, 1.7rem);
   letter-spacing: -0.035em;
-  line-height: 1.12;
+  line-height: 1.25;
 }
 
 .sbw-about-quote-box span {
@@ -354,14 +390,7 @@ body.sbw-about-body {
     rgba(5, 18, 34, 0.72);
   overflow: hidden;
   transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-}
-
-.sbw-about-module-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(34, 211, 238, 0.42);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.18), transparent 68%),
-    rgba(7, 25, 46, 0.88);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-module-card__icon {
@@ -404,7 +433,7 @@ body.sbw-about-body {
   color: #ffffff;
   font-size: 1rem;
   letter-spacing: -0.02em;
-  line-height: 1.18;
+  line-height: 1.3;
 }
 
 .sbw-about-module-card small {
@@ -442,6 +471,7 @@ body.sbw-about-body {
   display: grid;
   gap: 12px;
   align-content: center;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .sbw-about-future-list span {
@@ -454,11 +484,12 @@ body.sbw-about-body {
   color: #ffffff;
   background: rgba(2, 7, 19, 0.34);
   font-weight: 800;
+  line-height: 1.5;
 }
 
 .sbw-about-cta {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, auto);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
   align-items: center;
   gap: 28px;
   margin-top: 24px;
@@ -499,21 +530,21 @@ body.sbw-about-body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0 22px;
+  padding: 12px 22px;
   border: 1px solid rgba(56, 189, 248, 0.28);
   border-radius: 14px;
   color: #ffffff;
   background: rgba(4, 16, 31, 0.76);
   text-decoration: none;
+  font: inherit;
   font-weight: 900;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
   transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-}
-
-.sbw-about-button:hover {
-  transform: translateY(-2px);
-  border-color: rgba(34, 211, 238, 0.48);
-  background: rgba(8, 30, 54, 0.86);
+  max-width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  cursor: pointer;
 }
 
 .sbw-about-button--primary {
@@ -523,14 +554,36 @@ body.sbw-about-body {
   box-shadow: 0 0 28px rgba(34, 211, 238, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
 
-.sbw-about-button--primary:hover {
-  color: #020713;
-  background: linear-gradient(135deg, #a5f3fc, #22d3ee 54%, #3b82f6);
-  box-shadow: 0 0 34px rgba(34, 211, 238, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.42);
-}
-
 .sbw-about-button--ghost {
   background: rgba(255, 255, 255, 0.035);
+}
+
+.sbw-about-button:focus-visible,
+.sbw-about-module-card:focus-visible {
+  outline: 3px solid #a5f3fc;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sbw-about-module-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(34, 211, 238, 0.42);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.18), transparent 68%),
+      rgba(7, 25, 46, 0.88);
+  }
+
+  .sbw-about-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(34, 211, 238, 0.48);
+    background: rgba(8, 30, 54, 0.86);
+  }
+
+  .sbw-about-button--primary:hover {
+    color: #020713;
+    background: linear-gradient(135deg, #a5f3fc, #22d3ee 54%, #3b82f6);
+    box-shadow: 0 0 34px rgba(34, 211, 238, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  }
 }
 
 @media (max-width: 1260px) {
@@ -543,30 +596,17 @@ body.sbw-about-body {
   }
 }
 
-@media (max-width: 980px) {
-  .sbw-about-page {
-    width: min(100% - 28px, 920px);
-    padding-top: 80px;
-  }
-
+@media (max-width: 1180px) {
   .sbw-about-hero,
-  .sbw-about-story-grid,
-  .sbw-about-feature-grid,
   .sbw-about-two-columns,
   .sbw-about-future-grid,
   .sbw-about-section-heading--split,
   .sbw-about-cta {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sbw-about-hero {
     min-height: auto;
-  }
-
-  .sbw-about-hero::after {
-    opacity: 0.22;
-    width: 100%;
-    right: -28%;
   }
 
   .sbw-about-hero__panel {
@@ -579,9 +619,27 @@ body.sbw-about-body {
   }
 }
 
+@media (max-width: 980px) {
+  .sbw-about-page {
+    width: min(920px, calc(100% - 28px));
+    padding-top: calc(78px + env(safe-area-inset-top, 0px));
+  }
+
+  .sbw-about-story-grid,
+  .sbw-about-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-about-hero::after {
+    opacity: 0.22;
+    width: 100%;
+    right: -28%;
+  }
+}
+
 @media (max-width: 680px) {
   .sbw-about-page {
-    width: min(100% - 20px, 640px);
+    width: min(640px, calc(100% - 20px));
   }
 
   .sbw-about-hero h1 {
@@ -595,6 +653,7 @@ body.sbw-about-body {
 
   .sbw-about-button {
     width: 100%;
+    min-width: 0;
   }
 
   .sbw-about-text-card,
@@ -607,10 +666,22 @@ body.sbw-about-body {
   }
 
   .sbw-about-ecosystem-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sbw-about-module-card {
     min-height: 146px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbw-about-button,
+  .sbw-about-module-card {
+    transition: none;
+  }
+
+  .sbw-about-button:hover,
+  .sbw-about-module-card:hover {
+    transform: none;
   }
 }

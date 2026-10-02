@@ -4,20 +4,147 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Fighting Girls Community | -SBW-</title>
+  <title>Fighting Girls Community | SaberWolf Esports</title>
+
   <meta
     name="description"
-    content="Página pública da Fighting Girls Community, comunidade parceira da SaberWolf voltada ao fortalecimento da presença feminina no cenário de Fighting Games."
+    content="Conheça a Fighting Girls Community, comunidade parceira da SaberWolf Esports voltada ao fortalecimento da presença feminina no cenário de Fighting Games."
   />
 
-  <link rel="icon" href="../assets/images/logo-sbw.jpg" type="image/jpeg" />
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/comunidades/comunidade-fighting-girls.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="Fighting Girls Community | -SBW-" />
+  <meta
+    property="og:description"
+    content="Comunidade parceira dedicada à conexão, visibilidade e participação feminina na FGC."
+  />
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/comunidades/comunidade-fighting-girls.html"
+  />
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/images/fighting-girls-logo-1.png"
+  />
 
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
   <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/comunidades.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    .sbw-fighting-girls-body .sbw-community-detail-page {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-fighting-girls-body :where(
+      .sbw-community-detail-hero > *,
+      .sbw-community-detail-grid > *,
+      .sbw-community-detail-social > *,
+      .sbw-community-detail-mini-card
+    ) {
+      min-width: 0;
+    }
+
+    .sbw-fighting-girls-body .sbw-community-detail-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    .sbw-fighting-girls-body :where(
+      .sbw-community-detail-actions a,
+      .sbw-community-detail-social__links a
+    ) {
+      max-width: 100%;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      gap: 12px;
+    }
+
+    .sbw-fighting-girls-body .sbw-community-detail-social__links a {
+      flex-wrap: wrap;
+    }
+
+    .sbw-fighting-girls-body :where(a, button):focus-visible {
+      outline: 2px solid #53d7ff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1280px) {
+      .sbw-fighting-girls-body :where(
+        .sbw-community-detail-hero,
+        .sbw-community-detail-grid,
+        .sbw-community-detail-social
+      ) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-fighting-girls-body .sbw-community-detail-hero__content {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .sbw-fighting-girls-body .sbw-community-detail-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.sbw-fighting-girls-body.sbw-page-ready main {
+        animation: none;
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/core/sbw-page-state.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
-<body class="sbw-community-detail-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="communities">
+
+<body
+  class="sbw-community-detail-body sbw-fighting-girls-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="communities"
+>
   <div id="sbwSidebarMount"></div>
 
   <button
@@ -29,23 +156,42 @@
     ☰
   </button>
 
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
 
   <main class="sbw-community-detail-page">
-    <a class="sbw-community-detail-back" href="comunidades.html">← Voltar para comunidades</a>
+    <a
+      class="sbw-community-detail-back"
+      href="./comunidades.html"
+    >
+      ← Voltar para comunidades
+    </a>
 
-    <section class="sbw-community-detail-hero" aria-labelledby="fightingGirlsTitle">
+    <section
+      class="sbw-community-detail-hero"
+      aria-labelledby="fightingGirlsTitle"
+    >
       <div class="sbw-community-detail-hero__content">
-        <span class="sbw-community-detail-kicker">★ Comunidade parceira -SBW-</span>
+        <span class="sbw-community-detail-kicker">
+          Comunidade parceira -SBW-
+        </span>
 
-        <h1 id="fightingGirlsTitle">Fighting Girls Community</h1>
+        <h1 id="fightingGirlsTitle">
+          Fighting Girls Community
+        </h1>
 
         <p>
-          Comunidade parceira da SaberWolf voltada ao fortalecimento,
-          visibilidade e participação feminina no cenário de Fighting Games.
+          Comunidade parceira da SaberWolf Esports voltada ao
+          fortalecimento, visibilidade e participação feminina
+          no cenário de Fighting Games.
         </p>
 
-        <div class="sbw-community-detail-tags" aria-label="Tags da comunidade">
+        <div
+          class="sbw-community-detail-tags"
+          aria-label="Características da comunidade"
+        >
           <span>Parceira</span>
           <span>FGC</span>
           <span>Fighting Games</span>
@@ -53,61 +199,96 @@
         </div>
 
         <div class="sbw-community-detail-actions">
-          <a href="https://www.instagram.com/fightingirlscbr/" target="_blank" rel="noopener noreferrer">
-            Instagram oficial →
+          <a
+            href="https://www.instagram.com/fightingirlscbr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram da Fighting Girls Community, abre em nova aba"
+          >
+            Instagram oficial ↗
           </a>
-          <a href="https://x.com/fightingirlscbr" target="_blank" rel="noopener noreferrer" class="sbw-community-detail-button--ghost">
-            X / Twitter →
+
+          <a
+            class="sbw-community-detail-button--ghost"
+            href="https://x.com/fightingirlscbr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X da Fighting Girls Community, abre em nova aba"
+          >
+            X / Twitter ↗
           </a>
         </div>
       </div>
 
-      <aside class="sbw-community-detail-hero__card" aria-label="Identidade da Fighting Girls Community">
+      <aside
+        class="sbw-community-detail-hero__card"
+        aria-label="Identidade da Fighting Girls Community"
+      >
         <div class="sbw-community-detail-logo">
-          <img src="../assets/images/fighting-girls-logo.jpeg" alt="Logo da Fighting Girls Community" />
+          <img
+            src="../assets/images/fighting-girls-logo-1.png"
+            alt="Logo da Fighting Girls Community"
+          />
         </div>
 
         <div>
           <span>Diretório público</span>
           <strong>Fighting Girls Community</strong>
-          <small>Comunidade parceira curada pela -SBW-.</small>
+          <small>Comunidade parceira da SaberWolf Esports.</small>
         </div>
       </aside>
     </section>
 
-    <section class="sbw-community-detail-grid" aria-label="Informações da comunidade">
-      <article class="sbw-community-detail-panel sbw-community-detail-panel--wide">
-        <span class="sbw-community-detail-kicker">Sobre a comunidade</span>
-        <h2>Uma parceira focada em presença, conexão e fortalecimento da cena</h2>
+    <section
+      class="sbw-community-detail-grid"
+      aria-label="Informações da comunidade"
+    >
+      <article
+        class="sbw-community-detail-panel sbw-community-detail-panel--wide"
+      >
+        <span class="sbw-community-detail-kicker">
+          Sobre a comunidade
+        </span>
+
+        <h2>
+          Uma parceira focada em presença, conexão e fortalecimento da cena
+        </h2>
 
         <p>
-          A Fighting Girls Community é uma comunidade parceira da SaberWolf,
-          conectada ao cenário de jogos de luta e à valorização da presença
-          feminina dentro da FGC.
+          A Fighting Girls Community é uma comunidade parceira da
+          SaberWolf Esports, conectada ao cenário de jogos de luta
+          e à valorização da presença feminina dentro da FGC.
         </p>
 
         <p>
-          A página pública serve como ponto de apresentação da comunidade dentro
-          do ecossistema -SBW-, reunindo informações essenciais e links oficiais.
+          Esta página apresenta a comunidade dentro do ecossistema
+          -SBW-, reunindo informações essenciais e links oficiais.
         </p>
       </article>
 
-      <aside class="sbw-community-detail-panel sbw-community-detail-panel--info">
-        <span class="sbw-community-detail-kicker">Perfil público</span>
+      <aside
+        class="sbw-community-detail-panel sbw-community-detail-panel--info"
+      >
+        <span class="sbw-community-detail-kicker">
+          Perfil público
+        </span>
 
         <dl class="sbw-community-detail-list">
           <div>
             <dt>Tipo</dt>
             <dd>Comunidade parceira</dd>
           </div>
+
           <div>
             <dt>Categoria</dt>
             <dd>Fighting Games / FGC</dd>
           </div>
+
           <div>
             <dt>Região</dt>
             <dd>Brasil</dd>
           </div>
+
           <div>
             <dt>Status</dt>
             <dd>Ativa</dd>
@@ -116,65 +297,115 @@
       </aside>
     </section>
 
-    <section class="sbw-community-detail-cards" aria-labelledby="communityRoleTitle">
+    <section
+      class="sbw-community-detail-cards"
+      aria-labelledby="communityRoleTitle"
+    >
       <div class="sbw-community-detail-heading">
-        <span class="sbw-community-detail-kicker">Papel no ecossistema</span>
-        <h2 id="communityRoleTitle">Como a comunidade aparece na -SBW-</h2>
+        <span class="sbw-community-detail-kicker">
+          Papel no ecossistema
+        </span>
+
+        <h2 id="communityRoleTitle">
+          Como a comunidade se conecta à -SBW-
+        </h2>
       </div>
 
       <div class="sbw-community-detail-card-grid">
         <article class="sbw-community-detail-mini-card">
-          <span>🤝</span>
+          <span aria-hidden="true">🤝</span>
           <h3>Parceria</h3>
-          <p>Comunidade exibida no diretório público como parceira reconhecida pela -SBW-.</p>
+          <p>
+            Comunidade exibida no diretório público como
+            parceira reconhecida pela -SBW-.
+          </p>
         </article>
 
         <article class="sbw-community-detail-mini-card">
-          <span>🥊</span>
+          <span aria-hidden="true">🥊</span>
           <h3>FGC</h3>
-          <p>Ligação direta com o universo dos jogos de luta e cenas competitivas relacionadas.</p>
+          <p>
+            Ligação direta com o universo dos jogos de luta
+            e cenas competitivas relacionadas.
+          </p>
         </article>
 
         <article class="sbw-community-detail-mini-card">
-          <span>◎</span>
+          <span aria-hidden="true">◎</span>
           <h3>Comunidade</h3>
-          <p>Espaço de conexão, visibilidade e fortalecimento de pessoas dentro da cena.</p>
+          <p>
+            Espaço de conexão, visibilidade e fortalecimento
+            de pessoas dentro da cena.
+          </p>
         </article>
       </div>
     </section>
 
-    <section class="sbw-community-detail-social" aria-labelledby="communitySocialTitle">
+    <section
+      class="sbw-community-detail-social"
+      aria-labelledby="communitySocialTitle"
+    >
       <div>
-        <span class="sbw-community-detail-kicker">Canais oficiais</span>
-        <h2 id="communitySocialTitle">Acompanhe a Fighting Girls Community</h2>
+        <span class="sbw-community-detail-kicker">
+          Canais oficiais
+        </span>
+
+        <h2 id="communitySocialTitle">
+          Acompanhe a Fighting Girls Community
+        </h2>
+
         <p>
-          Use os links oficiais abaixo para acompanhar atualizações, publicações
-          e movimentações da comunidade.
+          Use os links oficiais abaixo para acompanhar atualizações,
+          publicações e movimentações da comunidade.
         </p>
       </div>
 
       <div class="sbw-community-detail-social__links">
-        <a href="https://www.instagram.com/fightingirlscbr/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.instagram.com/fightingirlscbr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram da Fighting Girls Community, abre em nova aba"
+        >
           <span>Instagram</span>
-          <strong>@fightingirlscbr</strong>
+          <strong>@fightingirlscbr ↗</strong>
         </a>
 
-        <a href="https://x.com/fightingirlscbr" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://x.com/fightingirlscbr"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X da Fighting Girls Community, abre em nova aba"
+        >
           <span>X / Twitter</span>
-          <strong>@fightingirlscbr</strong>
+          <strong>@fightingirlscbr ↗</strong>
         </a>
       </div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-  <script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-  <script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-page-state.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

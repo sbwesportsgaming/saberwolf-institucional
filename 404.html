@@ -1,166 +1,387 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Página não encontrada | -SBW-</title>
+  <title>Página não encontrada | SaberWolf Esports</title>
 
-  <meta name="description" content="Página não encontrada no site da SaberWolf eSports. Volte para a Home ou acesse uma das áreas principais do ecossistema -SBW-.">
+  <meta
+    name="description"
+    content="Página não encontrada no site da SaberWolf Esports. Volte ao início ou utilize os atalhos para continuar navegando."
+  />
 
-  <link rel="icon" href="assets/images/logo-sbw.jpg" type="image/jpeg">
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
 
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="-SBW-" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!--
+    Uma página 404 pode aparecer no endereço de uma pasta inexistente.
+    A base deve ser definida antes de carregar imagens, estilos e scripts.
+  -->
+  <base id="sbw404Base" href="/" />
 
-  <link rel="stylesheet" href="css/404.css">
+  <script>
+    (function () {
+      "use strict";
+
+      // Nome da pasta usada ao abrir o projeto dentro de outra pasta no Go Live.
+      const LOCAL_SITE_FOLDER = "SaberWolf Esports";
+
+      // O domínio público da organização utiliza a raiz do endereço.
+      const ONLINE_BASE_PATH = "/";
+
+      const currentUrl = new URL(window.location.href);
+      let siteBaseUrl = new URL(ONLINE_BASE_PATH, currentUrl);
+
+      if (currentUrl.protocol === "file:") {
+        siteBaseUrl = new URL("./", currentUrl);
+      } else if (
+        ["localhost", "127.0.0.1", "0.0.0.0", "::1", "[::1]"].includes(
+          currentUrl.hostname
+        )
+      ) {
+        const segments = currentUrl.pathname.split("/");
+
+        const folderIndex = segments.findIndex((segment) => {
+          try {
+            return decodeURIComponent(segment).toLowerCase() ===
+              LOCAL_SITE_FOLDER.toLowerCase();
+          } catch {
+            return false;
+          }
+        });
+
+        if (folderIndex !== -1) {
+          siteBaseUrl.pathname =
+            segments.slice(0, folderIndex + 1).join("/") + "/";
+        }
+      }
+
+      document.getElementById("sbw404Base").href = siteBaseUrl.href;
+    })();
+  </script>
+
+  <link
+    rel="icon"
+    href="assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest?v=20260902-16841"
+  />
+
+  <link rel="stylesheet" href="css/layout/sbw-sidebar.css" />
+  <link rel="stylesheet" href="css/404.css" />
+  <link rel="stylesheet" href="css/core/sbw-site-compliance.css" />
+
+  <style>
+    .sbw-error-body {
+      min-height: 100vh;
+      margin: 0;
+      color: #f4f8ff;
+      background: #030812;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    .sbw-error-body .error-main {
+      min-height: calc(100vh - 150px);
+      display: grid;
+      align-items: center;
+    }
+
+    .sbw-error-body .error-section {
+      width: min(900px, calc(100% - 48px));
+      min-width: 0;
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    .sbw-error-body .error-card {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-error-logo {
+      display: block;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
+      object-fit: contain;
+    }
+
+    .sbw-error-body .error-card h1 {
+      max-width: 720px;
+      margin: 20px auto 18px;
+      color: #ffffff;
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+    }
+
+    .sbw-error-body .sbw-error-button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 1px solid rgba(76, 202, 255, 0.32);
+      border-radius: 14px;
+      color: #03101d;
+      background: linear-gradient(135deg, #5ddcff, #008dff);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.5;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sbw-error-body .sbw-error-button:hover {
+      border-color: #9be8ff;
+      filter: brightness(1.08);
+    }
+
+    .sbw-error-body .sbw-error-button--secondary {
+      color: #e6f5ff;
+      background: rgba(55, 200, 255, 0.07);
+    }
+
+    .sbw-error-body .sbw-error-button--secondary:hover {
+      background: rgba(55, 200, 255, 0.14);
+    }
+
+    .sbw-error-shortcuts {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 26px;
+    }
+
+    .sbw-error-shortcuts a {
+      color: #7de8ff;
+      font-size: 14px;
+      line-height: 1.6;
+      text-underline-offset: 4px;
+    }
+
+    .sbw-error-shortcuts a:hover {
+      color: #ffffff;
+    }
+
+    .sbw-error-body :where(a, button):focus-visible {
+      outline: 2px solid #53d7ff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 980px) {
+      .sbw-error-body .error-section {
+        width: min(900px, calc(100% - 28px));
+        padding: 78px 0 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sbw-error-body .error-card {
+        padding: 30px 20px;
+        border-radius: 24px;
+      }
+
+      .sbw-error-body .error-actions {
+        flex-direction: column;
+      }
+
+      .sbw-error-body .sbw-error-button {
+        width: 100%;
+      }
+
+      .sbw-error-logo {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+
+  <script defer src="js/core/sbw-routes.js"></script>
+  <script defer src="js/layout/sbw-sidebar.js"></script>
+  <script
+    defer
+    src="js/pwa/sbw-pwa.js?v=20260902-16841"
+  ></script>
+  <script defer src="js/core/sbw-site-compliance.js"></script>
 </head>
 
-<body>
+<body
+  class="sbw-error-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="not-found"
+>
+  <div id="sbwSidebarMount"></div>
 
-<header>
-
-  <h1>SaberWolf</h1>
-
-  <div class="menu-toggle">
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
     ☰
-  </div>
+  </button>
 
-  <nav>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
 
-    <a href="index.html">
-      Home
-    </a>
+  <main
+    class="error-main"
+    aria-labelledby="sbwErrorTitle"
+  >
+    <section
+      class="error-section"
+      aria-labelledby="sbwErrorTitle"
+    >
+      <div class="error-card">
+        <img
+          class="sbw-error-logo"
+          src="assets/images/logo-sbw.png"
+          alt="Logo da SaberWolf Esports"
+          width="96"
+          height="96"
+        />
 
-    <a href="blog/noticias.html">
-      Notícias
-    </a>
+        <span class="error-label">
+          <span aria-hidden="true">!</span>
+          Erro 404
+        </span>
 
-    <a href="pages/sobre.html">
-      Sobre
-    </a>
+        <h1 id="sbwErrorTitle">
+          Página não encontrada
+        </h1>
 
-    <a href="equipes/equipes.html">
-      Equipes
-    </a>
+        <p>
+          O endereço pode estar incorreto ou a página ter sido movida
+          ou removida. Utilize os atalhos abaixo para continuar
+          navegando pela SaberWolf Esports.
+        </p>
 
-    <a href="creators/creators.html">
-      Creators
-    </a>
+        <div class="error-actions">
+          <a
+            href="index.html"
+            class="sbw-error-button"
+          >
+            Voltar para o início
+          </a>
 
-    <a href="comunidades/comunidades.html">
-      Comunidades
-    </a>
+          <a
+            id="sbw404Championship"
+            href="pages/sobre.html#championship"
+            class="sbw-error-button sbw-error-button--secondary"
+          >
+            Conhecer SBW Championship
+          </a>
+        </div>
 
-    <a href="torneios/torneios.html">
-      Torneios
-    </a>
+        <nav
+          class="sbw-error-shortcuts"
+          aria-label="Outros caminhos no site"
+        >
+          <a href="blog/noticias.html">Notícias</a>
+          <a href="pages/sobre.html">Sobre a SaberWolf</a>
+          <a href="links/index.html">Links oficiais</a>
+        </nav>
+      </div>
+    </section>
+  </main>
 
-    <a href="pages/loja.html">
-      Loja
-    </a>
-
-  </nav>
-
-</header>
-
-<main class="error-main">
-
-  <section class="error-section">
-
-    <div class="error-card">
-
-      <span class="error-label">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        Erro 404
-      </span>
-
-      <h2>
-        Página não encontrada.
-      </h2>
-
-      <p>
-        O link acessado pode ter sido alterado, removido
-        ou ainda não estar disponível dentro do ecossistema SaberWolf.
+  <footer
+    class="sbw-site-footer"
+    data-sbw-site-footer
+  >
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
       </p>
 
-      <div class="error-actions">
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
 
-        <a href="index.html" class="btn">
-          Voltar para Home
-        </a>
-
-        <a href="torneios/torneios.html" class="btn btn-secondary">
-          Ver Torneios
-        </a>
-
-      </div>
-
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="pages/termos.html">Termos</a>
+        <a href="pages/privacidade.html">Privacidade</a>
+        <a href="pages/cookies.html">Cookies</a>
+      </nav>
     </div>
+  </footer>
 
-  </section>
+  <script>
+    (function () {
+      "use strict";
 
-</main>
+      function initErrorPage() {
+        const link = document.getElementById("sbw404Championship");
+        const configuredUrl = window.SBWRoutes?.championship?.("/");
 
-<footer>
+        if (!link || !configuredUrl) return;
 
-  <div class="footer-content">
+        let destination;
 
-    <h2>SaberWolf</h2>
+        try {
+          destination = new URL(configuredUrl);
+        } catch {
+          return;
+        }
 
-    <p>
-      Ecossistema brasileiro de esports,
-      creators, campeonatos e comunidade.
-    </p>
+        if (!["http:", "https:"].includes(destination.protocol)) return;
 
-    <div class="footer-links">
+        link.href = destination.href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Abrir SBW Championship ↗";
+        link.setAttribute(
+          "aria-label",
+          "Abrir SBW Championship (abre em nova aba)"
+        );
+      }
 
-      <a href="index.html">
-        Home
-      </a>
-
-      <a href="blog/noticias.html">
-        Notícias
-      </a>
-
-      <a href="pages/sobre.html">
-        Sobre
-      </a>
-
-      <a href="equipes/equipes.html">
-        Equipes
-      </a>
-
-      <a href="creators/creators.html">
-        Creators
-      </a>
-
-      <a href="comunidades/comunidades.html">
-        Comunidades
-      </a>
-
-      <a href="torneios/torneios.html">
-        Torneios
-      </a>
-
-      <a href="pages/loja.html">
-        Loja
-      </a>
-
-    </div>
-
-    <p class="footer-copy">
-      -SBW- © 2026 — Todos os direitos reservados.
-    </p>
-
-  </div>
-
-</footer>
-
-<script src="js/menu.js"></script>
-
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initErrorPage, {
+          once: true
+        });
+      } else {
+        initErrorPage();
+      }
+    })();
+  </script>
 </body>
 </html>

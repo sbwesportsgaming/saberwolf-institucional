@@ -1,362 +1,870 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <title>SBW Tiger Furious | Creator</title>
+  <title>-SBW- | TigerFurious — Creator | SaberWolf Esports</title>
 
-  <link rel="stylesheet" href="../css/style.css">
+  <meta
+    name="description"
+    content="Conheça TigerFurious, creator e player da SaberWolf Esports. Fighting Games, lives, gameplay, comunidade e redes sociais."
+  />
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="canonical" href="https://sbwgg.com.br/creators/creator-tiger-furious.html" />
+  <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon-v3.png" />
+  <link rel="manifest" href="../manifest.webmanifest?v=20260902-16841" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="-SBW- | TigerFurious — Creator" />
+  <meta property="og:description" content="Fighting Games, lives, gameplay e comunidade com TigerFurious, creator e player da SaberWolf Esports." />
+  <meta property="og:url" content="https://sbwgg.com.br/creators/creator-tiger-furious.html" />
+  <meta property="og:image" content="https://sbwgg.com.br/assets/images/tigerfurious-avatar.jpg" />
+  <meta property="og:image:alt" content="Retrato de TigerFurious" />
+
+  <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
+  <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-creator-detail-body {
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-creator-detail-body [hidden] {
+      display: none !important;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__body {
+      min-width: 0;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media {
+      max-width: 220px;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media img {
+      display: block;
+    }
+
+    .sbw-creator-detail-body h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-creator-detail-body h2,
+    .sbw-creator-detail-body h3 {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-tiger-back {
+      margin-bottom: 18px;
+    }
+
+    .sbw-tiger-copy p,
+    .sbw-tiger-note {
+      margin: 0;
+      color: var(--sbw-creators-muted);
+      line-height: 1.75;
+    }
+
+    .sbw-tiger-copy p + p {
+      margin-top: 18px;
+    }
+
+    .sbw-tiger-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .sbw-tiger-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sbw-tiger-card {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 22px;
+      color: var(--sbw-creators-text);
+      text-decoration: none;
+      border: 1px solid var(--sbw-creators-border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .sbw-tiger-card:hover {
+      border-color: var(--sbw-creators-border-strong);
+      background: rgba(85, 214, 255, 0.06);
+    }
+
+    .sbw-tiger-card h3,
+    .sbw-tiger-card p {
+      margin: 0;
+    }
+
+    .sbw-tiger-card p {
+      color: var(--sbw-creators-muted);
+      line-height: 1.65;
+    }
+
+    .sbw-tiger-card__mark {
+      width: 48px;
+      min-height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--sbw-creators-cyan);
+      background: rgba(85, 214, 255, 0.08);
+      font: 900 0.8rem "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-tiger-card__cta {
+      color: var(--sbw-creators-cyan);
+      font-weight: 700;
+    }
+
+    .sbw-tiger-twitch-slot {
+      min-width: 0;
+      margin-top: 20px;
+    }
+
+    .sbw-tiger-live-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: stretch;
+      gap: 18px;
+    }
+
+    .sbw-tiger-live-layout.is-wide {
+      grid-template-columns: minmax(400px, 1fr) 300px;
+    }
+
+    .sbw-tiger-player,
+    .sbw-tiger-chat {
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #050810;
+    }
+
+    .sbw-tiger-player {
+      min-height: 300px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .sbw-tiger-chat {
+      min-height: 420px;
+    }
+
+    .sbw-tiger-live-layout.is-wide .sbw-tiger-player {
+      aspect-ratio: auto;
+    }
+
+    .sbw-tiger-live-layout iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .sbw-creator-detail-body a:focus-visible,
+    .sbw-creator-detail-body button:focus-visible {
+      outline: 3px solid var(--sbw-creators-cyan);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-creator-detail-body .sbw-creators-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sbw-tiger-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
 
-<body>
+<body
+  class="sbw-creators-body sbw-creator-detail-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="creators"
+>
+  <div id="sbwSidebarMount"></div>
 
-<header>
-
-  <h1>SaberWolf</h1>
-
-  <div class="menu-toggle">
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
     ☰
-  </div>
+  </button>
 
-<nav class="main-nav">
-  <a href="../index.html">Home</a>
-  <a href="../blog/noticias.html">Notícias</a>
-  <a href="../pages/sobre.html">Sobre</a>
-  <a href="../perfis/perfis.html">Perfis</a>
-  <a href="../equipes/equipes.html">Equipes</a>
-  <a href="../comunidades/comunidades.html">Comunidades</a>
-  <a href="../rankings/rankings.html">Rankings</a>
-  <a href="../transferencias/transferencias.html">Transferências</a>
-  <a href="../torneios/torneios.html">Torneios</a>
-  <a href="../creators/creators.html">Creators</a>
-  <a href="../pages/loja.html">Loja</a>
-</nav>
+  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
 
-</header>
-
-<section class="hero">
-
-  <img
-  class="creator-avatar"
-  src="../assets/images/tigerfurious-avatar.jpg"
-  alt="SBW Tiger Furious">
-
-  <h2>SBW Tiger Furious</h2>
-
-  <p>
-    Creator e player da -SBW- com presença no cenário Fighting Games,
-    lives, gameplay e participação na construção da comunidade.
-  </p>
-
-  <div class="creator-tags">
-
-    <span>Creator</span>
-    <span>Player</span>
-    <span>FGC</span>
-    <span>-SBW-</span>
-
-  </div>
-
-</section>
-
-<section>
-
-  <a href="creators.html" class="profile-btn">
-    ← Voltar para Creators
-  </a>
-
-</section>
-
-<section>
-
-  <h2>Sobre a Creator</h2>
-
-  <div class="card creator-card">
-
-    <p>
-      SBW Tiger Furious atua como creator e player dentro da SaberWolf,
-      trazendo presença, conteúdo e participação no cenário de Fighting Games.
-    </p>
-
-    <br>
-
-    <p>
-      Seu espaço dentro da -SBW- conecta gameplay, lives, interação
-      com a comunidade e presença no ecossistema competitivo da organização.
-    </p>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Perfil</h2>
-
-  <div class="cards">
-
-    <div class="card creator-card">
-
-      <h3>
-        <i class="fa-solid fa-gamepad"></i>
-        Categoria
-      </h3>
-
-      <p>
-        Fighting Games / FGC
-      </p>
-
+  <main class="sbw-creators-page" id="sbwCreatorProfilePage">
+    <div class="sbw-tiger-back">
+      <a class="sbw-creators-button" href="./creators.html">
+        ← Voltar para Creators
+      </a>
     </div>
 
-    <div class="card creator-card">
+    <!-- APRESENTAÇÃO -->
 
-      <h3>
-        <i class="fa-solid fa-trophy"></i>
-        Atuação
-      </h3>
-
-      <p>
-        Creator, player, lives, gameplay
-        e participação no cenário competitivo.
-      </p>
-
-    </div>
-
-    <div class="card creator-card">
-
-      <h3>
-        <i class="fa-solid fa-users"></i>
-        Organização
-      </h3>
-
-      <p>
-        Integrante da -SBW- dentro do ecossistema
-        de creators e Fighting Games.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Live na Twitch</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Acompanhe as transmissões ao vivo da Tiger Furious na Twitch,
-    com player e chat integrados diretamente no perfil.
-  </p>
-
-  <div class="twitch-live-layout">
-
-    <div class="twitch-player">
-
-      <iframe
-        src="https://player.twitch.tv/?channel=tigerfurious_player&parent=127.0.0.1&parent=localhost"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="twitch-chat">
-
-      <iframe
-        src="https://www.twitch.tv/embed/tigerfurious_player/chat?parent=127.0.0.1&parent=localhost&darkpopout">
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Live no YouTube</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Espaço reservado para transmissões ao vivo pelo YouTube.
-    Quando houver uma live definida, basta trocar o ID abaixo.
-  </p>
-
-  <div class="youtube-live-layout">
-
-    <div class="youtube-player">
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_TIGER"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="youtube-chat">
-
-      <iframe
-        src="https://www.youtube.com/live_chat?v=VIDEO_ID_TIGER&embed_domain=127.0.0.1">
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Últimos Vídeos</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Área reservada para destacar vídeos, cortes, highlights,
-    transmissões ou conteúdos recentes da Tiger Furious.
-  </p>
-
-  <div class="video-grid">
-
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Vídeo em Destaque
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Highlight / Corte
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Redes Sociais</h2>
-
-  <div class="creator-grid">
-
-    <a
-    href="https://www.twitch.tv/tigerfurious_player"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-twitch"></i>
-          Twitch
-        </h3>
-
-        <p>
-          Lives, gameplay, interação com a comunidade
-          e conteúdo ao vivo da Tiger Furious.
-        </p>
-
+    <section
+      class="sbw-featured-creator"
+      aria-labelledby="tigerTitle"
+    >
+      <div class="sbw-featured-creator__media">
+        <img
+          id="sbwTigerAvatar"
+          src="../assets/images/tigerfurious-avatar.jpg"
+          alt="Retrato de TigerFurious"
+          width="220"
+          height="220"
+        />
       </div>
 
-    </a>
+      <div class="sbw-featured-creator__body">
+        <span>Creator e player · Fighting Games</span>
 
-    <a
-    href="https://www.instagram.com/tigerfurious_lorenak/"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-instagram"></i>
-          Instagram
-        </h3>
+        <h1 id="tigerTitle">-SBW- | TigerFurious</h1>
 
         <p>
-          Bastidores, atualizações, presença visual
-          e conteúdos da creator.
+          Creator e player da -SBW- com presença no cenário Fighting Games,
+          lives, gameplay e participação na construção da comunidade.
         </p>
 
+        <div
+          class="sbw-featured-creator__meta"
+          aria-label="Áreas de atuação"
+        >
+          <span>Creator</span>
+          <span>Player</span>
+          <span>FGC</span>
+          <span>-SBW-</span>
+        </div>
+
+        <div class="sbw-tiger-actions">
+          <a
+            class="sbw-creators-button sbw-creators-button--primary"
+            href="#live-tiger"
+          >
+            Acompanhar lives
+          </a>
+
+          <a class="sbw-creators-button" href="#redes-tiger">
+            Redes sociais
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="tigerAboutTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Trajetória</span>
+        <h2 id="tigerAboutTitle">Sobre a creator</h2>
       </div>
 
-    </a>
-
-    <a
-    href="https://www.facebook.com/Lorena.N.Rodrigues?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-facebook"></i>
-          Facebook
-        </h3>
+      <div class="sbw-tiger-copy">
+        <p>
+          TigerFurious atua como creator e player dentro da SaberWolf,
+          trazendo presença, conteúdo e participação no cenário de Fighting Games.
+        </p>
 
         <p>
-          Perfil social da Tiger Furious com publicações,
-          atualizações e presença da comunidade.
+          Seu espaço dentro da -SBW- conecta gameplay, lives, interação
+          com a comunidade e presença no ecossistema competitivo da organização.
         </p>
+      </div>
+    </section>
 
+    <!-- PERFIL -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="tigerProfileTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Atuação</span>
+        <h2 id="tigerProfileTitle">Perfil</h2>
       </div>
 
-    </a>
+      <div class="sbw-creators-pillars">
+        <article>
+          <span>01</span>
+          <h3>Categoria</h3>
+          <p>Fighting Games / FGC.</p>
+        </article>
 
-  </div>
+        <article>
+          <span>02</span>
+          <h3>Atuação</h3>
 
-</section>
+          <p>
+            Creator, player, lives, gameplay
+            e participação no cenário competitivo.
+          </p>
+        </article>
 
-<footer>
+        <article>
+          <span>03</span>
+          <h3>Organização</h3>
 
-  <div class="footer-content">
+          <p>
+            Integrante da -SBW- dentro do ecossistema
+            de creators e Fighting Games.
+          </p>
+        </article>
+      </div>
+    </section>
 
-    <h2>SaberWolf</h2>
+    <!-- TWITCH -->
 
-    <p>
-      Ecossistema brasileiro de esports,
-      creators, campeonatos e comunidade.
-    </p>
+    <section
+      class="sbw-creators-official"
+      id="live-tiger"
+      aria-labelledby="tigerTwitchTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Transmissões</span>
+        <h2 id="tigerTwitchTitle">Live na Twitch</h2>
 
-    <div class="footer-links">
+        <p>
+          Acompanhe as transmissões da TigerFurious na Twitch,
+          com Fighting Games, gameplay e interação com a comunidade.
+        </p>
+      </div>
 
-      <a href="../index.html">Home</a>
-      <a href="../pages/sobre.html">Sobre</a>
-      <a href="../equipes/equipes.html">Equipes</a>
-      <a href="creators.html">Creators</a>
-      <a href="../comunidades/comunidades.html">Comunidades</a>
-      <a href="../torneios/torneios.html">Torneios</a>
-      <a href="../pages/loja.html">Loja</a>
+      <div class="sbw-tiger-actions">
+        <a
+          class="sbw-creators-button sbw-creators-button--primary"
+          href="https://www.twitch.tv/tigerfurious_player"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir a Twitch da TigerFurious em nova aba"
+        >
+          Assistir na Twitch ↗
+        </a>
 
+        <button
+          class="sbw-creators-button"
+          id="sbwTigerTwitchPreferences"
+          type="button"
+          aria-haspopup="dialog"
+          data-sbw-cookie-preferences
+          hidden
+        >
+          Preferências da Twitch
+        </button>
+      </div>
+
+      <div
+        class="sbw-tiger-twitch-slot"
+        id="sbwTigerTwitchSlot"
+      >
+        <p
+          class="sbw-tiger-note"
+          id="sbwTigerTwitchFallback"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          A transmissão e o chat só serão carregados aqui após sua autorização.
+          Você também pode assistir diretamente na Twitch.
+        </p>
+      </div>
+
+      <noscript>
+        <p class="sbw-tiger-note">
+          Para assistir sem JavaScript, utilize o botão “Assistir na Twitch”.
+        </p>
+      </noscript>
+    </section>
+
+    <!-- YOUTUBE -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="tigerYouTubeTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>YouTube</span>
+        <h2 id="tigerYouTubeTitle">Live no YouTube</h2>
+
+        <p>
+          Nenhuma transmissão do YouTube foi adicionada a este perfil.
+          Enquanto isso, acompanhe as lives na Twitch.
+        </p>
+      </div>
+
+      <a class="sbw-creators-button" href="#live-tiger">
+        Ver área da Twitch
+      </a>
+    </section>
+
+    <!-- VÍDEOS -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="tigerVideosTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conteúdo</span>
+        <h2 id="tigerVideosTitle">Últimos vídeos</h2>
+
+        <p>
+          Esta área receberá uma seleção de vídeos, cortes e destaques
+          da TigerFurious. Acompanhe as redes sociais para conhecer seus conteúdos.
+        </p>
+      </div>
+
+      <a class="sbw-creators-button" href="#redes-tiger">
+        Acessar redes sociais
+      </a>
+    </section>
+
+    <!-- REDES SOCIAIS -->
+
+    <section
+      class="sbw-creators-official"
+      id="redes-tiger"
+      aria-labelledby="tigerSocialTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conexões oficiais</span>
+        <h2 id="tigerSocialTitle">Redes sociais</h2>
+
+        <p>
+          Lives, gameplay, bastidores e novidades
+          nos canais da TigerFurious.
+        </p>
+      </div>
+
+      <div class="sbw-tiger-grid">
+        <a
+          class="sbw-tiger-card"
+          href="https://www.twitch.tv/tigerfurious_player"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            class="sbw-tiger-card__mark"
+            aria-hidden="true"
+          >
+            LIVE
+          </span>
+
+          <h3>Twitch</h3>
+
+          <p>
+            Lives, gameplay, interação com a comunidade
+            e conteúdo ao vivo da TigerFurious.
+          </p>
+
+          <span class="sbw-tiger-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-tiger-card"
+          href="https://www.instagram.com/tigerfurious_lorenak/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            class="sbw-tiger-card__mark"
+            aria-hidden="true"
+          >
+            IG
+          </span>
+
+          <h3>Instagram</h3>
+
+          <p>
+            Bastidores, atualizações, presença visual
+            e conteúdos da creator.
+          </p>
+
+          <span class="sbw-tiger-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-tiger-card"
+          href="https://www.facebook.com/Lorena.N.Rodrigues?utm_source=ig&amp;utm_medium=social&amp;utm_content=link_in_bio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            class="sbw-tiger-card__mark"
+            aria-hidden="true"
+          >
+            FB
+          </span>
+
+          <h3>Facebook</h3>
+
+          <p>
+            Perfil social da TigerFurious com publicações,
+            atualizações e presença da comunidade.
+          </p>
+
+          <span class="sbw-tiger-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ INSTITUCIONAL -->
+
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
     </div>
+  </footer>
 
-    <p class="footer-copy">
-      -SBW- © 2026 — Todos os direitos reservados.
-    </p>
+  <!-- Configuração exclusiva deste perfil. -->
 
-  </div>
+  <script>
+    (function () {
+      "use strict";
 
-</footer>
+      function initTigerProfile() {
+        const page = document.getElementById("sbwCreatorProfilePage");
 
-<script src="../js/menu.js"></script>
+        if (!page || page.dataset.sbwTigerInitialized === "true") return;
+        page.dataset.sbwTigerInitialized = "true";
 
+        const avatar = document.getElementById("sbwTigerAvatar");
+
+        if (avatar) {
+          function useFallbackAvatar() {
+            if (avatar.dataset.fallbackApplied === "true") return;
+
+            avatar.dataset.fallbackApplied = "true";
+            avatar.alt = "Logo da SaberWolf Esports";
+
+            avatar.src = new URL(
+              "../assets/images/logo-sbw.png",
+              document.baseURI
+            ).href;
+          }
+
+          avatar.addEventListener("error", useFallbackAvatar);
+
+          if (avatar.complete && avatar.naturalWidth === 0) {
+            useFallbackAvatar();
+          }
+        }
+
+        const slot = document.getElementById("sbwTigerTwitchSlot");
+        const fallback = document.getElementById("sbwTigerTwitchFallback");
+
+        const preferences = document.getElementById(
+          "sbwTigerTwitchPreferences"
+        );
+
+        if (!slot || !fallback || !preferences) return;
+
+        const hostname = window.location.hostname;
+        const protocol = window.location.protocol;
+
+        const localHost = [
+          "localhost",
+          "127.0.0.1",
+          "::1",
+          "[::1]"
+        ].includes(hostname);
+
+        const canEmbed =
+          Boolean(hostname) &&
+          (
+            protocol === "https:" ||
+            (protocol === "http:" && localHost)
+          );
+
+        let layout = null;
+        let suspended = false;
+        let resumeTimer = null;
+
+        function hasPreferenceControl() {
+          const compliance = window.SBWCompliance;
+
+          return (
+            typeof compliance?.isAllowed === "function" &&
+            typeof compliance?.openCookiePreferences === "function"
+          );
+        }
+
+        function hasTwitchConsent() {
+          return (
+            hasPreferenceControl() &&
+            window.SBWCompliance.isAllowed("externalMedia") === true
+          );
+        }
+
+        function removeTwitch() {
+          layout?.remove();
+          layout = null;
+        }
+
+        function showFallback(message) {
+          if (fallback.textContent !== message) {
+            fallback.textContent = message;
+          }
+
+          fallback.hidden = false;
+        }
+
+        function createFrame(url, title, video = false) {
+          const frame = document.createElement("iframe");
+
+          frame.title = title;
+          frame.loading = "lazy";
+          frame.referrerPolicy = "strict-origin-when-cross-origin";
+
+          if (video) {
+            frame.allowFullscreen = true;
+            frame.allow = "fullscreen; picture-in-picture";
+          }
+
+          // Esta função só é chamada depois da verificação de consentimento.
+          frame.src = url.href;
+
+          return frame;
+        }
+
+        function updateTwitchLayout() {
+          if (suspended) {
+            removeTwitch();
+            return;
+          }
+
+          const controlAvailable = hasPreferenceControl();
+          preferences.hidden = !controlAvailable;
+
+          if (!controlAvailable) {
+            removeTwitch();
+
+            showFallback(
+              "O conteúdo incorporado está indisponível no momento. " +
+              "Você pode assistir pelo botão “Assistir na Twitch”."
+            );
+
+            return;
+          }
+
+          const allowed = hasTwitchConsent();
+
+          preferences.textContent = allowed
+            ? "Preferências da Twitch"
+            : "Permitir vídeos e chat";
+
+          if (!allowed) {
+            removeTwitch();
+
+            showFallback(
+              "Para exibir a transmissão e o chat aqui, abra as preferências " +
+              "e permita “Vídeos e chats da Twitch”. Você também pode " +
+              "assistir diretamente na Twitch."
+            );
+
+            return;
+          }
+
+          if (!canEmbed) {
+            removeTwitch();
+
+            showFallback(
+              "Neste modo de acesso, assista pelo botão “Assistir na Twitch”."
+            );
+
+            return;
+          }
+
+          const width = slot.clientWidth;
+
+          // A Twitch exige um player com pelo menos 400 × 300 px.
+          if (width < 400) {
+            removeTwitch();
+
+            showFallback(
+              "Para assistir nesta tela, abra a Twitch pelo botão acima. " +
+              "Em uma janela mais larga, o player pode aparecer aqui."
+            );
+
+            return;
+          }
+
+          if (!layout) {
+            const playerUrl = new URL("https://player.twitch.tv/");
+
+            playerUrl.searchParams.set(
+              "channel",
+              "tigerfurious_player"
+            );
+
+            playerUrl.searchParams.set("parent", hostname);
+            playerUrl.searchParams.set("autoplay", "false");
+
+            const chatUrl = new URL(
+              "https://www.twitch.tv/embed/tigerfurious_player/chat"
+            );
+
+            chatUrl.searchParams.set("parent", hostname);
+            chatUrl.searchParams.set("darkpopout", "");
+
+            layout = document.createElement("div");
+            layout.className = "sbw-tiger-live-layout";
+
+            const player = document.createElement("div");
+            player.className = "sbw-tiger-player";
+
+            player.appendChild(
+              createFrame(
+                playerUrl,
+                "Transmissão de TigerFurious na Twitch",
+                true
+              )
+            );
+
+            const chat = document.createElement("div");
+            chat.className = "sbw-tiger-chat";
+
+            chat.appendChild(
+              createFrame(
+                chatUrl,
+                "Chat da Twitch de TigerFurious"
+              )
+            );
+
+            layout.append(player, chat);
+            slot.appendChild(layout);
+          }
+
+          layout.classList.toggle("is-wide", width >= 740);
+          fallback.hidden = true;
+        }
+
+        // Remove os iframes antes de a página sair ou ficar no histórico.
+        window.addEventListener("pagehide", () => {
+          suspended = true;
+
+          window.clearTimeout(resumeTimer);
+          resumeTimer = null;
+
+          removeTwitch();
+        });
+
+        window.addEventListener("pageshow", (event) => {
+          if (!event.persisted) return;
+
+          window.clearTimeout(resumeTimer);
+
+          // Aguarda o painel reler a escolha salva antes de restaurar os players.
+          resumeTimer = window.setTimeout(() => {
+            resumeTimer = null;
+            suspended = false;
+
+            updateTwitchLayout();
+          }, 0);
+        });
+
+        const compliance = window.SBWCompliance;
+
+        if (typeof compliance?.onConsentChange === "function") {
+          compliance.onConsentChange(updateTwitchLayout);
+        } else {
+          // Sem a API atualizada, permanece bloqueado até ela estar disponível.
+          window.addEventListener(
+            "sbw:cookies-consent-updated",
+            updateTwitchLayout
+          );
+
+          updateTwitchLayout();
+        }
+
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(updateTwitchLayout);
+          observer.observe(slot);
+        } else {
+          window.addEventListener("resize", updateTwitchLayout);
+
+          window.addEventListener(
+            "load",
+            updateTwitchLayout,
+            { once: true }
+          );
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initTigerProfile,
+          { once: true }
+        );
+      } else {
+        initTigerProfile();
+      }
+    })();
+  </script>
 </body>
 </html>

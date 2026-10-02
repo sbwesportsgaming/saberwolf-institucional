@@ -1,79 +1,97 @@
 /* =========================
-   PÁGINA 404
+   PÁGINA 404 — SABERWOLF ESPORTS
 ========================= */
 
-.error-main {
-  min-height: 70vh;
+.error-main,
+.error-main *,
+.error-main::before,
+.error-main::after,
+.error-main *::before,
+.error-main *::after {
+  box-sizing: border-box;
+}
 
+.error-main {
+  min-width: 0;
+  min-height: 70vh;
+  min-height: 70svh;
+  overflow-wrap: anywhere;
   background:
-    radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 34rem),
-    radial-gradient(circle at top right, rgba(14,165,233,0.06), transparent 30rem),
+    radial-gradient(
+      circle at top left,
+      rgba(56, 189, 248, 0.10),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(14, 165, 233, 0.06),
+      transparent 30rem
+    ),
     linear-gradient(135deg, #020617, #0b0f1a, #020617);
 }
 
 .error-section {
   width: min(900px, calc(100% - 40px));
+  min-width: 0;
   margin: 0 auto;
   padding: 90px 0;
 }
 
 .error-card {
-  text-align: center;
-
+  min-width: 0;
   padding: 54px 32px;
-
+  border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 32px;
-
   background:
-    radial-gradient(circle at center top, rgba(56,189,248,0.16), transparent 24rem),
-    linear-gradient(180deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
-
-  border: 1px solid rgba(56,189,248,0.24);
-
-  box-shadow: 0 0 40px rgba(56,189,248,0.08);
+    radial-gradient(
+      circle at center top,
+      rgba(56, 189, 248, 0.16),
+      transparent 24rem
+    ),
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.96),
+      rgba(2, 6, 23, 0.98)
+    );
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.08);
+  text-align: center;
 }
 
 .error-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
-
   width: fit-content;
-
+  max-width: 100%;
   padding: 8px 14px;
-
+  border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 999px;
-
-  background: rgba(56,189,248,0.10);
-  border: 1px solid rgba(56,189,248,0.24);
-
   color: #38bdf8;
-
+  background: rgba(56, 189, 248, 0.10);
   font-size: 0.78rem;
   font-weight: 900;
+  line-height: 1.4;
   letter-spacing: 1px;
+  text-align: center;
   text-transform: uppercase;
+  white-space: normal;
 }
 
+.error-card h1,
 .error-card h2 {
   max-width: 720px;
-
   margin: 18px auto 14px;
-
   color: #ffffff;
-
   font-size: clamp(2.4rem, 6vw, 5rem);
-  line-height: 1;
+  line-height: 1.08;
   letter-spacing: -0.06em;
 }
 
 .error-card p {
   max-width: 620px;
-
   margin: 0 auto 28px;
-
   color: #cbd5e1;
-
   font-size: 1.05rem;
   line-height: 1.75;
 }
@@ -81,17 +99,35 @@
 .error-actions {
   display: flex;
   justify-content: center;
-  gap: 14px;
   flex-wrap: wrap;
+  gap: 14px;
+  min-width: 0;
 }
 
+/* Cores e fundos dos botões seguem os estilos compartilhados de .btn. */
+
 .error-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
   margin: 0;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.error-actions .btn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 4px;
 }
 
 @media (max-width: 768px) {
   .error-section {
-    width: min(100% - 32px, 900px);
+    width: min(900px, calc(100% - 32px));
     padding: 64px 0;
   }
 
@@ -106,6 +142,25 @@
 
   .error-actions .btn {
     width: 100%;
-    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .error-section {
+    width: calc(100% - 24px);
+    padding: 48px 0;
+  }
+
+  .error-card {
+    padding: 30px 18px;
+    border-radius: 22px;
+  }
+
+  .error-card p {
+    font-size: 1rem;
+  }
+
+  .error-actions {
+    gap: 12px;
   }
 }

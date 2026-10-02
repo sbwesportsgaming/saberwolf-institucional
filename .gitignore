@@ -1,2 +1,4 @@
 
-supabase/.temp/
+# Arquivos locais do sistema operacional e do editor.
+.DS_Store
+Thumbs.db

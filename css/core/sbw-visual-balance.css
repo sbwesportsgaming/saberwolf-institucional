@@ -1,202 +1,86 @@
-/* =========================================================
-   v1.6.34 — Pente fino visual geral
-   Escopo: ajuste visual, sem alterar estrutura, Supabase, login ou permissões.
-   Carregado pela sidebar para ficar depois dos CSS específicos das páginas.
-========================================================= */
+/*
+  SaberWolf Esports — ajustes visuais compartilhados.
+  O menu e a logo são definidos em css/layout/sbw-sidebar.css.
+*/
 
 :root {
   --sbw-polish-page-max: 1260px;
   --sbw-polish-page-gutter: 64px;
+  --sbw-polish-home-gutter: 0px;
+  --sbw-polish-page-top: 36px;
+
   --sbw-polish-font-title: Georgia, "Times New Roman", serif;
   --sbw-polish-font-ui: "Segoe UI", Tahoma, Arial, sans-serif;
+
   --sbw-polish-card-radius: 20px;
   --sbw-polish-panel-radius: 24px;
   --sbw-polish-card-gap: 16px;
   --sbw-polish-section-gap: 22px;
 }
 
-/* Sidebar única: mesma fonte, peso e espaçamento em todas as páginas. */
-body.sbw-has-sidebar .sbw-sidebar,
-body.sbw-has-sidebar .sbw-sidebar * {
-  font-family: var(--sbw-polish-font-ui) !important;
-  box-sizing: border-box !important;
-}
+/*
+  O body já reserva o espaço do menu lateral.
+  As larguras abaixo usam a área disponível dentro dele.
+*/
 
-body.sbw-has-sidebar .sbw-sidebar {
-  width: var(--sbw-sidebar-width, 270px) !important;
-  min-width: var(--sbw-sidebar-width, 270px) !important;
-  max-width: var(--sbw-sidebar-width, 270px) !important;
-  font-size: 14px !important;
-  line-height: 1.2 !important;
-  letter-spacing: 0 !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__brand {
-  min-height: 78px !important;
-  padding: 6px 6px 14px !important;
-  gap: 12px !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__brand-mark {
-  width: 56px !important;
-  height: 56px !important;
-  min-width: 56px !important;
-  flex: 0 0 56px !important;
-  font-size: 17px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.04em !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__brand-text strong {
-  display: block !important;
-  margin: 0 !important;
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.04em !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__brand-text span {
-  display: block !important;
-  margin-top: 4px !important;
-  font-size: 11px !important;
-  font-weight: 900 !important;
-  line-height: 1.15 !important;
-  letter-spacing: 0.22em !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__nav {
-  display: grid !important;
-  gap: 5px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__link {
-  width: 100% !important;
-  min-height: 43px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin: 0 !important;
-  padding: 0 14px !important;
-  border-radius: 12px !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.01em !important;
-  text-decoration: none !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__link > span:not(.sbw-sidebar__icon) {
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.01em !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__link::before,
-body.sbw-has-sidebar .sbw-sidebar__link::after {
-  display: none !important;
-  content: none !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__icon {
-  width: 23px !important;
-  min-width: 23px !important;
-  flex: 0 0 23px !important;
-  font-size: 16px !important;
-  line-height: 1 !important;
-}
-
-body.sbw-has-sidebar .sbw-sidebar__account {
-  margin-top: auto !important;
-  padding: 10px !important;
-  border-radius: 18px !important;
-}
-
-body.sbw-has-sidebar .sbw-account-compact__button {
-  min-height: 44px !important;
-  padding: 7px 9px !important;
-}
-
-body.sbw-has-sidebar .sbw-account-compact__name {
-  font-size: 13.5px !important;
-  line-height: 1.1 !important;
-  font-weight: 850 !important;
-}
-
-/* Containers principais no padrão visual aprovado na Loja. */
 body.sbw-has-sidebar :where(
   .sbw-about-page,
   .sbw-creators-page,
   .sbw-communities-page,
   .sbw-community-detail-page,
   .sbw-news-page,
-  .sbw-store-page,
-  .sbw-transfers-page,
-  .sbw-tournaments-hub,
-  .sbw-rankings-page,
-  .sbw-team-list-page-v2,
-  .sbw-team-profile-page,
-  .sbw-profiles-v2-page,
-  .sbw-profile-page
+  .sbw-store-page
 ) {
-  width: min(var(--sbw-polish-page-max), calc(100vw - var(--sbw-sidebar-width, 270px) - var(--sbw-polish-page-gutter))) !important;
+  box-sizing: border-box;
+
+  width: min(
+    var(--sbw-polish-page-max),
+    calc(100% - var(--sbw-polish-page-gutter))
+  ) !important;
+
   max-width: var(--sbw-polish-page-max) !important;
+  min-width: 0;
+
   margin-left: auto !important;
   margin-right: auto !important;
+
+  padding-top: var(--sbw-polish-page-top) !important;
+
   transform: none !important;
   font-family: var(--sbw-polish-font-title) !important;
 }
 
-body.sbw-has-sidebar :where(
-  .sbw-about-page,
-  .sbw-creators-page,
-  .sbw-communities-page,
-  .sbw-community-detail-page,
-  .sbw-news-page,
-  .sbw-store-page,
-  .sbw-transfers-page,
-  .sbw-tournaments-hub
-) {
-  padding-top: 36px !important;
-}
+/* Seções abaixo do banner da Home, limitadas ao próprio shell. */
 
-/* A home mantém a estrutura dela, mas usa o mesmo ritmo visual nas seções abaixo do hero. */
-body.sbw-home-page :where(.sbw-section, .sbw-home-cta) {
-  width: min(var(--sbw-polish-page-max), calc(100vw - var(--sbw-sidebar-width, 270px) - var(--sbw-polish-page-gutter))) !important;
-  max-width: var(--sbw-polish-page-max) !important;
+body.sbw-home-page .sbw-home-shell > .sbw-section {
+  box-sizing: border-box;
+
+  width: min(
+    var(--sbw-polish-page-max),
+    calc(100% - var(--sbw-polish-home-gutter))
+  ) !important;
+
+  max-width: 100% !important;
+  min-width: 0;
+
   margin-left: auto !important;
   margin-right: auto !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
   font-family: var(--sbw-polish-font-title) !important;
 }
 
-body.sbw-home-page .sbw-section {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
+/* Tipografia institucional */
 
-body.sbw-home-page .sbw-home-cta {
-  margin-top: 34px !important;
-  margin-bottom: 72px !important;
-}
-
-/* Tipografia geral no mesmo comportamento da Loja. */
 body.sbw-has-sidebar :where(
   .sbw-about-page,
   .sbw-creators-page,
   .sbw-communities-page,
   .sbw-community-detail-page,
   .sbw-news-page,
-  .sbw-store-page,
-  .sbw-transfers-page,
-  .sbw-tournaments-hub,
-  .sbw-rankings-page,
-  .sbw-team-list-page-v2,
-  .sbw-profiles-v2-page,
-  .sbw-profile-page
+  .sbw-store-page
 ) :where(h1, h2, h3) {
   font-family: var(--sbw-polish-font-title) !important;
   letter-spacing: -0.06em !important;
@@ -208,13 +92,7 @@ body.sbw-has-sidebar :where(
   .sbw-communities-page,
   .sbw-community-detail-page,
   .sbw-news-page,
-  .sbw-store-page,
-  .sbw-transfers-page,
-  .sbw-tournaments-hub,
-  .sbw-rankings-page,
-  .sbw-team-list-page-v2,
-  .sbw-profiles-v2-page,
-  .sbw-profile-page
+  .sbw-store-page
 ) :where(p, li, small, label, input, select, button, a) {
   line-height: 1.62 !important;
 }
@@ -225,35 +103,50 @@ body.sbw-has-sidebar :where(
   .sbw-communities-page,
   .sbw-community-detail-page,
   .sbw-news-page,
-  .sbw-store-page,
-  .sbw-transfers-page,
-  .sbw-tournaments-hub
-) :where(button, input, select, textarea, .sbw-store-button, .sbw-creators-button, .sbw-news-button, .sbw-community-button, .sbw-tournaments-btn) {
-  font-family: var(--sbw-polish-font-title) !important;
+  .sbw-store-page
+) :where(
+  button,
+  input,
+  select,
+  textarea,
+  .sbw-store-button,
+  .sbw-creators-button,
+  .sbw-news-button,
+  .sbw-community-button
+) {
+  font-family: inherit !important;
 }
 
-/* Ritmo de cards e painéis. */
+/* Espaçamento entre colunas e cards */
+
 body.sbw-has-sidebar :where(
   .sbw-store-layout,
   .sbw-news-layout,
-  .sbw-communities-layout,
-  .sbw-transfers-layout,
-  .sbw-tournaments-shell
+  .sbw-communities-layout
 ) {
-  gap: 22px !important;
+  gap: var(--sbw-polish-section-gap) !important;
 }
 
 body.sbw-has-sidebar :where(
   .sbw-store-grid,
   .sbw-news-grid,
-  .sbw-communities-grid,
-  .sbw-transfer-list,
-  .public-tournament-grid,
-  .sbw-profiles-v2-grid,
-  .sbw-team-list-grid
+  .sbw-communities-grid
 ) {
-  gap: 16px !important;
+  gap: var(--sbw-polish-card-gap) !important;
 }
+
+body.sbw-has-sidebar :where(
+  .sbw-store-layout,
+  .sbw-news-layout,
+  .sbw-communities-layout,
+  .sbw-store-grid,
+  .sbw-news-grid,
+  .sbw-communities-grid
+) > * {
+  min-width: 0;
+}
+
+/* Acabamento dos componentes institucionais */
 
 body.sbw-has-sidebar :where(
   .sbw-store-feature,
@@ -270,12 +163,6 @@ body.sbw-has-sidebar :where(
   .sbw-community-card,
   .sbw-community-detail-hero,
   .sbw-community-detail-card,
-  .sbw-transfer-card,
-  .sbw-transfer-side-card,
-  .sbw-tournaments-hero,
-  .sbw-tournaments-main-column,
-  .sbw-tournaments-side-card,
-  .public-tournament-card,
   .sbw-about-card,
   .sbw-about-panel,
   .sbw-module-card
@@ -283,127 +170,87 @@ body.sbw-has-sidebar :where(
   border-radius: var(--sbw-polish-card-radius) !important;
 }
 
-/* Torneios: aproxima o eixo e proporção da Loja, sem alterar dados ou lógica. */
-body.sbw-has-sidebar .sbw-tournaments-hub {
-  --sbw-polish-page-max: 1260px;
-  padding-bottom: 72px !important;
-}
+/*
+  Rodapé centralizado na largura real da página.
+  O rodapé compartilhado é inserido diretamente no body.
+*/
 
-body.sbw-has-sidebar .sbw-tournaments-hero {
-  min-height: 350px !important;
-  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.68fr) !important;
-  gap: 24px !important;
-  padding: 26px !important;
-  margin-bottom: 24px !important;
-}
-
-body.sbw-has-sidebar .sbw-tournaments-hero h1 {
-  font-size: clamp(56px, 7vw, 102px) !important;
-  line-height: 0.9 !important;
-}
-
-body.sbw-has-sidebar .sbw-tournaments-hero__content {
-  padding: 18px 0 18px 0 !important;
-}
-
-body.sbw-has-sidebar .sbw-tournaments-feature {
-  min-width: 0 !important;
-}
-
-body.sbw-has-sidebar .sbw-tournaments-filter-card {
-  border-radius: 20px !important;
-  padding: 14px !important;
-}
-
-body.sbw-has-sidebar .sbw-tournaments-shell {
-  grid-template-columns: minmax(0, 1fr) 280px !important;
-}
-
-/* Footer: frase final centralizada pela tela inteira, sem ficar puxada pela sidebar. */
-body.sbw-has-sidebar .sbw-site-footer {
+body.sbw-has-sidebar > .sbw-site-footer {
+  box-sizing: border-box;
   position: relative !important;
-  left: calc(var(--sbw-sidebar-width, 270px) * -1) !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin: 0 !important;
+  left: 0 !important;
+
+  width: calc(
+    100% + var(--sbw-sidebar-width, 270px)
+  ) !important;
+
+  max-width: none !important;
+
+  margin: 0 0 0 calc(
+    -1 * var(--sbw-sidebar-width, 270px)
+  ) !important;
+
   padding-left: 22px !important;
   padding-right: 22px !important;
+
   text-align: center !important;
 }
 
-body.sbw-has-sidebar .sbw-site-footer__inner {
-  width: min(900px, calc(100vw - 44px)) !important;
-  max-width: 900px !important;
+body.sbw-has-sidebar > .sbw-site-footer .sbw-site-footer__inner {
+  box-sizing: border-box;
+
+  width: min(900px, 100%) !important;
+  max-width: 100% !important;
+  min-width: 0;
+
   margin-left: auto !important;
   margin-right: auto !important;
+
   justify-items: center !important;
   text-align: center !important;
 }
 
-body.sbw-has-sidebar .sbw-site-footer__copy,
-body.sbw-has-sidebar .sbw-site-footer__legal {
+body.sbw-has-sidebar > .sbw-site-footer :where(
+  .sbw-site-footer__copy,
+  .sbw-site-footer__version,
+  .sbw-site-footer__legal
+) {
   width: 100% !important;
+  min-width: 0;
+
   text-align: center !important;
+  overflow-wrap: anywhere;
+}
+
+body.sbw-has-sidebar > .sbw-site-footer .sbw-site-footer__legal {
+  flex-wrap: wrap;
   justify-content: center !important;
 }
 
+/* Ajustes responsivos */
+
 @media (max-width: 1320px) {
-  body.sbw-has-sidebar :where(
-    .sbw-about-page,
-    .sbw-creators-page,
-    .sbw-communities-page,
-    .sbw-community-detail-page,
-    .sbw-news-page,
-    .sbw-store-page,
-    .sbw-transfers-page,
-    .sbw-tournaments-hub,
-    .sbw-rankings-page,
-    .sbw-team-list-page-v2,
-    .sbw-team-profile-page,
-    .sbw-profiles-v2-page,
-    .sbw-profile-page
-  ),
-  body.sbw-home-page :where(.sbw-section, .sbw-home-cta) {
-    width: min(100% - 52px, 1160px) !important;
-  }
-
-  body.sbw-has-sidebar .sbw-tournaments-hero {
-    grid-template-columns: 1fr !important;
-  }
-
-  body.sbw-has-sidebar .sbw-tournaments-feature {
-    max-width: 720px !important;
-  }
-
-  body.sbw-has-sidebar .sbw-tournaments-shell {
-    grid-template-columns: 1fr !important;
+  :root {
+    --sbw-polish-page-max: 1160px;
+    --sbw-polish-page-gutter: 52px;
+    --sbw-polish-home-gutter: 52px;
   }
 }
 
 @media (max-width: 980px) {
-  body.sbw-has-sidebar :where(
-    .sbw-about-page,
-    .sbw-creators-page,
-    .sbw-communities-page,
-    .sbw-community-detail-page,
-    .sbw-news-page,
-    .sbw-store-page,
-    .sbw-transfers-page,
-    .sbw-tournaments-hub,
-    .sbw-rankings-page,
-    .sbw-team-list-page-v2,
-    .sbw-team-profile-page,
-    .sbw-profiles-v2-page,
-    .sbw-profile-page
-  ),
-  body.sbw-home-page :where(.sbw-section, .sbw-home-cta) {
-    width: min(100% - 28px, 1040px) !important;
-    padding-top: 78px;
+  :root {
+    --sbw-polish-page-max: 1040px;
+    --sbw-polish-page-gutter: 28px;
+    --sbw-polish-home-gutter: 28px;
+
+    --sbw-polish-page-top: calc(
+      78px + env(safe-area-inset-top, 0px)
+    );
   }
 
-  body.sbw-has-sidebar .sbw-site-footer {
-    left: 0 !important;
+  body.sbw-has-sidebar > .sbw-site-footer {
     width: 100% !important;
     max-width: 100% !important;
+    margin-left: 0 !important;
   }
 }

@@ -2,22 +2,160 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Creators | -SBW-</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Creators | SaberWolf Esports</title>
 
   <meta
     name="description"
-    content="Conheça creators oficiais e parceiros curados pela SaberWolf, conectados ao ecossistema gamer e competitivo -SBW-."
+    content="Conheça os creators e parceiros da SaberWolf Esports: conteúdo, lives e iniciativas de comunidade."
   />
 
-  <link rel="icon" href="../assets/images/logo-sbw.jpg" type="image/jpeg" />
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="-SBW-" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/creators/creators.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+    sizes="192x192"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+
+  <meta
+    property="og:title"
+    content="Creators | SaberWolf Esports"
+  />
+
+  <meta
+    property="og:description"
+    content="Conteúdo, lives e comunidade com os creators e parceiros da -SBW-."
+  />
+
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/creators/creators.html"
+  />
+
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
+  />
+
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-creators-directory-body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    .sbw-creators-directory-body .sbw-creators-hero__content,
+    .sbw-creators-directory-body .sbw-featured-creator__body {
+      min-width: 0;
+    }
+
+    .sbw-creators-directory-body .sbw-creators-hero h1,
+    .sbw-creators-directory-body .sbw-featured-creator__body h2 {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-creators-directory-body .sbw-featured-creator__media img {
+      display: block;
+    }
+
+    .sbw-creators-directory-body .sbw-creator-card__footer {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .sbw-creators-directory-body .sbw-creator-card__footer > span {
+      white-space: nowrap;
+    }
+
+    .sbw-creators-directory-body .sbw-creators-fallback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .sbw-creators-directory-body .sbw-creators-button:focus-visible,
+    .sbw-creators-directory-body .sbw-featured-creator__nav button:focus-visible {
+      outline: 2px solid var(--sbw-creators-cyan, #55d6ff);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1200px) {
+      .sbw-creators-directory-body .sbw-creators-hero--featured {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-creators-directory-body .sbw-creators-page {
+        padding-top: 78px !important;
+      }
+    }
+  </style>
+
+  <noscript>
+    <style>
+      .sbw-creators-directory-body .sbw-featured-creator__nav {
+        display: none;
+      }
+    </style>
+  </noscript>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/creators/creators-page.js"></script>
+
+  <script
+    defer
+    src="../js/pwa/sbw-pwa.js?v=20260902-16841"
+  ></script>
+
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
 
-<body class="sbw-creators-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="creators">
+<body
+  class="sbw-creators-body sbw-creators-directory-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="creators"
+>
   <div id="sbwSidebarMount"></div>
 
   <button
@@ -29,110 +167,240 @@
     ☰
   </button>
 
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
 
   <main class="sbw-creators-page" id="sbwCreatorsPage">
-    <section class="sbw-creators-hero sbw-creators-hero--featured" aria-labelledby="creatorsTitle">
+    <section
+      class="sbw-creators-hero sbw-creators-hero--featured"
+      aria-labelledby="creatorsTitle"
+    >
       <div class="sbw-creators-hero__content">
         <span class="sbw-creators-kicker">Creators oficiais</span>
 
         <h1 id="creatorsTitle">Creators</h1>
 
         <p>
-          Curadoria oficial da -SBW-. Esta área reúne creators, parceiros e representantes selecionados manualmente para fortalecer comunidade, torneios e presença competitiva do ecossistema.
+          Conheça os creators, parceiros e representantes da SaberWolf Esports
+          que compartilham conteúdo, aproximam a comunidade e levam a -SBW-
+          ao cenário gamer.
         </p>
       </div>
 
-      <article class="sbw-featured-creator sbw-featured-creator--hero" data-featured-creator aria-label="Creator oficial em destaque">
+      <article
+        class="sbw-featured-creator sbw-featured-creator--hero"
+        id="sbwFeaturedCreator"
+        data-featured-creator
+        aria-label="Creator oficial em destaque"
+      >
         <div class="sbw-featured-creator__media">
-          <img data-featured-avatar src="../assets/images/logo-sbw.jpg" alt="Creator em destaque" />
+          <img
+            data-featured-avatar
+            src="../assets/images/dlucca-avatar.jpeg"
+            alt="D’Lucca, fundador e creator da SaberWolf Esports"
+            width="170"
+            height="170"
+          />
         </div>
 
         <div class="sbw-featured-creator__body">
-          <span data-featured-role>Creator oficial</span>
-          <h2 data-featured-name>Carregando creator...</h2>
+          <span data-featured-role>Fundador e creator</span>
+
+          <h2 id="sbwFeaturedCreatorName" data-featured-name>
+            -SBW- | D’Lucca
+          </h2>
+
           <p data-featured-description>
-            Preparando destaque dos creators oficiais da plataforma.
+            Fundador da -SBW-, creator e responsável por iniciativas de
+            conteúdo e comunidade da SaberWolf Esports.
           </p>
 
-          <div class="sbw-featured-creator__meta" data-featured-tags></div>
+          <div class="sbw-featured-creator__meta" data-featured-tags>
+            <span>Fundador</span>
+            <span>Conteúdo</span>
+            <span>Comunidade</span>
+          </div>
 
           <div class="sbw-featured-creator__actions">
-            <a class="sbw-creators-button sbw-creators-button--primary" data-featured-link href="#creators-oficiais">
+            <a
+              class="sbw-creators-button sbw-creators-button--primary"
+              data-featured-link
+              href="./creator-dlucca.html"
+              aria-describedby="sbwFeaturedCreatorName"
+            >
               Ver perfil
             </a>
 
-            <div class="sbw-featured-creator__nav" aria-label="Navegação dos creators oficiais">
-              <button type="button" data-feature-prev aria-label="Creator anterior">‹</button>
-              <button type="button" data-feature-next aria-label="Próximo creator">›</button>
+            <div
+              class="sbw-featured-creator__nav"
+              aria-label="Navegação dos creators oficiais"
+            >
+              <button
+                type="button"
+                data-feature-prev
+                aria-label="Creator anterior"
+                aria-controls="sbwFeaturedCreator"
+              >
+                ‹
+              </button>
+
+              <button
+                type="button"
+                data-feature-next
+                aria-label="Próximo creator"
+                aria-controls="sbwFeaturedCreator"
+              >
+                ›
+              </button>
             </div>
           </div>
         </div>
       </article>
     </section>
 
-    <section class="sbw-creators-official" id="creators-oficiais" aria-labelledby="officialCreatorsTitle">
+    <section
+      class="sbw-creators-official"
+      id="creators-oficiais"
+      aria-labelledby="officialCreatorsTitle"
+    >
       <div class="sbw-creators-section-heading">
         <span>Diretório oficial</span>
+
         <h2 id="officialCreatorsTitle">Creators oficiais</h2>
+
         <p>
-          Lista curada pela equipe -SBW-. Novos creators serão adicionados conforme aprovação e organização interna da plataforma.
+          Conteúdo, lives e iniciativas dos creators e parceiros da
+          SaberWolf Esports.
         </p>
       </div>
 
-      <div class="sbw-creators-grid" data-creators-grid></div>
+      <div class="sbw-creators-grid" data-creators-grid>
+        <!-- O script substitui este conteúdo pela listagem completa. -->
+        <div class="sbw-creators-empty">
+          <p>Acesse os perfis de D’Lucca e EliTz.</p>
+
+          <div class="sbw-creators-fallback-actions">
+            <a
+              class="sbw-creators-button"
+              href="./creator-dlucca.html"
+            >
+              Ver perfil de D’Lucca
+            </a>
+
+            <a
+              class="sbw-creators-button"
+              href="./creator-elitz.html"
+            >
+              Ver perfil de EliTz
+            </a>
+          </div>
+
+          <noscript>
+            <p>
+              Ative o JavaScript para visualizar a lista completa
+              e alternar o creator em destaque.
+            </p>
+          </noscript>
+        </div>
+      </div>
     </section>
 
-    <section class="sbw-creators-ecosystem" aria-labelledby="creatorEcosystemTitle">
+    <section
+      class="sbw-creators-ecosystem"
+      aria-labelledby="creatorEcosystemTitle"
+    >
       <div class="sbw-creators-section-heading">
         <span>Ecossistema</span>
-        <h2 id="creatorEcosystemTitle">Como creators se conectam à -SBW-</h2>
+
+        <h2 id="creatorEcosystemTitle">
+          Como creators se conectam à -SBW-
+        </h2>
       </div>
 
       <div class="sbw-creators-pillars">
         <article>
-          <span>01</span>
+          <span aria-hidden="true">01</span>
+
           <h3>Comunidade</h3>
-          <p>Creators ajudam a aproximar jogadores, equipes, comunidades e eventos oficiais.</p>
+
+          <p>
+            Creators ajudam a aproximar jogadores, equipes e comunidades
+            das iniciativas da SaberWolf Esports.
+          </p>
         </article>
 
         <article>
-          <span>02</span>
+          <span aria-hidden="true">02</span>
+
           <h3>Conteúdo</h3>
-          <p>Lives, vídeos e presença digital podem fortalecer torneios, campanhas e projetos parceiros.</p>
+
+          <p>
+            Lives, vídeos e publicações que compartilham experiências
+            e novidades da organização.
+          </p>
         </article>
 
         <article>
-          <span>03</span>
+          <span aria-hidden="true">03</span>
+
           <h3>Curadoria</h3>
-          <p>A presença na página é administrada manualmente pela -SBW-, mantendo qualidade e identidade.</p>
+
+          <p>
+            Os creators e parceiros apresentados nesta área são
+            selecionados pela SaberWolf Esports.
+          </p>
         </article>
       </div>
     </section>
 
-    <section class="sbw-creators-cta" aria-label="Chamada para creators">
+    <section
+      class="sbw-creators-cta"
+      aria-label="Chamada para creators"
+    >
       <div>
         <span>Creator ou comunidade?</span>
+
         <h2>Quer se aproximar do ecossistema SaberWolf?</h2>
+
         <p>
-          A área de creators será expandida de forma organizada. Enquanto isso, acompanhe as comunidades e torneios oficiais.
+          Conheça nossas comunidades e acompanhe as iniciativas
+          da organização.
         </p>
       </div>
 
-      <a class="sbw-creators-button sbw-creators-button--primary" href="../torneios/torneios.html">
-        Explorar torneios
+      <a
+        class="sbw-creators-button sbw-creators-button--primary"
+        href="../comunidades/comunidades.html"
+      >
+        Conhecer comunidades
       </a>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-  <script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-<script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
-  <script src="../js/creators/creators-page.js"></script>
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

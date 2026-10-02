@@ -1,454 +1,955 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
 
-  <title>SBW D'Lucca | Creator</title>
+  <title>-SBW- | D’Lucca — Creator | SaberWolf Esports</title>
 
-  <link rel="stylesheet" href="../css/style.css">
+  <meta
+    name="description"
+    content="Conheça D’Lucca, fundador e creator da SaberWolf Esports. Fighting Games, lives, conteúdo, comunidade e redes oficiais."
+  />
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/creators/creator-dlucca.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="-SBW- | D’Lucca — Creator" />
+
+  <meta
+    property="og:description"
+    content="Fighting Games, lives, conteúdo e comunidade com D’Lucca, fundador e creator da SaberWolf Esports."
+  />
+
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/creators/creator-dlucca.html"
+  />
+
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/images/dlucca-avatar.jpeg"
+  />
+
+  <meta property="og:image:alt" content="Retrato de D’Lucca" />
+
+  <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
+  <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-creator-detail-body {
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-creator-detail-body [hidden] {
+      display: none !important;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__body {
+      min-width: 0;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media {
+      max-width: 220px;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media img {
+      display: block;
+    }
+
+    .sbw-creator-detail-body h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-creator-detail-body h2,
+    .sbw-creator-detail-body h3 {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-dlucca-back {
+      margin-bottom: 18px;
+    }
+
+    .sbw-dlucca-copy p,
+    .sbw-dlucca-note {
+      margin: 0;
+      color: var(--sbw-creators-muted);
+      line-height: 1.75;
+    }
+
+    .sbw-dlucca-copy p + p {
+      margin-top: 18px;
+    }
+
+    .sbw-dlucca-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .sbw-dlucca-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sbw-dlucca-card {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 22px;
+      color: var(--sbw-creators-text);
+      text-decoration: none;
+      border: 1px solid var(--sbw-creators-border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .sbw-dlucca-card:hover {
+      border-color: var(--sbw-creators-border-strong);
+      background: rgba(85, 214, 255, 0.06);
+    }
+
+    .sbw-dlucca-card h3,
+    .sbw-dlucca-card p {
+      margin: 0;
+    }
+
+    .sbw-dlucca-card p {
+      color: var(--sbw-creators-muted);
+      line-height: 1.65;
+    }
+
+    .sbw-dlucca-card__mark {
+      width: 48px;
+      min-height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--sbw-creators-cyan);
+      background: rgba(85, 214, 255, 0.08);
+      font: 900 0.8rem "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-dlucca-card__cta {
+      color: var(--sbw-creators-cyan);
+      font-weight: 700;
+    }
+
+    .sbw-dlucca-twitch-slot {
+      min-width: 0;
+      margin-top: 20px;
+    }
+
+    .sbw-dlucca-live-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: stretch;
+      gap: 18px;
+    }
+
+    .sbw-dlucca-live-layout.is-wide {
+      grid-template-columns: minmax(400px, 1fr) 300px;
+    }
+
+    .sbw-dlucca-player,
+    .sbw-dlucca-chat {
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #050810;
+    }
+
+    .sbw-dlucca-player {
+      min-height: 300px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .sbw-dlucca-chat {
+      min-height: 420px;
+    }
+
+    .sbw-dlucca-live-layout.is-wide .sbw-dlucca-player {
+      aspect-ratio: auto;
+    }
+
+    .sbw-dlucca-live-layout iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .sbw-creator-detail-body a:focus-visible,
+    .sbw-creator-detail-body button:focus-visible {
+      outline: 3px solid var(--sbw-creators-cyan);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-creator-detail-body .sbw-creators-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sbw-dlucca-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
 
-<body>
+<body
+  class="sbw-creators-body sbw-creator-detail-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="creators"
+>
+  <div id="sbwSidebarMount"></div>
 
-<header>
-
-  <h1>SaberWolf</h1>
-
-  <div class="menu-toggle">
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
     ☰
-  </div>
+  </button>
 
-<nav class="main-nav">
-  <a href="../index.html">Home</a>
-  <a href="../blog/noticias.html">Notícias</a>
-  <a href="../pages/sobre.html">Sobre</a>
-  <a href="../perfis/perfis.html">Perfis</a>
-  <a href="../equipes/equipes.html">Equipes</a>
-  <a href="../comunidades/comunidades.html">Comunidades</a>
-  <a href="../rankings/rankings.html">Rankings</a>
-  <a href="../transferencias/transferencias.html">Transferências</a>
-  <a href="../torneios/torneios.html">Torneios</a>
-  <a href="../creators/creators.html">Creators</a>
-  <a href="../pages/loja.html">Loja</a>
-</nav>
+  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
 
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <img
-  class="creator-avatar"
-  src="../assets/images/dlucca-avatar.jpg"
-  alt="SBW D'Lucca">
-
-  <h2>SBW D'Lucca</h2>
-
-  <p>
-    Creator e player da -SBW- focado em Fighting Games,
-    conteúdo competitivo, lives, comunidade e desenvolvimento
-    do ecossistema SaberWolf.
-  </p>
-
-  <div class="creator-tags">
-
-    <span>Creator</span>
-    <span>Player</span>
-    <span>FGC</span>
-    <span>-SBW-</span>
-
-  </div>
-
-</section>
-
-<!-- VOLTAR -->
-
-<section>
-
-  <a href="creators.html" class="profile-btn">
-    ← Voltar para Creators
-  </a>
-
-</section>
-
-<!-- SOBRE -->
-
-<section>
-
-  <h2>Sobre o Creator</h2>
-
-  <div class="card creator-card">
-
-    <p>
-      SBW D'Lucca atua como creator e player dentro da SaberWolf,
-      com foco em Fighting Games, conteúdo para a comunidade,
-      lives, projetos competitivos e desenvolvimento da presença
-      da organização no cenário gamer.
-    </p>
-
-    <br>
-
-    <p>
-      Seu conteúdo conecta gameplay, bastidores, torneios,
-      organização de projetos e participação ativa no crescimento
-      do ecossistema -SBW-.
-    </p>
-
-  </div>
-
-</section>
-
-<!-- INFORMAÇÕES -->
-
-<section>
-
-  <h2>Perfil</h2>
-
-  <div class="cards">
-
-    <div class="card creator-card">
-
-      <h3>
-        <i class="fa-solid fa-gamepad"></i>
-        Categoria
-      </h3>
-
-      <p>
-        Fighting Games / FGC
-      </p>
-
+  <main class="sbw-creators-page" id="sbwCreatorProfilePage">
+    <div class="sbw-dlucca-back">
+      <a class="sbw-creators-button" href="./creators.html">
+        ← Voltar para Creators
+      </a>
     </div>
 
-    <div class="card creator-card">
+    <!-- APRESENTAÇÃO -->
 
-      <h3>
-        <i class="fa-solid fa-trophy"></i>
-        Atuação
-      </h3>
-
-      <p>
-        Creator, player, lives, gameplay,
-        conteúdo competitivo e projetos da organização.
-      </p>
-
-    </div>
-
-    <div class="card creator-card">
-
-      <h3>
-        <i class="fa-solid fa-users"></i>
-        Organização
-      </h3>
-
-      <p>
-        Integrante da -SBW- e participante ativo
-        no desenvolvimento do ecossistema SaberWolf.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- LIVE TWITCH -->
-
-<section>
-
-  <h2>Live na Twitch</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Acompanhe as transmissões ao vivo do D'Lucca na Twitch,
-    com player e chat integrados diretamente no perfil.
-  </p>
-
-  <div class="twitch-live-layout">
-
-    <div class="twitch-player">
-
-      <iframe
-        src="https://player.twitch.tv/?channel=dlucca_sbw&parent=127.0.0.1&parent=localhost"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="twitch-chat">
-
-      <iframe
-        src="https://www.twitch.tv/embed/dlucca_sbw/chat?parent=127.0.0.1&parent=localhost&darkpopout">
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- LIVE YOUTUBE -->
-
-<section>
-
-  <h2>Live no YouTube</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Espaço dedicado para transmissões ao vivo pelo YouTube,
-    mantendo o player e o chat organizados dentro do perfil.
-  </p>
-
-  <div class="youtube-live-layout">
-
-    <div class="youtube-player">
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_DLUCCA"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="youtube-chat">
-
-      <iframe
-        src="https://www.youtube.com/live_chat?v=VIDEO_ID_DLUCCA&embed_domain=127.0.0.1">
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ÚLTIMOS VÍDEOS -->
-
-<section>
-
-  <h2>Últimos Vídeos</h2>
-
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Área reservada para destacar vídeos, cortes, highlights,
-    transmissões ou conteúdos recentes do canal do D'Lucca.
-  </p>
-
-  <div class="video-grid">
-
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Vídeo em Destaque
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Highlight / Corte
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- REDES SOCIAIS -->
-
-<section>
-
-  <h2>Redes Sociais</h2>
-
-  <div class="creator-grid">
-
-    <!-- YOUTUBE -->
-
-    <a
-    href="https://www.youtube.com/@dlucca_sbw"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-youtube"></i>
-          YouTube
-        </h3>
-
-        <p>
-          Canal oficial do D'Lucca com conteúdos,
-          vídeos, transmissões e projetos relacionados à -SBW-.
-        </p>
-
+    <section
+      class="sbw-featured-creator"
+      aria-labelledby="dluccaTitle"
+    >
+      <div class="sbw-featured-creator__media">
+        <img
+          id="sbwDluccaAvatar"
+          src="../assets/images/dlucca-avatar.jpeg"
+          alt="Retrato de D’Lucca"
+          width="220"
+          height="220"
+        />
       </div>
 
-    </a>
+      <div class="sbw-featured-creator__body">
+        <span>Fundador e creator</span>
+
+        <h1 id="dluccaTitle">-SBW- | D’Lucca</h1>
+
+        <p>
+          Creator e player da -SBW- focado em Fighting Games,
+          conteúdo competitivo, lives, comunidade e desenvolvimento
+          da SaberWolf Esports.
+        </p>
+
+        <div
+          class="sbw-featured-creator__meta"
+          aria-label="Áreas de atuação"
+        >
+          <span>Fundador</span>
+          <span>Creator</span>
+          <span>Player</span>
+          <span>FGC</span>
+          <span>-SBW-</span>
+        </div>
+
+        <div class="sbw-dlucca-actions">
+          <a
+            class="sbw-creators-button sbw-creators-button--primary"
+            href="../links/dlucca/index.html"
+          >
+            Links oficiais do D’Lucca
+          </a>
+
+          <a
+            class="sbw-creators-button"
+            href="#redes-dlucca"
+          >
+            Redes sociais
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="dluccaAboutTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Trajetória</span>
+        <h2 id="dluccaAboutTitle">Sobre o creator</h2>
+      </div>
+
+      <div class="sbw-dlucca-copy">
+        <p>
+          D’Lucca atua como creator e player dentro da SaberWolf,
+          com foco em Fighting Games, conteúdo para a comunidade,
+          lives, projetos competitivos e desenvolvimento da presença
+          da organização no cenário gamer.
+        </p>
+
+        <p>
+          Seu conteúdo conecta gameplay, bastidores, torneios,
+          organização de projetos e participação ativa no crescimento
+          da -SBW-.
+        </p>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="dluccaProfileTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Atuação</span>
+        <h2 id="dluccaProfileTitle">Perfil</h2>
+      </div>
+
+      <div class="sbw-creators-pillars">
+        <article>
+          <span>01</span>
+          <h3>Categoria</h3>
+          <p>Fighting Games / FGC.</p>
+        </article>
+
+        <article>
+          <span>02</span>
+          <h3>Atuação</h3>
+
+          <p>
+            Creator, player, lives, gameplay, conteúdo competitivo
+            e projetos da organização.
+          </p>
+        </article>
+
+        <article>
+          <span>03</span>
+          <h3>Organização</h3>
+
+          <p>
+            Fundador da SaberWolf Esports e participante ativo
+            no desenvolvimento da organização e de sua comunidade.
+          </p>
+        </article>
+      </div>
+    </section>
 
     <!-- TWITCH -->
 
-    <a
-    href="https://www.twitch.tv/dlucca_sbw"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-twitch"></i>
-          Twitch
-        </h3>
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="dluccaTwitchTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Transmissões</span>
+        <h2 id="dluccaTwitchTitle">Live na Twitch</h2>
 
         <p>
-          Lives, gameplay, interação com a comunidade
-          e conteúdos ao vivo.
+          Acompanhe as transmissões do D’Lucca:
+          Fighting Games, gameplay e interação com a comunidade.
         </p>
-
       </div>
 
-    </a>
+      <div class="sbw-dlucca-actions">
+        <a
+          class="sbw-creators-button sbw-creators-button--primary"
+          href="https://www.twitch.tv/dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir a Twitch do D’Lucca em nova aba"
+        >
+          Assistir na Twitch ↗
+        </a>
 
-    <!-- INSTAGRAM -->
+        <button
+          class="sbw-creators-button"
+          id="sbwDluccaTwitchPreferences"
+          type="button"
+          aria-haspopup="dialog"
+          data-sbw-cookie-preferences
+          hidden
+        >
+          Preferências da Twitch
+        </button>
+      </div>
 
-    <a
-    href="https://www.instagram.com/dlucca_sbw"
-    target="_blank"
-    class="featured-creator-link">
+      <div
+        class="sbw-dlucca-twitch-slot"
+        id="sbwDluccaTwitchSlot"
+      >
+        <p
+          class="sbw-dlucca-note"
+          id="sbwDluccaTwitchFallback"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          O player e o chat só serão carregados após sua autorização.
+          Você também pode assistir diretamente na Twitch.
+        </p>
+      </div>
 
-      <div class="card creator-card featured-creator">
+      <noscript>
+        <p class="sbw-dlucca-note">
+          Para assistir sem JavaScript, utilize o botão
+          “Assistir na Twitch”.
+        </p>
+      </noscript>
+    </section>
 
-        <h3>
-          <i class="fab fa-instagram"></i>
-          Instagram
-        </h3>
+    <!-- YOUTUBE -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="dluccaYouTubeTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>YouTube</span>
+        <h2 id="dluccaYouTubeTitle">Live no YouTube</h2>
 
         <p>
-          Bastidores, atualizações, conteúdos rápidos
-          e presença visual do creator.
+          Acompanhe as transmissões e gravações disponíveis
+          no canal oficial do D’Lucca.
         </p>
-
       </div>
 
-    </a>
+      <div class="sbw-dlucca-actions">
+        <a
+          class="sbw-creators-button sbw-creators-button--primary"
+          href="https://www.youtube.com/@dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir o YouTube do D’Lucca em nova aba"
+        >
+          Abrir canal no YouTube ↗
+        </a>
+      </div>
+    </section>
 
-    <!-- TIKTOK -->
+    <!-- VÍDEOS -->
 
-    <a
-    href="https://www.tiktok.com/@dlucca_sbw"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-tiktok"></i>
-          TikTok
-        </h3>
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="dluccaVideosTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conteúdo</span>
+        <h2 id="dluccaVideosTitle">Últimos vídeos</h2>
 
         <p>
-          Clips, highlights, momentos rápidos
-          e conteúdos curtos para a comunidade.
+          Esta área receberá uma seleção de vídeos, cortes e destaques
+          do D’Lucca. Enquanto isso, confira os conteúdos no canal.
         </p>
-
       </div>
 
-    </a>
+      <a
+        class="sbw-creators-button"
+        href="https://www.youtube.com/@dlucca_sbw"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver os vídeos do D’Lucca no YouTube em nova aba"
+      >
+        Ver vídeos no YouTube ↗
+      </a>
+    </section>
 
-    <!-- X -->
+    <!-- REDES SOCIAIS -->
 
-    <a
-    href="https://x.com/DLucca_SBW"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-x-twitter"></i>
-          X
-        </h3>
+    <section
+      class="sbw-creators-official"
+      id="redes-dlucca"
+      aria-labelledby="dluccaSocialTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conexões oficiais</span>
+        <h2 id="dluccaSocialTitle">Redes sociais</h2>
 
         <p>
-          Atualizações rápidas, publicações,
-          movimentações e comunicação com a comunidade.
+          Lives, vídeos, bastidores e novidades nos canais do D’Lucca.
         </p>
-
       </div>
 
-    </a>
+      <div class="sbw-dlucca-grid">
+        <a
+          class="sbw-dlucca-card"
+          href="https://www.youtube.com/@dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-dlucca-card__mark" aria-hidden="true">
+            YT
+          </span>
 
-  </div>
+          <h3>YouTube</h3>
 
-</section>
+          <p>
+            Conteúdos, vídeos, transmissões e projetos
+            relacionados à -SBW-.
+          </p>
 
-<footer>
+          <span class="sbw-dlucca-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
 
-  <div class="footer-content">
+        <a
+          class="sbw-dlucca-card"
+          href="https://www.twitch.tv/dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-dlucca-card__mark" aria-hidden="true">
+            LIVE
+          </span>
 
-    <h2>SaberWolf</h2>
+          <h3>Twitch</h3>
 
-    <p>
-      Ecossistema brasileiro de esports,
-      creators, campeonatos e comunidade.
-    </p>
+          <p>
+            Lives, gameplay, interação com a comunidade
+            e conteúdos ao vivo.
+          </p>
 
-    <div class="footer-links">
+          <span class="sbw-dlucca-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
 
-      <a href="../index.html">
-        Home
-      </a>
+        <a
+          class="sbw-dlucca-card"
+          href="https://www.instagram.com/dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-dlucca-card__mark" aria-hidden="true">
+            IG
+          </span>
 
-      <a href="../pages/sobre.html">
-        Sobre
-      </a>
+          <h3>Instagram</h3>
 
-      <a href="../equipes/equipes.html">
-        Equipes
-      </a>
+          <p>
+            Bastidores, atualizações e conteúdos rápidos do creator.
+          </p>
 
-      <a href="creators.html">
-        Creators
-      </a>
+          <span class="sbw-dlucca-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
 
-      <a href="../comunidades/comunidades.html">
-        Comunidades
-      </a>
+        <a
+          class="sbw-dlucca-card"
+          href="https://www.tiktok.com/@dlucca_sbw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-dlucca-card__mark" aria-hidden="true">
+            TT
+          </span>
 
-      <a href="../torneios/torneios.html">
-        Torneios
-      </a>
+          <h3>TikTok</h3>
 
-      <a href="../pages/loja.html">
-        Loja
-      </a>
+          <p>
+            Clipes, highlights e conteúdos curtos para a comunidade.
+          </p>
 
+          <span class="sbw-dlucca-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-dlucca-card"
+          href="https://x.com/DLucca_SBW"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-dlucca-card__mark" aria-hidden="true">
+            X
+          </span>
+
+          <h3>X</h3>
+
+          <p>
+            Atualizações rápidas, publicações
+            e comunicação com a comunidade.
+          </p>
+
+          <span class="sbw-dlucca-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ INSTITUCIONAL -->
+
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
     </div>
+  </footer>
 
-    <p class="footer-copy">
-      -SBW- © 2026 — Todos os direitos reservados.
-    </p>
+  <!-- Configuração exclusiva deste perfil. -->
 
-  </div>
+  <script>
+    (function () {
+      "use strict";
 
-</footer>
+      function initDluccaProfile() {
+        const page = document.getElementById("sbwCreatorProfilePage");
 
-<script src="../js/menu.js"></script>
+        if (!page || page.dataset.sbwDluccaInitialized === "true") return;
+        page.dataset.sbwDluccaInitialized = "true";
 
+        const avatar = document.getElementById("sbwDluccaAvatar");
+
+        if (avatar) {
+          function useFallbackAvatar() {
+            if (avatar.dataset.fallbackApplied === "true") return;
+
+            avatar.dataset.fallbackApplied = "true";
+            avatar.alt = "Logo da SaberWolf Esports";
+
+            avatar.src = new URL(
+              "../assets/images/logo-sbw.png",
+              document.baseURI
+            ).href;
+          }
+
+          avatar.addEventListener("error", useFallbackAvatar);
+
+          if (avatar.complete && avatar.naturalWidth === 0) {
+            useFallbackAvatar();
+          }
+        }
+
+        const slot = document.getElementById("sbwDluccaTwitchSlot");
+        const fallback = document.getElementById("sbwDluccaTwitchFallback");
+
+        const preferences = document.getElementById(
+          "sbwDluccaTwitchPreferences"
+        );
+
+        if (!slot || !fallback || !preferences) return;
+
+        const hostname = window.location.hostname;
+        const protocol = window.location.protocol;
+
+        const localHost = [
+          "localhost",
+          "127.0.0.1",
+          "::1",
+          "[::1]"
+        ].includes(hostname);
+
+        const canEmbed =
+          Boolean(hostname) &&
+          (
+            protocol === "https:" ||
+            (protocol === "http:" && localHost)
+          );
+
+        let layout = null;
+        let suspended = false;
+        let resumeTimer = null;
+
+        function hasPreferenceControl() {
+          const compliance = window.SBWCompliance;
+
+          return (
+            typeof compliance?.isAllowed === "function" &&
+            typeof compliance?.openCookiePreferences === "function"
+          );
+        }
+
+        function hasTwitchConsent() {
+          return (
+            hasPreferenceControl() &&
+            window.SBWCompliance.isAllowed("externalMedia") === true
+          );
+        }
+
+        function removeTwitch() {
+          layout?.remove();
+          layout = null;
+        }
+
+        function showFallback(message) {
+          if (fallback.textContent !== message) {
+            fallback.textContent = message;
+          }
+
+          fallback.hidden = false;
+        }
+
+        function createFrame(url, title, video = false) {
+          const frame = document.createElement("iframe");
+
+          frame.title = title;
+          frame.loading = "lazy";
+          frame.referrerPolicy = "strict-origin-when-cross-origin";
+
+          if (video) {
+            frame.allowFullscreen = true;
+            frame.allow = "fullscreen; picture-in-picture";
+          }
+
+          // Só é chamada depois da verificação de consentimento.
+          frame.src = url.href;
+
+          return frame;
+        }
+
+        function updateTwitchLayout() {
+          if (suspended) {
+            removeTwitch();
+            return;
+          }
+
+          const controlAvailable = hasPreferenceControl();
+          preferences.hidden = !controlAvailable;
+
+          if (!controlAvailable) {
+            removeTwitch();
+
+            showFallback(
+              "O conteúdo incorporado está indisponível no momento. " +
+              "Você pode assistir pelo botão “Assistir na Twitch”."
+            );
+
+            return;
+          }
+
+          const allowed = hasTwitchConsent();
+
+          preferences.textContent = allowed
+            ? "Preferências da Twitch"
+            : "Permitir vídeos e chat";
+
+          if (!allowed) {
+            removeTwitch();
+
+            showFallback(
+              "Para exibir a transmissão e o chat aqui, abra as preferências " +
+              "e permita “Vídeos e chats da Twitch”. Você também pode " +
+              "assistir diretamente na Twitch."
+            );
+
+            return;
+          }
+
+          if (!canEmbed) {
+            removeTwitch();
+
+            showFallback(
+              "Neste modo de acesso, assista pelo botão “Assistir na Twitch”."
+            );
+
+            return;
+          }
+
+          const width = slot.clientWidth;
+
+          // A Twitch exige um player com pelo menos 400 × 300 px.
+          if (width < 400) {
+            removeTwitch();
+
+            showFallback(
+              "Para assistir nesta tela, abra a Twitch pelo botão acima. " +
+              "Em uma janela mais larga, o player pode aparecer aqui."
+            );
+
+            return;
+          }
+
+          if (!layout) {
+            const playerUrl = new URL("https://player.twitch.tv/");
+
+            playerUrl.searchParams.set("channel", "dlucca_sbw");
+            playerUrl.searchParams.set("parent", hostname);
+            playerUrl.searchParams.set("autoplay", "false");
+
+            const chatUrl = new URL(
+              "https://www.twitch.tv/embed/dlucca_sbw/chat"
+            );
+
+            chatUrl.searchParams.set("parent", hostname);
+            chatUrl.searchParams.set("darkpopout", "");
+
+            layout = document.createElement("div");
+            layout.className = "sbw-dlucca-live-layout";
+
+            const player = document.createElement("div");
+            player.className = "sbw-dlucca-player";
+
+            player.appendChild(
+              createFrame(
+                playerUrl,
+                "Transmissão de D’Lucca na Twitch",
+                true
+              )
+            );
+
+            const chat = document.createElement("div");
+            chat.className = "sbw-dlucca-chat";
+
+            chat.appendChild(
+              createFrame(
+                chatUrl,
+                "Chat da Twitch de D’Lucca"
+              )
+            );
+
+            layout.append(player, chat);
+            slot.appendChild(layout);
+          }
+
+          layout.classList.toggle("is-wide", width >= 740);
+          fallback.hidden = true;
+        }
+
+        // Remove os iframes antes de a página sair ou ficar no histórico.
+        window.addEventListener("pagehide", () => {
+          suspended = true;
+
+          window.clearTimeout(resumeTimer);
+          resumeTimer = null;
+
+          removeTwitch();
+        });
+
+        window.addEventListener("pageshow", (event) => {
+          if (!event.persisted) return;
+
+          window.clearTimeout(resumeTimer);
+
+          // Aguarda o painel reler a escolha salva antes de restaurar os players.
+          resumeTimer = window.setTimeout(() => {
+            resumeTimer = null;
+            suspended = false;
+            updateTwitchLayout();
+          }, 0);
+        });
+
+        const compliance = window.SBWCompliance;
+
+        if (typeof compliance?.onConsentChange === "function") {
+          compliance.onConsentChange(updateTwitchLayout);
+        } else {
+          // Sem a API atualizada, permanece bloqueado até ela estar disponível.
+          window.addEventListener(
+            "sbw:cookies-consent-updated",
+            updateTwitchLayout
+          );
+
+          updateTwitchLayout();
+        }
+
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(updateTwitchLayout);
+          observer.observe(slot);
+        } else {
+          window.addEventListener("resize", updateTwitchLayout);
+
+          window.addEventListener(
+            "load",
+            updateTwitchLayout,
+            { once: true }
+          );
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initDluccaProfile,
+          { once: true }
+        );
+      } else {
+        initDluccaProfile();
+      }
+    })();
+  </script>
 </body>
 </html>

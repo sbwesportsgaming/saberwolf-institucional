@@ -3,64 +3,351 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de Cookies | -SBW-</title>
+
+  <title>Política de Cookies | SaberWolf Esports</title>
+
+  <meta
+    name="description"
+    content="Conheça as preferências de cookies, o armazenamento local e os recursos externos utilizados pelo site institucional da SaberWolf Esports."
+  />
+
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="-SBW-" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/pages/cookies.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+
+  <meta
+    property="og:title"
+    content="Política de Cookies | SaberWolf Esports"
+  />
+
+  <meta
+    property="og:description"
+    content="Informações sobre preferências de navegação, armazenamento no dispositivo e recursos externos do site institucional."
+  />
+
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/pages/cookies.html"
+  />
+
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
+  />
+
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/legal.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-cookies-body.sbw-has-sidebar .sbw-legal-page {
+      width: min(1120px, calc(100% - 48px));
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 0 64px;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-cookies-body :where(
+      .sbw-legal-nav,
+      .sbw-legal-content,
+      .sbw-legal-card
+    ) {
+      min-width: 0;
+    }
+
+    .sbw-cookies-body .sbw-legal-hero::after {
+      pointer-events: none;
+    }
+
+    .sbw-cookies-body .sbw-legal-hero .sbw-legal-updated {
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .sbw-cookies-body .sbw-legal-nav :where(a, button) {
+      min-height: 44px;
+      padding: 10px 12px;
+      line-height: 1.5;
+    }
+
+    .sbw-cookies-body .sbw-legal-nav [aria-current="page"] {
+      color: #ffffff;
+      border-color: rgba(76, 202, 255, 0.42);
+      background: rgba(55, 200, 255, 0.12);
+      font-weight: 700;
+    }
+
+    .sbw-cookies-body .sbw-legal-card a {
+      color: #7de8ff;
+      text-underline-offset: 4px;
+    }
+
+    .sbw-cookies-body .sbw-legal-card a:hover {
+      color: #ffffff;
+    }
+
+    .sbw-cookies-body .sbw-legal-card .sbw-cookie-button {
+      min-height: 44px;
+      max-width: 100%;
+      margin-top: 8px;
+      white-space: normal;
+      line-height: 1.5;
+    }
+
+    .sbw-cookies-body :where(a, button):focus-visible {
+      outline: 2px solid #53d7ff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1200px) {
+      .sbw-cookies-body .sbw-legal-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-cookies-body .sbw-legal-nav {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-cookies-body.sbw-has-sidebar .sbw-legal-page {
+        width: min(1120px, calc(100% - 28px));
+        padding-top: 78px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .sbw-cookies-body .sbw-legal-nav {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-cookies-body .sbw-legal-hero,
+      .sbw-cookies-body .sbw-legal-card {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script
+    defer
+    src="../js/pwa/sbw-pwa.js?v=20260902-16841"
+  ></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
-<body class="sbw-legal-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="about">
+
+<body
+  class="sbw-legal-body sbw-cookies-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="about"
+>
   <div id="sbwSidebarMount"></div>
 
-  <button class="sbw-sidebar-toggle" type="button" aria-label="Abrir menu" data-sbw-sidebar-toggle>☰</button>
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
+    ☰
+  </button>
 
-  <main class="sbw-legal-page">
-    <section class="sbw-legal-hero">
-      <span class="sbw-legal-kicker">Institucional</span>
-      <h1>Política de Cookies</h1>
-      <p>Explicação estrutural sobre cookies, preferências locais e recursos necessários para funcionamento da plataforma SaberWolf.</p>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
+
+  <main
+    class="sbw-legal-page"
+    aria-labelledby="sbwCookiesTitle"
+  >
+    <section
+      class="sbw-legal-hero"
+      aria-labelledby="sbwCookiesTitle"
+    >
+      <span class="sbw-legal-kicker">
+        Institucional · SaberWolf Esports
+      </span>
+
+      <h1 id="sbwCookiesTitle">Política de Cookies</h1>
+
+      <p>
+        Saiba como este site guarda suas preferências, utiliza arquivos
+        no navegador e carrega recursos de serviços externos.
+      </p>
+
+      <p class="sbw-legal-updated">
+        Minuta para revisão · Atualizada em
+        <time datetime="2026-09-11">11 de setembro de 2026</time>.
+      </p>
     </section>
 
     <div class="sbw-legal-layout">
-      <nav class="sbw-legal-nav" aria-label="Documentos institucionais">
-        <a href="/pages/termos.html">Termos de Uso</a>
-        <a href="/pages/privacidade.html">Política de Privacidade</a>
-        <a href="/pages/cookies.html">Política de Cookies</a>
-        <button type="button" onclick="window.SBWCompliance?.openCookiePreferences?.()">Preferências de cookies</button>
+      <nav
+        class="sbw-legal-nav"
+        aria-label="Documentos institucionais"
+      >
+        <a href="./termos.html">
+          Termos de Uso
+        </a>
+
+        <a href="./privacidade.html">
+          Política de Privacidade
+        </a>
+
+        <a
+          href="./cookies.html"
+          aria-current="page"
+        >
+          Política de Cookies
+        </a>
+
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          data-sbw-cookie-preferences
+        >
+          Preferências de cookies
+        </button>
       </nav>
 
-      <section class="sbw-legal-content">
+      <section
+        class="sbw-legal-content"
+        aria-label="Informações sobre cookies e armazenamento"
+      >
         <article class="sbw-legal-card">
-          <h2>1. Cookies necessários</h2>
-          <p>São usados para manter funcionamento básico, autenticação, segurança, preferências essenciais e experiência mínima da plataforma. Esses recursos não podem ser desativados pelo painel de preferências.</p>
+          <h2>1. Cookies e outras formas de armazenamento</h2>
+
+          <p>
+            Cookies são pequenos registros que o navegador pode guardar
+            e enviar aos serviços relacionados a eles. Também existem
+            outras formas de armazenamento, utilizadas para lembrar
+            escolhas e conservar arquivos de um site no dispositivo.
+          </p>
+
+          <p>
+            Esta política abrange essas tecnologias no site institucional
+            da SaberWolf Esports. A navegação pública neste site não
+            exige criação de conta.
+          </p>
+
+          <p>
+            O armazenamento associado às contas e aos recursos
+            competitivos do SBW Championship deve ser descrito na
+            documentação própria daquela plataforma.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>2. Armazenamento local</h2>
-          <p>O site pode usar armazenamento local para preferências visuais, consentimento de cookies, cache de fallback e testes locais. Esse armazenamento não deve ser usado como autoridade para permissões sensíveis.</p>
+          <h2>2. Preferências registradas neste navegador</h2>
+
+          <p>
+            O painel utiliza o armazenamento local do navegador para
+            lembrar sua decisão sobre vídeos e chats da Twitch,
+            a data da escolha e a versão do aviso correspondente.
+          </p>
+
+          <p>
+            No painel atual, a categoria <strong>Necessários</strong>
+            permanece selecionada e não pode ser desmarcada. Ela abrange
+            a manutenção das preferências básicas do site. Você pode
+            administrar ou remover os dados armazenados pelas
+            configurações do navegador.
+          </p>
+
+          <p>
+            A preferência é guardada neste navegador, para este endereço
+            do site. Ela não é sincronizada automaticamente com outros
+            navegadores ou dispositivos.
+          </p>
+
+          <p>
+            Esse registro não possui vencimento automático na configuração
+            atual. Ele pode ser substituído por uma nova escolha ou
+            removido ao limpar os dados do site. Uma atualização do aviso
+            também pode exigir uma nova decisão.
+          </p>
+
+          <p>
+            Se o navegador impedir o armazenamento, a escolha será
+            mantida apenas enquanto esta página permanecer aberta.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>3. Analytics futuro</h2>
-          <p>A opção de analytics fica preparada para métricas agregadas quando esse recurso for ativado. Até lá, a preferência já pode ser registrada sem carregar ferramentas externas.</p>
+          <h2>3. Vídeos e chats da Twitch</h2>
+
+          <p>
+            A categoria <strong>Vídeos e chats da Twitch</strong> permite
+            carregar transmissões e chats incorporados nos perfis de
+            creators. Sem uma autorização salva, esses conteúdos
+            permanecem bloqueados. A mesma escolha é aplicada aos
+            perfis de creators deste site.
+          </p>
+
+          <p>
+            Você pode autorizar pelo botão <strong>Permitir Twitch</strong>
+            no aviso inicial ou selecionar essa categoria no painel e
+            clicar em <strong>Salvar preferências</strong>.
+          </p>
+
+          <p>
+            Quando o conteúdo é carregado, o navegador se conecta à
+            Twitch, que recebe dados técnicos de conexão, como endereço
+            IP e informações da requisição. O serviço pode utilizar
+            cookies e outras tecnologias conforme suas políticas e
+            as configurações do navegador.
+          </p>
+
+          <p>
+            Ao retirar a autorização, a transmissão e o chat incorporados
+            são removidos da página. O carregamento permanece bloqueado
+            até que você permita novamente essa categoria.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>4. Gerenciar preferências</h2>
-          <p>Você pode revisar suas preferências de cookies a qualquer momento pelo botão abaixo.</p>
-          <button class="sbw-cookie-button" type="button" onclick="window.SBWCompliance?.openCookiePreferences?.()">Abrir preferências de cookies</button>
-        </article>
-      </section>
-    </div>
-  </main>
+          <h2>4. Métricas de uso em preparação</h2>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-<script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-<script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
-</body>
-</html>
+          <p>
+            A categoria <strong>Métricas de uso · Em preparação</strong>
+            permanece desmarcada e indisponível no painel atual.
+            Nenhuma ferramenta de métricas é ativada por esse painel.
+          </p>
+
+          <

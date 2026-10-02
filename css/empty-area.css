@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+}
+
+body.sbw-empty-area-body {
+  min-height: 100vh;
+  margin: 0;
+  color: #f4f8ff;
+  background:
+    radial-gradient(circle at 72% 12%, rgba(55, 200, 255, 0.12), transparent 30rem),
+    radial-gradient(circle at 18% 82%, rgba(18, 103, 255, 0.1), transparent 32rem),
+    linear-gradient(145deg, #020711, #07111f 55%, #030812);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.sbw-empty-area-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  width: min(1080px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.sbw-empty-area-card {
+  width: min(720px, 100%);
+  padding: clamp(42px, 7vw, 76px);
+  border: 1px solid rgba(76, 202, 255, 0.22);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(55, 200, 255, 0.13), transparent 22rem),
+    rgba(7, 17, 33, 0.9);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+  text-align: center;
+}
+
+.sbw-empty-area-logo {
+  display: block;
+  width: 94px;
+  height: 94px;
+  margin: 0 auto 28px;
+  border: 1px solid rgba(126, 224, 255, 0.34);
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 0 34px rgba(55, 200, 255, 0.2);
+}
+
+.sbw-empty-area-kicker {
+  display: inline-block;
+  color: #53d7ff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sbw-empty-area-card h1 {
+  margin: 14px 0 18px;
+  color: #ffffff;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.sbw-empty-area-card p {
+  max-width: 560px;
+  margin: 0 auto;
+  color: #a9bdd0;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.65;
+}
+
+.sbw-empty-area-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  padding: 9px 14px;
+  border: 1px solid rgba(76, 202, 255, 0.2);
+  border-radius: 999px;
+  color: #d7e8f5;
+  background: rgba(55, 200, 255, 0.07);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sbw-empty-area-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #53d7ff;
+  box-shadow: 0 0 12px rgba(83, 215, 255, 0.8);
+}
+
+@media (max-width: 980px) {
+  .sbw-empty-area-page {
+    width: min(100% - 24px, 1080px);
+    padding: 84px 0 32px;
+  }
+
+  .sbw-empty-area-card {
+    padding: 42px 22px;
+    border-radius: 24px;
+  }
+}

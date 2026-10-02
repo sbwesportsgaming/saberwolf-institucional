@@ -1,4 +1,5 @@
-/* v1.6.84.1 — Hub de links institucional e perfis oficiais -SBW- */
+/* v1.6.84.1 — Hub de links institucional e perfis oficiais -SBW-
+   Revisão: responsividade, foco, áreas de toque e movimento reduzido. */
 
 :root {
   --sbw-links-bg: #030914;
@@ -17,8 +18,18 @@
   --sbw-links-radius: 24px;
 }
 
-* {
+body.sbw-links-body,
+body.sbw-links-body *,
+body.sbw-links-body::before,
+body.sbw-links-body::after,
+body.sbw-links-body *::before,
+body.sbw-links-body *::after {
   box-sizing: border-box;
+}
+
+.sbw-links-shell[hidden],
+.sbw-links-shell [hidden] {
+  display: none !important;
 }
 
 html {
@@ -30,6 +41,7 @@ html {
 
 body.sbw-links-body {
   min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
   color: var(--sbw-links-text);
   background:
@@ -56,6 +68,7 @@ body.sbw-links-body::before {
     linear-gradient(rgba(111, 218, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(111, 218, 255, 0.06) 1px, transparent 1px);
   background-size: 46px 46px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
   mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
 }
 
@@ -70,8 +83,15 @@ body.sbw-links-body::after {
   position: relative;
   z-index: 1;
   width: min(100%, 700px);
+  min-width: 0;
   margin: 0 auto;
-  padding: max(22px, env(safe-area-inset-top)) 18px 28px;
+  padding: 22px 18px 28px;
+  padding:
+    max(22px, env(safe-area-inset-top, 0px))
+    max(18px, env(safe-area-inset-right, 0px))
+    max(28px, env(safe-area-inset-bottom, 0px))
+    max(18px, env(safe-area-inset-left, 0px));
+  overflow-wrap: anywhere;
 }
 
 .sbw-links-profile {
@@ -86,6 +106,7 @@ body.sbw-links-body::after {
   box-shadow:
     0 32px 90px rgba(0, 0, 0, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   overflow: hidden;
 }
@@ -127,29 +148,38 @@ body.sbw-links-body::after {
   opacity: 0.7;
 }
 
+.sbw-links-profile::before,
+.sbw-links-profile::after,
+.sbw-links-energy,
+.sbw-links-portrait-orbit,
+.sbw-link-card::before {
+  pointer-events: none;
+}
+
 .sbw-links-home {
   width: fit-content;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 34px;
-  padding: 0 12px;
+  min-height: 44px;
+  padding: 8px 12px;
   border: 1px solid rgba(128, 222, 255, 0.14);
   border-radius: 999px;
   color: var(--sbw-links-muted);
   background: rgba(2, 10, 22, 0.34);
   font-size: 0.75rem;
   font-weight: 800;
+  line-height: 1.35;
   letter-spacing: 0.035em;
+  text-align: center;
   text-decoration: none;
   transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
-.sbw-links-home:hover,
 .sbw-links-home:focus-visible {
   color: #fff;
   border-color: var(--sbw-links-border-strong);
-  transform: translateY(-1px);
 }
 
 .sbw-links-portrait-wrap {
@@ -173,6 +203,7 @@ body.sbw-links-body::after {
 }
 
 .sbw-links-portrait {
+  display: block;
   width: 132px;
   height: 132px;
   border: 2px solid rgba(201, 244, 255, 0.66);
@@ -206,6 +237,7 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
 
 .sbw-links-heading {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   text-align: center;
 }
@@ -222,7 +254,7 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   margin: 8px 0 4px;
   color: #fff;
   font-size: clamp(2.45rem, 10vw, 4.15rem);
-  line-height: 0.96;
+  line-height: 1.04;
   letter-spacing: -0.055em;
   text-shadow: 0 7px 30px rgba(78, 194, 255, 0.17);
 }
@@ -244,6 +276,7 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
 
 .sbw-links-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 11px;
   margin-top: 26px;
 }
@@ -280,17 +313,16 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   opacity: 0.7;
 }
 
-.sbw-link-card:hover,
 .sbw-link-card:focus-visible {
   border-color: var(--sbw-links-border-strong);
   background-color: var(--sbw-links-card-hover);
   box-shadow: 0 17px 34px rgba(0, 0, 0, 0.28), 0 0 24px rgba(49, 135, 255, 0.12);
-  transform: translateY(-2px);
 }
 
 .sbw-link-card:focus-visible,
 .sbw-links-related:focus-visible,
-.sbw-links-home:focus-visible {
+.sbw-links-home:focus-visible,
+.sbw-links-noscript a:focus-visible {
   outline: 2px solid var(--sbw-links-cyan);
   outline-offset: 3px;
 }
@@ -337,24 +369,19 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
 .sbw-link-card__copy strong {
   color: #f9fdff;
   font-size: 0.98rem;
-  line-height: 1.16;
+  line-height: 1.25;
 }
 
 .sbw-link-card__copy small {
   color: var(--sbw-links-muted);
   font-size: 0.76rem;
-  line-height: 1.32;
+  line-height: 1.4;
 }
 
 .sbw-link-card__arrow {
   color: var(--sbw-links-cyan);
   font-size: 1rem;
   transition: transform 0.18s ease;
-}
-
-.sbw-link-card:hover .sbw-link-card__arrow,
-.sbw-link-card:focus-visible .sbw-link-card__arrow {
-  transform: translate(2px, -2px);
 }
 
 .sbw-links-related {
@@ -375,10 +402,8 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   transition: transform 0.18s ease, border-color 0.18s ease;
 }
 
-.sbw-links-related:hover,
 .sbw-links-related:focus-visible {
   border-color: var(--sbw-links-border-strong);
-  transform: translateY(-2px);
 }
 
 .sbw-links-related__icon {
@@ -412,6 +437,7 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
 .sbw-links-related__copy strong {
   color: #fff;
   font-size: 0.94rem;
+  line-height: 1.25;
 }
 
 .sbw-links-related__copy span {
@@ -424,6 +450,22 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   color: var(--sbw-links-cyan);
 }
 
+.sbw-link-card__mark,
+.sbw-links-related__icon {
+  line-height: 1.2;
+  text-align: center;
+}
+
+.sbw-link-card__mark img,
+.sbw-link-card__mark svg,
+.sbw-links-related__icon img,
+.sbw-links-related__icon svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .sbw-links-signature {
   display: flex;
   align-items: center;
@@ -433,12 +475,14 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   color: var(--sbw-links-soft);
   font-size: 0.63rem;
   font-weight: 850;
+  line-height: 1.5;
   letter-spacing: 0.13em;
   text-align: center;
   text-transform: uppercase;
 }
 
 .sbw-links-signature span {
+  flex: 0 0 24px;
   width: 24px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--sbw-links-cyan));
@@ -467,9 +511,40 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   color: var(--sbw-links-cyan);
 }
 
+.sbw-links-footer,
+.sbw-links-noscript {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sbw-links-home:hover {
+    color: #fff;
+    border-color: var(--sbw-links-border-strong);
+    transform: translateY(-1px);
+  }
+
+  .sbw-link-card:hover {
+    border-color: var(--sbw-links-border-strong);
+    background-color: var(--sbw-links-card-hover);
+    box-shadow: 0 17px 34px rgba(0, 0, 0, 0.28), 0 0 24px rgba(49, 135, 255, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .sbw-link-card:hover .sbw-link-card__arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .sbw-links-related:hover {
+    border-color: var(--sbw-links-border-strong);
+    transform: translateY(-2px);
+  }
+}
+
 @media (min-width: 720px) {
   .sbw-links-shell {
     padding-top: 34px;
+    padding-top: max(34px, env(safe-area-inset-top, 0px));
   }
 
   .sbw-links-profile {
@@ -496,6 +571,8 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
   .sbw-links-shell {
     padding-right: 10px;
     padding-left: 10px;
+    padding-right: max(10px, env(safe-area-inset-right, 0px));
+    padding-left: max(10px, env(safe-area-inset-left, 0px));
   }
 
   .sbw-links-profile {
@@ -535,10 +612,21 @@ body[data-sbw-links-theme="creator"] .sbw-links-portrait {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+  }
+
+  .sbw-links-home,
+  .sbw-link-card,
+  .sbw-link-card__arrow,
+  .sbw-links-related {
+    transition: none;
+  }
+
+  .sbw-links-home:hover,
+  .sbw-link-card:hover,
+  .sbw-link-card:hover .sbw-link-card__arrow,
+  .sbw-links-related:hover {
+    transform: none;
   }
 }

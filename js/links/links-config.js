@@ -1,57 +1,96 @@
 (function () {
   "use strict";
 
+  const scriptElement =
+    document.currentScript ||
+    Array.from(document.scripts).find((script) =>
+      /\/js\/links\/links-config\.js(?:[?#]|$)/i.test(script.src)
+    );
+
+  // Este arquivo fica em js/links/, dois níveis abaixo da pasta do site.
+  const SITE_BASE_URL = scriptElement?.src
+    ? new URL("../../", scriptElement.src)
+    : new URL(
+        window.SBWRoutes?.getBasePath?.() || "../",
+        document.baseURI || window.location.href
+      );
+
+  function siteUrl(path) {
+    if (typeof window.SBWRoutes?.url === "function") {
+      return window.SBWRoutes.url(path);
+    }
+
+    const cleanPath = String(path || "index.html").replace(/^\/+/, "");
+    const url = new URL(cleanPath, SITE_BASE_URL);
+
+    if (url.protocol === "file:") return url.href;
+
+    return url.pathname + url.search + url.hash;
+  }
+
+  // A porta local e o domínio da Championship são definidos em sbw-routes.js.
+  const championshipHomeUrl =
+    window.SBWRoutes?.championship?.("/") || "";
+
+  const championshipRankingsUrl =
+    window.SBWRoutes?.championship?.("/rankings/rankings.html") || "";
+
   window.SBWLinksProfiles = Object.freeze({
     ecosystem: {
       theme: "ecosystem",
       eyebrow: "Links oficiais",
-      title: "SaberWolf",
-      handle: "-SBW- · Ecossistema gamer",
-      description: "Competição, conteúdo e comunidade conectados em um só lugar.",
-      image: "/assets/images/logo-sbw.png",
-      imageAlt: "Identidade visual da -SBW-",
+      title: "SaberWolf Esports",
+      handle: "-SBW- · Organização de esports",
+      description: "Organização, atletas, creators, conteúdo e comunidade.",
+      image: siteUrl("assets/images/logo-sbw.png"),
+      imageAlt: "Logo da SaberWolf Esports — -SBW-",
+
       links: [
         {
           id: "platform",
-          label: "Acessar a plataforma -SBW-",
-          description: "A central do ecossistema SaberWolf",
-          href: "/",
+          label: "Acessar o site da SaberWolf",
+          description: "A casa oficial da organização",
+          href: siteUrl("index.html"),
           mark: "-SBW-",
           primary: true
         },
         {
           id: "tournaments",
-          label: "Torneios",
-          description: "Competições, inscrições e resultados",
-          href: "/torneios/torneios.html",
-          mark: "VS"
+          label: "SBW Championship",
+          description: "Plataforma independente de torneios e eventos",
+          href: championshipHomeUrl,
+          mark: "VS",
+          external: true,
+          disabled: !championshipHomeUrl
         },
         {
           id: "rankings",
-          label: "Rankings",
-          description: "Histórico e desempenho competitivo",
-          href: "/rankings/rankings.html",
-          mark: "#"
+          label: "Rankings do Championship",
+          description: "Histórico e desempenho na plataforma competitiva",
+          href: championshipRankingsUrl,
+          mark: "#",
+          external: true,
+          disabled: !championshipRankingsUrl
         },
         {
           id: "communities",
           label: "Comunidades",
           description: "Projetos e cenas conectadas à -SBW-",
-          href: "/comunidades/comunidades.html",
+          href: siteUrl("comunidades/comunidades.html"),
           mark: "CO"
         },
         {
           id: "news",
           label: "Notícias",
-          description: "Atualizações do ecossistema",
-          href: "/blog/noticias.html",
+          description: "Atualizações da SaberWolf Esports",
+          href: siteUrl("blog/noticias.html"),
           mark: "N"
         },
         {
           id: "creators",
           label: "Creators",
           description: "Conteúdo, lives e representantes oficiais",
-          href: "/creators/creators.html",
+          href: siteUrl("creators/creators.html"),
           mark: "CR"
         },
         {
@@ -63,11 +102,12 @@
           external: true
         }
       ],
+
       related: {
         eyebrow: "Fundador e creator",
         title: "D’Lucca",
         description: "Lives, vídeos e redes pessoais.",
-        href: "/links/dlucca/",
+        href: siteUrl("links/dlucca/index.html"),
         track: "links_ecosystem_dlucca"
       }
     },
@@ -78,8 +118,9 @@
       title: "D’Lucca",
       handle: "@dlucca_sbw",
       description: "Jogos de luta, desafios competitivos e muita resenha. Um espaço para jogar, aprender e fortalecer a comunidade.",
-      image: "/assets/images/dlucca-avatar.jpeg",
+      image: siteUrl("assets/images/dlucca-avatar.jpeg"),
       imageAlt: "Retrato de D’Lucca",
+
       links: [
         {
           id: "twitch",
@@ -123,11 +164,12 @@
           external: true
         }
       ],
+
       related: {
-        eyebrow: "Projeto oficial",
-        title: "Conheça o ecossistema -SBW-",
-        description: "Torneios, rankings, creators e comunidades.",
-        href: "/links/",
+        eyebrow: "Organização oficial",
+        title: "Conheça a SaberWolf Esports",
+        description: "Organização, creators, atletas e comunidades.",
+        href: siteUrl("links/index.html"),
         track: "links_dlucca_ecosystem"
       }
     }

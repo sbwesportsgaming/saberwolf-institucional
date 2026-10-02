@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>-SBW- | Offline</title>
+
+  <title>SaberWolf Esports | Offline</title>
   <meta name="theme-color" content="#37c8ff" />
+
   <style>
     :root {
       color-scheme: dark;
@@ -15,7 +17,9 @@
       --panel: rgba(8, 18, 35, 0.84);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       min-height: 100vh;
@@ -24,10 +28,26 @@
       place-items: center;
       padding: 28px;
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 82% 10%, rgba(55, 200, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 16% 82%, rgba(126, 68, 255, 0.16), transparent 30%),
+      background-color: var(--bg);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background-image:
+        radial-gradient(
+          circle at 82% 10%,
+          rgba(55, 200, 255, 0.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 16% 82%,
+          rgba(126, 68, 255, 0.16),
+          transparent 30%
+        ),
         linear-gradient(180deg, #030812, #02050b);
     }
 
@@ -36,22 +56,27 @@
       padding: clamp(28px, 6vw, 54px);
       border-radius: 32px;
       background:
-        radial-gradient(circle at 18% 0%, rgba(55, 200, 255, 0.14), transparent 32%),
+        radial-gradient(
+          circle at 18% 0%,
+          rgba(55, 200, 255, 0.14),
+          transparent 32%
+        ),
         var(--panel);
       border: 1px solid rgba(76, 202, 255, 0.24);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
     }
 
-    img {
+    .sbw-offline-logo {
       width: 86px;
       height: 86px;
-      border-radius: 22px;
       display: block;
       margin-bottom: 28px;
+      border-radius: 22px;
       border: 1px solid rgba(76, 202, 255, 0.28);
+      object-fit: contain;
     }
 
-    span {
+    .sbw-offline-label {
       display: inline-flex;
       margin-bottom: 14px;
       padding: 7px 12px;
@@ -61,14 +86,14 @@
       border: 1px solid rgba(76, 202, 255, 0.28);
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     h1 {
       margin: 0 0 14px;
       font-size: clamp(34px, 8vw, 58px);
-      line-height: 1;
+      line-height: 1.05;
       letter-spacing: -0.06em;
     }
 
@@ -79,38 +104,141 @@
       line-height: 1.65;
     }
 
-    a {
+    .sbw-offline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .sbw-offline-button {
       min-height: 52px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0 22px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
       border-radius: 14px;
       color: #02101d;
       background: linear-gradient(135deg, #5ddcff, #008dff);
-      text-decoration: none;
+      font: inherit;
       font-weight: 900;
+      line-height: 1.3;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sbw-offline-button--secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(76, 202, 255, 0.28);
+    }
+
+    .sbw-offline-button:hover {
+      filter: brightness(1.1);
+    }
+
+    .sbw-offline-button:focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 4px;
     }
 
     .sbw-offline-version {
-      margin: 18px 0 0;
+      margin: 22px 0 0;
       color: rgba(230, 241, 255, 0.48);
       font-size: 12px;
       letter-spacing: 0.04em;
     }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px;
+      }
+
+      main {
+        border-radius: 24px;
+      }
+
+      .sbw-offline-actions {
+        flex-direction: column;
+      }
+
+      .sbw-offline-button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main>
-    <img src="/assets/icons/icon-192-v3.png" alt="-SBW-" />
-    <span>App -SBW- Beta</span>
-    <h1>Você está offline</h1>
+  <main aria-labelledby="sbwOfflineTitle">
+    <!-- O service worker define a base quando exibe esta tela em outra página. -->
+    <img
+      class="sbw-offline-logo"
+      src="./assets/icons/icon-192-v3.png"
+      alt="SaberWolf Esports"
+      width="86"
+      height="86"
+    />
+
+    <span class="sbw-offline-label">
+      SaberWolf Esports
+    </span>
+
+    <h1 id="sbwOfflineTitle">
+      Você está offline
+    </h1>
+
     <p>
-      Não foi possível carregar a plataforma agora. Verifique sua conexão e tente novamente.
-      Dados de login, perfis, equipes, torneios e Supabase não são armazenados para uso offline nesta versão.
+      Não foi possível carregar esta página.
+      Verifique sua conexão e tente novamente.
+      Algumas páginas já visitadas podem continuar disponíveis
+      neste dispositivo.
     </p>
-    <a href="/">Voltar para a Home</a>
-    <p class="sbw-offline-version">Site v1.6.84.1 · App -SBW- Beta v0.2</p>
+
+    <div class="sbw-offline-actions">
+      <button
+        class="sbw-offline-button"
+        type="button"
+        id="sbwOfflineRetry"
+      >
+        Tentar novamente
+      </button>
+
+      <a
+        class="sbw-offline-button sbw-offline-button--secondary"
+        href="./index.html"
+      >
+        Voltar ao início
+      </a>
+    </div>
+
+    <p class="sbw-offline-version">
+      Site v1.6.84.1 · App SaberWolf Esports
+    </p>
   </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const retryButton = document.getElementById("sbwOfflineRetry");
+
+      retryButton.addEventListener("click", function () {
+        const offlineUrl = new URL("./offline.html", document.baseURI);
+
+        if (window.location.pathname === offlineUrl.pathname) {
+          // Quando este arquivo foi aberto diretamente, tenta acessar o início.
+          window.location.assign(
+            new URL("./index.html", document.baseURI).href
+          );
+          return;
+        }
+
+        // Quando o service worker exibiu esta tela, tenta a página original.
+        window.location.reload();
+      });
+    })();
+  </script>
 </body>
 </html>

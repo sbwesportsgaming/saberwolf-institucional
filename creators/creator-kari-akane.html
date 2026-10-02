@@ -1,406 +1,909 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <title>SBW Kari Akane | Creator</title>
+  <title>-SBW- | Kari Akane — Creator | SaberWolf Esports</title>
 
-  <link rel="stylesheet" href="../css/style.css">
+  <meta
+    name="description"
+    content="Conheça Kari Akane, creator da SaberWolf Esports. Fighting Games, lives, conteúdo, comunidade e redes sociais."
+  />
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="canonical" href="https://sbwgg.com.br/creators/creator-kari-akane.html" />
+  <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon-v3.png" />
+  <link rel="manifest" href="../manifest.webmanifest?v=20260902-16841" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="-SBW- | Kari Akane — Creator" />
+  <meta property="og:description" content="Fighting Games, lives, conteúdo e comunidade com Kari Akane, creator da SaberWolf Esports." />
+  <meta property="og:url" content="https://sbwgg.com.br/creators/creator-kari-akane.html" />
+  <meta property="og:image" content="https://sbwgg.com.br/assets/images/kari-akane-avatar.jpg" />
+  <meta property="og:image:alt" content="Retrato de Kari Akane" />
+
+  <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
+  <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-creator-detail-body {
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-creator-detail-body [hidden] {
+      display: none !important;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__body {
+      min-width: 0;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media {
+      max-width: 220px;
+    }
+
+    .sbw-creator-detail-body .sbw-featured-creator__media img {
+      display: block;
+    }
+
+    .sbw-creator-detail-body h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-creator-detail-body h2,
+    .sbw-creator-detail-body h3 {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-kari-back {
+      margin-bottom: 18px;
+    }
+
+    .sbw-kari-copy p,
+    .sbw-kari-note {
+      margin: 0;
+      color: var(--sbw-creators-muted);
+      line-height: 1.75;
+    }
+
+    .sbw-kari-copy p + p {
+      margin-top: 18px;
+    }
+
+    .sbw-kari-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .sbw-kari-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .sbw-kari-card {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 22px;
+      color: var(--sbw-creators-text);
+      text-decoration: none;
+      border: 1px solid var(--sbw-creators-border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .sbw-kari-card:hover {
+      border-color: var(--sbw-creators-border-strong);
+      background: rgba(85, 214, 255, 0.06);
+    }
+
+    .sbw-kari-card h3,
+    .sbw-kari-card p {
+      margin: 0;
+    }
+
+    .sbw-kari-card p {
+      color: var(--sbw-creators-muted);
+      line-height: 1.65;
+    }
+
+    .sbw-kari-card__mark {
+      width: 48px;
+      min-height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--sbw-creators-cyan);
+      background: rgba(85, 214, 255, 0.08);
+      font: 900 0.8rem "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-kari-card__cta {
+      color: var(--sbw-creators-cyan);
+      font-weight: 700;
+    }
+
+    .sbw-kari-twitch-slot {
+      min-width: 0;
+      margin-top: 20px;
+    }
+
+    .sbw-kari-live-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: stretch;
+      gap: 18px;
+    }
+
+    .sbw-kari-live-layout.is-wide {
+      grid-template-columns: minmax(400px, 1fr) 300px;
+    }
+
+    .sbw-kari-player,
+    .sbw-kari-chat {
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #050810;
+    }
+
+    .sbw-kari-player {
+      min-height: 300px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .sbw-kari-chat {
+      min-height: 420px;
+    }
+
+    .sbw-kari-live-layout.is-wide .sbw-kari-player {
+      aspect-ratio: auto;
+    }
+
+    .sbw-kari-live-layout iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .sbw-creator-detail-body a:focus-visible,
+    .sbw-creator-detail-body button:focus-visible {
+      outline: 3px solid var(--sbw-creators-cyan);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-creator-detail-body .sbw-creators-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sbw-kari-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
 
-<body>
+<body
+  class="sbw-creators-body sbw-creator-detail-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="creators"
+>
+  <div id="sbwSidebarMount"></div>
 
-<header>
-
-  <h1>SaberWolf</h1>
-
-  <div class="menu-toggle">
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
     ☰
-  </div>
+  </button>
 
-<nav class="main-nav">
-  <a href="../index.html">Home</a>
-  <a href="../blog/noticias.html">Notícias</a>
-  <a href="../pages/sobre.html">Sobre</a>
-  <a href="../perfis/perfis.html">Perfis</a>
-  <a href="../equipes/equipes.html">Equipes</a>
-  <a href="../comunidades/comunidades.html">Comunidades</a>
-  <a href="../rankings/rankings.html">Rankings</a>
-  <a href="../transferencias/transferencias.html">Transferências</a>
-  <a href="../torneios/torneios.html">Torneios</a>
-  <a href="../creators/creators.html">Creators</a>
-  <a href="../pages/loja.html">Loja</a>
-</nav>
+  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
 
-</header>
+  <main class="sbw-creators-page" id="sbwCreatorProfilePage">
+    <div class="sbw-kari-back">
+      <a class="sbw-creators-button" href="./creators.html">
+        ← Voltar para Creators
+      </a>
+    </div>
 
-<section class="hero">
+    <!-- APRESENTAÇÃO -->
 
-  <img
-  class="creator-avatar"
-  src="../assets/images/kari-akane-avatar.jpg"
-  alt="SBW Kari Akane">
+    <section class="sbw-featured-creator" aria-labelledby="kariTitle">
+      <div class="sbw-featured-creator__media">
+        <img
+          id="sbwKariAvatar"
+          src="../assets/images/kari-akane-avatar.jpg"
+          alt="Retrato de Kari Akane"
+          width="220"
+          height="220"
+        />
+      </div>
 
-  <h2>SBW Kari Akane</h2>
+      <div class="sbw-featured-creator__body">
+        <span>Creator · Fighting Games</span>
 
-  <p>
-    Creator da -SBW- voltada para Fighting Games,
-    conteúdo, lives, comunidade e presença no cenário FGC.
-  </p>
+        <h1 id="kariTitle">-SBW- | Kari Akane</h1>
 
-  <div class="creator-tags">
+        <p>
+          Creator da -SBW- voltada para Fighting Games,
+          conteúdo, lives, comunidade e presença no cenário FGC.
+        </p>
 
-    <span>Creator</span>
-    <span>FGC</span>
-    <span>Conteúdo</span>
-    <span>-SBW-</span>
+        <div
+          class="sbw-featured-creator__meta"
+          aria-label="Áreas de atuação"
+        >
+          <span>Creator</span>
+          <span>FGC</span>
+          <span>Conteúdo</span>
+          <span>-SBW-</span>
+        </div>
 
-  </div>
+        <div class="sbw-kari-actions">
+          <a
+            class="sbw-creators-button sbw-creators-button--primary"
+            href="#live-kari"
+          >
+            Acompanhar lives
+          </a>
 
-</section>
+          <a class="sbw-creators-button" href="#redes-kari">
+            Redes sociais
+          </a>
+        </div>
+      </div>
+    </section>
 
-<section>
+    <!-- SOBRE -->
 
-  <a href="creators.html" class="profile-btn">
-    ← Voltar para Creators
-  </a>
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="kariAboutTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Trajetória</span>
+        <h2 id="kariAboutTitle">Sobre a creator</h2>
+      </div>
 
-</section>
+      <div class="sbw-kari-copy">
+        <p>
+          Kari Akane atua como creator dentro da SaberWolf,
+          com foco em conteúdo, presença na comunidade e participação
+          no cenário de Fighting Games.
+        </p>
 
-<section>
+        <p>
+          Seu espaço dentro da -SBW- conecta lives, conteúdos,
+          interação com público e fortalecimento da presença
+          da organização no cenário FGC.
+        </p>
+      </div>
+    </section>
 
-  <h2>Sobre a Creator</h2>
+    <!-- PERFIL -->
 
-  <div class="card creator-card">
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="kariProfileTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Atuação</span>
+        <h2 id="kariProfileTitle">Perfil</h2>
+      </div>
 
-    <p>
-      SBW Kari Akane atua como creator dentro da SaberWolf,
-      com foco em conteúdo, presença na comunidade e participação
-      no cenário de Fighting Games.
-    </p>
+      <div class="sbw-creators-pillars">
+        <article>
+          <span>01</span>
+          <h3>Categoria</h3>
+          <p>Fighting Games / FGC.</p>
+        </article>
 
-    <br>
+        <article>
+          <span>02</span>
+          <h3>Atuação</h3>
 
-    <p>
-      Seu espaço dentro da -SBW- conecta lives, conteúdos,
-      interação com público e fortalecimento da presença
-      da organização no cenário FGC.
-    </p>
+          <p>
+            Creator, lives, conteúdo, comunidade
+            e presença no cenário Fighting Games.
+          </p>
+        </article>
 
-  </div>
+        <article>
+          <span>03</span>
+          <h3>Organização</h3>
 
-</section>
+          <p>
+            Creator vinculada à -SBW- dentro do ecossistema
+            de conteúdo e comunidade.
+          </p>
+        </article>
+      </div>
+    </section>
 
-<section>
+    <!-- TWITCH -->
 
-  <h2>Perfil</h2>
+    <section
+      class="sbw-creators-official"
+      id="live-kari"
+      aria-labelledby="kariTwitchTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Transmissões</span>
+        <h2 id="kariTwitchTitle">Live na Twitch</h2>
 
-  <div class="cards">
+        <p>
+          Acompanhe as transmissões da Kari Akane na Twitch,
+          com Fighting Games, conteúdo e interação com a comunidade.
+        </p>
+      </div>
 
-    <div class="card creator-card">
+      <div class="sbw-kari-actions">
+        <a
+          class="sbw-creators-button sbw-creators-button--primary"
+          href="https://www.twitch.tv/kari_akane"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir a Twitch da Kari Akane em nova aba"
+        >
+          Assistir na Twitch ↗
+        </a>
 
-      <h3>
-        <i class="fa-solid fa-gamepad"></i>
-        Categoria
-      </h3>
+        <button
+          class="sbw-creators-button"
+          id="sbwKariTwitchPreferences"
+          type="button"
+          aria-haspopup="dialog"
+          data-sbw-cookie-preferences
+          hidden
+        >
+          Preferências da Twitch
+        </button>
+      </div>
 
-      <p>
-        Fighting Games / FGC
+      <div class="sbw-kari-twitch-slot" id="sbwKariTwitchSlot">
+        <p
+          class="sbw-kari-note"
+          id="sbwKariTwitchFallback"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          A transmissão e o chat só serão carregados aqui após sua autorização.
+          Você também pode assistir diretamente na Twitch.
+        </p>
+      </div>
+
+      <noscript>
+        <p class="sbw-kari-note">
+          Para assistir sem JavaScript, utilize o botão “Assistir na Twitch”.
+        </p>
+      </noscript>
+    </section>
+
+    <!-- YOUTUBE -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="kariYouTubeTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>YouTube</span>
+        <h2 id="kariYouTubeTitle">Live no YouTube</h2>
+
+        <p>
+          Acompanhe as transmissões e gravações disponíveis
+          no canal da Kari Akane.
+        </p>
+      </div>
+
+      <div class="sbw-kari-actions">
+        <a
+          class="sbw-creators-button sbw-creators-button--primary"
+          href="https://www.youtube.com/@kariakane"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir o YouTube da Kari Akane em nova aba"
+        >
+          Abrir canal no YouTube ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- VÍDEOS -->
+
+    <section
+      class="sbw-creators-official"
+      aria-labelledby="kariVideosTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conteúdo</span>
+        <h2 id="kariVideosTitle">Últimos vídeos</h2>
+
+        <p>
+          Esta área receberá uma seleção de vídeos, cortes e destaques
+          da Kari Akane. Enquanto isso, confira os conteúdos no canal.
+        </p>
+      </div>
+
+      <a
+        class="sbw-creators-button"
+        href="https://www.youtube.com/@kariakane"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver os vídeos da Kari Akane no YouTube em nova aba"
+      >
+        Ver vídeos no YouTube ↗
+      </a>
+    </section>
+
+    <!-- REDES SOCIAIS -->
+
+    <section
+      class="sbw-creators-official"
+      id="redes-kari"
+      aria-labelledby="kariSocialTitle"
+    >
+      <div class="sbw-creators-section-heading">
+        <span>Conexões oficiais</span>
+        <h2 id="kariSocialTitle">Redes sociais</h2>
+
+        <p>
+          Lives, vídeos, bastidores e novidades
+          nos canais da Kari Akane.
+        </p>
+      </div>
+
+      <div class="sbw-kari-grid">
+        <a
+          class="sbw-kari-card"
+          href="https://www.youtube.com/@kariakane"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-kari-card__mark" aria-hidden="true">
+            YT
+          </span>
+
+          <h3>YouTube</h3>
+
+          <p>
+            Canal oficial da Kari Akane com vídeos,
+            conteúdos e transmissões.
+          </p>
+
+          <span class="sbw-kari-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-kari-card"
+          href="https://www.twitch.tv/kari_akane"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-kari-card__mark" aria-hidden="true">
+            LIVE
+          </span>
+
+          <h3>Twitch</h3>
+
+          <p>
+            Lives, interação com a comunidade e conteúdo ao vivo.
+          </p>
+
+          <span class="sbw-kari-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-kari-card"
+          href="https://www.instagram.com/kary.akane"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-kari-card__mark" aria-hidden="true">
+            IG
+          </span>
+
+          <h3>Instagram</h3>
+
+          <p>
+            Bastidores, atualizações, conteúdos rápidos
+            e presença visual da creator.
+          </p>
+
+          <span class="sbw-kari-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-kari-card"
+          href="https://www.tiktok.com/@karyakanefgc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-kari-card__mark" aria-hidden="true">
+            TT
+          </span>
+
+          <h3>TikTok</h3>
+
+          <p>
+            Clipes, highlights, momentos rápidos
+            e conteúdos curtos para a comunidade.
+          </p>
+
+          <span class="sbw-kari-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+
+        <a
+          class="sbw-kari-card"
+          href="https://x.com/kari_akane"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sbw-kari-card__mark" aria-hidden="true">
+            X
+          </span>
+
+          <h3>X</h3>
+
+          <p>
+            Atualizações rápidas, publicações,
+            movimentações e comunicação com a comunidade.
+          </p>
+
+          <span class="sbw-kari-card__cta">
+            Abrir em nova aba ↗
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ INSTITUCIONAL -->
+
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
       </p>
 
-    </div>
-
-    <div class="card creator-card">
-
-      <h3>
-        <i class="fa-solid fa-video"></i>
-        Atuação
-      </h3>
-
-      <p>
-        Creator, lives, conteúdo, comunidade
-        e presença no cenário Fighting Games.
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
       </p>
 
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="../pages/termos.html">Termos</a>
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/cookies.html">Cookies</a>
+      </nav>
     </div>
+  </footer>
+
+  <!-- Configuração exclusiva deste perfil. -->
+
+  <script>
+    (function () {
+      "use strict";
+
+      function initKariProfile() {
+        const page = document.getElementById("sbwCreatorProfilePage");
+
+        if (!page || page.dataset.sbwKariInitialized === "true") return;
+        page.dataset.sbwKariInitialized = "true";
+
+        const avatar = document.getElementById("sbwKariAvatar");
+
+        if (avatar) {
+          function useFallbackAvatar() {
+            if (avatar.dataset.fallbackApplied === "true") return;
+
+            avatar.dataset.fallbackApplied = "true";
+            avatar.alt = "Logo da SaberWolf Esports";
+
+            avatar.src = new URL(
+              "../assets/images/logo-sbw.png",
+              document.baseURI
+            ).href;
+          }
+
+          avatar.addEventListener("error", useFallbackAvatar);
+
+          if (avatar.complete && avatar.naturalWidth === 0) {
+            useFallbackAvatar();
+          }
+        }
 
-    <div class="card creator-card">
+        const slot = document.getElementById("sbwKariTwitchSlot");
+        const fallback = document.getElementById("sbwKariTwitchFallback");
+        const preferences = document.getElementById(
+          "sbwKariTwitchPreferences"
+        );
 
-      <h3>
-        <i class="fa-solid fa-users"></i>
-        Organização
-      </h3>
+        if (!slot || !fallback || !preferences) return;
 
-      <p>
-        Creator vinculada à -SBW- dentro do ecossistema
-        de conteúdo e comunidade.
-      </p>
+        const hostname = window.location.hostname;
+        const protocol = window.location.protocol;
+
+        const localHost = [
+          "localhost",
+          "127.0.0.1",
+          "::1",
+          "[::1]"
+        ].includes(hostname);
 
-    </div>
+        const canEmbed =
+          Boolean(hostname) &&
+          (
+            protocol === "https:" ||
+            (protocol === "http:" && localHost)
+          );
 
-  </div>
+        let layout = null;
+        let suspended = false;
+        let resumeTimer = null;
 
-</section>
+        function hasPreferenceControl() {
+          const compliance = window.SBWCompliance;
 
-<section>
+          return (
+            typeof compliance?.isAllowed === "function" &&
+            typeof compliance?.openCookiePreferences === "function"
+          );
+        }
 
-  <h2>Live na Twitch</h2>
+        function hasTwitchConsent() {
+          return (
+            hasPreferenceControl() &&
+            window.SBWCompliance.isAllowed("externalMedia") === true
+          );
+        }
 
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Acompanhe as transmissões ao vivo da Kari Akane na Twitch,
-    com player e chat integrados diretamente no perfil.
-  </p>
+        function removeTwitch() {
+          layout?.remove();
+          layout = null;
+        }
 
-  <div class="twitch-live-layout">
+        function showFallback(message) {
+          if (fallback.textContent !== message) {
+            fallback.textContent = message;
+          }
 
-    <div class="twitch-player">
+          fallback.hidden = false;
+        }
 
-      <iframe
-        src="https://player.twitch.tv/?channel=kari_akane&parent=127.0.0.1&parent=localhost"
-        allowfullscreen>
-      </iframe>
+        function createFrame(url, title, video = false) {
+          const frame = document.createElement("iframe");
 
-    </div>
+          frame.title = title;
+          frame.loading = "lazy";
+          frame.referrerPolicy = "strict-origin-when-cross-origin";
 
-    <div class="twitch-chat">
+          if (video) {
+            frame.allowFullscreen = true;
+            frame.allow = "fullscreen; picture-in-picture";
+          }
 
-      <iframe
-        src="https://www.twitch.tv/embed/kari_akane/chat?parent=127.0.0.1&parent=localhost&darkpopout">
-      </iframe>
+          // Esta função só é chamada depois da verificação de consentimento.
+          frame.src = url.href;
 
-    </div>
+          return frame;
+        }
 
-  </div>
+        function updateTwitchLayout() {
+          if (suspended) {
+            removeTwitch();
+            return;
+          }
 
-</section>
+          const controlAvailable = hasPreferenceControl();
+          preferences.hidden = !controlAvailable;
 
-<section>
+          if (!controlAvailable) {
+            removeTwitch();
 
-  <h2>Live no YouTube</h2>
+            showFallback(
+              "O conteúdo incorporado está indisponível no momento. " +
+              "Você pode assistir pelo botão “Assistir na Twitch”."
+            );
 
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Espaço dedicado para transmissões ao vivo pelo YouTube,
-    mantendo player e chat organizados dentro do perfil.
-  </p>
+            return;
+          }
 
-  <div class="youtube-live-layout">
+          const allowed = hasTwitchConsent();
 
-    <div class="youtube-player">
+          preferences.textContent = allowed
+            ? "Preferências da Twitch"
+            : "Permitir vídeos e chat";
 
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_KARI"
-        allowfullscreen>
-      </iframe>
+          if (!allowed) {
+            removeTwitch();
 
-    </div>
+            showFallback(
+              "Para exibir a transmissão e o chat aqui, abra as preferências " +
+              "e permita “Vídeos e chats da Twitch”. Você também pode " +
+              "assistir diretamente na Twitch."
+            );
 
-    <div class="youtube-chat">
+            return;
+          }
 
-      <iframe
-        src="https://www.youtube.com/live_chat?v=VIDEO_ID_KARI&embed_domain=127.0.0.1">
-      </iframe>
+          if (!canEmbed) {
+            removeTwitch();
 
-    </div>
+            showFallback(
+              "Neste modo de acesso, assista pelo botão “Assistir na Twitch”."
+            );
 
-  </div>
+            return;
+          }
 
-</section>
+          const width = slot.clientWidth;
 
-<section>
+          // A Twitch exige um player com pelo menos 400 × 300 px.
+          if (width < 400) {
+            removeTwitch();
 
-  <h2>Últimos Vídeos</h2>
+            showFallback(
+              "Para assistir nesta tela, abra a Twitch pelo botão acima. " +
+              "Em uma janela mais larga, o player pode aparecer aqui."
+            );
 
-  <p style="color:#94a3b8; max-width:760px; line-height:1.7; margin-top:12px;">
-    Área reservada para destacar vídeos, cortes, highlights,
-    transmissões ou conteúdos recentes da Kari Akane.
-  </p>
+            return;
+          }
 
-  <div class="video-grid">
+          if (!layout) {
+            const playerUrl = new URL("https://player.twitch.tv/");
 
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Vídeo em Destaque
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-    <div class="media-channel-card">
-
-      <h3>
-        <i class="fab fa-youtube"></i>
-        Highlight / Corte
-      </h3>
-
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-
-  <h2>Redes Sociais</h2>
-
-  <div class="creator-grid">
-
-    <a
-    href="https://www.youtube.com/@kariakane"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-youtube"></i>
-          YouTube
-        </h3>
-
-        <p>
-          Canal oficial da Kari Akane com vídeos,
-          conteúdos e transmissões.
-        </p>
-
-      </div>
-
-    </a>
-
-    <a
-    href="https://www.twitch.tv/kari_akane"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-twitch"></i>
-          Twitch
-        </h3>
-
-        <p>
-          Lives, interação com a comunidade
-          e conteúdo ao vivo.
-        </p>
-
-      </div>
-
-    </a>
-
-    <a
-    href="https://www.instagram.com/kary.akane"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-instagram"></i>
-          Instagram
-        </h3>
-
-        <p>
-          Bastidores, atualizações, conteúdos rápidos
-          e presença visual da creator.
-        </p>
-
-      </div>
-
-    </a>
-
-    <a
-    href="https://www.tiktok.com/@karyakanefgc"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-tiktok"></i>
-          TikTok
-        </h3>
-
-        <p>
-          Clips, highlights, momentos rápidos
-          e conteúdos curtos para a comunidade.
-        </p>
-
-      </div>
-
-    </a>
-
-    <a
-    href="https://x.com/kari_akane"
-    target="_blank"
-    class="featured-creator-link">
-
-      <div class="card creator-card featured-creator">
-
-        <h3>
-          <i class="fab fa-x-twitter"></i>
-          X
-        </h3>
-
-        <p>
-          Atualizações rápidas, publicações,
-          movimentações e comunicação com a comunidade.
-        </p>
-
-      </div>
-
-    </a>
-
-  </div>
-
-</section>
-
-<footer>
-
-  <div class="footer-content">
-
-    <h2>SaberWolf</h2>
-
-    <p>
-      Ecossistema brasileiro de esports,
-      creators, campeonatos e comunidade.
-    </p>
-
-    <div class="footer-links">
-
-      <a href="../index.html">Home</a>
-      <a href="../pages/sobre.html">Sobre</a>
-      <a href="../equipes/equipes.html">Equipes</a>
-      <a href="creators.html">Creators</a>
-      <a href="../comunidades/comunidades.html">Comunidades</a>
-      <a href="../torneios/torneios.html">Torneios</a>
-      <a href="../pages/loja.html">Loja</a>
-
-    </div>
-
-    <p class="footer-copy">
-      -SBW- © 2026 — Todos os direitos reservados.
-    </p>
-
-  </div>
-
-</footer>
-
-<script src="../js/menu.js"></script>
-
+            playerUrl.searchParams.set("channel", "kari_akane");
+            playerUrl.searchParams.set("parent", hostname);
+            playerUrl.searchParams.set("autoplay", "false");
+
+            const chatUrl = new URL(
+              "https://www.twitch.tv/embed/kari_akane/chat"
+            );
+
+            chatUrl.searchParams.set("parent", hostname);
+            chatUrl.searchParams.set("darkpopout", "");
+
+            layout = document.createElement("div");
+            layout.className = "sbw-kari-live-layout";
+
+            const player = document.createElement("div");
+            player.className = "sbw-kari-player";
+
+            player.appendChild(
+              createFrame(
+                playerUrl,
+                "Transmissão de Kari Akane na Twitch",
+                true
+              )
+            );
+
+            const chat = document.createElement("div");
+            chat.className = "sbw-kari-chat";
+
+            chat.appendChild(
+              createFrame(
+                chatUrl,
+                "Chat da Twitch de Kari Akane"
+              )
+            );
+
+            layout.append(player, chat);
+            slot.appendChild(layout);
+          }
+
+          layout.classList.toggle("is-wide", width >= 740);
+          fallback.hidden = true;
+        }
+
+        // Remove os iframes antes de a página sair ou ficar no histórico.
+        window.addEventListener("pagehide", () => {
+          suspended = true;
+
+          window.clearTimeout(resumeTimer);
+          resumeTimer = null;
+
+          removeTwitch();
+        });
+
+        window.addEventListener("pageshow", (event) => {
+          if (!event.persisted) return;
+
+          window.clearTimeout(resumeTimer);
+
+          // Aguarda o painel reler a escolha salva antes de restaurar os players.
+          resumeTimer = window.setTimeout(() => {
+            resumeTimer = null;
+            suspended = false;
+
+            updateTwitchLayout();
+          }, 0);
+        });
+
+        const compliance = window.SBWCompliance;
+
+        if (typeof compliance?.onConsentChange === "function") {
+          compliance.onConsentChange(updateTwitchLayout);
+        } else {
+          // Sem a API atualizada, permanece bloqueado até ela estar disponível.
+          window.addEventListener(
+            "sbw:cookies-consent-updated",
+            updateTwitchLayout
+          );
+
+          updateTwitchLayout();
+        }
+
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(updateTwitchLayout);
+          observer.observe(slot);
+        } else {
+          window.addEventListener("resize", updateTwitchLayout);
+
+          window.addEventListener(
+            "load",
+            updateTwitchLayout,
+            { once: true }
+          );
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initKariProfile,
+          { once: true }
+        );
+      } else {
+        initKariProfile();
+      }
+    })();
+  </script>
 </body>
 </html>

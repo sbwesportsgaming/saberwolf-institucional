@@ -3,74 +3,423 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Termos de Uso | -SBW-</title>
+
+  <title>Termos de Uso | SaberWolf Esports</title>
+
+  <meta
+    name="description"
+    content="Condições de uso do site institucional da SaberWolf Esports: conteúdo, marcas, links externos, privacidade e canais oficiais."
+  />
+
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="canonical"
+    href="https://sbwgg.com.br/pages/termos.html"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20260902-16841"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="Termos de Uso | SaberWolf Esports" />
+  <meta
+    property="og:description"
+    content="Conheça as condições de uso do site institucional da SaberWolf Esports."
+  />
+  <meta
+    property="og:url"
+    content="https://sbwgg.com.br/pages/termos.html"
+  />
+  <meta
+    property="og:image"
+    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
+  />
+
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/legal.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-terms-body.sbw-has-sidebar .sbw-legal-page {
+      width: min(1120px, calc(100% - 48px));
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 0 64px;
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-terms-body :where(
+      .sbw-legal-nav,
+      .sbw-legal-content,
+      .sbw-legal-card
+    ) {
+      min-width: 0;
+    }
+
+    .sbw-terms-body .sbw-legal-hero::after {
+      pointer-events: none;
+    }
+
+    .sbw-terms-body .sbw-legal-hero .sbw-legal-updated {
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .sbw-terms-body .sbw-legal-nav :where(a, button) {
+      min-height: 44px;
+      padding: 10px 12px;
+      line-height: 1.5;
+    }
+
+    .sbw-terms-body .sbw-legal-nav [aria-current="page"] {
+      color: #ffffff;
+      border-color: rgba(76, 202, 255, 0.42);
+      background: rgba(55, 200, 255, 0.12);
+      font-weight: 700;
+    }
+
+    .sbw-terms-body .sbw-legal-card a {
+      color: #7de8ff;
+      text-underline-offset: 4px;
+    }
+
+    .sbw-terms-body .sbw-legal-card a:hover {
+      color: #ffffff;
+    }
+
+    .sbw-terms-body :where(a, button):focus-visible {
+      outline: 2px solid #53d7ff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1200px) {
+      .sbw-terms-body .sbw-legal-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-terms-body .sbw-legal-nav {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-terms-body.sbw-has-sidebar .sbw-legal-page {
+        width: min(1120px, calc(100% - 28px));
+        padding-top: 78px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .sbw-terms-body .sbw-legal-nav {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-terms-body :where(
+        .sbw-legal-hero,
+        .sbw-legal-card
+      ) {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
-<body class="sbw-legal-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="about">
+
+<body
+  class="sbw-legal-body sbw-terms-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="about"
+>
   <div id="sbwSidebarMount"></div>
 
-  <button class="sbw-sidebar-toggle" type="button" aria-label="Abrir menu" data-sbw-sidebar-toggle>☰</button>
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <button
+    class="sbw-sidebar-toggle"
+    type="button"
+    aria-label="Abrir menu"
+    data-sbw-sidebar-toggle
+  >
+    ☰
+  </button>
 
-  <main class="sbw-legal-page">
-    <section class="sbw-legal-hero">
-      <span class="sbw-legal-kicker">Institucional</span>
-      <h1>Termos de Uso</h1>
-      <p>Regras gerais de uso da plataforma SaberWolf, incluindo contas, perfis, equipes, torneios, rankings e participação no ecossistema -SBW-.</p>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
+
+  <main
+    class="sbw-legal-page"
+    aria-labelledby="sbwTermsTitle"
+  >
+    <section class="sbw-legal-hero" aria-labelledby="sbwTermsTitle">
+      <span class="sbw-legal-kicker">
+        Institucional · SaberWolf Esports
+      </span>
+
+      <h1 id="sbwTermsTitle">Termos de Uso</h1>
+
+      <p>
+        Condições gerais de utilização do site institucional da
+        SaberWolf Esports, incluindo seus conteúdos, materiais,
+        links e informações públicas.
+      </p>
+
+      <p class="sbw-legal-updated">
+        Última revisão:
+        <time datetime="2026-09-11">11 de setembro de 2026</time>.
+      </p>
     </section>
 
     <div class="sbw-legal-layout">
-      <nav class="sbw-legal-nav" aria-label="Documentos institucionais">
-        <a href="/pages/termos.html">Termos de Uso</a>
-        <a href="/pages/privacidade.html">Política de Privacidade</a>
-        <a href="/pages/cookies.html">Política de Cookies</a>
-        <button type="button" onclick="window.SBWCompliance?.openCookiePreferences?.()">Preferências de cookies</button>
+      <nav
+        class="sbw-legal-nav"
+        aria-label="Documentos institucionais"
+      >
+        <a href="./termos.html" aria-current="page">
+          Termos de Uso
+        </a>
+
+        <a href="./privacidade.html">
+          Política de Privacidade
+        </a>
+
+        <a href="./cookies.html">
+          Política de Cookies
+        </a>
+
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          data-sbw-cookie-preferences
+        >
+          Preferências de cookies
+        </button>
       </nav>
 
-      <section class="sbw-legal-content">
+      <section
+        class="sbw-legal-content"
+        aria-label="Condições de uso do site"
+      >
         <article class="sbw-legal-card">
-          <h2>1. Uso da plataforma</h2>
-          <p>A -SBW- é uma plataforma em desenvolvimento para perfis competitivos, equipes, torneios, rankings, comunidades e organizadores parceiros. Ao usar o site, o usuário concorda em utilizar os recursos de forma respeitosa, segura e compatível com a finalidade competitiva da plataforma.</p>
+          <h2>1. Finalidade e abrangência</h2>
+
+          <p>
+            Este site apresenta a SaberWolf Esports, sua atuação,
+            atletas, creators, notícias, comunidades e iniciativas.
+            Estes termos se aplicam à utilização desse ambiente
+            institucional.
+          </p>
+
+          <p>
+            A consulta ao conteúdo público do site não exige
+            criação de conta. Recursos de competições oferecidos
+            pela SBW Championship possuem regras próprias,
+            conforme explicado neste documento.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>2. Contas, perfis e equipes</h2>
-          <p>Cada usuário deve utilizar sua própria conta. Perfis pessoais representam jogadores ou membros da comunidade. Equipes representam organizações, times, academies ou comunidades. A criação, edição e participação em equipes deve respeitar as regras internas da plataforma.</p>
+          <h2>2. Uso responsável</h2>
+
+          <p>
+            Utilize o site de forma lícita e respeitosa,
+            preservando sua segurança e os direitos de outras pessoas.
+          </p>
+
           <ul>
-            <li>Um usuário pode criar apenas uma equipe principal.</li>
-            <li>Um usuário pode participar de apenas uma equipe ativa.</li>
-            <li>Equipes verificadas dependem de aprovação da administração -SBW-.</li>
+            <li>
+              Não tente acessar áreas restritas ou obter
+              informações sem autorização.
+            </li>
+
+            <li>
+              Não utilize o site para distribuir código malicioso,
+              praticar fraudes ou prejudicar seu funcionamento.
+            </li>
+
+            <li>
+              Não utilize a identidade da SaberWolf ou de seus
+              parceiros para se apresentar falsamente como
+              representante autorizado.
+            </li>
           </ul>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>3. Torneios e rankings</h2>
-          <p>Organizadores autorizados podem criar torneios e circuitos. Rankings podem ser globais, por organizador, por equipe ou por torneio, conforme configuração e regras aplicadas pela plataforma.</p>
+          <h2>3. Conteúdos, marcas e materiais</h2>
+
+          <p>
+            Textos, fotografias, vídeos, ilustrações, logotipos
+            e demais materiais devem ser utilizados conforme
+            os direitos de seus respectivos titulares.
+            Sua disponibilização no site não constitui autorização
+            geral para reutilização comercial.
+          </p>
+
+          <p>
+            O compartilhamento de links das páginas é permitido.
+            Para reutilizar materiais, observe as licenças,
+            autorizações e hipóteses de uso permitidas pela
+            legislação, respeitando os créditos e direitos aplicáveis.
+          </p>
+
+          <p>
+            Pedidos de autorização podem ser encaminhados pelos
+            <a href="../links/index.html">canais oficiais da SaberWolf</a>.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>4. Moderação e segurança</h2>
-          <p>A administração da -SBW- pode revisar perfis, equipes, torneios, convites e permissões para preservar a integridade da plataforma. Ações abusivas, falsas, ofensivas ou que tentem manipular resultados e permissões podem ser removidas ou bloqueadas.</p>
+          <h2>4. SBW Championship e serviços externos</h2>
+
+          <p>
+            A SBW Championship é o ambiente dedicado às competições.
+            Regras de contas, equipes, inscrições, torneios e rankings
+            devem ser consultadas nos documentos desse ambiente
+            e nos regulamentos dos respectivos eventos.
+          </p>
+
+          <p>
+            O site institucional também pode disponibilizar links
+            ou conteúdos incorporados de redes sociais, canais de
+            creators e serviços de parceiros. Esses serviços possuem
+            condições de uso e políticas próprias, que devem ser
+            consultadas ao utilizá-los.
+          </p>
+
+          <p>
+            Saiba mais sobre a
+            <a href="./sobre.html#championship">SBW Championship</a>.
+          </p>
         </article>
 
         <article class="sbw-legal-card">
-          <h2>5. Documento em evolução</h2>
-          <p>Estes termos são uma base estrutural inicial para o beta da plataforma. Eles podem ser refinados conforme novos recursos forem liberados.</p>
-          <div class="sbw-legal-note">Este documento é um modelo operacional interno do projeto e não substitui revisão jurídica profissional quando a plataforma entrar em operação pública ampla.</div>
+          <h2>5. Vitrine, produtos e campanhas</h2>
+
+          <p>
+            A <a href="./loja.html">página da loja</a> funciona,
+            nesta etapa, como vitrine institucional em preparação.
+            As categorias planejadas não representam produtos
+            disponíveis para compra.
+          </p>
+
+          <p>
+            Quando produtos ou campanhas estiverem disponíveis,
+            suas páginas deverão apresentar as condições aplicáveis.
+            Eventuais ofertas e contratações deverão respeitar
+            os direitos assegurados pela legislação de consumo.
+          </p>
+        </article>
+
+        <article class="sbw-legal-card">
+          <h2>6. Privacidade e cookies</h2>
+
+          <p>
+            As informações sobre tratamento de dados pessoais
+            e uso de cookies ou outros mecanismos de armazenamento
+            estão descritas na
+            <a href="./privacidade.html">Política de Privacidade</a>
+            e na
+            <a href="./cookies.html">Política de Cookies</a>.
+          </p>
+
+          <p>
+            A simples navegação pelo site não substitui uma
+            manifestação específica de consentimento quando
+            ela for exigida. As opções disponíveis podem ser
+            consultadas no botão “Preferências de cookies”.
+          </p>
+        </article>
+
+        <article class="sbw-legal-card">
+          <h2>7. Disponibilidade e atualizações</h2>
+
+          <p>
+            O site pode passar por manutenção, correções
+            e atualizações de conteúdo. Informações sobre
+            iniciativas, eventos e parcerias podem ser revisadas
+            conforme novos comunicados forem publicados.
+          </p>
+
+          <p>
+            Alterações destes termos serão identificadas pela
+            data de revisão apresentada nesta página.
+            Mudanças deverão respeitar os direitos assegurados
+            pela legislação e as obrigações anteriormente assumidas.
+          </p>
+        </article>
+
+        <article class="sbw-legal-card">
+          <h2>8. Contato e legislação aplicável</h2>
+
+          <p>
+            Dúvidas sobre estes termos, pedidos de correção
+            e relatos de uso indevido de materiais podem ser
+            encaminhados pelos
+            <a href="../links/index.html">canais oficiais da SaberWolf Esports</a>.
+          </p>
+
+          <p>
+            Aplica-se a legislação brasileira. Nenhuma disposição
+            destes termos deve ser interpretada como renúncia
+            a direitos assegurados por lei, inclusive aos direitos
+            do consumidor quando houver relação de consumo.
+          </p>
         </article>
       </section>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-<script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-<script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="./termos.html" aria-current="page">Termos</a>
+        <a href="./privacidade.html">Privacidade</a>
+        <a href="./cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

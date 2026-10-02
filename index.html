@@ -4,11 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>SaberWolf eSports | Ecossistema Gamer</title>
+  <title>SaberWolf Esports | Organização, conteúdo e comunidade</title>
 
   <meta
     name="description"
-    content="SaberWolf eSports é um ecossistema gamer com torneios, rankings, equipes, perfis, comunidades, transferências e conteúdo."
+    content="Site oficial da SaberWolf Esports: organização, atletas, creators, notícias, projetos e comunidades."
+  />
+
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="SaberWolf PWA local" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="-SBW-" />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
+
+  <link
+    rel="icon"
+    href="./assets/icons/icon-192-v3.png"
+    type="image/png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="./assets/icons/apple-touch-icon-v3.png"
+  />
+
+  <link
+    rel="manifest"
+    href="./manifest.webmanifest?v=20260902-16841"
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,28 +46,26 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="css/layout/sbw-sidebar.css" />
-  <link rel="stylesheet" href="css/home/home-landing.css?v=1601" />
-  <link rel="manifest" href="/manifest.webmanifest?v=20260902-16841" />
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-v3.png" />
-  <meta name="theme-color" content="#37c8ff" />
-  <meta name="sbw-site-version" content="v1.6.84.1" />
-  <meta name="sbw-app-version" content="App -SBW- Beta v0.2" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="-SBW-" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link
+    rel="stylesheet"
+    href="./css/layout/sbw-sidebar.css"
+  />
 
-  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script defer src="js/supabase/supabase-config.js"></script>
-<script defer src="js/supabase/supabase-client.js?v=1.6.84.1"></script>
-<script defer src="js/auth/auth-service.js"></script>
-<script defer src="js/core/sbw-routes.js"></script>
+  <link
+    rel="stylesheet"
+    href="./css/home/home-landing.css?v=1601"
+  />
 
-<script defer src="js/core/sbw-session-context.js"></script>
-<script defer src="js/layout/sbw-sidebar.js"></script>
-<script defer src="js/home/home-page.js"></script>
-<script defer src="js/pwa/sbw-pwa.js?v=20260902-16841"></script>
-  <link rel="stylesheet" href="css/core/sbw-site-compliance.css" />
+  <link
+    rel="stylesheet"
+    href="./css/core/sbw-site-compliance.css"
+  />
+
+  <script defer src="./js/core/sbw-routes.js"></script>
+  <script defer src="./js/layout/sbw-sidebar.js"></script>
+  <script defer src="./js/home/home-page.js"></script>
+  <script defer src="./js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="./js/core/sbw-site-compliance.js"></script>
 </head>
 
 <body class="sbw-home-page" data-sbw-active-page="home">
@@ -55,34 +80,50 @@
     ☰
   </button>
 
-  <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
+  <div
+    class="sbw-sidebar-backdrop"
+    data-sbw-sidebar-close
+  ></div>
 
   <main class="sbw-home-shell">
-    <section class="sbw-home-hero" aria-labelledby="sbwHomeTitle">
-      <div class="sbw-home-hero__banner" aria-hidden="true"></div>
-      <div class="sbw-home-hero__overlay" aria-hidden="true"></div>
+    <section
+      class="sbw-home-hero"
+      aria-labelledby="sbwHomeTitle"
+    >
+      <div
+        class="sbw-home-hero__banner"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="sbw-home-hero__overlay"
+        aria-hidden="true"
+      ></div>
 
       <div class="sbw-home-hero__content sbw-reveal">
         <span class="sbw-kicker">
-          <span></span>
-          Ecossistema Gamer
+          <span aria-hidden="true"></span>
+          Organização de esports
         </span>
 
         <h1 id="sbwHomeTitle">
           SaberWolf
-          <strong>eSports</strong>
+          <strong>Esports</strong>
         </h1>
 
         <p>
-          Um ecossistema gamer criado para conectar jogadores, equipes,
-          organizadores e comunidades através de torneios, rankings,
-          perfis competitivos e conteúdo.
+          Organização brasileira de esports, creators e projetos de comunidade.
+          Conheça quem representa a SaberWolf, acompanhe nossas iniciativas
+          e acesse a plataforma competitiva SBW Championship.
         </p>
 
         <div class="sbw-home-hero__actions">
-          <a class="sbw-btn sbw-btn--ghost" href="#destaques-sbw">
+          <a
+            class="sbw-btn sbw-btn--ghost"
+            href="#destaques-sbw"
+          >
             -SBW-
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </a>
 
           <button
@@ -92,19 +133,21 @@
             data-sbw-install-app
           >
             Baixe o app
-            <span>↓</span>
+            <span aria-hidden="true">↓</span>
           </button>
         </div>
       </div>
     </section>
 
-
-
-    <section class="sbw-section sbw-org-section" id="destaques-sbw">
+    <section
+      class="sbw-section sbw-org-section"
+      id="destaques-sbw"
+      aria-labelledby="sbwHighlightsTitle"
+    >
       <div class="sbw-section-heading sbw-reveal">
-        <span class="sbw-kicker">Destaques SBW</span>
+        <span class="sbw-kicker">Destaques -SBW-</span>
 
-        <h2>Destaques da -SBW-</h2>
+        <h2 id="sbwHighlightsTitle">Destaques da -SBW-</h2>
 
         <p>
           Conheça nomes que representam a SaberWolf dentro do cenário
@@ -115,15 +158,22 @@
       <div class="sbw-highlight-list">
         <a
           class="sbw-feature-member sbw-feature-member--link sbw-reveal"
-          href="/creators/creator-elitz.html"
+          href="./creators/creator-elitz.html"
           aria-label="Abrir perfil Creator de EliTz -SBW-"
         >
-          <div class="sbw-feature-member__photo sbw-feature-member__photo--elitz">
-          <img src="assets/home/elitz.jpeg" alt="-SBW- | EliTz" />
-       </div>
+          <div
+            class="sbw-feature-member__photo sbw-feature-member__photo--elitz"
+          >
+            <img
+              src="./assets/home/elitz.jpeg"
+              alt="-SBW- | EliTz"
+            />
+          </div>
 
           <div class="sbw-feature-member__content">
-            <span class="sbw-feature-member__tag">Creator em destaque</span>
+            <span class="sbw-feature-member__tag">
+              Creator em destaque
+            </span>
 
             <h3>-SBW- | EliTz</h3>
 
@@ -157,14 +207,21 @@
           href="https://www.start.gg/user/267d7096"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Abrir perfil start.gg de TigerFurious"
+          aria-label="Abrir perfil start.gg de TigerFurious em nova aba"
         >
-          <div class="sbw-feature-member__photo sbw-feature-member__photo--tiger">
-           <img src="assets/home/tigerfurious.jpeg" alt="-SBW- | TigerFurious" />
+          <div
+            class="sbw-feature-member__photo sbw-feature-member__photo--tiger"
+          >
+            <img
+              src="./assets/home/tigerfurious.jpeg"
+              alt="-SBW- | TigerFurious"
+            />
           </div>
 
           <div class="sbw-feature-member__content">
-            <span class="sbw-feature-member__tag">FGC em destaque</span>
+            <span class="sbw-feature-member__tag">
+              FGC em destaque
+            </span>
 
             <h3>-SBW- | TigerFurious</h3>
 
@@ -201,159 +258,89 @@
       </div>
     </section>
 
-    <section class="sbw-section sbw-ecosystem-section">
+    <section
+      class="sbw-section sbw-ecosystem-section"
+      aria-labelledby="sbwHomeAreasTitle"
+    >
       <div class="sbw-section-heading sbw-reveal">
-        <span class="sbw-kicker">Ecossistema</span>
+        <span class="sbw-kicker">SaberWolf</span>
 
-        <h2>O que você encontra no site</h2>
+        <h2 id="sbwHomeAreasTitle">
+          Organização e competição com papéis claros
+        </h2>
 
         <p>
-          A SaberWolf conecta competição, identidade, histórico competitivo e
-          comunidade em uma única plataforma.
+          Este site apresenta a organização SaberWolf. Torneios, perfis e rankings
+          passam a funcionar no produto independente SBW Championship.
         </p>
       </div>
 
       <div class="sbw-ecosystem-grid">
-        <a href="/torneios/torneios.html" class="sbw-module-card sbw-reveal">
-          <span>🏆</span>
-          <h3>Torneios</h3>
-          <p>Acompanhe, participe e organize competições.</p>
+        <a
+          href="./blog/noticias.html"
+          class="sbw-module-card sbw-reveal"
+        >
+          <span aria-hidden="true">▤</span>
+          <h3>Notícias</h3>
+          <p>Atualizações, anúncios e novidades da organização.</p>
         </a>
 
-        <a href="/perfis/perfis.html" class="sbw-module-card sbw-reveal">
-          <span>👤</span>
-          <h3>Perfis</h3>
-          <p>Seu histórico competitivo, conquistas e medalhas.</p>
+        <a
+          href="./creators/creators.html"
+          class="sbw-module-card sbw-reveal"
+        >
+          <span aria-hidden="true">✦</span>
+          <h3>Creators</h3>
+          <p>Conteúdo, lives e representantes oficiais da SaberWolf.</p>
         </a>
 
-        <a href="/equipes/equipes.html" class="sbw-module-card sbw-reveal">
-          <span>🛡️</span>
-          <h3>Equipes</h3>
-          <p>Conheça organizações, elencos e comunidades competitivas.</p>
+        <a
+          href="./atletas/atletas-sbw.html"
+          class="sbw-module-card sbw-reveal"
+        >
+          <span aria-hidden="true">♟</span>
+          <h3>Atletas</h3>
+          <p>Modalidades, jogadores e projetos competitivos da organização.</p>
         </a>
 
-        <a href="/rankings/rankings.html" class="sbw-module-card sbw-reveal">
-          <span>📊</span>
-          <h3>Rankings</h3>
-          <p>Veja destaques por temporada, jogo e organizador.</p>
-        </a>
-
-        <a href="/comunidades/comunidades.html" class="sbw-module-card sbw-reveal">
-          <span>🌐</span>
+        <a
+          href="./comunidades/comunidades.html"
+          class="sbw-module-card sbw-reveal"
+        >
+          <span aria-hidden="true">🌐</span>
           <h3>Comunidades</h3>
           <p>Encontre grupos, clans, eventos e iniciativas parceiras.</p>
         </a>
 
-        <a href="/transferencias/transferencias.html" class="sbw-module-card sbw-reveal">
-          <span>⇄</span>
-          <h3>Transferências</h3>
-          <p>Fique por dentro das movimentações do cenário.</p>
+        <!--
+          Endereço provisório da SBW Championship para testes locais.
+          Substituir pelo domínio oficial da Championship antes da publicação.
+        -->
+        <a
+          href="http://127.0.0.1:5501/"
+          class="sbw-module-card sbw-reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir SBW Championship em nova aba"
+        >
+          <span aria-hidden="true">🏆</span>
+          <h3>SBW Championship</h3>
+          <p>
+            Torneios, equipes, perfis, organizadores e rankings
+            em uma plataforma própria.
+          </p>
+        </a>
+
+        <a
+          href="./pages/loja.html"
+          class="sbw-module-card sbw-reveal"
+        >
+          <span aria-hidden="true">◇</span>
+          <h3>Loja</h3>
+          <p>Produtos e iniciativas comerciais da SaberWolf.</p>
         </a>
       </div>
     </section>
-
-    <section class="sbw-pwa-beta-section sbw-reveal" id="app-sbw-beta" aria-labelledby="sbwAppBetaTitle">
-      <div class="sbw-pwa-beta-shell">
-        <div class="sbw-pwa-beta-copy">
-          <span class="sbw-pwa-kicker">
-            App <span class="sbw-nowrap">-SBW-</span> Beta
-          </span>
-
-          <h2 class="sbw-pwa-beta-title" id="sbwAppBetaTitle">
-            Instale a <span class="sbw-nowrap">-SBW-</span> no seu celular
-          </h2>
-
-          <p class="sbw-pwa-beta-text">
-            Acesse a plataforma direto da tela inicial, com uma experiência mais próxima
-            de aplicativo. Esta versão usa o site oficial da <span class="sbw-nowrap">-SBW-</span>
-            e será atualizada junto com a plataforma.
-          </p>
-
-          <div class="sbw-pwa-beta-actions">
-            <button
-              class="sbw-pwa-install-button"
-              type="button"
-              data-sbw-pwa-install
-              data-sbw-install-app
-            >
-              Instalar App <span class="sbw-nowrap">-SBW-</span> Beta
-            </button>
-
-            <a class="sbw-pwa-guide-button" href="#sbw-pwa-install-guide">
-              Como instalar
-              <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-
-          <p class="sbw-pwa-beta-note">
-            Notificações de torneios, equipes e check-in serão adicionadas em uma próxima fase.
-          </p>
-
-          <p class="sbw-pwa-beta-status" data-sbw-pwa-status aria-live="polite">
-            Instalação disponível em navegadores compatíveis.
-          </p>
-        </div>
-
-        <figure class="sbw-pwa-beta-art" aria-label="Imagem promocional do App -SBW- Beta">
-          <img
-            src="assets/images/app-sbw-beta-promo-v2.png"
-            alt="Apresentação visual do App -SBW- Beta instalado no celular"
-            loading="lazy"
-          />
-        </figure>
-      </div>
-
-      <div class="sbw-pwa-install-guide" id="sbw-pwa-install-guide" data-sbw-pwa-guide>
-        <article class="sbw-pwa-install-card">
-          <span>Android</span>
-          <h3>Chrome / Navegadores compatíveis</h3>
-          <p>
-            Toque em <strong>Instalar App <span class="sbw-nowrap">-SBW-</span> Beta</strong>.
-            Se a opção não aparecer, abra o menu do navegador e escolha
-            <strong>Adicionar à tela inicial</strong> ou <strong>Instalar app</strong>.
-          </p>
-        </article>
-
-        <article class="sbw-pwa-install-card">
-          <span>Computador</span>
-          <h3>Chrome / Edge</h3>
-          <p>
-            Clique em <strong>Instalar App <span class="sbw-nowrap">-SBW-</span> Beta</strong>.
-            Se o botão não abrir a instalação, use o ícone de instalação na barra do navegador
-            ou o menu e escolha <strong>Instalar aplicativo</strong>.
-          </p>
-        </article>
-
-        <article class="sbw-pwa-install-card">
-          <span>iPhone</span>
-          <h3>Safari</h3>
-          <p>
-            Abra a <span class="sbw-nowrap">-SBW-</span> pelo Safari, toque em
-            <strong>Compartilhar</strong> e depois em
-            <strong>Adicionar à Tela de Início</strong>. No iPhone, a instalação
-            automática pelo botão pode não aparecer.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="sbw-section sbw-home-cta sbw-reveal">
-      <div>
-        <span class="sbw-kicker">Beta SaberWolf</span>
-
-        <h2>Entre no ecossistema SBW</h2>
-
-        <p>
-          Crie seu perfil, acompanhe torneios, participe da comunidade e ajude
-          a construir a próxima fase da SaberWolf.
-        </p>
-      </div>
-
-      <a class="sbw-btn sbw-btn--primary" href="/auth/login.html">
-        Entrar / Criar conta
-      </a>
-    </section>
   </main>
-  <script src="js/core/sbw-site-compliance.js"></script>
 </body>
 </html>

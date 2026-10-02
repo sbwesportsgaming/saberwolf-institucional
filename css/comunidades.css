@@ -1,6 +1,7 @@
 /* =========================================================
-   v1.6.24 — Página Comunidades / SaberWolf
-   Diretório público premium, dark, neon e glass.
+   Comunidades / SaberWolf Esports
+   Diretório público e página da Fighting Girls.
+   Base: versões v1.6.24, v1.6.32 e v1.6.33 do arquivo enviado.
 ========================================================= */
 
 :root {
@@ -18,8 +19,72 @@
   --sbw-community-soft: #c9d8e8;
 }
 
+/* Dimensionamento restrito às páginas de comunidades. */
+
+.sbw-communities-page,
+.sbw-communities-page::before,
+.sbw-communities-page::after,
+.sbw-communities-page *,
+.sbw-communities-page *::before,
+.sbw-communities-page *::after,
+.sbw-community-detail-page,
+.sbw-community-detail-page::before,
+.sbw-community-detail-page::after,
+.sbw-community-detail-page *,
+.sbw-community-detail-page *::before,
+.sbw-community-detail-page *::after {
+  box-sizing: border-box;
+}
+
+.sbw-communities-page,
+.sbw-community-detail-page {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.sbw-communities-page[hidden],
+.sbw-communities-page [hidden],
+.sbw-community-detail-page[hidden],
+.sbw-community-detail-page [hidden] {
+  display: none !important;
+}
+
+.sbw-communities-hero > *,
+.sbw-communities-filters > *,
+.sbw-communities-heading--row > *,
+.sbw-communities-category-grid > *,
+.sbw-communities-grid > *,
+.sbw-communities-featured-grid > *,
+.sbw-communities-category-card > *,
+.sbw-communities-card__top > *,
+.sbw-communities-card__actions > *,
+.sbw-communities-cta > *,
+.sbw-community-detail-hero > *,
+.sbw-community-detail-grid > *,
+.sbw-community-detail-card-grid > *,
+.sbw-community-detail-social > *,
+.sbw-community-detail-social__links > * {
+  min-width: 0;
+}
+
+.sbw-communities-page a:focus-visible,
+.sbw-communities-page button:focus-visible,
+.sbw-communities-page input:focus-visible,
+.sbw-communities-page select:focus-visible,
+.sbw-communities-page [tabindex]:focus-visible,
+.sbw-community-detail-page a:focus-visible,
+.sbw-community-detail-page button:focus-visible,
+.sbw-community-detail-page [tabindex]:focus-visible {
+  outline: 2px solid var(--sbw-community-cyan);
+  outline-offset: 4px;
+}
+
+/* Diretório de comunidades. */
+
 body.sbw-communities-body {
   min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
   color: var(--sbw-community-text);
   background:
     radial-gradient(circle at 64% -12%, rgba(14, 165, 233, 0.18), transparent 34rem),
@@ -48,11 +113,12 @@ body.sbw-communities-body {
   position: relative;
   min-height: 350px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
   gap: 24px;
   align-items: center;
   padding: 34px 0 22px;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .sbw-communities-hero::after {
@@ -66,6 +132,7 @@ body.sbw-communities-body {
   background:
     linear-gradient(90deg, rgba(2, 7, 19, 0.04), rgba(2, 7, 19, 0.72)),
     url("../assets/home/sbw-home-banner.png") center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
   pointer-events: none;
   z-index: -1;
@@ -80,6 +147,7 @@ body.sbw-communities-body {
 .sbw-communities-kicker {
   display: inline-flex;
   width: fit-content;
+  max-width: 100%;
   align-items: center;
   gap: 8px;
   min-height: 26px;
@@ -91,6 +159,7 @@ body.sbw-communities-body {
   box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.08), 0 0 20px rgba(34, 211, 238, 0.08);
   font-size: 11px;
   font-weight: 900;
+  line-height: 1.4;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -99,7 +168,7 @@ body.sbw-communities-body {
   margin: 18px 0 12px;
   color: #ffffff;
   font-size: clamp(3.7rem, 7.4vw, 6.6rem);
-  line-height: 0.92;
+  line-height: 1;
   letter-spacing: -0.085em;
   text-shadow: 0 20px 70px rgba(0, 0, 0, 0.44);
 }
@@ -157,14 +226,19 @@ body.sbw-communities-body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 42px;
-  padding: 0 16px;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px 16px;
   border: 1px solid rgba(34, 211, 238, 0.36);
   border-radius: 999px;
   color: #ffffff;
   background: linear-gradient(135deg, rgba(34, 211, 238, 0.26), rgba(14, 165, 233, 0.12));
   text-decoration: none;
+  text-align: center;
+  white-space: normal;
   font-weight: 900;
+  line-height: 1.4;
 }
 
 .sbw-communities-search,
@@ -172,14 +246,8 @@ body.sbw-communities-body {
 .sbw-communities-featured,
 .sbw-communities-all,
 .sbw-communities-cta {
+  min-width: 0;
   margin-top: 22px;
-}
-
-.sbw-communities-search,
-.sbw-communities-quick,
-.sbw-communities-featured,
-.sbw-communities-all,
-.sbw-communities-cta {
   padding: 22px;
   border: 1px solid var(--sbw-community-border);
   border-radius: 30px;
@@ -189,7 +257,10 @@ body.sbw-communities-body {
   box-shadow: 0 18px 56px rgba(0, 0, 0, 0.23);
 }
 
+/* Busca e filtros. */
+
 .sbw-communities-search__field {
+  min-width: 0;
   display: grid;
   gap: 8px;
 }
@@ -206,17 +277,21 @@ body.sbw-communities-body {
 .sbw-communities-search input,
 .sbw-communities-filters select {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 48px;
   border: 1px solid rgba(56, 189, 248, 0.20);
   border-radius: 16px;
   color: #ffffff;
   background: rgba(2, 7, 19, 0.62);
-  outline: none;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+  color-scheme: dark;
 }
 
 .sbw-communities-search input {
-  padding: 0 16px;
-  font-size: 1rem;
+  padding: 10px 16px;
 }
 
 .sbw-communities-filters {
@@ -228,24 +303,51 @@ body.sbw-communities-body {
 }
 
 .sbw-communities-filters label {
+  min-width: 0;
   display: grid;
   gap: 8px;
 }
 
 .sbw-communities-filters select {
-  padding: 0 12px;
+  padding: 10px 12px;
 }
 
 .sbw-communities-filters button {
   min-height: 48px;
-  padding: 0 15px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px 15px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 16px;
   color: rgba(248, 251, 255, 0.88);
   background: rgba(255, 255, 255, 0.045);
+  font: inherit;
   font-weight: 800;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
   cursor: pointer;
 }
+
+.sbw-communities-search input::placeholder {
+  color: var(--sbw-community-muted);
+  opacity: 1;
+}
+
+.sbw-communities-filters select option,
+.sbw-communities-filters select optgroup {
+  color: var(--sbw-community-text);
+  background: var(--sbw-community-bg);
+}
+
+.sbw-communities-search input:focus,
+.sbw-communities-filters select:focus {
+  border-color: var(--sbw-community-cyan);
+  outline: 2px solid var(--sbw-community-cyan);
+  outline-offset: 4px;
+}
+
+/* Títulos e grades. */
 
 .sbw-communities-heading {
   display: grid;
@@ -255,7 +357,8 @@ body.sbw-communities-body {
 
 .sbw-communities-heading--row {
   display: flex;
-  align-items: end;
+  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
 }
@@ -264,6 +367,7 @@ body.sbw-communities-body {
   margin: 0;
   color: #ffffff;
   font-size: clamp(1.6rem, 2.7vw, 2.35rem);
+  line-height: 1.15;
   letter-spacing: -0.055em;
 }
 
@@ -282,6 +386,7 @@ body.sbw-communities-body {
 .sbw-communities-category-card,
 .sbw-communities-card,
 .sbw-communities-feature-card {
+  min-width: 0;
   border: 1px solid rgba(56, 189, 248, 0.15);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.035);
@@ -294,6 +399,10 @@ body.sbw-communities-body {
   gap: 14px;
   min-height: 92px;
   padding: 16px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -302,6 +411,7 @@ body.sbw-communities-body {
   place-items: center;
   width: 46px;
   height: 46px;
+  flex: 0 0 auto;
   border-radius: 16px;
   color: #7de8ff;
   background: rgba(34, 211, 238, 0.10);
@@ -330,12 +440,18 @@ body.sbw-communities-body {
   min-height: 260px;
 }
 
+/* Banners e cards. */
+
 .sbw-communities-card__banner {
   height: 122px;
-  background:
-    radial-gradient(circle at 78% 4%, rgba(34, 211, 238, 0.23), transparent 12rem),
-    linear-gradient(135deg, rgba(14, 165, 233, 0.26), rgba(2, 7, 19, 0.72)),
-    var(--community-image, url("../assets/home/sbw-home-banner.png")) center / cover no-repeat;
+  background-image:
+    radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.18), transparent 12rem),
+    linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 7, 19, 0.78)),
+    var(--community-image, url("../assets/home/sbw-home-banner.png"));
+  background-position: center, center, center;
+  background-size: cover, cover, contain;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-color: rgba(2, 7, 19, 0.70);
 }
 
 .sbw-communities-feature-card .sbw-communities-card__banner {
@@ -348,7 +464,7 @@ body.sbw-communities-body {
 
 .sbw-communities-card__top {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 10px;
@@ -359,6 +475,7 @@ body.sbw-communities-body {
   place-items: center;
   width: 56px;
   height: 56px;
+  flex: 0 0 auto;
   margin-top: -46px;
   border: 1px solid rgba(34, 211, 238, 0.28);
   border-radius: 18px;
@@ -370,10 +487,12 @@ body.sbw-communities-body {
   font-weight: 950;
 }
 
-.sbw-communities-card h3 {
+.sbw-communities-card h3,
+.sbw-communities-feature-card h3 {
   margin: 0 0 8px;
   color: #ffffff;
   font-size: 1.13rem;
+  line-height: 1.3;
   letter-spacing: -0.035em;
 }
 
@@ -395,13 +514,15 @@ body.sbw-communities-body {
   display: inline-flex;
   align-items: center;
   min-height: 24px;
-  padding: 0 9px;
+  max-width: 100%;
+  padding: 4px 9px;
   border: 1px solid rgba(34, 211, 238, 0.18);
   border-radius: 999px;
   color: rgba(220, 240, 255, 0.90);
   background: rgba(34, 211, 238, 0.06);
   font-size: 0.74rem;
   font-weight: 800;
+  line-height: 1.4;
 }
 
 .sbw-communities-card__meta {
@@ -414,23 +535,38 @@ body.sbw-communities-body {
 
 .sbw-communities-card__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
 }
 
-.sbw-communities-card__actions a {
+.sbw-communities-card__actions a,
+.sbw-communities-card__actions span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
-  padding: 0 14px;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px 14px;
   border-radius: 999px;
   color: #ffffff;
   background: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(14, 165, 233, 0.10));
   border: 1px solid rgba(34, 211, 238, 0.25);
   text-decoration: none;
+  text-align: center;
+  white-space: normal;
   font-size: 0.86rem;
   font-weight: 900;
+  line-height: 1.4;
+}
+
+/* Estados da listagem. */
+
+.sbw-communities-grid > .sbw-page-state,
+.sbw-communities-category-grid > .sbw-page-state {
+  grid-column: 1 / -1;
 }
 
 .sbw-communities-empty {
@@ -445,6 +581,7 @@ body.sbw-communities-body {
 
 .sbw-communities-cta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
@@ -458,6 +595,7 @@ body.sbw-communities-body {
   margin: 10px 0 8px;
   color: #ffffff;
   font-size: clamp(1.5rem, 2.3vw, 2.25rem);
+  line-height: 1.15;
   letter-spacing: -0.055em;
 }
 
@@ -468,48 +606,8 @@ body.sbw-communities-body {
   line-height: 1.6;
 }
 
-@media (max-width: 1180px) {
-  .sbw-communities-hero,
-  .sbw-communities-featured-grid {
-    grid-template-columns: 1fr;
-  }
+/* Diretório sem a seção duplicada de destaques, conforme a base enviada. */
 
-  .sbw-communities-hero-card {
-    max-width: 560px;
-  }
-
-  .sbw-communities-filters,
-  .sbw-communities-category-grid,
-  .sbw-communities-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .sbw-communities-page {
-    width: min(100% - 24px, 1500px);
-    padding-top: 74px;
-  }
-
-  .sbw-communities-hero {
-    min-height: auto;
-    padding-top: 18px;
-  }
-
-  .sbw-communities-filters,
-  .sbw-communities-category-grid,
-  .sbw-communities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sbw-communities-heading--row,
-  .sbw-communities-cta {
-    align-items: start;
-    flex-direction: column;
-  }
-}
-
-/* v1.6.32 — Comunidades: diretório público sem destaque duplicado */
 .sbw-communities-featured,
 .sbw-communities-featured-grid {
   display: none !important;
@@ -519,43 +617,17 @@ body.sbw-communities-body {
   display: block;
   color: inherit;
   text-decoration: none;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.sbw-communities-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.34);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28), 0 0 28px rgba(34, 211, 238, 0.08);
-}
+/* Página pública da Fighting Girls. */
 
-.sbw-communities-card__banner {
-  background-image:
-    radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.18), transparent 12rem),
-    linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 7, 19, 0.78)),
-    var(--community-image, url("../assets/home/sbw-home-banner.png"));
-  background-position: center, center, center;
-  background-size: cover, cover, contain;
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-color: rgba(2, 7, 19, 0.70);
-}
-
-.sbw-communities-card__actions span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 38px;
-  padding: 0 14px;
-  border-radius: 999px;
-  color: #ffffff;
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(14, 165, 233, 0.10));
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  font-size: 0.86rem;
-  font-weight: 900;
-}
-
-/* v1.6.33 — Página pública da Fighting Girls no padrão visual atual */
 body.sbw-community-detail-body {
   min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
   color: var(--sbw-community-text, rgba(244, 248, 255, 0.95));
@@ -575,7 +647,7 @@ body.sbw-community-detail-body {
 }
 
 body.sbw-has-sidebar .sbw-community-detail-page {
-  width: min(1260px, calc(100vw - var(--sbw-sidebar-width, 270px) - 64px));
+  width: min(1260px, calc(100% - 54px));
   margin-left: auto;
   margin-right: auto;
 }
@@ -591,36 +663,40 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   filter: saturate(1.08) contrast(1.06);
   pointer-events: none;
   z-index: -1;
-  mask-image: linear-gradient(90deg, transparent, black 18%, black 72%, transparent), linear-gradient(180deg, black 0%, transparent 95%);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 18%, black 72%, transparent), linear-gradient(180deg, black 0%, transparent 95%);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent, black 18%, black 72%, transparent),
+    linear-gradient(180deg, black 0%, transparent 95%);
+  mask-image:
+    linear-gradient(90deg, transparent, black 18%, black 72%, transparent),
+    linear-gradient(180deg, black 0%, transparent 95%);
 }
 
 .sbw-community-detail-back {
   width: fit-content;
-  min-height: 38px;
+  max-width: 100%;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin-bottom: 18px;
-  padding: 0 14px;
+  padding: 10px 14px;
   border: 1px solid rgba(76, 202, 255, 0.22);
   border-radius: 999px;
   color: rgba(226, 241, 255, 0.78);
   background: rgba(255, 255, 255, 0.035);
   text-decoration: none;
+  text-align: center;
+  white-space: normal;
   font-size: 13px;
   font-weight: 900;
-}
-
-.sbw-community-detail-back:hover {
-  color: #ffffff;
-  border-color: rgba(76, 202, 255, 0.42);
-  background: rgba(55, 200, 255, 0.09);
+  line-height: 1.4;
 }
 
 .sbw-community-detail-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.48fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.48fr);
   gap: 28px;
   align-items: stretch;
   padding: 30px;
@@ -643,6 +719,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
 
 .sbw-community-detail-kicker {
   width: fit-content;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   min-height: 26px;
@@ -654,7 +731,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   font-size: 11px;
   font-weight: 950;
   letter-spacing: 0.16em;
-  line-height: 1;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -663,7 +740,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   margin: 18px 0 16px;
   color: #ffffff;
   font-size: clamp(50px, 6vw, 86px);
-  line-height: 0.9;
+  line-height: 1;
   letter-spacing: -0.075em;
   text-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
 }
@@ -695,13 +772,15 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   display: inline-flex;
   align-items: center;
   min-height: 28px;
-  padding: 0 10px;
+  max-width: 100%;
+  padding: 4px 10px;
   border: 1px solid rgba(76, 202, 255, 0.20);
   border-radius: 999px;
   color: rgba(231, 244, 255, 0.84);
   background: rgba(255, 255, 255, 0.04);
   font-size: 12px;
   font-weight: 900;
+  line-height: 1.4;
 }
 
 .sbw-community-detail-actions a,
@@ -709,15 +788,21 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   min-height: 44px;
-  padding: 0 18px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px 18px;
   border: 1px solid rgba(76, 202, 255, 0.36);
   border-radius: 999px;
   color: #06101f;
   background: linear-gradient(135deg, #80e3ff, #35b8ff);
   text-decoration: none;
+  text-align: center;
+  white-space: normal;
   font-size: 13px;
   font-weight: 950;
+  line-height: 1.4;
 }
 
 .sbw-community-detail-actions .sbw-community-detail-button--ghost {
@@ -751,8 +836,11 @@ body.sbw-has-sidebar .sbw-community-detail-page {
 }
 
 .sbw-community-detail-logo img {
+  display: block;
   width: min(210px, 82%);
   height: min(210px, 82%);
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: center;
   border-radius: 999px;
@@ -791,7 +879,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
 
 .sbw-community-detail-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
   gap: 24px;
 }
 
@@ -813,7 +901,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   margin: 12px 0 12px;
   color: #ffffff;
   font-size: clamp(30px, 3.2vw, 46px);
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: -0.065em;
 }
 
@@ -884,7 +972,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
 
 .sbw-community-detail-social {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
   gap: 24px;
   align-items: center;
 }
@@ -895,11 +983,14 @@ body.sbw-has-sidebar .sbw-community-detail-page {
 }
 
 .sbw-community-detail-social__links a {
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 8px 14px;
   min-height: 62px;
   border-radius: 20px;
   color: #ffffff;
   background: rgba(255, 255, 255, 0.045);
+  text-align: left;
 }
 
 .sbw-community-detail-social__links a span {
@@ -914,23 +1005,139 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   font-size: 14px;
 }
 
-@media (max-width: 1100px) {
-  .sbw-community-detail-hero,
-  .sbw-community-detail-grid,
-  .sbw-community-detail-social {
-    grid-template-columns: 1fr;
+/* Estados dos controles e interações. */
+
+.sbw-communities-search input,
+.sbw-communities-filters select,
+.sbw-communities-filters button,
+.sbw-communities-category-card,
+.sbw-communities-hero-card a,
+.sbw-communities-card__actions a,
+.sbw-communities-cta a,
+.sbw-community-detail-back,
+.sbw-community-detail-actions a,
+.sbw-community-detail-social__links a {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.sbw-communities-search input:disabled,
+.sbw-communities-filters select:disabled,
+.sbw-communities-filters button:disabled,
+.sbw-communities-category-card:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sbw-communities-card:not([aria-disabled="true"]):hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.34);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28), 0 0 28px rgba(34, 211, 238, 0.08);
   }
 
-  .sbw-community-detail-card-grid {
-    grid-template-columns: 1fr;
+  .sbw-communities-category-card:not(:disabled):not([aria-disabled="true"]):hover,
+  .sbw-communities-filters button:not(:disabled):hover,
+  .sbw-communities-hero-card a:hover,
+  .sbw-communities-card__actions a:hover,
+  .sbw-communities-cta a:hover {
+    border-color: var(--sbw-community-border-strong);
+    box-shadow: 0 0 22px rgba(34, 211, 238, 0.10);
+  }
+
+  .sbw-community-detail-back:hover {
+    color: #ffffff;
+    border-color: rgba(76, 202, 255, 0.42);
+    background: rgba(55, 200, 255, 0.09);
+  }
+
+  .sbw-community-detail-actions a:hover,
+  .sbw-community-detail-social__links a:hover {
+    border-color: rgba(128, 227, 255, 0.72);
+    box-shadow: 0 0 24px rgba(55, 200, 255, 0.12);
   }
 }
 
-@media (max-width: 760px) {
+/* Telas intermediárias. */
+
+@media (max-width: 1180px) {
+  .sbw-communities-hero,
+  .sbw-communities-featured-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-communities-hero-card {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .sbw-communities-filters,
+  .sbw-communities-category-grid,
+  .sbw-communities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .sbw-community-detail-hero,
+  .sbw-community-detail-grid,
+  .sbw-community-detail-social,
+  .sbw-community-detail-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-community-detail-hero__content {
+    min-height: auto;
+  }
+}
+
+/* Espaço para o menu móvel, alinhado às páginas revisadas. */
+
+@media (max-width: 980px) {
+  .sbw-communities-page {
+    width: min(1500px, calc(100% - 26px));
+    padding-top: 78px;
+  }
+
   .sbw-community-detail-page,
   body.sbw-has-sidebar .sbw-community-detail-page {
-    width: min(100% - 28px, 1040px);
-    padding-top: 72px;
+    width: min(1260px, calc(100% - 28px));
+    padding-top: 78px;
+  }
+}
+
+/* Celulares. */
+
+@media (max-width: 760px) {
+  .sbw-communities-hero {
+    min-height: auto;
+    padding-top: 18px;
+  }
+
+  .sbw-communities-hero h1 {
+    font-size: clamp(2.25rem, 8.6vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.065em;
+  }
+
+  .sbw-communities-filters,
+  .sbw-communities-category-grid,
+  .sbw-communities-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-communities-heading--row,
+  .sbw-communities-cta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sbw-communities-hero-card a,
+  .sbw-communities-cta a {
+    width: 100%;
   }
 
   .sbw-community-detail-hero,
@@ -941,11 +1148,74 @@ body.sbw-has-sidebar .sbw-community-detail-page {
     border-radius: 24px;
   }
 
-  .sbw-community-detail-hero__content {
-    min-height: auto;
+  .sbw-community-detail-hero h1 {
+    font-size: clamp(2.25rem, 8vw, 3.5rem);
+    line-height: 1.04;
+  }
+
+  .sbw-community-detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sbw-community-detail-actions a {
+    width: 100%;
   }
 
   .sbw-community-detail-logo {
     height: 220px;
+  }
+}
+
+@media (max-width: 420px) {
+  .sbw-communities-search,
+  .sbw-communities-quick,
+  .sbw-communities-all,
+  .sbw-communities-cta,
+  .sbw-communities-hero-card {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .sbw-communities-card__content {
+    padding: 16px;
+  }
+
+  .sbw-communities-card__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sbw-community-detail-hero,
+  .sbw-community-detail-panel,
+  .sbw-community-detail-cards,
+  .sbw-community-detail-social,
+  .sbw-community-detail-mini-card {
+    padding: 18px;
+  }
+
+  .sbw-community-detail-hero__card,
+  .sbw-community-detail-logo {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbw-communities-card,
+  .sbw-communities-search input,
+  .sbw-communities-filters select,
+  .sbw-communities-filters button,
+  .sbw-communities-category-card,
+  .sbw-communities-hero-card a,
+  .sbw-communities-card__actions a,
+  .sbw-communities-cta a,
+  .sbw-community-detail-back,
+  .sbw-community-detail-actions a,
+  .sbw-community-detail-social__links a {
+    transition: none;
+  }
+
+  .sbw-communities-card:not([aria-disabled="true"]):hover {
+    transform: none;
   }
 }

@@ -2,22 +2,150 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <title>Sobre a plataforma -SBW- | -SBW-</title>
+  <title>Sobre a SaberWolf Esports | -SBW-</title>
+
   <meta
     name="description"
-    content="Conheça a origem, o propósito e a visão da plataforma -SBW-, um ecossistema competitivo em desenvolvimento para jogadores, equipes, organizadores, creators e comunidades."
+    content="Conheça a SaberWolf Esports, organização brasileira de esportes eletrônicos, atletas, creators e projetos de comunidade."
   />
 
-  <link rel="icon" href="../assets/images/logo-sbw.jpg" type="image/jpeg" />
+  <meta name="theme-color" content="#37c8ff" />
+  <meta name="sbw-site-version" content="v1.6.84.1" />
+  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="canonical" href="https://sbwgg.com.br/pages/sobre.html" />
+  <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon-v3.png" />
+  <link rel="manifest" href="../manifest.webmanifest?v=20260902-16841" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="SaberWolf Esports" />
+  <meta property="og:title" content="Sobre a SaberWolf Esports | -SBW-" />
+  <meta property="og:description" content="Competição, criação de conteúdo e comunidade. Conheça a SaberWolf Esports e suas iniciativas." />
+  <meta property="og:url" content="https://sbwgg.com.br/pages/sobre.html" />
+  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-home-banner.png" />
+  <meta property="og:image:alt" content="SaberWolf Esports — -SBW-" />
 
   <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
   <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
   <link rel="stylesheet" href="../css/sobre.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+
+  <style>
+    body.sbw-about-institutional-body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .sbw-about-institutional-body [hidden] {
+      display: none !important;
+    }
+
+    .sbw-about-institutional-body :where(
+      .sbw-about-hero__content,
+      .sbw-about-hero__panel,
+      .sbw-about-text-card,
+      .sbw-about-two-columns > div,
+      .sbw-about-section-heading--split > div,
+      .sbw-about-module-card
+    ) {
+      min-width: 0;
+    }
+
+    .sbw-about-institutional-body :where(h1, h2, p, a, strong, small) {
+      overflow-wrap: anywhere;
+    }
+
+    .sbw-about-institutional-body .sbw-about-button {
+      min-width: 0;
+      max-width: 100%;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+    }
+
+    .sbw-about-institutional-body .sbw-about-button[aria-disabled="true"],
+    .sbw-about-institutional-body .sbw-about-button[aria-disabled="true"]:hover {
+      transform: none;
+      color: var(--sbw-about-muted);
+      background: rgba(255, 255, 255, 0.035);
+      border-color: var(--sbw-about-border);
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .sbw-about-institutional-body .sbw-about-ecosystem-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sbw-about-institutional-body a:focus-visible,
+    .sbw-about-institutional-body button:focus-visible {
+      outline: 3px solid var(--sbw-about-cyan);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1200px) {
+      .sbw-about-institutional-body .sbw-about-hero {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+      }
+
+      .sbw-about-institutional-body .sbw-about-two-columns,
+      .sbw-about-institutional-body .sbw-about-section-heading--split {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sbw-about-institutional-body .sbw-about-ecosystem-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px) {
+      body.sbw-about-institutional-body .sbw-about-page {
+        padding-top: 78px !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .sbw-about-institutional-body .sbw-about-ecosystem-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.sbw-about-institutional-body.sbw-page-ready main {
+        animation: none;
+      }
+
+      .sbw-about-institutional-body .sbw-about-button,
+      .sbw-about-institutional-body .sbw-about-module-card {
+        transition: none;
+      }
+
+      .sbw-about-institutional-body .sbw-about-button:hover,
+      .sbw-about-institutional-body .sbw-about-module-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <script defer src="../js/core/sbw-routes.js"></script>
+  <script defer src="../js/core/sbw-page-state.js"></script>
+  <script defer src="../js/layout/sbw-sidebar.js"></script>
+  <script defer src="../js/pwa/sbw-pwa.js?v=20260902-16841"></script>
+  <script defer src="../js/core/sbw-site-compliance.js"></script>
 </head>
-<body class="sbw-about-body sbw-has-sidebar sbw-sidebar-no-transition" data-sbw-active-page="about">
+
+<body
+  class="sbw-about-body sbw-about-institutional-body sbw-has-sidebar sbw-sidebar-no-transition"
+  data-sbw-active-page="about"
+>
   <div id="sbwSidebarMount"></div>
 
   <button
@@ -31,292 +159,422 @@
 
   <div class="sbw-sidebar-backdrop" data-sbw-sidebar-close></div>
 
-  <main class="sbw-about-page">
+  <main class="sbw-about-page" id="sbwAboutPage">
+    <!-- APRESENTAÇÃO -->
+
     <section class="sbw-about-hero" aria-labelledby="aboutPageTitle">
       <div class="sbw-about-hero__content">
-        <span class="sbw-about-kicker">Institucional • plataforma -SBW-</span>
-        <h1 id="aboutPageTitle">Sobre a -SBW-</h1>
+        <span class="sbw-about-kicker">
+          Institucional · SaberWolf Esports
+        </span>
+
+        <h1 id="aboutPageTitle">Sobre a SaberWolf</h1>
+
         <p>
-          Uma plataforma criada para fortalecer o ecossistema competitivo com mais organização,
-          visibilidade e oportunidades para jogadores, equipes, organizadores, creators e comunidades.
+          Uma organização brasileira construída em torno da competição,
+          da criação de conteúdo e do fortalecimento de comunidades gamer.
         </p>
-        <div class="sbw-about-hero__actions" aria-label="Ações rápidas da página Sobre">
-          <a class="sbw-about-button sbw-about-button--primary" href="../torneios/torneios.html">Ver torneios</a>
-          <a class="sbw-about-button" href="../organizadores/organizadores.html">Conhecer organizadores</a>
-          <a class="sbw-about-button sbw-about-button--ghost" href="../rankings/rankings.html">Explorar rankings</a>
+
+        <div
+          class="sbw-about-hero__actions"
+          aria-label="Conheça a SaberWolf"
+        >
+          <a
+            class="sbw-about-button sbw-about-button--primary"
+            href="../atletas/atletas-sbw.html"
+          >
+            Conhecer atletas
+          </a>
+
+          <a
+            class="sbw-about-button"
+            href="../creators/creators.html"
+          >
+            Ver creators
+          </a>
+
+          <a
+            class="sbw-about-button sbw-about-button--ghost"
+            href="../comunidades/comunidades.html"
+          >
+            Comunidades
+          </a>
         </div>
       </div>
 
-      <aside class="sbw-about-hero__panel" aria-label="Pilares da plataforma -SBW-">
-        <div class="sbw-about-brand-mark" aria-hidden="true">-SBW-</div>
+      <aside
+        class="sbw-about-hero__panel"
+        aria-label="Pilares da SaberWolf"
+      >
+        <div class="sbw-about-brand-mark" aria-hidden="true">
+          -SBW-
+        </div>
+
         <div class="sbw-about-pillar-row">
           <span>Competição</span>
-          <strong>Torneios, ligas e rankings conectados.</strong>
+          <strong>
+            Atletas, equipes e projetos que representam a organização.
+          </strong>
         </div>
+
+        <div class="sbw-about-pillar-row">
+          <span>Conteúdo</span>
+          <strong>
+            Creators, transmissões, notícias e histórias da cena.
+          </strong>
+        </div>
+
         <div class="sbw-about-pillar-row">
           <span>Comunidade</span>
-          <strong>Jogadores, equipes, creators e organizadores no mesmo ecossistema.</strong>
-        </div>
-        <div class="sbw-about-pillar-row">
-          <span>Evolução</span>
-          <strong>Estrutura em desenvolvimento para crescer junto com a cena.</strong>
+          <strong>
+            Iniciativas que aproximam pessoas e fortalecem o ecossistema.
+          </strong>
         </div>
       </aside>
     </section>
 
-    <section class="sbw-about-story-grid" aria-label="Origem e propósito da -SBW-">
-      <article class="sbw-about-text-card sbw-about-text-card--large" id="origem">
-        <span class="sbw-about-kicker">A origem da -SBW-</span>
-        <h2>Da SaberWolf eSports para uma plataforma competitiva</h2>
+    <!-- ORIGEM E PROPÓSITO -->
+
+    <section
+      class="sbw-about-story-grid"
+      aria-label="Origem e propósito da SaberWolf"
+    >
+      <article
+        class="sbw-about-text-card sbw-about-text-card--large"
+        id="origem"
+        aria-labelledby="aboutOriginTitle"
+      >
+        <span class="sbw-about-kicker">Nossa origem</span>
+
+        <h2 id="aboutOriginTitle">
+          Uma organização que cresceu junto com a comunidade
+        </h2>
+
         <p>
-          A -SBW- nasceu a partir da SaberWolf eSports, uma iniciativa criada com o objetivo de
-          participar e contribuir com o cenário competitivo dos jogos eletrônicos.
+          A SaberWolf nasceu da vontade de competir, produzir conteúdo e criar
+          oportunidades dentro dos esportes eletrônicos. A organização reúne
+          pessoas e projetos com presença real no cenário gamer brasileiro.
         </p>
+
         <p>
-          Com o passar do tempo, ficou claro que muitos dos desafios enfrentados por jogadores,
-          equipes, organizadores e comunidades não estavam apenas dentro dos campeonatos. Faltavam
-          ferramentas, estrutura, visibilidade e espaços capazes de conectar pessoas e projetos que
-          já movimentavam o cenário diariamente.
-        </p>
-        <p>
-          Foi dessa percepção que surgiu a evolução da ideia.
-        </p>
-        <p>
-          Em vez de ser apenas uma organização de esports, a -SBW- passou a ser desenvolvida como
-          uma plataforma voltada para fortalecer o ecossistema competitivo como um todo.
+          Ao longo desse caminho, as necessidades de jogadores, equipes
+          e organizadores também motivaram a construção de uma tecnologia
+          própria para competições.
         </p>
       </article>
 
-      <article class="sbw-about-text-card" id="proposito">
-        <span class="sbw-about-kicker">Por que a -SBW- existe?</span>
-        <h2>Conectar peças que já movem a comunidade</h2>
+      <article
+        class="sbw-about-text-card"
+        id="proposito"
+        aria-labelledby="aboutPurposeTitle"
+      >
+        <span class="sbw-about-kicker">Nosso propósito</span>
+
+        <h2 id="aboutPurposeTitle">
+          Representar, conectar e desenvolver
+        </h2>
+
         <p>
-          A comunidade gamer sempre encontrou formas de se organizar.
+          Queremos dar visibilidade a atletas e creators, apoiar iniciativas
+          de comunidade e participar da evolução do cenário competitivo
+          com projetos consistentes.
         </p>
+
         <p>
-          Existem torneios independentes, servidores de Discord, grupos em redes sociais,
-          comunidades dedicadas a jogos específicos, organizadores apaixonados pelo que fazem e
-          jogadores buscando oportunidades para competir.
-        </p>
-        <p>
-          Muitas dessas iniciativas são bem-sucedidas, mas normalmente funcionam de forma isolada.
-        </p>
-        <p>
-          A -SBW- foi criada para ajudar a conectar essas peças.
-        </p>
-        <p>
-          Nosso objetivo é oferecer uma estrutura onde jogadores, equipes, organizadores,
-          comunidades e criadores de conteúdo possam coexistir dentro de um mesmo ecossistema,
-          mantendo sua identidade própria, mas ganhando mais visibilidade, organização e
-          oportunidades de crescimento.
+          Este site é a casa institucional da SaberWolf Esports:
+          aqui você conhece a organização, seus representantes,
+          suas histórias, seus conteúdos e suas iniciativas.
         </p>
       </article>
     </section>
 
-    <section class="sbw-about-panel" id="construcao" aria-labelledby="aboutBuildTitle">
+    <!-- PLATAFORMA INDEPENDENTE -->
+
+    <section
+      class="sbw-about-panel"
+      id="championship"
+      aria-labelledby="championshipAboutTitle"
+    >
       <div class="sbw-about-section-heading">
-        <span class="sbw-about-kicker">O que estamos construindo?</span>
-        <h2 id="aboutBuildTitle">Uma infraestrutura para antes, durante e depois da competição</h2>
+        <span class="sbw-about-kicker">SBW Championship</span>
+
+        <h2 id="championshipAboutTitle">
+          Uma plataforma independente para competições
+        </h2>
       </div>
+
       <div class="sbw-about-two-columns">
         <div>
           <p>
-            A -SBW- está sendo desenvolvida como uma plataforma focada em competição, comunidade e evolução.
+            A SBW Championship reúne ferramentas para torneios, perfis,
+            equipes, organizadores, inscrições, chaves e rankings.
+            Seu espaço é dedicado à gestão e ao acompanhamento de competições.
           </p>
+
           <p>
-            Dentro dela, usuários podem criar perfis públicos, acompanhar histórico competitivo,
-            participar de equipes, encontrar torneios, acompanhar rankings e interagir com diferentes
-            áreas da comunidade.
-          </p>
-          <p>
-            Ao mesmo tempo, organizadores podem construir seus próprios espaços, administrar competições
-            e desenvolver suas comunidades dentro de uma estrutura centralizada.
+            Desenvolvida a partir das iniciativas da SaberWolf, a plataforma
+            tem identidade própria e foi pensada para receber competições
+            de comunidades, ligas, federações e organizadores parceiros.
           </p>
         </div>
+
         <div class="sbw-about-quote-box">
-          <strong>A proposta não é apenas hospedar torneios.</strong>
-          <span>A proposta é conectar tudo o que acontece antes, durante e depois de uma competição.</span>
+          <strong>Cada marca com seu próprio site.</strong>
+
+          <span>
+            A SaberWolf Esports apresenta a organização.
+            A SBW Championship reúne as ferramentas para realizar competições.
+          </span>
         </div>
       </div>
+
+      <div class="sbw-about-hero__actions">
+        <a
+          id="sbwAboutChampionshipLink"
+          class="sbw-about-button sbw-about-button--primary"
+          role="link"
+          aria-disabled="true"
+          aria-describedby="sbwAboutChampionshipStatus"
+          tabindex="-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SBW Championship em preparação
+        </a>
+      </div>
+
+      <p
+        class="sbw-about-panel-note"
+        id="sbwAboutChampionshipStatus"
+      >
+        O acesso ao site da SBW Championship estará disponível aqui em breve.
+      </p>
     </section>
 
-    <section class="sbw-about-panel" aria-labelledby="aboutEcosystemTitle">
-      <div class="sbw-about-section-heading sbw-about-section-heading--split">
+    <!-- ÁREAS DO SITE INSTITUCIONAL -->
+
+    <section
+      class="sbw-about-panel"
+      aria-labelledby="aboutAreasTitle"
+    >
+      <div
+        class="sbw-about-section-heading sbw-about-section-heading--split"
+      >
         <div>
-          <span class="sbw-about-kicker">Mais do que uma plataforma de torneios</span>
-          <h2 id="aboutEcosystemTitle">Áreas que trabalham juntas dentro da plataforma</h2>
+          <span class="sbw-about-kicker">Explore a SaberWolf</span>
+
+          <h2 id="aboutAreasTitle">
+            Conheça as áreas da organização
+          </h2>
         </div>
+
         <p>
-          Os torneios são uma parte importante da -SBW-, mas não representam todo o projeto.
+          Marca, pessoas, conteúdo, comunidade e iniciativas próprias.
         </p>
       </div>
 
       <div class="sbw-about-ecosystem-grid">
-        <a class="sbw-about-module-card" href="../perfis/perfis.html">
-          <span class="sbw-about-module-card__icon">👤</span>
-          <strong>Perfis de jogadores</strong>
-          <small>Identidade pública, histórico competitivo, jogos e presença na plataforma.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../equipes/equipes.html">
-          <span class="sbw-about-module-card__icon">♟</span>
-          <strong>Equipes e organizações</strong>
-          <small>Estrutura para membros, vínculos, presença institucional e evolução competitiva.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../torneios/torneios.html">
-          <span class="sbw-about-module-card__icon sbw-about-module-card__icon--gold">🏆</span>
-          <strong>Torneios e ligas</strong>
-          <small>Competições, inscrições, check-in, chaves, resultados e temporadas.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../organizadores/organizadores.html">
-          <span class="sbw-about-module-card__icon sbw-about-module-card__icon--purple">◆</span>
-          <strong>Organizadores</strong>
-          <small>Perfis institucionais, staff, identidade visual e torneios vinculados.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../rankings/rankings.html">
-          <span class="sbw-about-module-card__icon">▥</span>
-          <strong>Rankings competitivos</strong>
-          <small>Classificações por torneio, organizador, temporada e Ranking Global -SBW-.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../comunidades/comunidades.html">
-          <span class="sbw-about-module-card__icon sbw-about-module-card__icon--green">▣</span>
-          <strong>Comunidades parceiras</strong>
-          <small>Espaços e cenas que ajudam a movimentar jogos e jogadores.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../creators/creators.html">
-          <span class="sbw-about-module-card__icon sbw-about-module-card__icon--gold">☆</span>
-          <strong>Creators oficiais</strong>
-          <small>Conteúdo, visibilidade, histórias e presença de quem movimenta a cena.</small>
-        </a>
-        <a class="sbw-about-module-card" href="../blog/noticias.html">
-          <span class="sbw-about-module-card__icon">✦</span>
-          <strong>Notícias e atualizações</strong>
-          <small>Informações da plataforma, comunidades, competições e próximos passos.</small>
-        </a>
-      </div>
+        <a
+          class="sbw-about-module-card"
+          href="../atletas/atletas-sbw.html"
+        >
+          <span
+            class="sbw-about-module-card__icon"
+            aria-hidden="true"
+          >
+            ♟
+          </span>
 
-      <p class="sbw-about-panel-note">
-        Futuras ferramentas de mercado, recrutamento e oportunidades também fazem parte da visão de crescimento da plataforma.
-      </p>
-    </section>
+          <strong>Atletas</strong>
 
-    <section class="sbw-about-feature-grid" aria-label="Pilares institucionais da -SBW-">
-      <article class="sbw-about-feature-card sbw-about-feature-card--organizers">
-        <span class="sbw-about-kicker">O papel dos organizadores</span>
-        <h2>Autonomia com estrutura</h2>
-        <p>
-          Uma das principais ideias da plataforma é valorizar o trabalho de organizadores independentes.
-        </p>
-        <p>
-          Muitos campeonatos existem graças ao esforço de pessoas e comunidades que investem tempo
-          para manter seus jogos ativos.
-        </p>
-        <p>
-          Por isso, a -SBW- foi projetada para permitir que organizadores convidados tenham seus
-          próprios perfis institucionais, identidade visual, equipes de staff e competições vinculadas
-          diretamente à sua organização.
-        </p>
-        <p>
-          Nosso objetivo é oferecer ferramentas que ajudem esses projetos a crescerem sem perder sua autonomia.
-        </p>
-      </article>
-
-      <article class="sbw-about-feature-card">
-        <span class="sbw-about-kicker">Qualidade antes de quantidade</span>
-        <h2>Crescimento com responsabilidade</h2>
-        <p>
-          A -SBW- não foi criada para ser uma plataforma totalmente aberta onde qualquer pessoa pode
-          criar eventos sem acompanhamento.
-        </p>
-        <p>
-          A proposta é diferente.
-        </p>
-        <p>
-          Queremos construir um ambiente organizado, sustentável e confiável.
-        </p>
-        <p>
-          Por isso, organizadores possuem permissões específicas e cada projeto recebe atenção individual
-          dentro da plataforma.
-        </p>
-        <p>
-          Acreditamos que crescimento saudável acontece quando existe estrutura, acompanhamento e responsabilidade.
-        </p>
-      </article>
-    </section>
-
-    <section class="sbw-about-panel sbw-about-future" aria-labelledby="aboutFutureTitle">
-      <div class="sbw-about-section-heading">
-        <span class="sbw-about-kicker">A visão para o futuro</span>
-        <h2 id="aboutFutureTitle">Fortalecer o cenário competitivo brasileiro</h2>
-      </div>
-      <div class="sbw-about-future-grid">
-        <div>
-          <p>
-            O sonho da -SBW- é ajudar a fortalecer o cenário competitivo brasileiro através de tecnologia,
-            organização e comunidade.
-          </p>
-          <p>
-            Queremos apoiar tanto jogos já consolidados quanto comunidades menores que muitas vezes não
-            possuem suporte competitivo suficiente.
-          </p>
-          <p>
-            Acreditamos que existem inúmeros jogadores talentosos, organizadores dedicados e projetos
-            promissores que precisam apenas de ferramentas adequadas para crescer.
-          </p>
-          <p>
-            No futuro, a plataforma pretende expandir suas funcionalidades, apoiar novas iniciativas
-            competitivas, desenvolver ligas próprias através da SBW Championship e continuar criando
-            oportunidades para diferentes comunidades e jogos.
-          </p>
-        </div>
-        <div class="sbw-about-future-list">
-          <span>Expansão de funcionalidades</span>
-          <span>Apoio a novas comunidades</span>
-          <span>Ligas próprias pela SBW Championship</span>
-          <span>Mais oportunidades competitivas</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="sbw-about-cta" aria-labelledby="aboutCommunityTitle">
-      <div>
-        <span class="sbw-about-kicker">Construída junto com a comunidade</span>
-        <h2 id="aboutCommunityTitle">A -SBW- ainda está em desenvolvimento</h2>
-        <p>
-          Muitas funcionalidades continuam evoluindo e novas ideias surgem constantemente a partir das
-          necessidades da própria comunidade.
-        </p>
-        <p>
-          Mais do que entregar ferramentas, queremos construir um ambiente onde jogadores, equipes,
-          organizadores, creators e comunidades possam crescer juntos.
-        </p>
-        <p>
-          Acreditamos que o futuro dos esports não é construído por uma única organização. Ele é construído
-          por pessoas que compartilham a mesma paixão pela competição, pela comunidade e pelos jogos.
-        </p>
-        <p>
-          E é exatamente para essas pessoas que a -SBW- está sendo criada.
-        </p>
-      </div>
-
-      <div class="sbw-about-cta__actions">
-        <a class="sbw-about-button sbw-about-button--primary" href="../auth/login.html">
-          Criar minha conta
-          <span aria-hidden="true">→</span>
+          <small>
+            Jogadores, modalidades e resultados ligados à organização.
+          </small>
         </a>
-        <a class="sbw-about-button" href="../torneios/torneios.html">Explorar torneios</a>
-        <a class="sbw-about-button sbw-about-button--ghost" href="../blog/noticias.html">Acompanhar atualizações</a>
+
+        <a
+          class="sbw-about-module-card"
+          href="../creators/creators.html"
+        >
+          <span
+            class="sbw-about-module-card__icon sbw-about-module-card__icon--gold"
+            aria-hidden="true"
+          >
+            ☆
+          </span>
+
+          <strong>Creators</strong>
+
+          <small>
+            Conteúdo, lives, histórias e representantes da SaberWolf.
+          </small>
+        </a>
+
+        <a
+          class="sbw-about-module-card"
+          href="../comunidades/comunidades.html"
+        >
+          <span
+            class="sbw-about-module-card__icon sbw-about-module-card__icon--green"
+            aria-hidden="true"
+          >
+            ▣
+          </span>
+
+          <strong>Comunidades</strong>
+
+          <small>
+            Projetos e cenas que ajudam a movimentar jogos e pessoas.
+          </small>
+        </a>
+
+        <a
+          class="sbw-about-module-card"
+          href="../blog/noticias.html"
+        >
+          <span
+            class="sbw-about-module-card__icon"
+            aria-hidden="true"
+          >
+            ✦
+          </span>
+
+          <strong>Notícias</strong>
+
+          <small>
+            Anúncios, atualizações e histórias da organização.
+          </small>
+        </a>
+
+        <a
+          class="sbw-about-module-card"
+          href="./conteudo.html"
+        >
+          <span
+            class="sbw-about-module-card__icon"
+            aria-hidden="true"
+          >
+            ▶
+          </span>
+
+          <strong>Conteúdo</strong>
+
+          <small>
+            Vídeos, transmissões e canais oficiais.
+          </small>
+        </a>
+
+        <a
+          class="sbw-about-module-card"
+          href="./loja.html"
+        >
+          <span
+            class="sbw-about-module-card__icon sbw-about-module-card__icon--purple"
+            aria-hidden="true"
+          >
+            ◇
+          </span>
+
+          <strong>Loja</strong>
+
+          <small>
+            Produtos e iniciativas comerciais da marca.
+          </small>
+        </a>
       </div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase/supabase-config.js"></script>
-  <script src="../js/supabase/supabase-client.js"></script>
-  <script src="../js/auth/auth-service.js"></script>
-  <script src="../js/core/sbw-routes.js"></script>
-  <script src="../js/core/sbw-session-context.js"></script>
-  <script src="../js/layout/sbw-sidebar.js"></script>
-  <script src="../js/core/sbw-page-state.js"></script>
-  <script src="../js/core/sbw-site-compliance.js"></script>
+  <!-- RODAPÉ INSTITUCIONAL -->
+
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+
+      <p
+        class="sbw-site-footer__version"
+        data-sbw-version-label
+      >
+        Site v1.6.84.1 · App SaberWolf Esports
+      </p>
+
+      <nav
+        class="sbw-site-footer__legal"
+        aria-label="Links legais"
+      >
+        <a href="./termos.html">Termos</a>
+        <a href="./privacidade.html">Privacidade</a>
+        <a href="./cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function initChampionshipLink() {
+        const link = document.getElementById(
+          "sbwAboutChampionshipLink"
+        );
+
+        const status = document.getElementById(
+          "sbwAboutChampionshipStatus"
+        );
+
+        if (!link) return;
+
+        try {
+          // Usa a configuração central dos dois sites.
+          const destination =
+            window.SBWRoutes?.championship?.("/");
+
+          if (!destination) return;
+
+          const url = new URL(destination);
+
+          if (!["http:", "https:"].includes(url.protocol)) {
+            return;
+          }
+
+          // Evita direcionar o visitante de volta ao site institucional.
+          if (url.origin === window.location.origin) {
+            return;
+          }
+
+          link.href = url.href;
+          link.textContent = "Abrir SBW Championship ↗";
+
+          link.setAttribute(
+            "aria-label",
+            "Abrir o site da SBW Championship em nova aba"
+          );
+
+          link.removeAttribute("role");
+          link.removeAttribute("aria-disabled");
+          link.removeAttribute("aria-describedby");
+          link.removeAttribute("tabindex");
+
+          if (status) {
+            status.hidden = true;
+          }
+        } catch {
+          // Sem um endereço válido, permanece a indicação de preparação.
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initChampionshipLink,
+          { once: true }
+        );
+      } else {
+        initChampionshipLink();
+      }
+    })();
+  </script>
 </body>
 </html>

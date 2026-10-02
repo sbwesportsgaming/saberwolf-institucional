@@ -1,3 +1,9 @@
+/*
+ * Creators / SaberWolf Esports
+ * Diretório e criador em destaque.
+ * Revisão da versão enviada, incluindo os ajustes v1.6.32.
+ */
+
 :root {
   --sbw-creators-bg: #030813;
   --sbw-creators-card: rgba(8, 18, 33, 0.78);
@@ -12,9 +18,52 @@
   --sbw-creators-glow: rgba(85, 214, 255, 0.2);
 }
 
+/* Dimensionamento e acessibilidade da área de creators. */
+
+.sbw-creators-page,
+.sbw-creators-page::before,
+.sbw-creators-page::after,
+.sbw-creators-page *,
+.sbw-creators-page *::before,
+.sbw-creators-page *::after {
+  box-sizing: border-box;
+}
+
+.sbw-creators-page[hidden],
+.sbw-creators-page [hidden] {
+  display: none !important;
+}
+
+.sbw-creators-hero > *,
+.sbw-creators-hero__content > *,
+.sbw-creators-hero-card > *,
+.sbw-featured-creator > *,
+.sbw-featured-creator__body > *,
+.sbw-featured-creator__actions > *,
+.sbw-creators-toolbar > *,
+.sbw-creators-grid > *,
+.sbw-creator-card > *,
+.sbw-creator-card__top > *,
+.sbw-creator-card__footer > *,
+.sbw-creators-pillars > *,
+.sbw-creators-cta > * {
+  min-width: 0;
+}
+
+.sbw-creators-page a:focus-visible,
+.sbw-creators-page button:focus-visible,
+.sbw-creators-page input:focus-visible,
+.sbw-creators-page [tabindex]:focus-visible {
+  outline: 2px solid var(--sbw-creators-cyan);
+  outline-offset: 4px;
+}
+
+/* Estrutura da página. */
+
 body.sbw-creators-body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100svh;
   color: var(--sbw-creators-text);
   background:
     radial-gradient(circle at 12% 0%, rgba(85, 214, 255, 0.14), transparent 32rem),
@@ -32,6 +81,7 @@ body.sbw-creators-body::before {
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 52px 52px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 72%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent 72%);
   z-index: 0;
 }
@@ -40,8 +90,10 @@ body.sbw-creators-body::before {
   position: relative;
   z-index: 1;
   width: min(1180px, calc(100% - 48px));
+  min-width: 0;
   margin: 0 auto;
   padding: 38px 0 72px;
+  overflow-wrap: anywhere;
 }
 
 .sbw-creators-hero,
@@ -50,18 +102,22 @@ body.sbw-creators-body::before {
 .sbw-creators-official,
 .sbw-creators-ecosystem,
 .sbw-creators-cta {
+  min-width: 0;
   border: 1px solid var(--sbw-creators-border);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
     var(--sbw-creators-card);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
+
+/* Abertura. */
 
 .sbw-creators-hero {
   min-height: 360px;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.72fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.72fr);
   gap: 28px;
   align-items: stretch;
   padding: 34px;
@@ -81,12 +137,14 @@ body.sbw-creators-body::before {
 .sbw-creators-hero-card span,
 .sbw-featured-creator__body > span {
   width: fit-content;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   color: var(--sbw-creators-cyan);
   font-size: 0.74rem;
   font-weight: 900;
+  line-height: 1.4;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -97,6 +155,7 @@ body.sbw-creators-body::before {
   content: "";
   width: 8px;
   height: 8px;
+  flex: 0 0 auto;
   border-radius: 999px;
   background: var(--sbw-creators-cyan);
   box-shadow: 0 0 18px var(--sbw-creators-cyan);
@@ -105,7 +164,7 @@ body.sbw-creators-body::before {
 .sbw-creators-hero h1 {
   margin: 0;
   font-size: clamp(3.4rem, 8vw, 7.6rem);
-  line-height: 0.88;
+  line-height: 1;
   letter-spacing: -0.08em;
 }
 
@@ -126,27 +185,34 @@ body.sbw-creators-body::before {
   flex-wrap: wrap;
 }
 
+/* Botões. */
+
 .sbw-creators-button {
-  min-height: 42px;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 18px;
+  padding: 10px 18px;
   border: 1px solid rgba(85, 214, 255, 0.22);
   border-radius: 999px;
   color: rgba(245, 249, 255, 0.92);
   background: rgba(255, 255, 255, 0.045);
-  text-decoration: none;
+  font: inherit;
   font-weight: 900;
   font-size: 0.88rem;
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-}
-
-.sbw-creators-button:hover {
-  transform: translateY(-2px);
-  border-color: rgba(85, 214, 255, 0.48);
-  background: rgba(85, 214, 255, 0.10);
+  line-height: 1.4;
+  text-decoration: none;
+  text-align: center;
+  white-space: normal;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .sbw-creators-button--primary {
@@ -156,9 +222,14 @@ body.sbw-creators-body::before {
   box-shadow: 0 14px 34px rgba(47, 119, 255, 0.22);
 }
 
+/* Painel visual da abertura. */
+
 .sbw-creators-hero__panel {
   position: relative;
   min-height: 320px;
+  display: grid;
+  align-items: end;
+  padding: 18px;
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(85, 214, 255, 0.14);
@@ -171,6 +242,7 @@ body.sbw-creators-body::before {
 }
 
 .sbw-creators-wolf img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -186,20 +258,20 @@ body.sbw-creators-body::before {
   background:
     linear-gradient(90deg, rgba(3, 8, 19, 0.92), rgba(3, 8, 19, 0.34)),
     radial-gradient(circle at 70% 18%, rgba(85, 214, 255, 0.28), transparent 22rem);
+  pointer-events: none;
 }
 
 .sbw-creators-hero-card {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
+  min-width: 0;
   display: grid;
   gap: 6px;
   padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(85, 214, 255, 0.18);
   background: rgba(2, 8, 19, 0.74);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
 
@@ -213,6 +285,8 @@ body.sbw-creators-body::before {
   line-height: 1.5;
 }
 
+/* Seções. */
+
 .sbw-creators-section-heading {
   display: grid;
   gap: 9px;
@@ -223,7 +297,7 @@ body.sbw-creators-body::before {
 .sbw-creators-cta h2 {
   margin: 0;
   font-size: clamp(1.65rem, 3vw, 2.7rem);
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.05em;
 }
 
@@ -245,9 +319,11 @@ body.sbw-creators-body::before {
   border-radius: 26px;
 }
 
+/* Criador em destaque. */
+
 .sbw-featured-creator {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
   gap: 22px;
   align-items: center;
   padding: 22px;
@@ -260,6 +336,8 @@ body.sbw-creators-body::before {
 
 .sbw-featured-creator__media {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   aspect-ratio: 1;
   border-radius: 28px;
   padding: 8px;
@@ -268,7 +346,9 @@ body.sbw-creators-body::before {
 }
 
 .sbw-featured-creator__media img {
+  display: block;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 22px;
@@ -283,7 +363,7 @@ body.sbw-creators-body::before {
 .sbw-featured-creator h3 {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 3.35rem);
-  line-height: 0.95;
+  line-height: 1.08;
   letter-spacing: -0.055em;
 }
 
@@ -306,13 +386,15 @@ body.sbw-creators-body::before {
   display: inline-flex;
   align-items: center;
   min-height: 25px;
-  padding: 0 10px;
+  max-width: 100%;
+  padding: 4px 10px;
   border: 1px solid rgba(85, 214, 255, 0.18);
   border-radius: 999px;
   color: rgba(222, 239, 255, 0.88);
   background: rgba(85, 214, 255, 0.075);
   font-size: 0.72rem;
   font-weight: 900;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -323,33 +405,39 @@ body.sbw-creators-body::before {
 
 .sbw-featured-creator__nav {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 8px;
+  max-width: 100%;
 }
 
 .sbw-featured-creator__nav button {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
   border: 1px solid rgba(85, 214, 255, 0.22);
   border-radius: 999px;
   color: var(--sbw-creators-text);
   background: rgba(255, 255, 255, 0.045);
-  cursor: pointer;
+  font: inherit;
   font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.sbw-featured-creator__nav button:hover {
-  border-color: rgba(85, 214, 255, 0.5);
-  background: rgba(85, 214, 255, 0.12);
-}
+/* Busca e filtros. */
 
 .sbw-creators-toolbar {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 16px;
 }
 
 .sbw-creators-search {
+  min-width: 0;
   display: grid;
   gap: 8px;
 }
@@ -364,21 +452,35 @@ body.sbw-creators-body::before {
 
 .sbw-creators-search input {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 48px;
+  padding: 10px 16px;
   border: 1px solid rgba(85, 214, 255, 0.22);
   border-radius: 16px;
   color: var(--sbw-creators-text);
   background: rgba(255, 255, 255, 0.045);
-  padding: 0 16px;
-  outline: none;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+  color-scheme: dark;
 }
 
 .sbw-creators-search input:focus {
   border-color: rgba(85, 214, 255, 0.54);
   box-shadow: 0 0 0 4px rgba(85, 214, 255, 0.09);
+  outline: 2px solid var(--sbw-creators-cyan);
+  outline-offset: 4px;
+}
+
+.sbw-creators-search input::placeholder {
+  color: var(--sbw-creators-muted);
+  opacity: 1;
 }
 
 .sbw-creators-filter-group {
+  min-width: 0;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -386,22 +488,29 @@ body.sbw-creators-body::before {
 }
 
 .sbw-creators-filter-group button {
-  min-height: 38px;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px 13px;
   border: 1px solid rgba(85, 214, 255, 0.18);
   border-radius: 999px;
   color: rgba(245, 249, 255, 0.84);
   background: rgba(255, 255, 255, 0.04);
-  padding: 0 13px;
-  cursor: pointer;
+  font: inherit;
   font-weight: 800;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
 }
 
-.sbw-creators-filter-group button.is-active,
-.sbw-creators-filter-group button:hover {
+.sbw-creators-filter-group button.is-active {
   color: #03101a;
   border-color: rgba(85, 214, 255, 0.88);
   background: linear-gradient(135deg, #79e0ff, #2f77ff);
 }
+
+/* Cards do diretório. */
 
 .sbw-creators-grid {
   display: grid;
@@ -410,6 +519,7 @@ body.sbw-creators-body::before {
 }
 
 .sbw-creator-card {
+  min-width: 0;
   min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -420,25 +530,25 @@ body.sbw-creators-body::before {
   color: inherit;
   background: rgba(255, 255, 255, 0.035);
   text-decoration: none;
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-}
-
-.sbw-creator-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(85, 214, 255, 0.36);
-  background: rgba(85, 214, 255, 0.075);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
 }
 
 .sbw-creator-card__top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
 .sbw-creator-card__avatar {
+  display: block;
   width: 72px;
   height: 72px;
+  flex: 0 0 auto;
   border-radius: 22px;
   object-fit: cover;
   border: 1px solid rgba(85, 214, 255, 0.2);
@@ -448,7 +558,7 @@ body.sbw-creators-body::before {
 .sbw-creator-card h3 {
   margin: 0;
   font-size: 1.25rem;
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: -0.03em;
 }
 
@@ -461,12 +571,17 @@ body.sbw-creators-body::before {
 
 .sbw-creator-card__footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   align-items: center;
   color: var(--sbw-creators-cyan);
   font-size: 0.86rem;
   font-weight: 900;
+}
+
+.sbw-creators-grid > .sbw-page-state {
+  grid-column: 1 / -1;
 }
 
 .sbw-creators-empty {
@@ -478,6 +593,8 @@ body.sbw-creators-body::before {
   text-align: center;
   background: rgba(255, 255, 255, 0.035);
 }
+
+/* Ecossistema e chamada final. */
 
 .sbw-creators-pillars {
   display: grid;
@@ -524,62 +641,11 @@ body.sbw-creators-body::before {
     linear-gradient(135deg, rgba(12, 27, 49, 0.92), rgba(4, 10, 22, 0.88));
 }
 
-@media (max-width: 1180px) {
-  .sbw-creators-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+/* Destaque único integrado à abertura da página. */
 
-@media (max-width: 980px) {
-  .sbw-creators-page {
-    width: min(100% - 28px, 1180px);
-    padding-top: 78px;
-  }
-
-  .sbw-creators-hero,
-  .sbw-featured-creator,
-  .sbw-creators-toolbar,
-  .sbw-creators-pillars {
-    grid-template-columns: 1fr;
-  }
-
-  .sbw-creators-hero__panel {
-    min-height: 240px;
-  }
-
-  .sbw-creators-filter-group {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 640px) {
-  .sbw-creators-hero,
-  .sbw-creators-feature,
-  .sbw-creators-official,
-  .sbw-creators-ecosystem,
-  .sbw-creators-toolbar,
-  .sbw-creators-cta {
-    padding: 18px;
-    border-radius: 22px;
-  }
-
-  .sbw-creators-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sbw-featured-creator {
-    padding: 16px;
-  }
-
-  .sbw-featured-creator__media {
-    max-width: 220px;
-  }
-}
-
-/* v1.6.32 — Ajuste visual Creators: destaque único, sem busca e sem bloco duplicado */
 .sbw-creators-hero--featured {
   min-height: 430px;
-  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: center;
   gap: clamp(22px, 4vw, 42px);
 }
@@ -595,13 +661,16 @@ body.sbw-creators-body::before {
 .sbw-featured-creator--hero {
   position: relative;
   min-height: 270px;
-  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 190px) minmax(0, 1fr);
   padding: clamp(18px, 2.4vw, 28px);
   background:
     radial-gradient(circle at 12% 8%, rgba(85, 214, 255, 0.20), transparent 19rem),
     linear-gradient(135deg, rgba(10, 28, 50, 0.92), rgba(3, 9, 22, 0.88));
   overflow: hidden;
-  transition: opacity 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease,
+    border-color 0.24s ease;
 }
 
 .sbw-featured-creator--hero::before {
@@ -627,7 +696,8 @@ body.sbw-creators-body::before {
 
 .sbw-featured-creator--hero .sbw-featured-creator__media {
   width: 170px;
-  height: 170px;
+  max-width: 100%;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -635,7 +705,7 @@ body.sbw-creators-body::before {
 .sbw-featured-creator--hero .sbw-featured-creator__body h3 {
   margin: 8px 0 10px;
   font-size: clamp(2.05rem, 4vw, 4rem);
-  line-height: 0.95;
+  line-height: 1.08;
   letter-spacing: -0.07em;
 }
 
@@ -644,23 +714,192 @@ body.sbw-creators-body::before {
   font-size: 1rem;
 }
 
+/* Blocos mantidos ocultos conforme a versão enviada. */
+
 .sbw-creators-toolbar,
 .sbw-creators-feature {
   display: none !important;
 }
 
-@media (max-width: 980px) {
+/* Controles e estados de interação. */
+
+.sbw-featured-creator__nav button,
+.sbw-creators-filter-group button,
+.sbw-creators-search input {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease;
+}
+
+.sbw-creators-button:disabled,
+.sbw-creators-button[aria-disabled="true"],
+.sbw-featured-creator__nav button:disabled,
+.sbw-creators-filter-group button:disabled,
+.sbw-creators-search input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sbw-creators-button:not(:disabled):not([aria-disabled="true"]):hover {
+    transform: translateY(-2px);
+    border-color: rgba(85, 214, 255, 0.48);
+  }
+
+  .sbw-creators-button:not(.sbw-creators-button--primary):not(:disabled):not([aria-disabled="true"]):hover {
+    background: rgba(85, 214, 255, 0.10);
+  }
+
+  .sbw-creators-button--primary:not(:disabled):not([aria-disabled="true"]):hover {
+    color: #03101a;
+    border-color: rgba(85, 214, 255, 0.9);
+    background: linear-gradient(135deg, #7ae1ff, #2f77ff);
+    box-shadow: 0 16px 38px rgba(47, 119, 255, 0.30);
+  }
+
+  .sbw-featured-creator__nav button:not(:disabled):hover {
+    border-color: rgba(85, 214, 255, 0.5);
+    background: rgba(85, 214, 255, 0.12);
+  }
+
+  .sbw-creators-filter-group button:not(:disabled):hover {
+    color: #03101a;
+    border-color: rgba(85, 214, 255, 0.88);
+    background: linear-gradient(135deg, #79e0ff, #2f77ff);
+  }
+
+  .sbw-creator-card:not([aria-disabled="true"]):hover {
+    transform: translateY(-4px);
+    border-color: rgba(85, 214, 255, 0.36);
+    background: rgba(85, 214, 255, 0.075);
+  }
+}
+
+/* Mais espaço para o destaque em telas intermediárias. */
+
+@media (max-width: 1280px) {
+  .sbw-creators-hero,
   .sbw-creators-hero--featured {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     min-height: auto;
+  }
+}
+
+@media (max-width: 1180px) {
+  .sbw-creators-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .sbw-creators-page {
+    width: min(1180px, calc(100% - 28px));
+    padding-top: 78px;
+  }
+
+  .sbw-featured-creator,
+  .sbw-featured-creator--hero,
+  .sbw-creators-toolbar,
+  .sbw-creators-pillars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-creators-hero__panel {
+    min-height: 240px;
+  }
+
+  .sbw-creators-filter-group {
+    justify-content: flex-start;
   }
 
   .sbw-featured-creator--hero {
-    grid-template-columns: 1fr;
     text-align: left;
   }
 
   .sbw-featured-creator--hero .sbw-featured-creator__media {
     margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .sbw-creators-hero,
+  .sbw-creators-feature,
+  .sbw-creators-official,
+  .sbw-creators-ecosystem,
+  .sbw-creators-toolbar,
+  .sbw-creators-cta {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .sbw-creators-hero h1 {
+    font-size: clamp(2.5rem, 12vw, 4.4rem);
+    line-height: 1.04;
+  }
+
+  .sbw-creators-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbw-featured-creator {
+    padding: 16px;
+  }
+
+  .sbw-featured-creator__media {
+    max-width: 220px;
+  }
+
+  .sbw-creators-hero__actions,
+  .sbw-featured-creator__actions,
+  .sbw-creators-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sbw-creators-button {
+    width: 100%;
+  }
+
+  .sbw-featured-creator__nav {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .sbw-creators-page {
+    width: calc(100% - 20px);
+  }
+
+  .sbw-creators-hero__panel {
+    padding: 14px;
+  }
+
+  .sbw-creators-hero-card,
+  .sbw-creator-card {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbw-creators-button,
+  .sbw-creator-card,
+  .sbw-featured-creator__nav button,
+  .sbw-creators-filter-group button,
+  .sbw-creators-search input {
+    transition: none;
+  }
+
+  .sbw-featured-creator--hero {
+    transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+
+  .sbw-creators-button:not(:disabled):not([aria-disabled="true"]):hover,
+  .sbw-creator-card:not([aria-disabled="true"]):hover,
+  .sbw-featured-creator--hero.is-changing {
+    transform: none;
   }
 }
