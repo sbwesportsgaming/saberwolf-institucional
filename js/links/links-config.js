@@ -43,7 +43,7 @@
       handle: "-SBW- · Organização de esports",
       description: "Esports, atletas, creators, comunidade e projetos oficiais da -SBW-.",
       image: siteUrl("assets/icons/icon-192-v3.png"),
-      imageAlt: "Logo da SaberWolf Esports — -SBW-",
+      imageAlt: "Símbolo da SaberWolf Esports — -SBW-",
 
       links: [
         {
