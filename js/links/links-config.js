@@ -107,7 +107,8 @@
         eyebrow: "Fundador e creator",
         title: "D’Lucca",
         description: "Lives, vídeos e redes pessoais.",
-        href: siteUrl("links/dlucca/index.html"),
+        href: "https://sbwproject.com/dlucca/",
+        external: true,
         track: "links_ecosystem_dlucca"
       }
     },
