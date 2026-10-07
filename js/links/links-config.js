@@ -41,8 +41,8 @@
       eyebrow: "Links oficiais",
       title: "SaberWolf Esports",
       handle: "-SBW- · Organização de esports",
-      description: "Organização, atletas, creators, conteúdo e comunidade.",
-      image: siteUrl("assets/images/logo-sbw.png"),
+      description: "Esports, atletas, creators, comunidade e projetos oficiais da -SBW-.",
+      image: siteUrl("assets/icons/icon-192-v3.png"),
       imageAlt: "Logo da SaberWolf Esports — -SBW-",
 
       links: [
@@ -92,6 +92,20 @@
           description: "Conteúdo, lives e representantes oficiais",
           href: siteUrl("creators/creators.html"),
           mark: "CR"
+        },
+        {
+          id: "athletes",
+          label: "Atletas -SBW-",
+          description: "Conheça os competidores da SaberWolf Esports",
+          href: siteUrl("atletas/atletas-sbw.html"),
+          mark: "AT"
+        },
+        {
+          id: "store",
+          label: "Loja -SBW-",
+          description: "Produtos, coleções e novidades da organização",
+          href: siteUrl("pages/loja.html"),
+          mark: "SHOP"
         },
         {
           id: "instagram",
