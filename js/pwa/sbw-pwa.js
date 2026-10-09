@@ -1,9 +1,12 @@
-/* SaberWolf Esports — registro do app e botão de instalação. */
+/* SBW Project — registro do app e botão de instalação em sbwgg.com.br. */
 
 (function () {
   "use strict";
 
   if (window.SBWPWA) return;
+
+  const APP_NAME = "SBW Project";
+  const PWA_VERSION = "20261008-project-1";
 
   const scriptElement = document.currentScript ||
     Array.from(document.scripts).find((script) =>
@@ -19,7 +22,12 @@
       );
 
   const SERVICE_WORKER_URL = new URL(
-    "service-worker.js?v=20260902-16841",
+    "service-worker.js?v=" + PWA_VERSION,
+    SITE_BASE_URL
+  );
+
+  const APP_URL = new URL(
+    "app/index.html?source=pwa-saberwolf",
     SITE_BASE_URL
   );
 
@@ -32,7 +40,7 @@
     ".js-pwa-install"
   ].join(",");
 
-  const originalButtons = new WeakMap();
+  const installButtons = new WeakMap();
 
   const standaloneMedia = window.matchMedia?.(
     "(display-mode: standalone)"
@@ -60,6 +68,27 @@
 
   function isInstalled() {
     return installedThisSession || isStandaloneMode();
+  }
+
+  function createInstallMarkup(button) {
+    const content = document.createElement("span");
+    const originalIcon = button.querySelector(
+      "svg, i, [data-sbw-pwa-icon]"
+    );
+
+    if (originalIcon) {
+      const icon = originalIcon.cloneNode(true);
+
+      icon.setAttribute("aria-hidden", "true");
+      content.appendChild(icon);
+      content.appendChild(document.createTextNode(" "));
+    }
+
+    content.appendChild(
+      document.createTextNode("Instalar app " + APP_NAME)
+    );
+
+    return content.innerHTML;
   }
 
   function setStatusText(text) {
@@ -120,8 +149,8 @@
     );
 
     getInstallButtons().forEach((button) => {
-      if (!originalButtons.has(button)) {
-        originalButtons.set(button, button.innerHTML.trim());
+      if (!installButtons.has(button)) {
+        installButtons.set(button, createInstallMarkup(button));
         button.addEventListener("click", handleInstallClick);
 
         if (button.tagName === "BUTTON") {
@@ -138,13 +167,15 @@
       }
 
       if (installed) {
-        button.textContent = "App SaberWolf instalado";
+        button.textContent = "App " + APP_NAME + " instalado";
       } else if (promptInProgress) {
         button.textContent = "Aguarde...";
       } else {
         button.innerHTML =
-          originalButtons.get(button) || "Instalar app SaberWolf";
+          installButtons.get(button);
       }
+
+      button.setAttribute("aria-label", button.textContent.trim());
     });
   }
 
@@ -172,7 +203,9 @@
     );
 
     guide?.scrollIntoView({
-      behavior: "smooth",
+      behavior: window.matchMedia?.(
+        "(prefers-reduced-motion: reduce)"
+      ).matches ? "auto" : "smooth",
       block: "start"
     });
   }
@@ -186,7 +219,7 @@
       refreshButtons();
 
       setStatusText(
-        "O app SaberWolf Esports já está instalado ou aberto em modo aplicativo."
+        "O app " + APP_NAME + " já está instalado ou aberto em modo aplicativo."
       );
       return;
     }
@@ -206,13 +239,15 @@
     try {
       // A chamada ocorre diretamente a partir do clique do usuário.
       const result = await installEvent.prompt();
-      const choice = result || await installEvent.userChoice;
+      const choice = result?.outcome
+        ? result
+        : await installEvent.userChoice;
 
       if (!isInstalled()) {
         setStatusText(
           choice?.outcome === "accepted"
             ? "Instalação solicitada. Aguarde a conclusão pelo navegador."
-            : "Instalação cancelada. Você pode tentar novamente pelo menu do navegador."
+            : "Instalação cancelada. Você pode tentar novamente quando a opção estiver disponível no navegador."
         );
       }
     } catch (error) {
@@ -236,7 +271,8 @@
     if (
       !("serviceWorker" in navigator) ||
       !window.isSecureContext ||
-      !["http:", "https:"].includes(window.location.protocol)
+      !["http:", "https:"].includes(window.location.protocol) ||
+      SITE_BASE_URL.origin !== window.location.origin
     ) {
       return Promise.resolve(null);
     }
@@ -270,10 +306,12 @@
       .catch((error) => {
         registrationPromise = null;
 
-        console.warn(
-          "[SBW PWA] Service worker não registrado:",
-          error
-        );
+        if (navigator.onLine !== false) {
+          console.warn(
+            "[SBW PWA] Service worker não registrado:",
+            error
+          );
+        }
 
         return null;
       });
@@ -284,15 +322,14 @@
   window.addEventListener("beforeinstallprompt", (event) => {
     if (typeof event.prompt !== "function") return;
 
-    event.preventDefault();
-
     if (isInstalled()) return;
 
+    event.preventDefault();
     deferredPrompt = event;
     refreshButtons();
 
     setStatusText(
-      "Instalação disponível. Clique no botão para instalar o app SaberWolf Esports."
+      "Instalação disponível. Clique no botão para instalar o app " + APP_NAME + "."
     );
   });
 
@@ -302,18 +339,35 @@
     refreshButtons();
 
     setStatusText(
-      "App SaberWolf Esports instalado com sucesso."
+      "App " + APP_NAME + " instalado com sucesso."
     );
   });
 
-  standaloneMedia?.addEventListener?.("change", () => {
+  function handleDisplayModeChange() {
     refreshButtons();
 
     if (isStandaloneMode()) {
       setStatusText(
-        "SaberWolf Esports aberto em modo aplicativo."
+        APP_NAME + " aberto em modo aplicativo."
+      );
+    } else if (installedThisSession) {
+      setStatusText("App " + APP_NAME + " instalado com sucesso.");
+    } else {
+      setStatusText(
+        deferredPrompt ? "Instalação disponível neste navegador." : ""
       );
     }
+  }
+
+  if (typeof standaloneMedia?.addEventListener === "function") {
+    standaloneMedia.addEventListener("change", handleDisplayModeChange);
+  } else if (typeof standaloneMedia?.addListener === "function") {
+    standaloneMedia.addListener(handleDisplayModeChange);
+  }
+
+  // Permite tentar o registro novamente depois de recuperar a conexão.
+  window.addEventListener("online", () => {
+    if (!currentRegistration) registerServiceWorker();
   });
 
   function initPwa() {
@@ -321,11 +375,11 @@
 
     if (isStandaloneMode()) {
       setStatusText(
-        "SaberWolf Esports aberto em modo aplicativo."
+        APP_NAME + " aberto em modo aplicativo."
       );
     } else if (installedThisSession) {
       setStatusText(
-        "App SaberWolf Esports instalado com sucesso."
+        "App " + APP_NAME + " instalado com sucesso."
       );
     } else if (lastStatus) {
       setStatusText(lastStatus);
@@ -335,9 +389,11 @@
   }
 
   window.SBWPWA = {
+    version: PWA_VERSION,
     register: registerServiceWorker,
     getRegistration: () => currentRegistration,
     getBasePath: () => SITE_BASE_URL.pathname,
+    getAppUrl: () => APP_URL.href,
     refresh: refreshButtons
   };
 

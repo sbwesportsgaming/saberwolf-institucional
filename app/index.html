@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3f4f6" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="noindex, follow" />
+
+  <meta
+    name="description"
+    content="A central da SBW: acesse SaberWolf Esports, SBW Championship, SBW Project e conheça a SBW Concept."
+  />
+
+  <title>Central SBW | SBW Project</title>
+
+  <link
+    rel="icon"
+    href="../assets/icons/sbw-project-app-192.png"
+    type="image/png"
+    sizes="192x192"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="../assets/icons/sbw-project-app-180.png"
+    sizes="180x180"
+  />
+
+  <link
+    rel="manifest"
+    href="../manifest.webmanifest?v=20261008-project-1"
+  />
+
+  <style>
+    :root {
+      color-scheme: light;
+      --app-bg: #f3f4f6;
+      --app-surface: #ffffff;
+      --app-ink: #101318;
+      --app-muted: #56616b;
+      --app-line: #d8dde2;
+      --app-accent: #18bdf2;
+      --app-accent-deep: #066f91;
+      --app-dark: #11151a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      color: var(--app-ink);
+      background: var(--app-bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    main:focus-visible {
+      outline: 3px solid var(--app-accent-deep);
+      outline-offset: 5px;
+    }
+
+    .app-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .app-skip {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: var(--app-dark);
+      color: #fff;
+      transform: translateY(calc(-100% - 24px));
+    }
+
+    .app-skip:focus {
+      transform: translateY(0);
+    }
+
+    .app-container {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .app-header {
+      border-bottom: 1px solid var(--app-line);
+    }
+
+    .app-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 88px;
+      padding-block: 16px;
+    }
+
+    .app-brand {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 44px;
+      line-height: 1;
+    }
+
+    .app-brand__mark {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .app-brand__sub {
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.36em;
+    }
+
+    .app-header__label {
+      color: var(--app-muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .app-main {
+      padding-block: 58px 44px;
+    }
+
+    .app-eyebrow {
+      margin: 0 0 18px;
+      color: var(--app-accent-deep);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .app-intro h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 750;
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .app-intro h1 span {
+      display: block;
+      margin-top: 5px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .app-intro__copy {
+      max-width: 640px;
+      margin: 22px 0 0;
+      color: var(--app-muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .app-notice {
+      margin: 24px 0 0;
+      padding: 14px 18px;
+      border: 1px solid #cfb66e;
+      border-radius: 12px;
+      background: #fff5d7;
+      color: #674b06;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .app-update {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid #99cbdc;
+      border-radius: 12px;
+      background: #eef9fd;
+    }
+
+    .app-update__copy {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    .app-update h2 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .app-update p {
+      margin: 0;
+      color: var(--app-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .app-update__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .app-update button {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--app-accent-deep);
+      border-radius: 10px;
+      color: #fff;
+      background: var(--app-accent-deep);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .app-update button:hover:not(:disabled) {
+      background: #055870;
+    }
+
+    .app-update .app-update__later {
+      color: var(--app-accent-deep);
+      background: transparent;
+    }
+
+    .app-update .app-update__later:hover:not(:disabled) {
+      background: #dff1f7;
+    }
+
+    .app-update button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    .app-sites {
+      margin-top: 38px;
+    }
+
+    .app-sites__heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .app-sites__heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--app-line);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .app-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--app-line);
+      border-radius: 22px;
+      background: var(--app-surface);
+      transition: border-color 180ms ease, box-shadow 180ms ease,
+        transform 180ms ease;
+    }
+
+    .app-card:hover {
+      border-color: #8e9ca8;
+      box-shadow: 0 18px 44px rgba(16, 19, 24, 0.09);
+      transform: translateY(-3px);
+    }
+
+    .app-card__visual {
+      display: grid;
+      place-items: center;
+      min-height: 216px;
+      padding: 22px;
+      background: #050b13;
+      border-bottom: 1px solid var(--app-line);
+    }
+
+    .app-card__visual img {
+      width: 100%;
+      height: 172px;
+      object-fit: contain;
+    }
+
+    .app-card__visual--project {
+      background:
+        radial-gradient(
+          circle at 100% 0,
+          rgba(24, 189, 242, 0.14),
+          transparent 70%
+        ),
+        #eceff2;
+    }
+
+    .app-card__visual--concept {
+      background: #000;
+    }
+
+    .app-project-mark,
+    .app-logo-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .app-project-mark strong {
+      font-size: clamp(52px, 8vw, 76px);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+    }
+
+    .app-project-mark span {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.38em;
+    }
+
+    .app-logo-fallback {
+      gap: 12px;
+      color: #fff;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+    }
+
+    .app-logo-fallback span {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .app-card__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .app-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 18px;
+      color: var(--app-muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .app-card__status {
+      padding: 6px 9px;
+      border: 1px solid #b7d8d2;
+      border-radius: 999px;
+      background: #edf8f5;
+      color: #1f6253;
+      letter-spacing: 0.02em;
+    }
+
+    .app-card__status--soon {
+      border-color: #d8c695;
+      background: #fcf7e9;
+      color: #715715;
+    }
+
+    .app-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .app-card__description {
+      margin: 0 0 22px;
+      color: var(--app-muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .app-card__action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--app-line);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .app-card__action svg {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      color: var(--app-accent-deep);
+    }
+
+    .app-help {
+      margin: 24px 0 0;
+      color: var(--app-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .app-footer {
+      border-top: 1px solid var(--app-line);
+    }
+
+    .app-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      padding-block: 22px;
+      color: var(--app-muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .app-footer p {
+      margin: 0;
+    }
+
+    .app-footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+    }
+
+    .app-footer a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      .app-container {
+        width: calc(100% - 32px);
+      }
+
+      .app-main {
+        padding-block: 36px 30px;
+      }
+
+      .app-header__inner {
+        min-height: 76px;
+      }
+
+      .app-header__label {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+      }
+
+      .app-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      .app-card__body {
+        padding: 22px;
+      }
+
+      .app-footer__inner {
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-card {
+        transition: none;
+      }
+
+      .app-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <script
+    defer
+    src="../js/pwa/sbw-pwa.js?v=20261008-project-1"
+  ></script>
+</head>
+
+<body>
+  <a class="app-skip" href="#conteudo">
+    Pular para os sites da SBW
+  </a>
+
+  <header class="app-header">
+    <div class="app-container app-header__inner">
+      <a
+        class="app-brand"
+        href="https://sbwproject.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="SBW Project — abrir site em outra janela"
+      >
+        <span class="app-brand__mark">SBW</span>
+        <span class="app-brand__sub">PROJECT</span>
+      </a>
+
+      <span class="app-header__label">Central SBW</span>
+    </div>
+  </header>
+
+  <main
+    id="conteudo"
+    class="app-container app-main"
+    tabindex="-1"
+  >
+    <section
+      class="app-intro"
+      aria-labelledby="appTitle"
+    >
+      <p class="app-eyebrow">
+        Marcas diferentes. Uma mesma direção.
+      </p>
+
+      <h1 id="appTitle">
+        Seu universo SBW.
+        <span>Escolha onde entrar.</span>
+      </h1>
+
+      <p class="app-intro__copy">
+        Competição, comunidade, projetos e novas experiências.
+        Acesse os sites da SBW e encontre o espaço que você procura.
+      </p>
+
+      <p
+        id="appConnectionNotice"
+        class="app-notice"
+        role="status"
+        hidden
+      >
+        O dispositivo está offline.
+        Conecte-se à internet para acessar os sites.
+      </p>
+    </section>
+
+    <section
+      id="appUpdateNotice"
+      class="app-update"
+      aria-labelledby="appUpdateTitle"
+      hidden
+    >
+      <div class="app-update__copy">
+        <h2 id="appUpdateTitle">Atualização disponível</h2>
+
+        <p
+          id="appUpdateMessage"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </div>
+
+      <div class="app-update__actions">
+        <button id="appUpdateApply" type="button">
+          Atualizar app
+        </button>
+
+        <button
+          id="appUpdateLater"
+          class="app-update__later"
+          type="button"
+        >
+          Agora não
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="app-sites"
+      aria-labelledby="appSitesTitle"
+    >
+      <h2 id="appSitesTitle" class="app-sites__heading">
+        Explore a SBW
+      </h2>
+
+      <div class="app-grid">
+        <a
+          class="app-card"
+          href="../index.html"
+          aria-labelledby="appEsportsTitle"
+          aria-describedby="appEsportsDescription"
+        >
+          <div class="app-card__visual">
+            <img
+              src="../assets/images/sbw-esports-oficial.png"
+              alt=""
+              width="1229"
+              height="1536"
+              decoding="async"
+              data-app-logo
+            />
+
+            <span
+              class="app-logo-fallback"
+              aria-hidden="true"
+              hidden
+            >
+              SaberWolf
+              <span>Esports</span>
+            </span>
+          </div>
+
+          <div class="app-card__body">
+            <div class="app-card__meta">
+              <span>Organização</span>
+              <span class="app-card__status">Site ativo</span>
+            </div>
+
+            <h3 id="appEsportsTitle">SaberWolf Esports</h3>
+
+            <p
+              id="appEsportsDescription"
+              class="app-card__description"
+            >
+              Conheça a organização, seus atletas e creators.
+              Acompanhe notícias, conteúdos e a comunidade SaberWolf.
+            </p>
+
+            <span class="app-card__action">
+              Acessar SaberWolf Esports
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a
+          class="app-card"
+          href="https://sbwchampionship.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-labelledby="appChampionshipTitle"
+          aria-describedby="appChampionshipDescription appExternalHelp"
+        >
+          <div class="app-card__visual">
+            <img
+              src="../assets/images/sbw-championship-oficial.png"
+              alt=""
+              width="1536"
+              height="864"
+              decoding="async"
+              data-app-logo
+            />
+
+            <span
+              class="app-logo-fallback"
+              aria-hidden="true"
+              hidden
+            >
+              SBW
+              <span>Championship</span>
+            </span>
+          </div>
+
+          <div class="app-card__body">
+            <div class="app-card__meta">
+              <span>Plataforma competitiva</span>
+              <span class="app-card__status">Site ativo</span>
+            </div>
+
+            <h3 id="appChampionshipTitle">SBW Championship</h3>
+
+            <p
+              id="appChampionshipDescription"
+              class="app-card__description"
+            >
+              Apresente seu perfil, conheça jogadores e encontre equipes.
+              Acesse também as áreas de torneios e organizadores.
+            </p>
+
+            <span class="app-card__action">
+              Acessar Championship
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7M7 7h10v10" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a
+          class="app-card"
+          href="https://sbwproject.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-labelledby="appProjectTitle"
+          aria-describedby="appProjectDescription appExternalHelp"
+        >
+          <div
+            class="app-card__visual app-card__visual--project"
+            aria-hidden="true"
+          >
+            <div class="app-project-mark">
+              <strong>SBW</strong>
+              <span>PROJECT</span>
+            </div>
+          </div>
+
+          <div class="app-card__body">
+            <div class="app-card__meta">
+              <span>Projetos e marcas</span>
+              <span class="app-card__status">Site ativo</span>
+            </div>
+
+            <h3 id="appProjectTitle">SBW Project</h3>
+
+            <p
+              id="appProjectDescription"
+              class="app-card__description"
+            >
+              Conheça a estrutura que conecta as marcas SBW,
+              sua visão e os projetos que fazem parte do ecossistema.
+            </p>
+
+            <span class="app-card__action">
+              Acessar SBW Project
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7M7 7h10v10" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a
+          class="app-card"
+          href="https://sbwproject.com/pages/marcas.html#sbw-concept"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-labelledby="appConceptTitle"
+          aria-describedby="appConceptDescription appExternalHelp"
+        >
+          <div class="app-card__visual app-card__visual--concept">
+            <img
+              src="../assets/images/sbw-concept-oficial.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              data-app-logo
+            />
+
+            <span
+              class="app-logo-fallback"
+              aria-hidden="true"
+              hidden
+            >
+              SBW
+              <span>Concept</span>
+            </span>
+          </div>
+
+          <div class="app-card__body">
+            <div class="app-card__meta">
+              <span>Moda e lifestyle</span>
+
+              <span class="app-card__status app-card__status--soon">
+                Em desenvolvimento
+              </span>
+            </div>
+
+            <h3 id="appConceptTitle">SBW Concept</h3>
+
+            <p
+              id="appConceptDescription"
+              class="app-card__description"
+            >
+              Produtos e identidade SBW para além da competição.
+              Conheça a proposta da marca no site da SBW Project.
+            </p>
+
+            <span class="app-card__action">
+              Conhecer SBW Concept
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7M7 7h10v10" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <span id="appExternalHelp" class="app-sr-only">
+        Abre em outra janela.
+      </span>
+
+      <p class="app-help">
+        Championship e SBW Project abrem em outra janela.
+        Cada plataforma mantém suas próprias contas e recursos.
+      </p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="app-container app-footer__inner">
+      <p>© <span id="appYear">2026</span> SBW Project.</p>
+
+      <nav aria-label="Informações legais">
+        <a href="../pages/privacidade.html">Privacidade</a>
+        <a href="../pages/termos.html">Termos de uso</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const year = document.getElementById("appYear");
+
+      if (year) {
+        year.textContent = String(new Date().getFullYear());
+      }
+
+      const notice = document.getElementById("appConnectionNotice");
+
+      function updateConnectionNotice() {
+        if (notice) {
+          notice.hidden = navigator.onLine !== false;
+        }
+      }
+
+      updateConnectionNotice();
+
+      window.addEventListener("online", updateConnectionNotice);
+      window.addEventListener("offline", updateConnectionNotice);
+
+      document.querySelectorAll("[data-app-logo]").forEach(function (image) {
+        function showFallback() {
+          image.hidden = true;
+
+          const fallback = image.parentElement.querySelector(
+            ".app-logo-fallback"
+          );
+
+          if (fallback) {
+            fallback.hidden = false;
+          }
+        }
+
+        image.addEventListener("error", showFallback, { once: true });
+
+        if (image.complete && image.naturalWidth === 0) {
+          showFallback();
+        }
+      });
+
+      const serviceWorkers = navigator.serviceWorker;
+      const updateNotice = document.getElementById("appUpdateNotice");
+      const updateMessage = document.getElementById("appUpdateMessage");
+      const applyButton = document.getElementById("appUpdateApply");
+      const laterButton = document.getElementById("appUpdateLater");
+
+      if (
+        !serviceWorkers ||
+        !updateNotice ||
+        !updateMessage ||
+        !applyButton ||
+        !laterButton
+      ) {
+        return;
+      }
+
+      const siteBaseUrl = new URL("../", document.baseURI);
+      const workerUrl = new URL("service-worker.js", siteBaseUrl);
+
+      const watchedRegistrations = new WeakSet();
+      const watchedWorkers = new WeakSet();
+      const dismissedWorkers = new WeakSet();
+
+      let currentRegistration = null;
+      let updateRequested = false;
+      let reloadStarted = false;
+
+      function isSiteWorker(worker) {
+        if (!worker || !worker.scriptURL) {
+          return false;
+        }
+
+        try {
+          const url = new URL(worker.scriptURL);
+
+          return (
+            url.origin === workerUrl.origin &&
+            url.pathname === workerUrl.pathname
+          );
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function refreshUpdateNotice() {
+        if (updateRequested) {
+          return;
+        }
+
+        const waiting = currentRegistration?.waiting;
+
+        const available =
+          isSiteWorker(serviceWorkers.controller) &&
+          isSiteWorker(waiting) &&
+          waiting.state === "installed" &&
+          !dismissedWorkers.has(waiting);
+
+        updateNotice.hidden = !available;
+        applyButton.disabled = !available;
+        laterButton.disabled = false;
+        applyButton.textContent = "Atualizar app";
+
+        if (available) {
+          updateMessage.textContent =
+            "Uma nova versão da SBW Project está pronta. " +
+            "Ao atualizar, esta central será recarregada.";
+        }
+      }
+
+      function watchWorker(worker) {
+        if (!isSiteWorker(worker) || watchedWorkers.has(worker)) {
+          return;
+        }
+
+        watchedWorkers.add(worker);
+
+        worker.addEventListener("statechange", function () {
+          if (updateRequested && worker.state === "redundant") {
+            updateRequested = false;
+            refreshUpdateNotice();
+            return;
+          }
+
+          refreshUpdateNotice();
+        });
+      }
+
+      function watchRegistration(registration) {
+        if (
+          !registration ||
+          registration.scope !== siteBaseUrl.href
+        ) {
+          return;
+        }
+
+        currentRegistration = registration;
+
+        if (!watchedRegistrations.has(registration)) {
+          watchedRegistrations.add(registration);
+
+          registration.addEventListener("updatefound", function () {
+            watchWorker(registration.installing);
+            refreshUpdateNotice();
+          });
+        }
+
+        watchWorker(registration.installing);
+        watchWorker(registration.waiting);
+        refreshUpdateNotice();
+      }
+
+      applyButton.addEventListener("click", function () {
+        if (updateRequested) {
+          return;
+        }
+
+        const waiting = currentRegistration?.waiting;
+
+        if (!isSiteWorker(waiting) || waiting.state !== "installed") {
+          refreshUpdateNotice();
+          return;
+        }
+
+        updateRequested = true;
+        applyButton.disabled = true;
+        laterButton.disabled = true;
+        applyButton.textContent = "Atualizando...";
+
+        updateMessage.textContent =
+          "Aplicando a nova versão. " +
+          "Aguarde o recarregamento da central.";
+
+        try {
+          waiting.postMessage({
+            type: "SBW_APPLY_UPDATE"
+          });
+        } catch (error) {
+          updateRequested = false;
+          refreshUpdateNotice();
+
+          updateMessage.textContent =
+            "Não foi possível aplicar a atualização agora. " +
+            "Tente novamente.";
+        }
+      });
+
+      laterButton.addEventListener("click", function () {
+        const waiting = currentRegistration?.waiting;
+
+        if (waiting) {
+          dismissedWorkers.add(waiting);
+        }
+
+        updateNotice.hidden = true;
+
+        document.getElementById("conteudo")?.focus({
+          preventScroll: true
+        });
+      });
+
+      serviceWorkers.addEventListener("controllerchange", function () {
+        if (!updateRequested) {
+          refreshUpdateNotice();
+          return;
+        }
+
+        if (
+          reloadStarted ||
+          !isSiteWorker(serviceWorkers.controller)
+        ) {
+          return;
+        }
+
+        reloadStarted = true;
+        window.location.reload();
+      });
+
+      window.addEventListener("sbw:pwa-registered", function (event) {
+        watchRegistration(event.detail?.registration);
+      });
+
+      function findRegistration() {
+        watchRegistration(window.SBWPWA?.getRegistration?.());
+
+        serviceWorkers
+          .getRegistration(siteBaseUrl.href)
+          .then(watchRegistration)
+          .catch(function () {});
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          findRegistration,
+          { once: true }
+        );
+      } else {
+        findRegistration();
+      }
+
+      serviceWorkers.ready
+        .then(watchRegistration)
+        .catch(function () {});
+    })();
+  </script>
+</body>
+</html>

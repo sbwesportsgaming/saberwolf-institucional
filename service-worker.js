@@ -1,48 +1,89 @@
-/* SaberWolf Esports — cache do site institucional. */
+/*
+  SBW Project — PWA hospedado em sbwgg.com.br.
+  Central do aplicativo, páginas públicas e arquivos estáticos.
+*/
 
 "use strict";
 
 const SITE_BASE_URL = new URL(self.registration.scope);
+const CACHE_VERSION = "2026-10-08-project-1";
 
-// Incremente esta versão ao atualizar os arquivos preparados para uso offline.
-const CACHE_VERSION = "2026-09-09-1";
-
+// Mantém o prefixo anterior para limpar somente o cache deste site.
 const CACHE_PREFIX =
   "saberwolf-esports:" +
   encodeURIComponent(SITE_BASE_URL.href) +
   ":";
 
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
-
-const OFFLINE_URL = new URL(
-  "offline.html",
-  SITE_BASE_URL
-).href;
-
-const HOME_URL = new URL(
-  "index.html",
-  SITE_BASE_URL
-).href;
+const HOME_URL = SITE_BASE_URL.href;
+const APP_URL = new URL("app/", SITE_BASE_URL).href;
+const OFFLINE_URL = new URL("offline.html", SITE_BASE_URL).href;
+const OFFLINE_CACHE_KEY = new URL("offline", SITE_BASE_URL).href;
 
 const OPTIONAL_PRECACHE = [
-  "index.html",
-  "manifest.webmanifest?v=20260902-16841",
-  "assets/icons/icon-192-v3.png",
-  "assets/icons/icon-512-v3.png",
-  "assets/icons/apple-touch-icon-v3.png"
-].map((path) => new URL(path, SITE_BASE_URL).href);
+  { path: "index.html", isDocument: true },
+  { path: "app/index.html", isDocument: true },
+  { path: "manifest.webmanifest", isDocument: false },
+  {
+    path: "manifest.webmanifest?v=20260902-16841",
+    isDocument: false
+  },
+  {
+    path: "manifest.webmanifest?v=20261008-project-1",
+    isDocument: false
+  },
+  {
+    path: "assets/icons/sbw-project-app-192.png",
+    isDocument: false
+  },
+  {
+    path: "assets/icons/sbw-project-app-512.png",
+    isDocument: false
+  },
+  {
+    path: "assets/icons/sbw-project-app-180.png",
+    isDocument: false
+  },
+  { path: "assets/icons/icon-192-v3.png", isDocument: false },
+  { path: "assets/icons/icon-512-v3.png", isDocument: false },
+  {
+    path: "assets/icons/apple-touch-icon-v3.png",
+    isDocument: false
+  },
+  {
+    path: "assets/images/sbw-esports-oficial.png",
+    isDocument: false
+  },
+  {
+    path: "assets/images/sbw-championship-oficial.png",
+    isDocument: false
+  },
+  {
+    path: "assets/images/sbw-concept-oficial.png",
+    isDocument: false
+  },
+  { path: "js/pwa/sbw-pwa.js", isDocument: false },
+  {
+    path: "js/pwa/sbw-pwa.js?v=20260902-16841",
+    isDocument: false
+  },
+  {
+    path: "js/pwa/sbw-pwa.js?v=20261008-project-1",
+    isDocument: false
+  }
+];
 
 const PUBLIC_PAGES = new Set([
   "",
-  "index.html",
-  "offline.html",
-  "404.html",
-  "pages/sobre.html",
-  "pages/conteudo.html",
-  "pages/loja.html",
-  "pages/termos.html",
-  "pages/privacidade.html",
-  "pages/cookies.html"
+  "app/",
+  "offline",
+  "404",
+  "pages/sobre",
+  "pages/conteudo",
+  "pages/loja",
+  "pages/termos",
+  "pages/privacidade",
+  "pages/cookies"
 ]);
 
 function getSitePath(url) {
@@ -56,12 +97,21 @@ function getSitePath(url) {
   return url.pathname.slice(SITE_BASE_URL.pathname.length);
 }
 
-function isPublicPage(path) {
-  if (PUBLIC_PAGES.has(path)) return true;
+function normalizeDocumentPath(path) {
+  if (path === "app") return "app/";
 
-  if (
-    !/^(atletas|blog|comunidades|creators|links)(\/|$)/i.test(path)
-  ) {
+  // Compatível com os endereços sem .html usados pelo Cloudflare Pages.
+  return path
+    .replace(/(^|\/)index\.html?$/i, "$1")
+    .replace(/\.html?$/i, "");
+}
+
+function isPublicPage(path) {
+  const normalized = normalizeDocumentPath(path);
+
+  if (PUBLIC_PAGES.has(normalized)) return true;
+
+  if (!/^(atletas|blog|comunidades|creators|links)(\/|$)/i.test(path)) {
     return false;
   }
 
@@ -84,7 +134,7 @@ function isStaticAsset(path) {
 }
 
 function documentCacheKey(url, path) {
-  // O parâmetro de abertura do app não muda o conteúdo da página.
+  // Outros parâmetros podem alterar o conteúdo e não entram no cache.
   const entries = Array.from(url.searchParams.entries());
 
   if (
@@ -96,23 +146,20 @@ function documentCacheKey(url, path) {
     return null;
   }
 
-  if (path === "") return HOME_URL;
-
   const normalized = new URL(url.href);
+
+  normalized.pathname =
+    SITE_BASE_URL.pathname + normalizeDocumentPath(path);
+
   normalized.search = "";
   normalized.hash = "";
 
   return normalized.href;
 }
 
-function canStore(response, isDocument) {
-  if (response.status !== 200 || response.redirected) {
-    return false;
-  }
-
-  if (!["basic", "default"].includes(response.type)) {
-    return false;
-  }
+function canStore(response, isDocument, cacheKey) {
+  if (response.status !== 200) return false;
+  if (!["basic", "default"].includes(response.type)) return false;
 
   if (
     /\b(no-store|private)\b/i.test(
@@ -135,32 +182,83 @@ function canStore(response, isDocument) {
     response.headers.get("Content-Type") || ""
   );
 
-  return isDocument ? isHtml : !isHtml;
+  if (isDocument !== isHtml) return false;
+
+  // Aceita apenas redirecionamentos para a mesma página pública.
+  // Exemplo: app/index.html -> app/. Redirecionamentos de login ficam fora.
+  if (response.url) {
+    const finalUrl = new URL(response.url);
+    const finalPath = getSitePath(finalUrl);
+
+    if (finalPath === null) return false;
+
+    if (isDocument) {
+      return (
+        isPublicPage(finalPath) &&
+        documentCacheKey(finalUrl, finalPath) === cacheKey
+      );
+    }
+
+    return !response.redirected && finalUrl.href === cacheKey;
+  }
+
+  return !response.redirected;
+}
+
+async function storeResponse(cache, cacheKey, response, isDocument) {
+  let stored = response;
+
+  if (isDocument && (response.redirected || cacheKey === APP_URL)) {
+    // Respostas que seguiram redirecionamentos precisam ser reconstruídas
+    // antes de serem usadas em uma navegação offline.
+    const headers = new Headers(response.headers);
+    let html = await response.text();
+
+    headers.delete("Content-Length");
+    headers.delete("Content-Encoding");
+
+    if (cacheKey === APP_URL) {
+      // Também mantém os links corretos quando o endereço aberto é /app.
+      const base = `<base href="${escapeHtml(APP_URL)}">`;
+
+      html = html.replace(/<base\b[^>]*>/gi, "");
+      html = html.replace(/<head\b[^>]*>/i, (head) => head + base);
+    }
+
+    stored = new Response(html, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
+  }
+
+  await cache.put(cacheKey, stored);
 }
 
 async function prepareCache() {
   const cache = await caches.open(CACHE_NAME);
 
-  async function addFile(url, isDocument) {
-    const response = await fetch(url, {
-      cache: "reload"
-    });
+  async function addFile(path, isDocument) {
+    const url = new URL(path, SITE_BASE_URL);
+    const cacheKey = isDocument
+      ? documentCacheKey(url, getSitePath(url))
+      : url.href;
 
-    if (!canStore(response, isDocument)) {
-      throw new Error(
-        "Não foi possível preparar: " + url
-      );
+    const response = await fetch(url.href, { cache: "reload" });
+
+    if (!canStore(response, isDocument, cacheKey)) {
+      throw new Error("Não foi possível preparar: " + url.href);
     }
 
-    await cache.put(url, response);
+    await storeResponse(cache, cacheKey, response, isDocument);
   }
 
-  // A página offline precisa estar salva antes de concluir a instalação.
+  // A instalação só termina depois de salvar a página de aviso offline.
   await addFile(OFFLINE_URL, true);
 
   const results = await Promise.allSettled(
-    OPTIONAL_PRECACHE.map((url) =>
-      addFile(url, url === HOME_URL)
+    OPTIONAL_PRECACHE.map(({ path, isDocument }) =>
+      addFile(path, isDocument)
     )
   );
 
@@ -177,16 +275,13 @@ async function prepareCache() {
 self.addEventListener("install", (event) => {
   event.waitUntil(prepareCache());
 
-  // Com o site aberto, a atualização pode ser aplicada pelo botão.
+  // A atualização aguarda o fechamento das abas ou o botão de atualização.
 });
 
 self.addEventListener("message", (event) => {
   const type = event.data?.type;
 
-  if (
-    type === "SBW_SKIP_WAITING" ||
-    type === "SBW_APPLY_UPDATE"
-  ) {
+  if (type === "SBW_SKIP_WAITING" || type === "SBW_APPLY_UPDATE") {
     event.waitUntil(self.skipWaiting());
   }
 });
@@ -200,8 +295,7 @@ self.addEventListener("activate", (event) => {
         names
           .filter(
             (name) =>
-              name.startsWith(CACHE_PREFIX) &&
-              name !== CACHE_NAME
+              name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME
           )
           .map((name) => caches.delete(name))
       );
@@ -211,27 +305,34 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function emergencyOfflineResponse() {
   return new Response(
-    `
-      <!DOCTYPE html>
-      <html lang="pt-BR">
-        <head>
-          <meta charset="UTF-8">
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-          >
-          <title>SaberWolf Esports — Offline</title>
-        </head>
-
-        <body>
+    `<!DOCTYPE html>
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#f3f4f6">
+        <title>SBW Project — Offline</title>
+      </head>
+      <body>
+        <main>
           <h1>Você está offline</h1>
           <p>Verifique sua conexão e tente novamente.</p>
-          <a href="${HOME_URL}">Voltar ao início</a>
-        </body>
-      </html>
-    `,
+          <p><a href="${escapeHtml(APP_URL)}">Abrir central SBW</a></p>
+          <p><a href="${escapeHtml(HOME_URL)}">SaberWolf Esports</a></p>
+        </main>
+      </body>
+    </html>`,
     {
       status: 503,
       headers: {
@@ -243,30 +344,21 @@ function emergencyOfflineResponse() {
 }
 
 async function offlinePageResponse(response) {
-  // O aviso pode aparecer no endereço de uma página dentro de outra pasta.
-  // Esta base mantém os links relativos apontando para a pasta do site.
-  const html = (await response.text()).replace(
-    /<head\b[^>]*>/i,
-    (head) =>
-      head + `<base href="${SITE_BASE_URL.href}">`
-  );
+  // Mantém os links do aviso offline relativos à pasta raiz do site.
+  const base = `<base href="${escapeHtml(SITE_BASE_URL.href)}">`;
+  let html = await response.text();
+
+  html = html.replace(/<base\b[^>]*>/gi, "");
+  html = html.replace(/<head\b[^>]*>/i, (head) => head + base);
 
   const headers = new Headers(response.headers);
 
   headers.delete("Content-Length");
   headers.delete("Content-Encoding");
-
-  headers.set(
-    "Content-Type",
-    "text/html; charset=utf-8"
-  );
-
+  headers.set("Content-Type", "text/html; charset=utf-8");
   headers.set("Cache-Control", "no-store");
 
-  return new Response(html, {
-    status: 503,
-    headers
-  });
+  return new Response(html, { status: 503, headers });
 }
 
 async function readOffline(cacheKey, isDocument) {
@@ -275,54 +367,42 @@ async function readOffline(cacheKey, isDocument) {
     const cached = await cache.match(cacheKey);
 
     if (cached) {
-      return cacheKey === OFFLINE_URL
+      return cacheKey === OFFLINE_CACHE_KEY
         ? await offlinePageResponse(cached)
         : cached;
     }
 
     if (isDocument) {
-      const offline = await cache.match(OFFLINE_URL);
+      const offline = await cache.match(OFFLINE_CACHE_KEY);
 
-      if (offline) {
-        return await offlinePageResponse(offline);
-      }
+      if (offline) return await offlinePageResponse(offline);
     }
   } catch (error) {
-    console.warn(
-      "[SBW PWA] Não foi possível ler o cache:",
-      error
-    );
+    console.warn("[SBW PWA] Não foi possível ler o cache:", error);
   }
 
-  return isDocument
-    ? emergencyOfflineResponse()
-    : Response.error();
+  return isDocument ? emergencyOfflineResponse() : Response.error();
 }
 
 function networkFirst(event, cacheKey, isDocument) {
-  const network = fetch(event.request, {
-    cache: "no-store"
-  });
+  const network = fetch(event.request, { cache: "no-store" });
 
-  // A gravação fica protegida até terminar e não bloqueia a resposta da rede.
+  // A gravação não bloqueia a resposta e continua até terminar.
   event.waitUntil(
     network
       .then(async (response) => {
-        if (!canStore(response, isDocument)) return;
+        if (!canStore(response, isDocument, cacheKey)) return;
 
         const copy = response.clone();
         const cache = await caches.open(CACHE_NAME);
 
-        await cache.put(cacheKey, copy);
+        await storeResponse(cache, cacheKey, copy, isDocument);
       })
       .catch(() => {})
   );
 
-  // Respostas HTTP como 404 permanecem visíveis.
-  // O fallback cobre falhas de rede.
-  return network.catch(() =>
-    readOffline(cacheKey, isDocument)
-  );
+  // Um erro HTTP, como 404, continua visível; só falhas de rede usam cache.
+  return network.catch(() => readOffline(cacheKey, isDocument));
 }
 
 self.addEventListener("fetch", (event) => {
@@ -353,7 +433,5 @@ self.addEventListener("fetch", (event) => {
 
   if (!cacheKey) return;
 
-  event.respondWith(
-    networkFirst(event, cacheKey, isDocument)
-  );
+  event.respondWith(networkFirst(event, cacheKey, isDocument));
 });
