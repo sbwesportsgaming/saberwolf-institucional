@@ -54,7 +54,8 @@
       badge: "Parceira",
       description:
         "Representante da Fighting Girls Community, fortalecendo presença, acolhimento e visibilidade feminina na FGC.",
-      avatar: "assets/images/kari-akane-avatar.jpg",
+      avatar: "assets/images/logo-sbw.png",
+      avatarAlt: "Logo da SaberWolf Esports",
       href: "creators/creator-kari-akane.html",
       tags: ["FGC", "Comunidade", "Fighting Girls"],
       filters: ["fgc", "community"]
@@ -138,7 +139,7 @@
     // Cada novo creator deve poder usar a imagem reserva novamente.
     delete image.dataset.fallbackApplied;
 
-    image.alt = creator.name;
+    image.alt = creator.avatarAlt || creator.name;
     image.addEventListener("error", imageWithFallback);
     image.src = creator.avatar
       ? siteUrl(creator.avatar)
@@ -184,7 +185,7 @@
           <img
             class="sbw-creator-card__avatar"
             src="${escapeHtml(siteUrl(creator.avatar))}"
-            alt="${escapeHtml(creator.name)}"
+            alt="${escapeHtml(creator.avatarAlt || creator.name)}"
             loading="lazy"
             decoding="async"
           />

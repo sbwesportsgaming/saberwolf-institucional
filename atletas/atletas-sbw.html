@@ -11,9 +11,9 @@
     content="A área de atletas da SaberWolf Esports está em preparação."
   />
 
-  <meta name="theme-color" content="#37c8ff" />
-  <meta name="sbw-site-version" content="v1.6.84.1" />
-  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+  <meta name="theme-color" content="#050d14" />
+  <meta name="sbw-site-version" content="v1.6.84.3" />
+  <meta name="sbw-app-version" content="App SBW Project" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="SaberWolf" />
@@ -60,7 +60,6 @@
     content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
   />
 
-  <link rel="stylesheet" href="../css/layout/sbw-sidebar.css" />
   <link rel="stylesheet" href="../css/empty-area.css" />
   <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
 
@@ -99,32 +98,54 @@
   </style>
 
   <script defer src="../js/core/sbw-routes.js"></script>
-  <script defer src="../js/layout/sbw-sidebar.js"></script>
   <script defer src="../js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
   <script defer src="../js/core/sbw-site-compliance.js"></script>
+  <meta name="color-scheme" content="light" />
+  <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
+  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
 </head>
 
 <body
-  class="sbw-empty-area-body sbw-athletes-placeholder-body sbw-has-sidebar sbw-sidebar-no-transition"
+  class="sbw-empty-area-body sbw-athletes-placeholder-body sbw-esports-page sbw-site-light"
   data-sbw-active-page="athletes"
 >
-  <div id="sbwSidebarMount"></div>
+    <a class="sbw-site-skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
-  <button
-    class="sbw-sidebar-toggle"
-    type="button"
-    aria-label="Abrir menu"
-    data-sbw-sidebar-toggle
-  >
-    ☰
-  </button>
+  <header class="sbw-site-header" data-sbw-site-header>
+    <div class="sbw-site-header__inner">
+      <a class="sbw-site-brand" href="../index.html" aria-label="SaberWolf Esports — início">
+        <span>SaberWolf <strong>Esports</strong></span>
+      </a>
+      <button
+        class="sbw-site-menu-toggle"
+        type="button"
+        aria-label="Abrir menu principal"
+        aria-controls="sbwSiteNavigation"
+        aria-expanded="false"
+        data-sbw-site-menu-toggle
+        hidden
+      ><span aria-hidden="true">☰</span></button>
+      <nav class="sbw-site-nav" id="sbwSiteNavigation" aria-label="Navegação principal" data-sbw-site-nav>
+        <a href="../pages/sobre.html">Sobre</a>
+        <a href="../atletas/atletas-sbw.html" class="is-active" aria-current="page">Atletas</a>
+        <a href="../creators/creators.html">Creators</a>
+        <a href="../comunidades/comunidades.html">Comunidades</a>
+        <a href="../blog/noticias.html">Notícias</a>
+        <a href="../pages/conteudo.html">Conteúdo</a>
+        <a href="../pages/loja.html">Loja</a>
+        <a href="../links/index.html">Links oficiais</a>
+        <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
+          SBW Championship <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
 
-  <div
-    class="sbw-sidebar-backdrop"
-    data-sbw-sidebar-close
-  ></div>
-
-  <main class="sbw-empty-area-page">
+<main class="sbw-empty-area-page" id="conteudo-principal" tabindex="-1">
     <section
       class="sbw-empty-area-card"
       aria-labelledby="athletesPageTitle"
@@ -171,7 +192,7 @@
         class="sbw-site-footer__version"
         data-sbw-version-label
       >
-        Site v1.6.84.1 · App SaberWolf Esports
+        Site v1.6.84.3 · App SBW Project
       </p>
 
       <nav

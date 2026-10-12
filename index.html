@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#050d14" />
   <meta name="color-scheme" content="light" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
-  <meta name="sbw-site-version" content="v1.6.84.2" />
+  <meta name="sbw-site-version" content="v1.6.84.3" />
   <meta name="sbw-app-version" content="App SBW Project" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,35 +59,33 @@
   />
 
   <script defer src="./js/core/sbw-routes.js"></script>
-  <script defer src="./js/home/home-page.js?v=20261012-home-1"></script>
+  <script defer src="./js/home/home-page.js?v=20261012-site-1"></script>
   <script defer src="./js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
   <script defer src="./js/core/sbw-site-compliance.js"></script>
+  <link rel="stylesheet" href="./css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <script defer src="./js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
 </head>
 
-<body class="sbw-home-page" data-sbw-active-page="home">
+<body class="sbw-home-page sbw-esports-page sbw-site-light" data-sbw-active-page="home">
   <a class="sbw-home-skip-link" href="#conteudo-principal">
     Pular para o conteúdo
   </a>
 
-  <header class="sbw-home-header" data-sbw-home-header>
-    <div class="sbw-home-header__inner">
-      <a class="sbw-home-brand" href="./index.html" aria-label="SaberWolf Esports — início" aria-current="page">
+    <header class="sbw-site-header" data-sbw-site-header>
+    <div class="sbw-site-header__inner">
+      <a class="sbw-site-brand" href="./index.html" aria-label="SaberWolf Esports — início" aria-current="page">
         <span>SaberWolf <strong>Esports</strong></span>
       </a>
-
       <button
-        class="sbw-home-menu-toggle"
+        class="sbw-site-menu-toggle"
         type="button"
         aria-label="Abrir menu principal"
-        aria-controls="sbwHomeNavigation"
+        aria-controls="sbwSiteNavigation"
         aria-expanded="false"
-        data-sbw-home-menu-toggle
+        data-sbw-site-menu-toggle
         hidden
-      >
-        <span aria-hidden="true">☰</span>
-      </button>
-
-      <nav class="sbw-home-nav" id="sbwHomeNavigation" aria-label="Navegação principal" data-sbw-home-nav>
+      ><span aria-hidden="true">☰</span></button>
+      <nav class="sbw-site-nav" id="sbwSiteNavigation" aria-label="Navegação principal" data-sbw-site-nav>
         <a href="./pages/sobre.html">Sobre</a>
         <a href="./atletas/atletas-sbw.html">Atletas</a>
         <a href="./creators/creators.html">Creators</a>
@@ -96,20 +94,14 @@
         <a href="./pages/conteudo.html">Conteúdo</a>
         <a href="./pages/loja.html">Loja</a>
         <a href="./links/index.html">Links oficiais</a>
-        <a
-          class="sbw-home-nav__championship"
-          href="https://sbwchampionship.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir SBW Championship em nova aba"
-        >
+        <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
           SBW Championship <span aria-hidden="true">↗</span>
         </a>
       </nav>
     </div>
   </header>
 
-  <main class="sbw-home-shell" id="conteudo-principal" tabindex="-1">
+<main class="sbw-home-shell" id="conteudo-principal" tabindex="-1">
     <section
       class="sbw-home-hero"
       aria-labelledby="sbwHomeTitle"
@@ -385,3 +377,4 @@
   </footer>
 </body>
 </html>
+

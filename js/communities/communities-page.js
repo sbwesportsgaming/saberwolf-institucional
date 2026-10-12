@@ -23,7 +23,7 @@
       members: "Comunidade parceira",
       online: "Cenas e eventos",
 
-      image: siteUrl("assets/images/fighting-girls-logo-1.png"),
+      image: siteUrl("assets/images/fighting-girls-logo-1.png.jpg"),
 
       initials: "FG",
       featured: true,

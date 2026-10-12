@@ -6,7 +6,7 @@
 "use strict";
 
 const SITE_BASE_URL = new URL(self.registration.scope);
-const CACHE_VERSION = "2026-10-12-esports-home-1";
+const CACHE_VERSION = "2026-10-12-esports-site-1";
 
 // Mantém o prefixo anterior para limpar somente o cache deste site.
 const CACHE_PREFIX =
@@ -22,8 +22,10 @@ const OFFLINE_CACHE_KEY = new URL("offline", SITE_BASE_URL).href;
 
 const OPTIONAL_PRECACHE = [
   { path: "index.html", isDocument: true },
+  { path: "css/core/sbw-site-theme.css?v=20261012-site-1", isDocument: false },
+  { path: "js/layout/sbw-site-nav.js?v=20261012-site-1", isDocument: false },
   { path: "css/home/home-landing.css?v=20261012-home-1", isDocument: false },
-  { path: "js/home/home-page.js?v=20261012-home-1", isDocument: false },
+  { path: "js/home/home-page.js?v=20261012-site-1", isDocument: false },
   { path: "app/index.html", isDocument: true },
   { path: "manifest.webmanifest", isDocument: false },
   {
@@ -437,3 +439,4 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(networkFirst(event, cacheKey, isDocument));
 });
+

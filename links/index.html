@@ -14,9 +14,9 @@
     content="Acesse os links oficiais da SaberWolf Esports: site institucional, redes sociais, notícias, creators e comunidades."
   />
 
-  <meta name="theme-color" content="#07162b" />
-  <meta name="sbw-site-version" content="v1.6.84.1" />
-  <meta name="sbw-app-version" content="App SaberWolf Esports" />
+  <meta name="theme-color" content="#050d14" />
+  <meta name="sbw-site-version" content="v1.6.84.3" />
+  <meta name="sbw-app-version" content="App SBW Project" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="-SBW-" />
@@ -79,10 +79,49 @@
     rel="stylesheet"
     href="../css/links.css?v=1.6.84.1"
   />
+  <meta name="color-scheme" content="light" />
+  <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
+  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
 </head>
 
-<body class="sbw-links-body" data-sbw-links-profile="ecosystem">
-  <main class="sbw-links-shell" aria-live="polite">
+<body class="sbw-links-body sbw-esports-page sbw-site-light" data-sbw-links-profile="ecosystem">
+    <a class="sbw-site-skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+  <header class="sbw-site-header" data-sbw-site-header>
+    <div class="sbw-site-header__inner">
+      <a class="sbw-site-brand" href="../index.html" aria-label="SaberWolf Esports — início">
+        <span>SaberWolf <strong>Esports</strong></span>
+      </a>
+      <button
+        class="sbw-site-menu-toggle"
+        type="button"
+        aria-label="Abrir menu principal"
+        aria-controls="sbwSiteNavigation"
+        aria-expanded="false"
+        data-sbw-site-menu-toggle
+        hidden
+      ><span aria-hidden="true">☰</span></button>
+      <nav class="sbw-site-nav" id="sbwSiteNavigation" aria-label="Navegação principal" data-sbw-site-nav>
+        <a href="../pages/sobre.html">Sobre</a>
+        <a href="../atletas/atletas-sbw.html">Atletas</a>
+        <a href="../creators/creators.html">Creators</a>
+        <a href="../comunidades/comunidades.html">Comunidades</a>
+        <a href="../blog/noticias.html">Notícias</a>
+        <a href="../pages/conteudo.html">Conteúdo</a>
+        <a href="../pages/loja.html">Loja</a>
+        <a href="../links/index.html" class="is-active" aria-current="page">Links oficiais</a>
+        <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
+          SBW Championship <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+<main class="sbw-links-shell" aria-live="polite" id="conteudo-principal" tabindex="-1">
     <div id="sbwLinksRoot">
       <!--
         Conteúdo de apoio caso os scripts não carreguem.
@@ -121,7 +160,7 @@
         class="sbw-site-footer__version"
         data-sbw-version-label
       >
-        Site v1.6.84.1 · App SaberWolf Esports
+        Site v1.6.84.3 · App SBW Project
       </p>
 
       <nav

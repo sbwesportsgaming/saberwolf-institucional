@@ -1,0 +1,1176 @@
+/* SaberWolf Esports — cabeçalho compartilhado. */
+
+.sbw-site-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  max-width: calc(100% - 24px);
+  padding: 12px 18px;
+  color: #fff;
+  background: var(--sbw-site-dark);
+  border: 2px solid var(--sbw-site-cyan);
+  border-radius: 8px;
+  font-weight: 700;
+  transform: translateY(calc(-100% - 24px));
+}
+
+.sbw-site-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Navegação horizontal compartilhada. */
+
+.sbw-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  color: #f4f8ff;
+  background: var(--sbw-site-dark);
+  border-bottom: 1px solid #213440;
+}
+
+.sbw-site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(var(--sbw-site-max), calc(100% - var(--sbw-site-gutter) * 2));
+  min-height: 84px;
+  margin: 0 auto;
+  padding: 14px 0;
+}
+
+.sbw-site-brand {
+  flex-shrink: 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+.sbw-site-brand strong {
+  color: var(--sbw-site-cyan);
+  font-weight: inherit;
+}
+
+.sbw-site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.sbw-site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  color: #e1eaf1;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.sbw-site-nav a:hover {
+  color: #6deaff;
+}
+
+.sbw-site-nav .sbw-site-nav__championship {
+  padding: 10px 12px;
+  border: 1px solid var(--sbw-site-cyan);
+  border-radius: 5px;
+  color: #fff;
+}
+
+.sbw-site-nav__championship:hover {
+  background: #123240;
+}
+
+.sbw-site-header :where(a, button):focus-visible,
+body.sbw-esports-page .sbw-site-header :where(a, button):focus-visible {
+  outline-color: #76eaff;
+}
+
+.sbw-site-menu-toggle {
+  display: none;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #3f7086;
+  border-radius: 6px;
+  color: #fff;
+  background: #10202e;
+  font: inherit;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1199px) {
+  .sbw-site-header__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 76px;
+  }
+
+  .sbw-site-nav {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    gap: 6px 18px;
+    padding-bottom: 8px;
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-header__inner {
+    flex-wrap: nowrap;
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-menu-toggle {
+    display: grid;
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    padding: 16px var(--sbw-site-gutter) 24px;
+    border-bottom: 1px solid #3b606f;
+    background: var(--sbw-site-dark);
+    box-shadow: 0 18px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-nav.is-open {
+    display: grid;
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-nav a {
+    justify-content: flex-start;
+    padding: 10px 12px;
+    border-radius: 5px;
+    background: #10202e;
+  }
+
+  .sbw-site-header.is-menu-ready .sbw-site-nav__championship {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* SaberWolf Esports — identidade compartilhada v1.6.84.3. */
+
+:root {
+  color-scheme: light;
+  --sbw-site-dark: #050d14;
+  --sbw-site-cyan: #00c8ed;
+  --sbw-site-accent: #006d86;
+  --sbw-site-text: #101e2b;
+  --sbw-site-muted: #536273;
+  --sbw-site-panel: #fff;
+  --sbw-site-border: #dbe4eb;
+  --sbw-site-border-strong: #84b9c5;
+  --sbw-site-tag-bg: #e5f7fb;
+  --sbw-site-max: 1200px;
+  --sbw-site-gutter: clamp(20px, 4vw, 64px);
+  --sbw-site-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sbw-site-heading-font: Sora, Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 104px;
+}
+
+body.sbw-esports-page.sbw-site-light {
+  color-scheme: light;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  color: var(--sbw-site-text);
+  background: #fff;
+  font-family: var(--sbw-site-font);
+  line-height: 1.6;
+  overflow-x: visible;
+  -webkit-font-smoothing: antialiased;
+  --sbw-about-text: var(--sbw-site-text);
+  --sbw-about-muted: var(--sbw-site-muted);
+  --sbw-about-soft: var(--sbw-site-muted);
+  --sbw-about-cyan: var(--sbw-site-accent);
+  --sbw-about-blue: var(--sbw-site-accent);
+  --sbw-about-purple: var(--sbw-site-accent);
+  --sbw-about-green: var(--sbw-site-accent);
+  --sbw-about-gold: var(--sbw-site-accent);
+  --sbw-about-bg: var(--sbw-site-panel);
+  --sbw-about-deep: var(--sbw-site-panel);
+  --sbw-about-panel: var(--sbw-site-panel);
+  --sbw-about-panel-strong: var(--sbw-site-panel);
+  --sbw-about-border: var(--sbw-site-border);
+  --sbw-about-border-strong: var(--sbw-site-border-strong);
+  --sbw-creators-text: var(--sbw-site-text);
+  --sbw-creators-muted: var(--sbw-site-muted);
+  --sbw-creators-soft: var(--sbw-site-muted);
+  --sbw-creators-cyan: var(--sbw-site-accent);
+  --sbw-creators-blue: var(--sbw-site-accent);
+  --sbw-creators-bg: var(--sbw-site-panel);
+  --sbw-creators-card: var(--sbw-site-panel);
+  --sbw-creators-card-strong: var(--sbw-site-panel);
+  --sbw-creators-border: var(--sbw-site-border);
+  --sbw-creators-border-strong: var(--sbw-site-border-strong);
+  --sbw-community-text: var(--sbw-site-text);
+  --sbw-community-muted: var(--sbw-site-muted);
+  --sbw-community-soft: var(--sbw-site-muted);
+  --sbw-community-cyan: var(--sbw-site-accent);
+  --sbw-community-blue: var(--sbw-site-accent);
+  --sbw-community-green: var(--sbw-site-accent);
+  --sbw-community-gold: var(--sbw-site-accent);
+  --sbw-community-bg: var(--sbw-site-panel);
+  --sbw-community-panel: var(--sbw-site-panel);
+  --sbw-community-strong: var(--sbw-site-panel);
+  --sbw-community-border: var(--sbw-site-border);
+  --sbw-community-border-strong: var(--sbw-site-border-strong);
+  --news-text: var(--sbw-site-text);
+  --news-muted: var(--sbw-site-muted);
+  --news-soft: var(--sbw-site-muted);
+  --news-cyan: var(--sbw-site-accent);
+  --news-blue: var(--sbw-site-accent);
+  --news-bg: var(--sbw-site-panel);
+  --news-panel: var(--sbw-site-panel);
+  --news-panel-strong: var(--sbw-site-panel);
+  --news-border: var(--sbw-site-border);
+  --news-border-strong: var(--sbw-site-border-strong);
+  --sbw-store-text: var(--sbw-site-text);
+  --sbw-store-muted: var(--sbw-site-muted);
+  --sbw-store-cyan: var(--sbw-site-accent);
+  --sbw-store-blue: var(--sbw-site-accent);
+  --sbw-store-bg: var(--sbw-site-panel);
+  --sbw-store-card: var(--sbw-site-panel);
+  --sbw-store-card-strong: var(--sbw-site-panel);
+  --sbw-store-border: var(--sbw-site-border);
+  --sbw-store-border-strong: var(--sbw-site-border-strong);
+  --sbw-links-text: var(--sbw-site-text);
+  --sbw-links-muted: var(--sbw-site-muted);
+  --sbw-links-soft: var(--sbw-site-muted);
+  --sbw-links-cyan: var(--sbw-site-accent);
+  --sbw-links-blue: var(--sbw-site-accent);
+  --sbw-links-ice: var(--sbw-site-accent);
+  --sbw-links-bg: var(--sbw-site-panel);
+  --sbw-links-panel: var(--sbw-site-panel);
+  --sbw-links-panel-strong: var(--sbw-site-panel);
+  --sbw-links-card: var(--sbw-site-panel);
+  --sbw-links-card-hover: var(--sbw-site-tag-bg);
+  --sbw-links-border: var(--sbw-site-border);
+  --sbw-links-border-strong: var(--sbw-site-border-strong);
+}
+
+.sbw-esports-page *,
+.sbw-esports-page *::before,
+.sbw-esports-page *::after {
+  box-sizing: border-box;
+}
+
+.sbw-esports-page [hidden] {
+  display: none !important;
+}
+
+body.sbw-esports-page::before,
+body.sbw-esports-page::after {
+  display: none;
+}
+
+.sbw-site-nav a.is-active {
+  color: #76eaff;
+}
+
+.sbw-site-header {
+  flex: 0 0 auto;
+  font-family: var(--sbw-site-font);
+  line-height: 1.6;
+}
+
+body.sbw-esports-page [class$="-skip-link"] {
+  color: #fff;
+  background: var(--sbw-site-dark);
+}
+
+.sbw-esports-page :where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #006d86;
+  outline-offset: 4px;
+}
+
+/* Todas as páginas usam a largura e a tipografia aprovadas na Home. */
+
+body.sbw-esports-page:not(.sbw-home-page) > main {
+  position: relative;
+  flex: 1 0 auto;
+  width: min(var(--sbw-site-max), calc(100% - var(--sbw-site-gutter) * 2));
+  max-width: var(--sbw-site-max);
+  min-width: 0;
+  margin: 0 auto;
+  padding: 36px 0 64px;
+  color: var(--sbw-site-text);
+  background: transparent;
+  overflow-wrap: anywhere;
+  transform: none;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(h1, h2, h3, h4) {
+  color: var(--sbw-site-text);
+  font-family: var(--sbw-site-heading-font);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  text-shadow: none;
+  overflow-wrap: anywhere;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main h1 {
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.12;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main h2 {
+  font-size: clamp(23px, 2.4vw, 34px);
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main h3 {
+  font-size: clamp(20px, 1.8vw, 24px);
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(p, li, small, figcaption) {
+  color: var(--sbw-site-muted);
+  font-family: var(--sbw-site-font);
+  line-height: 1.8;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main strong {
+  color: var(--sbw-site-text);
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(a, button, input, select, textarea) {
+  font-family: var(--sbw-site-font);
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(input, select, textarea) {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 48px;
+  color: #101e2b;
+  background: #fff;
+  border: 1px solid #b9cbd5;
+  border-radius: 5px;
+  color-scheme: light;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(input, textarea)::placeholder {
+  color: #607184;
+  opacity: 1;
+}
+
+/* Painéis claros e discretos, com conteúdo completo. */
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-text-card, .sbw-about-panel, .sbw-about-module-card,
+  .sbw-about-quote-box, .sbw-creators-official, .sbw-creators-ecosystem,
+  .sbw-creators-cta, .sbw-creators-pillars article, .sbw-creator-card,
+  .sbw-dlucca-card, .sbw-kari-card, .sbw-tiger-card,
+  .sbw-communities-search, .sbw-communities-quick, .sbw-communities-all,
+  .sbw-communities-card, .sbw-communities-category-card, .sbw-communities-cta,
+  .sbw-community-detail-panel, .sbw-community-detail-cards, .sbw-community-detail-mini-card,
+  .sbw-community-detail-social, .sbw-news-featured, .sbw-news-section,
+  .sbw-news-side-card, .sbw-news-card, .sbw-article,
+  .sbw-store-feature, .sbw-store-section, .sbw-store-plan-card,
+  .sbw-store-side-card, .sbw-store-cta, .sbw-store-empty,
+  .sbw-legal-card, .sbw-legal-nav, .sbw-links-profile, .sbw-links-noscript,
+  .sbw-link-card, .sbw-links-related, .sbw-empty-area-card, .error-card,
+  .sbw-page-state
+) {
+  --sbw-site-text: #101e2b;
+  --sbw-site-muted: #536273;
+  --sbw-site-accent: #006d86;
+  --sbw-site-panel: #fff;
+  --sbw-site-border: #dbe4eb;
+  --sbw-site-border-strong: #84b9c5;
+  --sbw-site-tag-bg: #e5f7fb;
+  --sbw-about-text: var(--sbw-site-text);
+  --sbw-about-muted: var(--sbw-site-muted);
+  --sbw-about-soft: var(--sbw-site-muted);
+  --sbw-about-cyan: var(--sbw-site-accent);
+  --sbw-about-blue: var(--sbw-site-accent);
+  --sbw-about-purple: var(--sbw-site-accent);
+  --sbw-about-green: var(--sbw-site-accent);
+  --sbw-about-gold: var(--sbw-site-accent);
+  --sbw-about-bg: var(--sbw-site-panel);
+  --sbw-about-deep: var(--sbw-site-panel);
+  --sbw-about-panel: var(--sbw-site-panel);
+  --sbw-about-panel-strong: var(--sbw-site-panel);
+  --sbw-about-border: var(--sbw-site-border);
+  --sbw-about-border-strong: var(--sbw-site-border-strong);
+  --sbw-creators-text: var(--sbw-site-text);
+  --sbw-creators-muted: var(--sbw-site-muted);
+  --sbw-creators-soft: var(--sbw-site-muted);
+  --sbw-creators-cyan: var(--sbw-site-accent);
+  --sbw-creators-blue: var(--sbw-site-accent);
+  --sbw-creators-bg: var(--sbw-site-panel);
+  --sbw-creators-card: var(--sbw-site-panel);
+  --sbw-creators-card-strong: var(--sbw-site-panel);
+  --sbw-creators-border: var(--sbw-site-border);
+  --sbw-creators-border-strong: var(--sbw-site-border-strong);
+  --sbw-community-text: var(--sbw-site-text);
+  --sbw-community-muted: var(--sbw-site-muted);
+  --sbw-community-soft: var(--sbw-site-muted);
+  --sbw-community-cyan: var(--sbw-site-accent);
+  --sbw-community-blue: var(--sbw-site-accent);
+  --sbw-community-green: var(--sbw-site-accent);
+  --sbw-community-gold: var(--sbw-site-accent);
+  --sbw-community-bg: var(--sbw-site-panel);
+  --sbw-community-panel: var(--sbw-site-panel);
+  --sbw-community-strong: var(--sbw-site-panel);
+  --sbw-community-border: var(--sbw-site-border);
+  --sbw-community-border-strong: var(--sbw-site-border-strong);
+  --news-text: var(--sbw-site-text);
+  --news-muted: var(--sbw-site-muted);
+  --news-soft: var(--sbw-site-muted);
+  --news-cyan: var(--sbw-site-accent);
+  --news-blue: var(--sbw-site-accent);
+  --news-bg: var(--sbw-site-panel);
+  --news-panel: var(--sbw-site-panel);
+  --news-panel-strong: var(--sbw-site-panel);
+  --news-border: var(--sbw-site-border);
+  --news-border-strong: var(--sbw-site-border-strong);
+  --sbw-store-text: var(--sbw-site-text);
+  --sbw-store-muted: var(--sbw-site-muted);
+  --sbw-store-cyan: var(--sbw-site-accent);
+  --sbw-store-blue: var(--sbw-site-accent);
+  --sbw-store-bg: var(--sbw-site-panel);
+  --sbw-store-card: var(--sbw-site-panel);
+  --sbw-store-card-strong: var(--sbw-site-panel);
+  --sbw-store-border: var(--sbw-site-border);
+  --sbw-store-border-strong: var(--sbw-site-border-strong);
+  --sbw-links-text: var(--sbw-site-text);
+  --sbw-links-muted: var(--sbw-site-muted);
+  --sbw-links-soft: var(--sbw-site-muted);
+  --sbw-links-cyan: var(--sbw-site-accent);
+  --sbw-links-blue: var(--sbw-site-accent);
+  --sbw-links-ice: var(--sbw-site-accent);
+  --sbw-links-bg: var(--sbw-site-panel);
+  --sbw-links-panel: var(--sbw-site-panel);
+  --sbw-links-panel-strong: var(--sbw-site-panel);
+  --sbw-links-card: var(--sbw-site-panel);
+  --sbw-links-card-hover: var(--sbw-site-tag-bg);
+  --sbw-links-border: var(--sbw-site-border);
+  --sbw-links-border-strong: var(--sbw-site-border-strong);
+  color: var(--sbw-site-text);
+  background: var(--sbw-site-panel);
+  border: 1px solid var(--sbw-site-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(13, 42, 61, 0.04);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-store-page::before,
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-page::before,
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-panel, .sbw-about-text-card, .sbw-featured-creator, .sbw-links-profile
+)::before,
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-panel, .sbw-about-text-card, .sbw-links-profile
+)::after,
+body.sbw-esports-page.sbw-site-light main :is(.sbw-links-energy, .sbw-links-portrait-orbit) {
+  display: none;
+}
+
+/* Aberturas escuras, em azul ciano, como a Home. */
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-hero, .sbw-creators-hero, .sbw-featured-creator,
+  .sbw-communities-hero, .sbw-community-detail-hero,
+  .sbw-news-hero, .sbw-store-hero, .sbw-legal-hero
+) {
+  --sbw-site-text: #f4f8ff;
+  --sbw-site-muted: #d0dee8;
+  --sbw-site-accent: #76eaff;
+  --sbw-site-panel: #102633;
+  --sbw-site-border: #345160;
+  --sbw-site-border-strong: #5d96ab;
+  --sbw-site-tag-bg: #153746;
+  --sbw-about-text: var(--sbw-site-text);
+  --sbw-about-muted: var(--sbw-site-muted);
+  --sbw-about-soft: var(--sbw-site-muted);
+  --sbw-about-cyan: var(--sbw-site-accent);
+  --sbw-about-blue: var(--sbw-site-accent);
+  --sbw-about-purple: var(--sbw-site-accent);
+  --sbw-about-green: var(--sbw-site-accent);
+  --sbw-about-gold: var(--sbw-site-accent);
+  --sbw-about-bg: var(--sbw-site-panel);
+  --sbw-about-deep: var(--sbw-site-panel);
+  --sbw-about-panel: var(--sbw-site-panel);
+  --sbw-about-panel-strong: var(--sbw-site-panel);
+  --sbw-about-border: var(--sbw-site-border);
+  --sbw-about-border-strong: var(--sbw-site-border-strong);
+  --sbw-creators-text: var(--sbw-site-text);
+  --sbw-creators-muted: var(--sbw-site-muted);
+  --sbw-creators-soft: var(--sbw-site-muted);
+  --sbw-creators-cyan: var(--sbw-site-accent);
+  --sbw-creators-blue: var(--sbw-site-accent);
+  --sbw-creators-bg: var(--sbw-site-panel);
+  --sbw-creators-card: var(--sbw-site-panel);
+  --sbw-creators-card-strong: var(--sbw-site-panel);
+  --sbw-creators-border: var(--sbw-site-border);
+  --sbw-creators-border-strong: var(--sbw-site-border-strong);
+  --sbw-community-text: var(--sbw-site-text);
+  --sbw-community-muted: var(--sbw-site-muted);
+  --sbw-community-soft: var(--sbw-site-muted);
+  --sbw-community-cyan: var(--sbw-site-accent);
+  --sbw-community-blue: var(--sbw-site-accent);
+  --sbw-community-green: var(--sbw-site-accent);
+  --sbw-community-gold: var(--sbw-site-accent);
+  --sbw-community-bg: var(--sbw-site-panel);
+  --sbw-community-panel: var(--sbw-site-panel);
+  --sbw-community-strong: var(--sbw-site-panel);
+  --sbw-community-border: var(--sbw-site-border);
+  --sbw-community-border-strong: var(--sbw-site-border-strong);
+  --news-text: var(--sbw-site-text);
+  --news-muted: var(--sbw-site-muted);
+  --news-soft: var(--sbw-site-muted);
+  --news-cyan: var(--sbw-site-accent);
+  --news-blue: var(--sbw-site-accent);
+  --news-bg: var(--sbw-site-panel);
+  --news-panel: var(--sbw-site-panel);
+  --news-panel-strong: var(--sbw-site-panel);
+  --news-border: var(--sbw-site-border);
+  --news-border-strong: var(--sbw-site-border-strong);
+  --sbw-store-text: var(--sbw-site-text);
+  --sbw-store-muted: var(--sbw-site-muted);
+  --sbw-store-cyan: var(--sbw-site-accent);
+  --sbw-store-blue: var(--sbw-site-accent);
+  --sbw-store-bg: var(--sbw-site-panel);
+  --sbw-store-card: var(--sbw-site-panel);
+  --sbw-store-card-strong: var(--sbw-site-panel);
+  --sbw-store-border: var(--sbw-site-border);
+  --sbw-store-border-strong: var(--sbw-site-border-strong);
+  --sbw-links-text: var(--sbw-site-text);
+  --sbw-links-muted: var(--sbw-site-muted);
+  --sbw-links-soft: var(--sbw-site-muted);
+  --sbw-links-cyan: var(--sbw-site-accent);
+  --sbw-links-blue: var(--sbw-site-accent);
+  --sbw-links-ice: var(--sbw-site-accent);
+  --sbw-links-bg: var(--sbw-site-panel);
+  --sbw-links-panel: var(--sbw-site-panel);
+  --sbw-links-panel-strong: var(--sbw-site-panel);
+  --sbw-links-card: var(--sbw-site-panel);
+  --sbw-links-card-hover: var(--sbw-site-tag-bg);
+  --sbw-links-border: var(--sbw-site-border);
+  --sbw-links-border-strong: var(--sbw-site-border-strong);
+  color: var(--sbw-site-text);
+  background: linear-gradient(125deg, #050d14, #102a3a);
+  border: 1px solid #254452;
+  border-bottom: 3px solid #00c8ed;
+  border-radius: 8px;
+  padding: clamp(24px, 4vw, 46px);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-hero, .sbw-creators-hero, .sbw-communities-hero,
+  .sbw-community-detail-hero, .sbw-news-hero, .sbw-store-hero
+) {
+  min-height: 340px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 32px;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-hero__panel, .sbw-communities-hero-card,
+  .sbw-news-hero__panel, .sbw-community-detail-hero__card
+) {
+  color: #f4f8ff;
+  background: #102633;
+  border-color: #345160;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-pillar-row, .sbw-about-brand-mark
+) {
+  border-color: #345160;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-about-pillar-row span {
+  color: #76eaff;
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-featured-creator {
+  grid-template-columns: minmax(0, 190px) minmax(0, 1fr);
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-creators-hero--featured {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 26px;
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-featured-creator--hero {
+  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px;
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-featured-creator__media {
+  width: 100%;
+  max-width: 220px;
+  padding: 0;
+  border: 2px solid #5cd7ed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light main .sbw-featured-creator__media img {
+  border: 0;
+  border-radius: 5px;
+}
+
+body.sbw-esports-page.sbw-site-light main img[src*="logo-sbw.png"] {
+  object-fit: contain;
+}
+
+/* Botões, links e filtros em um único padrão. */
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button, .sbw-creators-button, .sbw-community-detail-actions a,
+  .sbw-communities-hero-card a, .sbw-communities-cta a,
+  .sbw-communities-filters button, .sbw-community-detail-back,
+  .sbw-community-detail-social__links a, .sbw-news-button, .sbw-store-button,
+  .sbw-error-button, .sbw-legal-nav button, .sbw-cookie-button,
+  .sbw-page-state__action, .sbw-page-state__button
+) {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  color: var(--sbw-site-accent);
+  background: var(--sbw-site-panel);
+  border: 1px solid var(--sbw-site-border-strong);
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  transform: none;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button--primary, .sbw-creators-button--primary,
+  .sbw-store-button--primary, .sbw-news-button:not(.sbw-news-button--ghost),
+  .sbw-error-button:not(.sbw-error-button--secondary),
+  .sbw-communities-hero-card a, .sbw-communities-cta a,
+  .sbw-community-detail-actions a:not(.sbw-community-detail-button--ghost)
+) {
+  color: #031820;
+  background: #00c8ed;
+  border-color: #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button, .sbw-creators-button, .sbw-news-button,
+  .sbw-store-button, .sbw-error-button
+):hover {
+  border-color: #006d86;
+  filter: none;
+  box-shadow: none;
+  transform: none;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-kicker, .sbw-creators-kicker, .sbw-communities-kicker,
+  .sbw-community-detail-kicker, .sbw-news-eyebrow, .sbw-store-eyebrow,
+  .sbw-legal-kicker, .sbw-empty-area-kicker, .sbw-links-eyebrow
+) {
+  padding: 0;
+  color: var(--sbw-site-accent);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-featured-creator__meta span, .sbw-creator-card__tags span,
+  .sbw-creator-card__badge, .sbw-community-detail-tags span,
+  .sbw-communities-badges span, .sbw-news-chip, .sbw-store-tag,
+  .sbw-store-plan-card__label, .sbw-store-plan-card__status,
+  .sbw-empty-area-status, .sbw-links-status, .error-label
+) {
+  color: var(--sbw-site-accent);
+  background: var(--sbw-site-tag-bg);
+  border-color: var(--sbw-site-border);
+  border-radius: 5px;
+  box-shadow: none;
+  line-height: 1.6;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-news-categories button, .sbw-store-categories button,
+  .sbw-featured-creator__nav button, .sbw-communities-quick a
+) {
+  min-height: 44px;
+  color: #101e2b;
+  background: #fff;
+  border: 1px solid #b9cbd5;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-news-categories button.is-active, .sbw-store-categories button.is-active
+) {
+  color: #031820;
+  background: #00c8ed;
+  border-color: #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-module-card__icon, .sbw-dlucca-card__mark,
+  .sbw-kari-card__mark, .sbw-tiger-card__mark,
+  .sbw-store-plan-card__icon, .sbw-store-side-card__icon,
+  .sbw-news-empty__icon, .sbw-communities-avatar
+) {
+  color: #006d86;
+  background: #e5f7fb;
+  border-color: #c5eaf0;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+/* Creators: fotos em destaque e cards claros, como na Home. */
+
+body.sbw-esports-page.sbw-site-light main :is(.sbw-creators-official, .sbw-creators-ecosystem) {
+  margin-top: 34px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creators-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card {
+  overflow: hidden;
+  padding: 0;
+  gap: 0;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card__top {
+  position: relative;
+  display: block;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card__avatar {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center 25%;
+  border: 0;
+  border-bottom: 3px solid #00c8ed;
+  border-radius: 0;
+  background: #edf2f5;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card__badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card > div:not(.sbw-creator-card__top) {
+  padding: 24px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-creator-card__footer {
+  gap: 12px;
+  margin: 0;
+  border-top: 1px solid #dbe4eb;
+}
+
+body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-creator-card__footer > span, .sbw-dlucca-card__cta,
+  .sbw-kari-card__cta, .sbw-tiger-card__cta,
+  .sbw-communities-card__actions span, .sbw-empty-area-return,
+  .sbw-error-shortcuts a, .sbw-legal-card a
+) {
+  color: #006d86;
+  text-underline-offset: 4px;
+}
+
+/* Grade e formulários das comunidades. */
+
+body.sbw-esports-page.sbw-site-light .sbw-communities-card__banner {
+  background: #edf2f5 var(--community-image, none) center / contain no-repeat;
+  border-bottom: 3px solid #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-communities-card__content {
+  color: #101e2b;
+  background: #fff;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-communities-filters {
+  border-color: #dbe4eb;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light :is(
+  .sbw-communities-filters label, .sbw-communities-filters label span,
+  .sbw-communities-search__field span, .sbw-communities-card__meta,
+  .sbw-communities-heading small
+) {
+  color: #536273;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-communities-empty {
+  color: #536273;
+  background: #f5f8fa;
+  border-color: #b9cbd5;
+  border-radius: 8px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-communities-empty a {
+  color: #006d86;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-social__links a span {
+  color: #006d86;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-list div {
+  background: #f5f8fa;
+  border-color: #dbe4eb;
+  border-radius: 5px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-list dt {
+  color: #006d86;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-list dd {
+  color: #101e2b;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-links-home {
+  border: 1px solid #b9cbd5;
+  border-radius: 5px;
+  background: #fff;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-about-quote-box span {
+  color: #536273;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-community-detail-logo {
+  background: #fff;
+  border-color: #dbe4eb;
+  border-radius: 8px;
+}
+
+/* Notícias, loja e documentos. */
+
+body.sbw-esports-page.sbw-site-light :is(.sbw-news-layout, .sbw-store-layout) {
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 24px;
+}
+
+body.sbw-esports-page.sbw-site-light :is(.sbw-news-sidebar, .sbw-store-side) {
+  position: sticky;
+  top: 108px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-self: start;
+  gap: 20px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-news-search {
+  color: #006d86;
+  border-color: #b9cbd5;
+  border-radius: 5px;
+  background: #fff;
+}
+
+body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main .sbw-news-search input {
+  border: 0;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-news-load-more {
+  min-height: 44px;
+  color: #536273;
+  border-color: #b9cbd5;
+  background: #edf2f5;
+  border-radius: 5px;
+}
+
+body.sbw-esports-page.sbw-site-light :is(.sbw-store-feature__media, .sbw-store-feature__mockup) {
+  background: #edf2f5;
+  color: #006d86;
+  border-color: #dbe4eb;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-store-feature__mockup span {
+  color: #006d86;
+  text-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-legal-layout {
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-legal-nav {
+  top: 108px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-legal-nav :is(a, button) {
+  min-height: 44px;
+  padding: 10px 12px;
+  color: #455769;
+  background: #f5f8fa;
+  border-color: #dbe4eb;
+  border-radius: 5px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-legal-nav [aria-current="page"] {
+  color: #006d86;
+  background: #e5f7fb;
+  border-color: #84b9c5;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-legal-note {
+  color: #654912;
+  background: #fff8dd;
+  border-color: #e5d69f;
+  border-radius: 5px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-article-content blockquote {
+  color: #101e2b;
+  background: #edf7fa;
+  border-left-color: #00c8ed;
+  border-radius: 0 5px 5px 0;
+  font-family: var(--sbw-site-font);
+}
+
+/* Central de links institucionais. */
+
+body.sbw-esports-page.sbw-site-light > main.sbw-links-shell {
+  width: min(740px, calc(100% - var(--sbw-site-gutter) * 2));
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-links-profile {
+  padding: clamp(24px, 4vw, 40px);
+  border-top: 3px solid #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-links-portrait {
+  border: 2px solid #00c8ed;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light :is(.sbw-link-card, .sbw-links-related) {
+  color: #101e2b;
+  background: #f5f8fa;
+  border-color: #dbe4eb;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-link-card--primary {
+  border-color: #84b9c5;
+  background: #e5f7fb;
+}
+
+body.sbw-esports-page.sbw-site-light :is(
+  .sbw-links-home, .sbw-links-handle, .sbw-link-card__arrow,
+  .sbw-links-related__arrow, .sbw-links-signature span
+) {
+  color: #006d86;
+}
+
+body.sbw-esports-page.sbw-site-light :is(.sbw-link-card__mark, .sbw-links-related__icon) {
+  color: #006d86;
+  background: #e5f7fb;
+  border-color: #c5eaf0;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+/* Áreas em preparação, página 404 e estados de carregamento. */
+
+body.sbw-esports-page.sbw-site-light > .sbw-empty-area-page,
+body.sbw-esports-page.sbw-site-light > .error-main {
+  min-height: calc(100svh - 230px);
+}
+
+body.sbw-esports-page.sbw-site-light .error-section {
+  width: min(900px, 100%);
+  padding: 24px 0;
+}
+
+body.sbw-esports-page.sbw-site-light .error-card,
+body.sbw-esports-page.sbw-site-light .sbw-empty-area-card {
+  border-top: 3px solid #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-empty-area-logo {
+  border-color: #dbe4eb;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-page-state__icon,
+body.sbw-esports-page.sbw-site-light .sbw-page-state__orb {
+  color: #006d86;
+  background: #e5f7fb;
+  border-color: #c5eaf0;
+  border-radius: 8px;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-page-state--error {
+  color: #8c2536;
+  background: #fff5f6;
+  border-color: #efc0c7;
+}
+
+/* Rodapé escuro compartilhado. Cookies e players mantêm seus estilos próprios. */
+
+body.sbw-esports-page.sbw-site-light > .sbw-site-footer {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  left: 0;
+  margin: 0;
+  padding: 32px var(--sbw-site-gutter);
+  color: #d6e2eb;
+  background: #050d14;
+  border-top: 2px solid #00c8ed;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-site-footer__copy {
+  color: #c8d6e2;
+}
+
+body.sbw-esports-page.sbw-site-light .sbw-site-footer__legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #c8d6e2;
+}
+
+@media (max-width: 980px) {
+  body.sbw-esports-page.sbw-site-light main :is(
+    .sbw-about-hero, .sbw-creators-hero, .sbw-communities-hero,
+    .sbw-community-detail-hero, .sbw-news-hero, .sbw-store-hero,
+    .sbw-about-story-grid, .sbw-about-two-columns,
+    .sbw-about-section-heading--split, .sbw-community-detail-grid,
+    .sbw-community-detail-social, .sbw-store-feature
+  ) {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+  }
+
+  body.sbw-esports-page.sbw-site-light :is(.sbw-news-layout, .sbw-store-layout, .sbw-legal-layout) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.sbw-esports-page.sbw-site-light :is(.sbw-news-sidebar, .sbw-store-side, .sbw-legal-nav) {
+    position: static;
+  }
+
+  body.sbw-esports-page.sbw-site-light .sbw-legal-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) > main {
+    padding-top: 24px;
+    padding-bottom: 44px;
+  }
+
+  body.sbw-esports-page.sbw-site-light main :is(
+    .sbw-creators-grid, .sbw-creators-pillars,
+    .sbw-communities-category-grid, .sbw-communities-grid,
+    .sbw-community-detail-card-grid, .sbw-about-ecosystem-grid,
+    .sbw-store-grid, .sbw-legal-nav
+  ) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.sbw-esports-page.sbw-site-light main .sbw-featured-creator {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.sbw-esports-page.sbw-site-light main .sbw-featured-creator__media {
+    width: min(170px, 100%);
+    margin: 0;
+  }
+
+  body.sbw-esports-page.sbw-site-light main :is(.sbw-about-panel, .sbw-about-text-card, .sbw-creators-cta) {
+    padding: 24px 20px;
+  }
+
+  body.sbw-esports-page.sbw-site-light .sbw-store-feature__actions,
+  body.sbw-esports-page.sbw-site-light .sbw-store-cta__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body.sbw-esports-page,
+  body.sbw-esports-page *,
+  body.sbw-esports-page *::before,
+  body.sbw-esports-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
