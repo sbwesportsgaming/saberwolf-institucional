@@ -11,9 +11,11 @@
     content="Site oficial da SaberWolf Esports: organização, atletas, creators, notícias, projetos e comunidades."
   />
 
-  <meta name="theme-color" content="#37c8ff" />
-  <meta name="sbw-site-version" content="v1.6.84.1" />
-  <meta name="sbw-app-version" content="SaberWolf PWA local" />
+  <meta name="theme-color" content="#050d14" />
+  <meta name="color-scheme" content="light" />
+  <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
+  <meta name="sbw-site-version" content="v1.6.84.2" />
+  <meta name="sbw-app-version" content="App SBW Project" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="-SBW-" />
@@ -48,12 +50,7 @@
 
   <link
     rel="stylesheet"
-    href="./css/layout/sbw-sidebar.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="./css/home/home-landing.css?v=1601"
+    href="./css/home/home-landing.css?v=20261012-home-1"
   />
 
   <link
@@ -62,30 +59,57 @@
   />
 
   <script defer src="./js/core/sbw-routes.js"></script>
-  <script defer src="./js/layout/sbw-sidebar.js"></script>
-  <script defer src="./js/home/home-page.js"></script>
+  <script defer src="./js/home/home-page.js?v=20261012-home-1"></script>
   <script defer src="./js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
   <script defer src="./js/core/sbw-site-compliance.js"></script>
 </head>
 
 <body class="sbw-home-page" data-sbw-active-page="home">
-  <div id="sbwSidebarMount"></div>
+  <a class="sbw-home-skip-link" href="#conteudo-principal">
+    Pular para o conteúdo
+  </a>
 
-  <button
-    class="sbw-sidebar-toggle"
-    type="button"
-    aria-label="Abrir menu"
-    data-sbw-sidebar-toggle
-  >
-    ☰
-  </button>
+  <header class="sbw-home-header" data-sbw-home-header>
+    <div class="sbw-home-header__inner">
+      <a class="sbw-home-brand" href="./index.html" aria-label="SaberWolf Esports — início" aria-current="page">
+        <span>SaberWolf <strong>Esports</strong></span>
+      </a>
 
-  <div
-    class="sbw-sidebar-backdrop"
-    data-sbw-sidebar-close
-  ></div>
+      <button
+        class="sbw-home-menu-toggle"
+        type="button"
+        aria-label="Abrir menu principal"
+        aria-controls="sbwHomeNavigation"
+        aria-expanded="false"
+        data-sbw-home-menu-toggle
+        hidden
+      >
+        <span aria-hidden="true">☰</span>
+      </button>
 
-  <main class="sbw-home-shell">
+      <nav class="sbw-home-nav" id="sbwHomeNavigation" aria-label="Navegação principal" data-sbw-home-nav>
+        <a href="./pages/sobre.html">Sobre</a>
+        <a href="./atletas/atletas-sbw.html">Atletas</a>
+        <a href="./creators/creators.html">Creators</a>
+        <a href="./comunidades/comunidades.html">Comunidades</a>
+        <a href="./blog/noticias.html">Notícias</a>
+        <a href="./pages/conteudo.html">Conteúdo</a>
+        <a href="./pages/loja.html">Loja</a>
+        <a href="./links/index.html">Links oficiais</a>
+        <a
+          class="sbw-home-nav__championship"
+          href="https://sbwchampionship.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir SBW Championship em nova aba"
+        >
+          SBW Championship <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sbw-home-shell" id="conteudo-principal" tabindex="-1">
     <section
       class="sbw-home-hero"
       aria-labelledby="sbwHomeTitle"
@@ -166,6 +190,10 @@
           >
             <img
               src="./assets/home/elitz.jpeg"
+              width="2419"
+              height="2560"
+              loading="lazy"
+              decoding="async"
               alt="-SBW- | EliTz"
             />
           </div>
@@ -214,6 +242,10 @@
           >
             <img
               src="./assets/home/tigerfurious.jpeg"
+              width="740"
+              height="1600"
+              loading="lazy"
+              decoding="async"
               alt="-SBW- | TigerFurious"
             />
           </div>
@@ -280,7 +312,7 @@
           href="./blog/noticias.html"
           class="sbw-module-card sbw-reveal"
         >
-          <span aria-hidden="true">▤</span>
+          <span aria-hidden="true">▤<svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
           <h3>Notícias</h3>
           <p>Atualizações, anúncios e novidades da organização.</p>
         </a>
@@ -289,7 +321,7 @@
           href="./creators/creators.html"
           class="sbw-module-card sbw-reveal"
         >
-          <span aria-hidden="true">✦</span>
+          <span aria-hidden="true">✦<svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3Z"/></svg></span>
           <h3>Creators</h3>
           <p>Conteúdo, lives e representantes oficiais da SaberWolf.</p>
         </a>
@@ -298,7 +330,7 @@
           href="./atletas/atletas-sbw.html"
           class="sbw-module-card sbw-reveal"
         >
-          <span aria-hidden="true">♟</span>
+          <span aria-hidden="true">♟<svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3M9 14l3 3 3-3"/></svg></span>
           <h3>Atletas</h3>
           <p>Modalidades, jogadores e projetos competitivos da organização.</p>
         </a>
@@ -307,23 +339,19 @@
           href="./comunidades/comunidades.html"
           class="sbw-module-card sbw-reveal"
         >
-          <span aria-hidden="true">🌐</span>
+          <span aria-hidden="true">🌐<svg viewBox="0 0 24 24" focusable="false"><circle cx="8" cy="8" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3M16 6a3 3 0 0 1 0 6M17 15a5 5 0 0 1 5 5v1"/></svg></span>
           <h3>Comunidades</h3>
           <p>Encontre grupos, clans, eventos e iniciativas parceiras.</p>
         </a>
 
-        <!--
-          Endereço provisório da SBW Championship para testes locais.
-          Substituir pelo domínio oficial da Championship antes da publicação.
-        -->
         <a
-          href="http://127.0.0.1:5501/"
+          href="https://sbwchampionship.com/"
           class="sbw-module-card sbw-reveal"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Abrir SBW Championship em nova aba"
         >
-          <span aria-hidden="true">🏆</span>
+          <span aria-hidden="true">🏆<svg viewBox="0 0 24 24" focusable="false"><path d="M8 3h8v7a4 4 0 0 1-8 0ZM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-4 2h8m-6-2h4"/></svg></span>
           <h3>SBW Championship</h3>
           <p>
             Torneios, equipes, perfis, organizadores e rankings
@@ -335,12 +363,25 @@
           href="./pages/loja.html"
           class="sbw-module-card sbw-reveal"
         >
-          <span aria-hidden="true">◇</span>
+          <span aria-hidden="true">◇<svg viewBox="0 0 24 24" focusable="false"><path d="M4 8h16l-1 13H5ZM8 8V6a4 4 0 0 1 8 0v2"/></svg></span>
           <h3>Loja</h3>
           <p>Produtos e iniciativas comerciais da SaberWolf.</p>
         </a>
       </div>
     </section>
   </main>
+
+  <footer class="sbw-site-footer" data-sbw-site-footer>
+    <div class="sbw-site-footer__inner">
+      <p class="sbw-site-footer__copy">
+        © 2026 SaberWolf Esports. Todos os direitos reservados.
+      </p>
+      <nav class="sbw-site-footer__legal" aria-label="Links legais">
+        <a href="./pages/termos.html" data-sbw-legal-link="pages/termos.html">Termos</a>
+        <a href="./pages/privacidade.html" data-sbw-legal-link="pages/privacidade.html">Privacidade</a>
+        <a href="./pages/cookies.html" data-sbw-legal-link="pages/cookies.html">Cookies</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

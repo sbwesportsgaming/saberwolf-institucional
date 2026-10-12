@@ -1,124 +1,119 @@
+/* SaberWolf Esports — navegação da Home e abertura de apps anteriores. */
 (function () {
   "use strict";
 
-  function ensureReducedMotionStyles() {
-    if (document.getElementById("sbwHomeMotionStyles")) return;
+  const scriptElement = document.currentScript ||
+    Array.from(document.scripts).find((script) =>
+      /\/js\/home\/home-page\.js(?:[?#]|$)/i.test(script.src)
+    );
 
-    const style = document.createElement("style");
-    style.id = "sbwHomeMotionStyles";
-
-    style.textContent = `
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto !important;
-        }
-
-        body.sbw-home-page .sbw-reveal,
-        body.sbw-home-page .sbw-btn,
-        body.sbw-home-page .sbw-feature-member--link,
-        body.sbw-home-page .sbw-feature-member__photo img,
-        body.sbw-home-page .sbw-module-card {
-          animation: none !important;
-          transition: none !important;
-          transform: none !important;
-        }
-
-        body.sbw-home-page .sbw-reveal {
-          opacity: 1 !important;
-          visibility: visible !important;
-        }
-      }
-    `;
-
-    document.head.appendChild(style);
-  }
-
-  function initRevealAnimation(root) {
-    const elements = Array.from(root.querySelectorAll(".sbw-reveal"));
-
-    if (!elements.length) return;
-
-    const motionPreference =
-      typeof window.matchMedia === "function"
-        ? window.matchMedia("(prefers-reduced-motion: reduce)")
-        : null;
-
-    let observer = null;
-
-    function revealAll() {
-      observer?.disconnect();
-
-      elements.forEach((element) => {
-        element.classList.add("is-visible");
-      });
-    }
-
-    if (
-      motionPreference?.matches ||
-      typeof window.IntersectionObserver !== "function"
-    ) {
-      revealAll();
-      return;
-    }
-
-    try {
-      observer = new window.IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          });
-        },
-        {
-          // Permite revelar também blocos maiores que a tela.
-          threshold: 0
-        }
+  const siteBaseUrl = scriptElement?.src
+    ? new URL("../../", scriptElement.src)
+    : new URL(
+        window.SBWRoutes?.getBasePath?.() || "./",
+        document.baseURI || window.location.href
       );
 
-      elements.forEach((element) => {
-        observer.observe(element);
-      });
-    } catch (error) {
-      revealAll();
-      console.warn("[SBW Home] Conteúdo exibido sem animação:", error);
-      return;
+  function redirectLegacyAppLaunch() {
+    const url = new URL(window.location.href);
+    const source = url.searchParams.get("source");
+    const homePaths = [
+      siteBaseUrl.pathname,
+      new URL("index.html", siteBaseUrl).pathname,
+      new URL("index", siteBaseUrl).pathname
+    ];
+
+    // Navegar para a Home pela central continua abrindo o site de esports.
+    if (
+      !["pwa-saberwolf", "pwa"].includes(source) ||
+      !homePaths.includes(url.pathname)
+    ) {
+      return false;
     }
 
-    function handleMotionChange(event) {
-      if (event.matches) {
-        revealAll();
-      }
-    }
+    const isApp = navigator.standalone === true ||
+      (typeof window.matchMedia === "function" && (
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.matchMedia("(display-mode: window-controls-overlay)").matches
+      ));
 
-    if (typeof motionPreference?.addEventListener === "function") {
-      motionPreference.addEventListener("change", handleMotionChange);
-    } else if (typeof motionPreference?.addListener === "function") {
-      motionPreference.addListener(handleMotionChange);
-    }
+    if (!isApp) return false;
+
+    const destination = new URL("app/index.html", siteBaseUrl);
+    destination.searchParams.set("source", "pwa-saberwolf");
+    window.location.replace(destination.href);
+    return true;
   }
+
+  if (redirectLegacyAppLaunch()) return;
 
   function initHomePage() {
     if (!document.body?.classList.contains("sbw-home-page")) return;
 
-    const root = document.querySelector(".sbw-home-shell");
+    const header = document.querySelector("[data-sbw-home-header]");
+    const toggle = document.querySelector("[data-sbw-home-menu-toggle]");
+    const nav = document.querySelector("[data-sbw-home-nav]");
 
-    if (!root || root.dataset.sbwHomeInitialized === "true") return;
+    if (!header || !toggle || !nav || header.dataset.sbwHomeInitialized) return;
 
-    root.dataset.sbwHomeInitialized = "true";
+    header.dataset.sbwHomeInitialized = "true";
 
-    ensureReducedMotionStyles();
-    initRevealAnimation(root);
+    function setMenuOpen(open, restoreFocus = false) {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Fechar menu principal" : "Abrir menu principal");
+      if (restoreFocus) toggle.focus();
+    }
 
-    // As âncoras usam a navegação nativa, incluindo o histórico e o foco.
-    // A rolagem suave já está definida em css/home/home-landing.css.
+    toggle.addEventListener("click", () => {
+      setMenuOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    nav.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a[href]")) {
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        setMenuOpen(false, true);
+      }
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!header.contains(event.target)) setMenuOpen(false);
+    });
+
+    header.addEventListener("focusout", (event) => {
+      if (event.relatedTarget && !header.contains(event.relatedTarget)) {
+        setMenuOpen(false);
+      }
+    });
+
+    const desktop = window.matchMedia?.("(min-width: 1200px)");
+    const handleResize = () => setMenuOpen(false);
+
+    if (typeof desktop?.addEventListener === "function") {
+      desktop.addEventListener("change", handleResize);
+    } else if (typeof desktop?.addListener === "function") {
+      desktop.addListener(handleResize);
+    }
+
+    setMenuOpen(false);
+    toggle.hidden = false;
+    header.classList.add("is-menu-ready");
+
+    document.querySelectorAll(".sbw-feature-member__photo img").forEach((img) => {
+      const hideBrokenImage = () => { img.hidden = true; };
+      img.addEventListener("error", hideBrokenImage, { once: true });
+      if (img.complete && img.naturalWidth === 0) hideBrokenImage();
+    });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initHomePage, {
-      once: true
-    });
+    document.addEventListener("DOMContentLoaded", initHomePage, { once: true });
   } else {
     initHomePage();
   }
