@@ -1,0 +1,117 @@
+/* SBW dark color adapter: css/loja.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] body.sbw-store-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 72% 0%, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 30rem),
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--sbw-theme-action) 9%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--sbw-theme-deep) 0%, var(--sbw-theme-deep) 46%, var(--sbw-theme-deep) 100%)
+}
+html[data-sbw-theme="dark"] .sbw-store-eyebrow,
+html[data-sbw-theme="dark"] .sbw-store-tag {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-hero h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-store-hero p,
+html[data-sbw-theme="dark"] .sbw-store-feature p,
+html[data-sbw-theme="dark"] .sbw-store-section__heading p,
+html[data-sbw-theme="dark"] .sbw-store-empty p,
+html[data-sbw-theme="dark"] .sbw-store-side-card p,
+html[data-sbw-theme="dark"] .sbw-store-cta p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-store-hero__visual::after {
+    background: radial-gradient(circle at 70% 42%, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 16rem),
+    linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 18%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-store-feature,
+html[data-sbw-theme="dark"] .sbw-store-cta,
+html[data-sbw-theme="dark"] .sbw-store-empty,
+html[data-sbw-theme="dark"] .sbw-store-side-card,
+html[data-sbw-theme="dark"] .sbw-store-plan-card {
+    border: 1px solid var(--sbw-theme-border);
+    background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 22rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-store-feature__media {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)),
+    color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 16%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-feature__mockup {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 32%, transparent);
+    background: radial-gradient(circle at 30% 0%, color-mix(in srgb, var(--sbw-theme-action) 28%, transparent), transparent 8rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-store-feature__mockup span {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-store-feature h2,
+html[data-sbw-theme="dark"] .sbw-store-section__heading h2,
+html[data-sbw-theme="dark"] .sbw-store-empty h2,
+html[data-sbw-theme="dark"] .sbw-store-cta h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-store-button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 94%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-button:hover {
+    border-color: color-mix(in srgb, var(--sbw-theme-border) 52%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 9%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-button--primary {
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-store-categories button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 84%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-categories button:hover,
+html[data-sbw-theme="dark"] .sbw-store-categories button.is-active {
+    color: var(--sbw-theme-text);
+    border-color: color-mix(in srgb, var(--sbw-theme-border) 50%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card:hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card__icon {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 11%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 16%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card__label {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-store-plan-card__status {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 95%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-success-soft) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-success) 18%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-empty__icon {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 16%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-side-card__icon {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-store-side-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-store-side-card--highlight {
+    border-color: color-mix(in srgb, var(--sbw-theme-success) 28%, transparent)
+}

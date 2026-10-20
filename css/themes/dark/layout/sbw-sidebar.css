@@ -1,0 +1,72 @@
+/* SBW dark color adapter: css/layout/sbw-sidebar.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar {
+    border-right: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    color: var(--sbw-theme-text);
+    background: radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--sbw-theme-action) 12%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent),
+      color-mix(in srgb, var(--sbw-theme-deep) 99%, transparent)
+    )
+}
+html[data-sbw-theme="dark"] .sbw-sidebar::before {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--sbw-theme-action) 11%, transparent),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 12% 90%,
+      color-mix(in srgb, var(--sbw-theme-action) 15%, transparent),
+      transparent 28%
+    )
+}
+html[data-sbw-theme="dark"] .sbw-sidebar__brand {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-sidebar__brand-text > span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar__link {
+    color: color-mix(in srgb, var(--sbw-theme-text) 86%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-sidebar__icon {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar__link.is-active,
+html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar__link[aria-current="page"] {
+    color: var(--sbw-theme-text);
+    border-color: color-mix(in srgb, var(--sbw-theme-border) 42%, transparent);
+    background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--sbw-theme-action) 28%, transparent),
+    color-mix(in srgb, var(--sbw-theme-action) 12%, transparent)
+  )
+}
+html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar__link[aria-disabled="true"] {
+    color: var(--sbw-theme-muted)
+}
+@media (hover: hover) {
+    html[data-sbw-theme="dark"] #sbwSidebarMount .sbw-sidebar__link[href]:not([aria-disabled="true"]):hover {
+        color: var(--sbw-theme-text);
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 32%, transparent);
+        background-color: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)
+    }
+}
+html[data-sbw-theme="dark"] .sbw-sidebar__brand:focus-visible,
+html[data-sbw-theme="dark"] .sbw-sidebar__link:focus-visible,
+html[data-sbw-theme="dark"] .sbw-sidebar-toggle:focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-sidebar-toggle {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 40%, transparent);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-sidebar-backdrop {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 58%, transparent)
+}

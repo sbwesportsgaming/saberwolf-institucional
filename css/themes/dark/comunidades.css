@@ -1,0 +1,286 @@
+/* SBW dark color adapter: css/comunidades.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-communities-page a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-communities-page button:focus-visible,
+html[data-sbw-theme="dark"] .sbw-communities-page input:focus-visible,
+html[data-sbw-theme="dark"] .sbw-communities-page select:focus-visible,
+html[data-sbw-theme="dark"] .sbw-communities-page [tabindex]:focus-visible,
+html[data-sbw-theme="dark"] .sbw-community-detail-page a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-community-detail-page button:focus-visible,
+html[data-sbw-theme="dark"] .sbw-community-detail-page [tabindex]:focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-communities-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 64% -12%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 34rem),
+    radial-gradient(circle at 10% 8%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 28rem),
+    linear-gradient(180deg, var(--sbw-theme-deep) 0%, var(--sbw-theme-deep) 48%, var(--sbw-theme-deep) 100%)
+}
+html[data-sbw-theme="dark"] .sbw-communities-body::before {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-deep) 35%, transparent), transparent 32%, color-mix(in srgb, var(--sbw-theme-action) 4%, transparent)),
+    radial-gradient(circle at 84% 8%, color-mix(in srgb, var(--sbw-theme-action) 13%, transparent), transparent 24rem)
+}
+html[data-sbw-theme="dark"] .sbw-communities-kicker {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 38%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero p {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent);
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 16rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 76%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero-card span {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero-card strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero-card p {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 82%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-hero-card a,
+html[data-sbw-theme="dark"] .sbw-communities-cta a {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 36%, transparent);
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-action) 26%, transparent), color-mix(in srgb, var(--sbw-theme-action) 12%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-communities-search,
+html[data-sbw-theme="dark"] .sbw-communities-quick,
+html[data-sbw-theme="dark"] .sbw-communities-featured,
+html[data-sbw-theme="dark"] .sbw-communities-all,
+html[data-sbw-theme="dark"] .sbw-communities-cta {
+    border: 1px solid var(--sbw-theme-border);
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 17rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-search__field span,
+html[data-sbw-theme="dark"] .sbw-communities-filters span {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-search input,
+html[data-sbw-theme="dark"] .sbw-communities-filters select {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 62%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-filters button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 10%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 88%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-search input::placeholder {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-communities-filters select option,
+html[data-sbw-theme="dark"] .sbw-communities-filters select optgroup {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-page)
+}
+html[data-sbw-theme="dark"] .sbw-communities-search input:focus,
+html[data-sbw-theme="dark"] .sbw-communities-filters select:focus {
+    border-color: var(--sbw-theme-border);
+    outline: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-communities-heading h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-heading small {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 70%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-category-card,
+html[data-sbw-theme="dark"] .sbw-communities-card,
+html[data-sbw-theme="dark"] .sbw-communities-feature-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 15%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-category-card span:first-child {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-category-card strong,
+html[data-sbw-theme="dark"] .sbw-communities-card strong,
+html[data-sbw-theme="dark"] .sbw-communities-feature-card strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-category-card small,
+html[data-sbw-theme="dark"] .sbw-communities-card small,
+html[data-sbw-theme="dark"] .sbw-communities-feature-card small {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-card__banner {
+    background-color: color-mix(in srgb, var(--sbw-theme-deep) 70%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-avatar {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-action) 26%, transparent), color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)),
+    color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-card h3,
+html[data-sbw-theme="dark"] .sbw-communities-feature-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-card p,
+html[data-sbw-theme="dark"] .sbw-communities-feature-card p {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-badges span {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 90%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-card__meta {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 74%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-card__actions a,
+html[data-sbw-theme="dark"] .sbw-communities-card__actions span {
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-action) 22%, transparent), color-mix(in srgb, var(--sbw-theme-action) 10%, transparent));
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 25%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-empty {
+    border: 1px dashed color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-muted) 80%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-communities-cta {
+    background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 17rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 78%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-communities-cta h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-communities-cta p {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 80%, transparent)
+}
+html[data-sbw-theme="dark"] body.sbw-community-detail-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 72% 0%, color-mix(in srgb, var(--sbw-theme-action) 15%, transparent), transparent 30rem),
+    radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--sbw-theme-deep) 0%, var(--sbw-theme-deep) 46%, var(--sbw-theme-deep) 100%)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-back {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 78%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 12%, transparent), transparent 24rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 78%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-kicker {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero p,
+html[data-sbw-theme="dark"] .sbw-community-detail-panel p,
+html[data-sbw-theme="dark"] .sbw-community-detail-mini-card p,
+html[data-sbw-theme="dark"] .sbw-community-detail-social p,
+html[data-sbw-theme="dark"] .sbw-community-detail-list dd {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 76%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-tags span {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 84%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-actions a,
+html[data-sbw-theme="dark"] .sbw-community-detail-social__links a {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 36%, transparent);
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-actions .sbw-community-detail-button--ghost {
+    color: color-mix(in srgb, var(--sbw-theme-text) 86%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero__card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--sbw-theme-panel) 8%, transparent), transparent 15rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-logo {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--sbw-theme-action) 14%, transparent), transparent 14rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero__card span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero__card strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-hero__card small {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-panel,
+html[data-sbw-theme="dark"] .sbw-community-detail-cards,
+html[data-sbw-theme="dark"] .sbw-community-detail-social {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-panel h2,
+html[data-sbw-theme="dark"] .sbw-community-detail-heading h2,
+html[data-sbw-theme="dark"] .sbw-community-detail-social h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-list div {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-list dt {
+    color: color-mix(in srgb, var(--sbw-theme-accent) 88%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-mini-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 16%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 42%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-mini-card > span {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-mini-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-social__links a {
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-community-detail-social__links a span {
+    color: var(--sbw-theme-accent)
+}
+@media (hover: hover) and (pointer: fine) {
+    html[data-sbw-theme="dark"] .sbw-communities-card:not([aria-disabled="true"]):hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 34%, transparent)
+    }
+    html[data-sbw-theme="dark"] .sbw-communities-category-card:not(:disabled):not([aria-disabled="true"]):hover,
+html[data-sbw-theme="dark"] .sbw-communities-filters button:not(:disabled):hover,
+html[data-sbw-theme="dark"] .sbw-communities-hero-card a:hover,
+html[data-sbw-theme="dark"] .sbw-communities-card__actions a:hover,
+html[data-sbw-theme="dark"] .sbw-communities-cta a:hover {
+        border-color: var(--sbw-theme-border)
+    }
+    html[data-sbw-theme="dark"] .sbw-community-detail-back:hover {
+        color: var(--sbw-theme-text);
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 42%, transparent);
+        background: color-mix(in srgb, var(--sbw-theme-action) 9%, transparent)
+    }
+    html[data-sbw-theme="dark"] .sbw-community-detail-actions a:hover,
+html[data-sbw-theme="dark"] .sbw-community-detail-social__links a:hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 72%, transparent)
+    }
+}

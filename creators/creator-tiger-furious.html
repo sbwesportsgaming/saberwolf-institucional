@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-sbw-theme-page="creators-creator-tiger-furious">
 <head>
+  <script src="../js/core/sbw-theme.js?v=20261020-theme-1" data-sbw-theme-site="esports"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
@@ -33,7 +34,9 @@
   <meta property="og:image:alt" content="Retrato de TigerFurious" />
 
   <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/themes/dark/creators.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
 
   <style>
     body.sbw-creator-detail-body {
@@ -210,13 +213,49 @@
   <script defer src="../js/core/sbw-routes.js"></script>
   <script defer src="../js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
   <script defer src="../js/core/sbw-site-compliance.js"></script>
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
   <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
+  <style data-sbw-theme-inline>
+/* SBW dark color adapter: creators/creator-tiger-furious.html inline styles. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-tiger-copy p,
+html[data-sbw-theme="dark"] .sbw-tiger-note {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-card {
+    color: var(--sbw-theme-text);
+    border: 1px solid var(--sbw-theme-border);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-card:hover {
+    border-color: var(--sbw-theme-border);
+    background: color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-card__mark {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-card__cta {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-tiger-player,
+html[data-sbw-theme="dark"] .sbw-tiger-chat {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-creator-detail-body a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-creator-detail-body button:focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+  </style>
+  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261020-theme-1" />
 </head>
 
 <body

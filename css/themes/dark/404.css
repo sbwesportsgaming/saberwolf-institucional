@@ -1,0 +1,42 @@
+/* SBW dark color adapter: css/404.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .error-main {
+    background: radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--sbw-theme-action) 10%, transparent),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--sbw-theme-action) 6%, transparent),
+      transparent 30rem
+    ),
+    linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep), var(--sbw-theme-deep))
+}
+html[data-sbw-theme="dark"] .error-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent);
+    background: radial-gradient(
+      circle at center top,
+      color-mix(in srgb, var(--sbw-theme-action) 16%, transparent),
+      transparent 24rem
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent),
+      color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent)
+    )
+}
+html[data-sbw-theme="dark"] .error-label {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent)
+}
+html[data-sbw-theme="dark"] .error-card h1,
+html[data-sbw-theme="dark"] .error-card h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .error-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .error-actions .btn:focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}

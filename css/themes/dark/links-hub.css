@@ -1,0 +1,166 @@
+/* SBW dark color adapter: css/links-hub.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] body.sbw-hub {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-page)
+}
+html[data-sbw-theme="dark"] .sbw-hub :focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .hub-skip {
+    color: var(--sbw-theme-text) !important;
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .hub-art {
+    background: radial-gradient(ellipse at 6% 8%, rgb(var(--hub-rgb) / 24%), transparent 49%),
+    radial-gradient(ellipse at 96% 74%, color-mix(in srgb, var(--sbw-theme-action) 25%, transparent), transparent 48%),
+    linear-gradient(145deg, var(--sbw-theme-deep), var(--sbw-theme-page) 55%, var(--sbw-theme-deep))
+}
+html[data-sbw-theme="dark"] .hub-art::before {
+    background: linear-gradient(128deg, transparent 28%, rgb(var(--hub-rgb) / 11%) 28.1%, transparent 28.3%),
+    linear-gradient(128deg, transparent 75%, rgb(var(--hub-rgb) / 19%) 75.1%, transparent 75.3%),
+    repeating-linear-gradient(0deg, transparent 0 5px, color-mix(in srgb, var(--sbw-theme-panel) 1.2%, transparent) 5px 6px)
+}
+html[data-sbw-theme="dark"] .hub-topbar__label {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-topbar__label::before {
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .hub-share {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4%, transparent)
+}
+html[data-sbw-theme="dark"] .hub-eyebrow {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .hub-description {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-socials a:hover {
+    color: var(--sbw-theme-accent);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .hub-group__title {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-card {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .hub-card:hover {
+    border-color: var(--sbw-theme-border);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 97%, transparent)
+}
+html[data-sbw-theme="dark"] .hub-card__icon {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .hub-card__copy small {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-card__arrow {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-card--featured {
+    color: var(--sbw-theme-text);
+    border-color: var(--sbw-theme-border);
+    background: linear-gradient(110deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .hub-card--featured:hover {
+    background: var(--sbw-theme-action);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .hub-card--featured .hub-card__icon {
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 8%, transparent)
+}
+html[data-sbw-theme="dark"] .hub-card--featured .hub-card__copy small,
+html[data-sbw-theme="dark"] .hub-card--featured .hub-card__arrow {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .hub-card--discord .hub-card__icon {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 13%, transparent)
+}
+html[data-sbw-theme="dark"] .hub-copy {
+    border: 1px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .hub-copy input {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-page)
+}
+html[data-sbw-theme="dark"] .hub-share-status {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-footer {
+    border-top: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-footer__brand {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .hub-footer__legal a {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hub-footer__legal a:hover,
+html[data-sbw-theme="dark"] .hub-footer__brand:hover {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-art {
+    background: radial-gradient(ellipse at 78% 0%, var(--sbw-theme-action), transparent 58%), radial-gradient(ellipse at 2% 78%, var(--sbw-theme-deep), transparent 50%), var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-art::before {
+    background: linear-gradient(140deg, transparent 32%, color-mix(in srgb, var(--sbw-theme-panel) 9%, transparent) 32.1%, transparent 32.3%), repeating-linear-gradient(140deg, transparent 0 140px, color-mix(in srgb, var(--sbw-theme-action) 3%, transparent) 140px 142px)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-card:hover {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-card--featured {
+    color: var(--sbw-theme-text);
+    border-color: var(--sbw-theme-border);
+    background: linear-gradient(120deg, var(--sbw-theme-panel), var(--sbw-theme-soft) 57%, var(--sbw-theme-panel))
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-card--featured:hover {
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-card--featured .hub-card__icon {
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 9%, transparent)
+}
+html[data-sbw-theme="dark"] .hub--championship .hub-card--featured .hub-card__copy small,
+html[data-sbw-theme="dark"] .hub--championship .hub-card--featured .hub-card__arrow {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.hub--project {
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] .hub--project .hub-art {
+    background: radial-gradient(ellipse at 5% 5%, var(--sbw-theme-panel), transparent 50%), radial-gradient(ellipse at 100% 80%, var(--sbw-theme-soft), transparent 56%), var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .hub--project .hub-art::before {
+    background: repeating-linear-gradient(135deg, transparent 0 120px, color-mix(in srgb, var(--sbw-theme-action) 5%, transparent) 120px 121px)
+}
+html[data-sbw-theme="dark"] .hub--project .hub-share {
+    background: color-mix(in srgb, var(--sbw-theme-panel) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .hub--project .hub-card:hover {
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .hub-card__logo {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .hub-card--concept .hub-card__logo {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .hub-card__badge {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-muted);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .hub-brand-number {
+    color: var(--sbw-theme-muted)
+}

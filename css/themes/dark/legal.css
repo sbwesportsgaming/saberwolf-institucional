@@ -1,0 +1,80 @@
+/* SBW dark color adapter: css/legal.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-legal-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(
+      circle at 20% 0%,
+      color-mix(in srgb, var(--sbw-theme-action) 12%, transparent),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 86% 14%,
+      color-mix(in srgb, var(--sbw-theme-action) 10%, transparent),
+      transparent 32rem
+    ),
+    var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-legal-hero {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent),
+      color-mix(in srgb, var(--sbw-theme-deep) 94%, transparent)
+    ),
+    color-mix(in srgb, var(--sbw-theme-panel) 4%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-hero::after {
+    color: color-mix(in srgb, var(--sbw-theme-accent) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-kicker {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-hero p {
+    color: color-mix(in srgb, var(--sbw-theme-text) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-nav,
+html[data-sbw-theme="dark"] .sbw-legal-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-nav a,
+html[data-sbw-theme="dark"] .sbw-legal-nav button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 10%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 82%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-nav a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-legal-nav button:focus-visible {
+    color: var(--sbw-theme-text);
+    border-color: color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-nav a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-legal-nav button:focus-visible,
+html[data-sbw-theme="dark"] .sbw-legal-card a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-legal-card button:focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-legal-card h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-legal-card p,
+html[data-sbw-theme="dark"] .sbw-legal-card li {
+    color: color-mix(in srgb, var(--sbw-theme-text) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-card :where(p, li) a:not(.btn) {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-legal-note,
+html[data-sbw-theme="dark"] .sbw-legal-card .sbw-legal-note {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-warning) 24%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-warning) 86%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-warning-soft) 6%, transparent)
+}
+@media (hover: hover) and (pointer: fine) {
+    html[data-sbw-theme="dark"] .sbw-legal-nav a:hover,
+html[data-sbw-theme="dark"] .sbw-legal-nav button:not(:disabled):hover {
+        color: var(--sbw-theme-text);
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+        background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
+    }
+}

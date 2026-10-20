@@ -1,0 +1,176 @@
+/* SBW dark color adapter: css/sobre.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] body.sbw-about-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 58% -12%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 34rem),
+    radial-gradient(circle at 9% 6%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 26rem),
+    linear-gradient(180deg, var(--sbw-theme-deep) 0%, var(--sbw-theme-deep) 44%, var(--sbw-theme-deep) 100%)
+}
+html[data-sbw-theme="dark"] .sbw-about-body::before {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-deep) 36%, transparent), transparent 30%, color-mix(in srgb, var(--sbw-theme-action) 4%, transparent)),
+    radial-gradient(circle at 80% 9%, color-mix(in srgb, var(--sbw-theme-action) 13%, transparent), transparent 24rem)
+}
+html[data-sbw-theme="dark"] .sbw-about-body::after {
+    background-image: linear-gradient(color-mix(in srgb, var(--sbw-theme-soft) 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-soft) 2.6%, transparent) 1px, transparent 1px)
+}
+html[data-sbw-theme="dark"] .sbw-about-hero::before {
+    background: radial-gradient(circle at 45% 42%, color-mix(in srgb, var(--sbw-theme-action) 22%, transparent), transparent 19rem),
+    linear-gradient(135deg, transparent, color-mix(in srgb, var(--sbw-theme-action) 12%, transparent), transparent 64%)
+}
+html[data-sbw-theme="dark"] .sbw-about-kicker {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 38%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-hero h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-hero p {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-hero__panel {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 68%, transparent)),
+    radial-gradient(circle at 78% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 18rem)
+}
+html[data-sbw-theme="dark"] .sbw-about-pillar-row {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 13%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-pillar-row span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-about-pillar-row strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-text-card,
+html[data-sbw-theme="dark"] .sbw-about-feature-card,
+html[data-sbw-theme="dark"] .sbw-about-panel,
+html[data-sbw-theme="dark"] .sbw-about-cta {
+    border: 1px solid var(--sbw-theme-border);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)),
+    color-mix(in srgb, var(--sbw-theme-deep) 84%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-text-card--large {
+    background: radial-gradient(circle at 92% 0%, color-mix(in srgb, var(--sbw-theme-action) 14%, transparent), transparent 18rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 76%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-about-text-card::before,
+html[data-sbw-theme="dark"] .sbw-about-feature-card::before,
+html[data-sbw-theme="dark"] .sbw-about-panel::before,
+html[data-sbw-theme="dark"] .sbw-about-cta::before {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 26%, transparent 74%, color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)),
+    radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 28rem)
+}
+html[data-sbw-theme="dark"] .sbw-about-text-card h2,
+html[data-sbw-theme="dark"] .sbw-about-section-heading h2,
+html[data-sbw-theme="dark"] .sbw-about-feature-card h2,
+html[data-sbw-theme="dark"] .sbw-about-cta h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-text-card p,
+html[data-sbw-theme="dark"] .sbw-about-panel p,
+html[data-sbw-theme="dark"] .sbw-about-feature-card p,
+html[data-sbw-theme="dark"] .sbw-about-cta p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-about-section-heading--split p {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 80%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-quote-box {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 44%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-quote-box strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-quote-box span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 17%, transparent);
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 64%),
+    color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card__icon {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    color: var(--sbw-theme-accent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card__icon--gold {
+    color: var(--sbw-theme-warning);
+    border-color: color-mix(in srgb, var(--sbw-theme-warning) 20%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-warning-soft) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card__icon--purple {
+    color: var(--sbw-theme-purple);
+    border-color: color-mix(in srgb, var(--sbw-theme-purple) 20%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-purple-soft) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card__icon--green {
+    color: var(--sbw-theme-success);
+    border-color: color-mix(in srgb, var(--sbw-theme-success) 20%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-success-soft) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-about-module-card small {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-about-panel-note {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 34%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-muted) 84%, transparent) !important
+}
+html[data-sbw-theme="dark"] .sbw-about-feature-card--organizers {
+    background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 18rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 76%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-about-future {
+    background: radial-gradient(circle at 92% 20%, color-mix(in srgb, var(--sbw-theme-action) 14%, transparent), transparent 22rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 74%, transparent))
+}
+html[data-sbw-theme="dark"] .sbw-about-future-list span {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 16%, transparent);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 34%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-cta {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-deep) 92%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 58%, transparent)),
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--sbw-theme-action) 20%, transparent), transparent 20rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 80%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 76%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-button--primary {
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action) 62%, var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-about-button--ghost {
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-about-button:focus-visible,
+html[data-sbw-theme="dark"] .sbw-about-module-card:focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+@media (hover: hover) and (pointer: fine) {
+    html[data-sbw-theme="dark"] .sbw-about-module-card:hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 42%, transparent);
+        background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 68%),
+      color-mix(in srgb, var(--sbw-theme-deep) 88%, transparent)
+    }
+    html[data-sbw-theme="dark"] .sbw-about-button:hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 48%, transparent);
+        background: color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent)
+    }
+    html[data-sbw-theme="dark"] .sbw-about-button--primary:hover {
+        color: var(--sbw-theme-text);
+        background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action) 54%, var(--sbw-theme-action))
+    }
+}

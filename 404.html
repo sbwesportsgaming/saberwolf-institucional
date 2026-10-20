@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-sbw-theme-page="404">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -86,8 +86,11 @@
     href="manifest.webmanifest?v=20261008-project-1"
   />
 
+  <script src="js/core/sbw-theme.js?v=20261020-theme-1" data-sbw-theme-site="esports"></script>
   <link rel="stylesheet" href="css/404.css" />
+  <link rel="stylesheet" href="css/themes/dark/404.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="css/core/sbw-site-compliance.css" />
+  <link rel="stylesheet" href="css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
 
   <style>
     .sbw-error-body {
@@ -232,13 +235,49 @@
     src="js/pwa/sbw-pwa.js?v=20261008-project-1"
   ></script>
   <script defer src="js/core/sbw-site-compliance.js"></script>
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
   <link rel="stylesheet" href="./css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <link rel="stylesheet" href="css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="./js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
+  <style data-sbw-theme-inline>
+/* SBW dark color adapter: 404.html inline styles. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-error-body {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-error-body .error-card h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-error-body .sbw-error-button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 32%, transparent);
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-error-body .sbw-error-button:hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-error-body .sbw-error-button--secondary {
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-action) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-error-body .sbw-error-button--secondary:hover {
+    background: color-mix(in srgb, var(--sbw-theme-action) 14%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-error-shortcuts a {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-error-shortcuts a:hover {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-error-body :where(a, button):focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}
+  </style>
+  <link rel="stylesheet" href="css/core/sbw-theme.css?v=20261020-theme-1" />
 </head>
 
 <body

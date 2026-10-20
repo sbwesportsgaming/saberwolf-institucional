@@ -1,0 +1,346 @@
+/* SBW dark color adapter: css/style.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] body {
+    background: linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep), var(--sbw-theme-deep));
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body > header {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--sbw-theme-border) 6%, transparent)
+}
+html[data-sbw-theme="dark"] body > header h1 {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body > header nav a {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body > header nav a::after {
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .menu-toggle {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .hero h1,
+html[data-sbw-theme="dark"] .hero h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .hero p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hero-content p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .hero-tag {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .btn {
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action));
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .btn-secondary {
+    color: var(--sbw-theme-accent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 45%, transparent)
+}
+html[data-sbw-theme="dark"] .card {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 5%, transparent)
+}
+html[data-sbw-theme="dark"] .card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .creator-card {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--sbw-theme-deep) 95%, transparent),
+      color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 15%, transparent)
+}
+html[data-sbw-theme="dark"] .creator-avatar,
+html[data-sbw-theme="dark"] .hero img.creator-avatar {
+    border: 4px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .creator-mini-avatar {
+    border: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .creator-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .creator-card p {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .creator-tags span {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .creator-socials a {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .creator-socials-profile a {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .profile-btn {
+    background: color-mix(in srgb, var(--sbw-theme-action) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 35%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .game-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .game-card::before {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--sbw-theme-deep) 2%, transparent),
+      color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+    )
+}
+html[data-sbw-theme="dark"] .game-card-content span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .game-card-content p {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .media-channel-card {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 95%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent)
+}
+html[data-sbw-theme="dark"] .media-channel-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .twitch-player,
+html[data-sbw-theme="dark"] .twitch-chat,
+html[data-sbw-theme="dark"] .youtube-player,
+html[data-sbw-theme="dark"] .youtube-chat {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 95%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent)
+}
+html[data-sbw-theme="dark"] .home-feature-card {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 25%, transparent)
+}
+html[data-sbw-theme="dark"] .home-feature-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .fg-theme {
+    background: radial-gradient(circle at top right, color-mix(in srgb, var(--sbw-theme-purple-soft) 18%, transparent), transparent 35%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--sbw-theme-purple-soft) 16%, transparent), transparent 35%),
+    linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep), var(--sbw-theme-deep))
+}
+html[data-sbw-theme="dark"] .fg-theme > header h1 {
+    color: var(--sbw-theme-purple)
+}
+html[data-sbw-theme="dark"] .fg-theme .creator-avatar {
+    border-color: var(--sbw-theme-purple)
+}
+html[data-sbw-theme="dark"] .fg-theme .btn {
+    background: linear-gradient(135deg, var(--sbw-theme-purple-soft), var(--sbw-theme-purple-soft));
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .fg-theme .creator-card {
+    border-color: color-mix(in srgb, var(--sbw-theme-purple) 28%, transparent)
+}
+html[data-sbw-theme="dark"] .fg-theme .creator-card h3 i {
+    color: var(--sbw-theme-purple)
+}
+html[data-sbw-theme="dark"] .fg-theme > header nav a::after {
+    background: var(--sbw-theme-purple-soft)
+}
+html[data-sbw-theme="dark"] body > footer {
+    background: var(--sbw-theme-deep);
+    border-top: 1px solid color-mix(in srgb, var(--sbw-theme-border) 6%, transparent);
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .footer-content h2 {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .footer-links a {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .footer-copy {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-main {
+    background: radial-gradient(circle at top left, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 34rem),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--sbw-theme-action) 6%, transparent), transparent 30rem),
+    linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep), var(--sbw-theme-deep))
+}
+html[data-sbw-theme="dark"] .home-label {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-hero h1,
+html[data-sbw-theme="dark"] .home-hero h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-hero-subtitle {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-identity-card {
+    background: radial-gradient(circle at top, color-mix(in srgb, var(--sbw-theme-action) 20%, transparent), transparent 22rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent));
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent)
+}
+html[data-sbw-theme="dark"] .home-identity-card::before {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 10%, transparent)
+}
+html[data-sbw-theme="dark"] .identity-emblem {
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-identity-card > span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-identity-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-identity-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-section-heading h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-section-heading p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-pillar-card {
+    background: radial-gradient(circle at top right, color-mix(in srgb, var(--sbw-theme-action) 8%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 86%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 15%, transparent)
+}
+html[data-sbw-theme="dark"] .home-pillar-card i {
+    background: color-mix(in srgb, var(--sbw-theme-action) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-pillar-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-pillar-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-access-card {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent)
+}
+html[data-sbw-theme="dark"] .access-icon {
+    background: color-mix(in srgb, var(--sbw-theme-action) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-access-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-access-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-access-card > span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .home-statement-card {
+    background: radial-gradient(circle at top right, color-mix(in srgb, var(--sbw-theme-action) 12%, transparent), transparent 24rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--sbw-theme-deep) 94%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent));
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent)
+}
+html[data-sbw-theme="dark"] .home-statement-card h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-statement-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .statement-mark {
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent)
+}
+html[data-sbw-theme="dark"] .statement-mark strong {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .statement-mark span {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .home-final-cta {
+    background: radial-gradient(circle at center top, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 24rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent));
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent)
+}
+html[data-sbw-theme="dark"] .home-final-cta h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .home-final-cta p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body > header nav a.active,
+html[data-sbw-theme="dark"] body > header nav a[aria-current="page"] {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .fg-theme > header nav a.active,
+html[data-sbw-theme="dark"] .fg-theme > header nav a[aria-current="page"] {
+    color: var(--sbw-theme-purple)
+}
+html[data-sbw-theme="dark"] .fg-theme > header nav a.active::after,
+html[data-sbw-theme="dark"] .fg-theme > header nav a[aria-current="page"]::after {
+    background: var(--sbw-theme-purple-soft)
+}
+html[data-sbw-theme="dark"] .fg-theme :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline-color: var(--sbw-theme-purple)
+}
+@media (hover: hover) and (pointer: fine) {
+    html[data-sbw-theme="dark"] body > header nav a:hover {
+        color: var(--sbw-theme-accent)
+    }
+    html[data-sbw-theme="dark"] .card:hover {
+        border-color: var(--sbw-theme-border)
+    }
+    html[data-sbw-theme="dark"] .creator-card:hover,
+html[data-sbw-theme="dark"] .featured-creator:hover {
+        border-color: var(--sbw-theme-border)
+    }
+    html[data-sbw-theme="dark"] .creator-socials a:hover {
+        background: color-mix(in srgb, var(--sbw-theme-action) 22%, transparent);
+        border-color: var(--sbw-theme-border);
+        color: var(--sbw-theme-text)
+    }
+    html[data-sbw-theme="dark"] .creator-socials-profile a:hover {
+        background: color-mix(in srgb, var(--sbw-theme-action) 20%, transparent);
+        border-color: var(--sbw-theme-border);
+        color: var(--sbw-theme-text)
+    }
+    html[data-sbw-theme="dark"] .profile-btn:hover {
+        background: var(--sbw-theme-action);
+        color: var(--sbw-theme-text)
+    }
+    html[data-sbw-theme="dark"] .game-card:hover {
+        border-color: var(--sbw-theme-border)
+    }
+    html[data-sbw-theme="dark"] .fg-theme .creator-card:hover {
+        border-color: var(--sbw-theme-purple)
+    }
+    html[data-sbw-theme="dark"] .fg-theme > header nav a:hover,
+html[data-sbw-theme="dark"] .fg-theme .footer-links a:hover {
+        color: var(--sbw-theme-purple)
+    }
+    html[data-sbw-theme="dark"] .footer-links a:hover {
+        color: var(--sbw-theme-accent)
+    }
+    html[data-sbw-theme="dark"] .home-pillar-card:hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 35%, transparent)
+    }
+    html[data-sbw-theme="dark"] .home-access-card:hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 38%, transparent)
+    }
+}
+@media (max-width: 980px) {
+    html[data-sbw-theme="dark"] body > header nav {
+        background: color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent);
+        border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 25%, transparent)
+    }
+}

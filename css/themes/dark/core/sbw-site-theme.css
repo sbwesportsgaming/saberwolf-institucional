@@ -1,0 +1,362 @@
+/* SBW dark color adapter: css/core/sbw-site-theme.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-site-skip-link {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-site-header {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border-bottom: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-site-brand {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-site-brand strong {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-site-nav a {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-site-nav a:hover {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-site-nav .sbw-site-nav__championship {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-site-nav__championship:hover {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-site-header :where(a, button):focus-visible,
+html[data-sbw-theme="dark"] body.sbw-esports-page .sbw-site-header :where(a, button):focus-visible {
+    outline-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-site-menu-toggle {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep)
+}
+@media (max-width: 1199px) {
+    html[data-sbw-theme="dark"] .sbw-site-header.is-menu-ready .sbw-site-nav {
+        border-bottom: 1px solid var(--sbw-theme-border);
+        background: var(--sbw-theme-deep)
+    }
+    html[data-sbw-theme="dark"] .sbw-site-header.is-menu-ready .sbw-site-nav a {
+        background: var(--sbw-theme-deep)
+    }
+}
+html[data-sbw-theme="dark"] {
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light {
+    color-scheme: dark;
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-site-nav a.is-active {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page [class$="-skip-link"] {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-esports-page :where(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page:not(.sbw-home-page) > main {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(h1, h2, h3, h4) {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(p, li, small, figcaption) {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(input, select, textarea) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border: 1px solid var(--sbw-theme-border);
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light:not(.sbw-home-page) main :is(input, textarea)::placeholder {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-text-card, .sbw-about-panel, .sbw-about-module-card,
+  .sbw-about-quote-box, .sbw-creators-official, .sbw-creators-ecosystem,
+  .sbw-creators-cta, .sbw-creators-pillars article, .sbw-creator-card,
+  .sbw-dlucca-card, .sbw-kari-card, .sbw-tiger-card,
+  .sbw-communities-search, .sbw-communities-quick, .sbw-communities-all,
+  .sbw-communities-card, .sbw-communities-category-card, .sbw-communities-cta,
+  .sbw-community-detail-panel, .sbw-community-detail-cards, .sbw-community-detail-mini-card,
+  .sbw-community-detail-social, .sbw-news-featured, .sbw-news-section,
+  .sbw-news-side-card, .sbw-news-card, .sbw-article,
+  .sbw-store-feature, .sbw-store-section, .sbw-store-plan-card,
+  .sbw-store-side-card, .sbw-store-cta, .sbw-store-empty,
+  .sbw-legal-card, .sbw-legal-nav, .sbw-links-profile, .sbw-links-noscript,
+  .sbw-link-card, .sbw-links-related, .sbw-empty-area-card, .error-card,
+  .sbw-page-state
+) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-hero, .sbw-creators-hero, .sbw-featured-creator,
+  .sbw-communities-hero, .sbw-community-detail-hero,
+  .sbw-news-hero, .sbw-store-hero, .sbw-legal-hero
+) {
+    color: var(--sbw-theme-text);
+    background: linear-gradient(125deg, var(--sbw-theme-deep), var(--sbw-theme-deep));
+    border: 1px solid var(--sbw-theme-border);
+    border-bottom: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-hero__panel, .sbw-communities-hero-card,
+  .sbw-news-hero__panel, .sbw-community-detail-hero__card
+) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main .sbw-about-pillar-row span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main .sbw-featured-creator__media {
+    border: 2px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button, .sbw-creators-button, .sbw-community-detail-actions a,
+  .sbw-communities-hero-card a, .sbw-communities-cta a,
+  .sbw-communities-filters button, .sbw-community-detail-back,
+  .sbw-community-detail-social__links a, .sbw-news-button, .sbw-store-button,
+  .sbw-error-button, .sbw-legal-nav button, .sbw-cookie-button,
+  .sbw-page-state__action, .sbw-page-state__button
+) {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button--primary, .sbw-creators-button--primary,
+  .sbw-store-button--primary, .sbw-news-button:not(.sbw-news-button--ghost),
+  .sbw-error-button:not(.sbw-error-button--secondary),
+  .sbw-communities-hero-card a, .sbw-communities-cta a,
+  .sbw-community-detail-actions a:not(.sbw-community-detail-button--ghost)
+) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-action);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-button, .sbw-creators-button, .sbw-news-button,
+  .sbw-store-button, .sbw-error-button
+):hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-kicker, .sbw-creators-kicker, .sbw-communities-kicker,
+  .sbw-community-detail-kicker, .sbw-news-eyebrow, .sbw-store-eyebrow,
+  .sbw-legal-kicker, .sbw-empty-area-kicker, .sbw-links-eyebrow
+) {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-featured-creator__meta span, .sbw-creator-card__tags span,
+  .sbw-creator-card__badge, .sbw-community-detail-tags span,
+  .sbw-communities-badges span, .sbw-news-chip, .sbw-store-tag,
+  .sbw-store-plan-card__label, .sbw-store-plan-card__status,
+  .sbw-empty-area-status, .sbw-links-status, .error-label
+) {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-page);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-news-categories button, .sbw-store-categories button,
+  .sbw-featured-creator__nav button, .sbw-communities-quick a
+) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-news-categories button.is-active, .sbw-store-categories button.is-active
+) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-action);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-about-module-card__icon, .sbw-dlucca-card__mark,
+  .sbw-kari-card__mark, .sbw-tiger-card__mark,
+  .sbw-store-plan-card__icon, .sbw-store-side-card__icon,
+  .sbw-news-empty__icon, .sbw-communities-avatar
+) {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-creator-card__avatar {
+    border-bottom: 3px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-creator-card__footer {
+    border-top: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light main :is(
+  .sbw-creator-card__footer > span, .sbw-dlucca-card__cta,
+  .sbw-kari-card__cta, .sbw-tiger-card__cta,
+  .sbw-communities-card__actions span, .sbw-empty-area-return,
+  .sbw-error-shortcuts a, .sbw-legal-card a
+) {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-communities-card__banner {
+    background: var(--sbw-theme-panel) var(--community-image, none) center / contain no-repeat;
+    border-bottom: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-communities-card__content {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-communities-filters {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light :is(
+  .sbw-communities-filters label, .sbw-communities-filters label span,
+  .sbw-communities-search__field span, .sbw-communities-card__meta,
+  .sbw-communities-heading small
+) {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-communities-empty {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-communities-empty a {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-community-detail-social__links a span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-community-detail-list div {
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-community-detail-list dt {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-community-detail-list dd {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-links-home {
+    border: 1px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-about-quote-box span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-community-detail-logo {
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-news-search {
+    color: var(--sbw-theme-accent);
+    border-color: var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-news-load-more {
+    color: var(--sbw-theme-accent);
+    border-color: var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light :is(.sbw-store-feature__media, .sbw-store-feature__mockup) {
+    background: var(--sbw-theme-panel);
+    color: var(--sbw-theme-accent);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-store-feature__mockup span {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-legal-nav :is(a, button) {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-legal-nav [aria-current="page"] {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-legal-note {
+    color: var(--sbw-theme-warning);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-warning)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-article-content blockquote {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border-left-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-links-profile {
+    border-top: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-links-portrait {
+    border: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light :is(.sbw-link-card, .sbw-links-related) {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-link-card--primary {
+    border-color: var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light :is(
+  .sbw-links-home, .sbw-links-handle, .sbw-link-card__arrow,
+  .sbw-links-related__arrow, .sbw-links-signature span
+) {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light :is(.sbw-link-card__mark, .sbw-links-related__icon) {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .error-card,
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-empty-area-card {
+    border-top: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-empty-area-logo {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-page-state__icon,
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-page-state__orb {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-page-state--error {
+    color: var(--sbw-theme-danger);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light > .sbw-site-footer {
+    color: var(--sbw-theme-muted);
+    background: var(--sbw-theme-deep);
+    border-top: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-site-footer__copy {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body.sbw-esports-page.sbw-site-light .sbw-site-footer__legal a {
+    color: var(--sbw-theme-muted)
+}

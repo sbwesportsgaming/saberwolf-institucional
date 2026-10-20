@@ -1,0 +1,13 @@
+{
+  "name": "sbw-theme-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build-only dark color adapters for the SBW static sites",
+  "scripts": {
+    "build": "node rebuild.cjs"
+  },
+  "dependencies": {
+    "postcss": "8.5.31",
+    "postcss-value-parser": "4.2.0"
+  }
+}

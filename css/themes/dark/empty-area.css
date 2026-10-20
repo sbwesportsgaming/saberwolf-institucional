@@ -1,0 +1,32 @@
+/* SBW dark color adapter: css/empty-area.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] body.sbw-empty-area-body {
+    color: var(--sbw-theme-text);
+    background: radial-gradient(circle at 72% 12%, color-mix(in srgb, var(--sbw-theme-action) 12%, transparent), transparent 30rem),
+    radial-gradient(circle at 18% 82%, color-mix(in srgb, var(--sbw-theme-action) 10%, transparent), transparent 32rem),
+    linear-gradient(145deg, var(--sbw-theme-deep), var(--sbw-theme-deep) 55%, var(--sbw-theme-deep))
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-card {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--sbw-theme-action) 13%, transparent), transparent 22rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 90%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-logo {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 34%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-kicker {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-card h1 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-status {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 20%, transparent);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-action) 7%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-empty-area-status::before {
+    background: var(--sbw-theme-action)
+}

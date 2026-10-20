@@ -1,7 +1,190 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-sbw-theme-page="offline">
 <head>
   <meta charset="UTF-8" />
+  <script data-sbw-theme-site="esports" data-sbw-theme-offline>/* SBW — preferência de aparência. Executar no head, antes dos estilos. */
+(function () {
+  "use strict";
+  if (window.SBWTheme) return;
+
+  var root = document.documentElement;
+  var script = document.currentScript;
+  var site = script && script.getAttribute("data-sbw-theme-site") || "project";
+  var storageKey = "sbw-theme-v1";
+  var allowed = ["light", "dark", "system"];
+  var preference = "system";
+  var media = typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  var control = null;
+  var fallback = null;
+  var sidebarObserver = null;
+  var scheduled = false;
+  var colors = {
+    project: { light: "#f3f4f6", dark: "#11151b" },
+    esports: { light: "#ffffff", dark: "#050d14" },
+    championship: { light: "#dde2e8", dark: "#081321" }
+  };
+  if (!Object.prototype.hasOwnProperty.call(colors, site)) site = "project";
+  root.setAttribute("data-sbw-theme-site", site);
+
+  function normalize(value) {
+    return allowed.indexOf(value) !== -1 ? value : "system";
+  }
+
+  try { preference = normalize(window.localStorage.getItem(storageKey)); }
+  catch (error) { /* A aparência também funciona com armazenamento bloqueado. */ }
+
+  function resolved() {
+    return preference === "system" ? (media && media.matches ? "dark" : "light") : preference;
+  }
+
+  function apply() {
+    var theme = resolved();
+    var previous = root.getAttribute("data-sbw-theme");
+    root.setAttribute("data-sbw-theme", theme);
+    root.setAttribute("data-sbw-theme-preference", preference);
+    root.style.colorScheme = theme;
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+      if (!meta.hasAttribute("media")) meta.content = colors[site][theme];
+    });
+    document.querySelectorAll("[data-sbw-theme-select]").forEach(function (select) {
+      select.value = preference;
+    });
+    if (previous !== theme || control) {
+      window.dispatchEvent(new CustomEvent("sbw:theme-change", {
+        detail: { preference: preference, theme: theme }
+      }));
+    }
+    return theme;
+  }
+
+  function setPreference(value) {
+    if (allowed.indexOf(value) === -1) return false;
+    preference = value;
+    try { window.localStorage.setItem(storageKey, value); }
+    catch (error) { /* Mantém a escolha durante esta visita. */ }
+    apply();
+    return true;
+  }
+
+  function makeControl() {
+    if (control) return control;
+    var english = /^en(?:-|$)/i.test(root.lang || "");
+    var label = document.createElement("label");
+    label.className = "sbw-theme-control";
+    label.setAttribute("data-sbw-theme-control", "");
+    var icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.setAttribute("viewBox", "0 0 24 24");
+    icon.setAttribute("fill", "none");
+    icon.setAttribute("stroke", "currentColor");
+    icon.setAttribute("stroke-width", "1.7");
+    icon.setAttribute("aria-hidden", "true");
+    icon.setAttribute("focusable", "false");
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M20.5 13.2A8.8 8.8 0 0 1 10.8 3.5a8.8 8.8 0 1 0 9.7 9.7Z");
+    icon.appendChild(path);
+    var caption = document.createElement("span");
+    caption.className = "sbw-theme-control__caption";
+    caption.textContent = english ? "Theme" : "Tema";
+    var select = document.createElement("select");
+    select.setAttribute("data-sbw-theme-select", "");
+    select.setAttribute("aria-label", english ? "Website theme" : "Tema do site");
+    var names = english ? ["Light", "Dark", "Automatic"] : ["Claro", "Escuro", "Automático"];
+    allowed.forEach(function (value, index) {
+      var option = document.createElement("option");
+      option.value = value;
+      option.textContent = names[index];
+      select.appendChild(option);
+    });
+    select.value = preference;
+    select.addEventListener("change", function () { setPreference(select.value); });
+    label.appendChild(icon);
+    label.appendChild(caption);
+    label.appendChild(select);
+    control = label;
+    return label;
+  }
+
+  function mountControl() {
+    if (!document.body) return;
+    var sidebar = document.querySelector("#sbwChampionshipSidebar, #sbwSidebar");
+    var destination = document.querySelector("[data-sbw-theme-mount]");
+    if (!destination && sidebar) {
+      destination = document.createElement("div");
+      destination.className = "sbw-theme-mount sbw-theme-mount--sidebar";
+      destination.setAttribute("data-sbw-theme-mount", "");
+      var institutional = sidebar.querySelector(".sbw-sidebar__nav--institutional");
+      sidebar.insertBefore(destination, institutional || null);
+    }
+    if (!destination) {
+      var nav = document.querySelector(".site-nav, #sbwSiteNavigation, .sbw-error-nav");
+      var toolbar = document.querySelector(".hub-topbar, .dlucca-header-inner, .app-header__inner, .sbw-app-header");
+      var host = nav || toolbar;
+      if (host) {
+        destination = document.createElement("div");
+        destination.className = "sbw-theme-mount";
+        destination.setAttribute("data-sbw-theme-mount", "");
+        if (host.id === "sbwSiteNavigation") destination.classList.add("sbw-theme-mount--dark-header");
+        if (host.classList.contains("hub-topbar")) {
+          host.insertBefore(destination, host.querySelector(".hub-share"));
+        } else host.appendChild(destination);
+      }
+    }
+    if (!destination) {
+      if (!fallback || !fallback.isConnected) {
+        fallback = document.createElement("div");
+        fallback.className = "sbw-theme-mount sbw-theme-mount--floating";
+        fallback.setAttribute("data-sbw-theme-fallback", "");
+        document.body.appendChild(fallback);
+      }
+      destination = fallback;
+    }
+    var node = makeControl();
+    if (node.parentElement !== destination) destination.appendChild(node);
+    if (fallback && fallback !== destination) { fallback.remove(); fallback = null; }
+    apply();
+  }
+
+  function scheduleMount() {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(function () { scheduled = false; mountControl(); });
+  }
+
+  function init() {
+    mountControl();
+    var sidebarMount = document.getElementById("sbwSidebarMount");
+    if (sidebarMount && typeof MutationObserver === "function") {
+      sidebarObserver = new MutationObserver(function () {
+        if (!control || !control.isConnected || (fallback && sidebarMount.querySelector("aside"))) scheduleMount();
+      });
+      sidebarObserver.observe(sidebarMount, { childList: true, subtree: true });
+    }
+  }
+
+  if (media) {
+    var onSystemChange = function () { if (preference === "system") apply(); };
+    if (typeof media.addEventListener === "function") media.addEventListener("change", onSystemChange);
+    else if (typeof media.addListener === "function") media.addListener(onSystemChange);
+  }
+  window.addEventListener("storage", function (event) {
+    if (event.key === storageKey || event.key === null) {
+      preference = normalize(event.key === null ? null : event.newValue);
+      apply();
+    }
+  });
+  window.addEventListener("pageshow", apply);
+  window.SBWTheme = {
+    getPreference: function () { return preference; },
+    getResolvedTheme: resolved,
+    setPreference: setPreference,
+    refresh: mountControl
+  };
+  apply();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>SaberWolf Esports | Offline</title>
@@ -105,6 +288,281 @@
       .sbw-offline-actions { flex-direction: column; }
       .sbw-offline-button { width: 100%; }
     }
+  </style>
+  <style data-sbw-theme-inline>
+/* SBW dark color adapter: offline.html inline styles. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] {
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] body {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-page)
+}
+html[data-sbw-theme="dark"] main {
+    border: 1px solid var(--sbw-theme-border);
+    border-top: 3px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-offline-logo {
+    border: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-offline-label {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-offline-button {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .sbw-offline-button--secondary {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-offline-button:focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-offline-version {
+    color: var(--sbw-theme-accent)
+}
+  </style>
+  <style data-sbw-theme-common>
+/* SBW — paletas aprovadas e controle de aparência. */
+:root {
+  --sbw-theme-page: #f3f4f6;
+  --sbw-theme-panel: #ffffff;
+  --sbw-theme-raised: #eef2f5;
+  --sbw-theme-soft: #e7edf2;
+  --sbw-theme-field: #ffffff;
+  --sbw-theme-deep: #10243a;
+  --sbw-theme-text: #182534;
+  --sbw-theme-muted: #4d6074;
+  --sbw-theme-border: #b9c6d3;
+  --sbw-theme-accent: #096d96;
+  --sbw-theme-action: #096eaa;
+  --sbw-theme-action-hover: #075781;
+  --sbw-theme-focus: #096eaa;
+  --sbw-theme-danger: #a52e45;
+  --sbw-theme-danger-soft: #ffedf0;
+  --sbw-theme-success: #176647;
+  --sbw-theme-success-soft: #e8f6ee;
+  --sbw-theme-warning: #825711;
+  --sbw-theme-warning-soft: #fff5db;
+  --sbw-theme-purple: #6945a7;
+  --sbw-theme-purple-soft: #f1ecfa;
+  color-scheme: light;
+}
+:root[data-sbw-theme="dark"] {
+  --sbw-theme-page: #11151b;
+  --sbw-theme-panel: #1b232d;
+  --sbw-theme-raised: #202b37;
+  --sbw-theme-soft: #19232e;
+  --sbw-theme-field: #141e28;
+  --sbw-theme-deep: #101820;
+  --sbw-theme-text: #eef3f7;
+  --sbw-theme-muted: #b0bfcd;
+  --sbw-theme-border: #3b5063;
+  --sbw-theme-accent: #38c9ed;
+  --sbw-theme-action: #096eaa;
+  --sbw-theme-action-hover: #0b5d8c;
+  --sbw-theme-focus: #54d5f2;
+  --sbw-theme-danger: #ff9eb0;
+  --sbw-theme-danger-soft: #442532;
+  --sbw-theme-success: #8be1b6;
+  --sbw-theme-success-soft: #183b32;
+  --sbw-theme-warning: #f1cd81;
+  --sbw-theme-warning-soft: #3a3021;
+  --sbw-theme-purple: #cfb6ff;
+  --sbw-theme-purple-soft: #302740;
+  color-scheme: dark;
+}
+:root[data-sbw-theme-site="esports"][data-sbw-theme="dark"] {
+  --sbw-theme-page: #050d14;
+  --sbw-theme-panel: #102331;
+  --sbw-theme-raised: #142d3c;
+  --sbw-theme-soft: #091722;
+  --sbw-theme-field: #0b1b26;
+  --sbw-theme-deep: #050d14;
+  --sbw-theme-border: #315267;
+  --sbw-theme-accent: #28d3ed;
+}
+:root[data-sbw-theme-site="championship"][data-sbw-theme="dark"] {
+  --sbw-theme-page: #081321;
+  --sbw-theme-panel: #14283b;
+  --sbw-theme-raised: #1a334a;
+  --sbw-theme-soft: #0d1d2e;
+  --sbw-theme-field: #0b1b2b;
+  --sbw-theme-deep: #0b1b2b;
+  --sbw-theme-border: #36536b;
+  --sbw-theme-accent: #38c8ef;
+}
+html[data-sbw-theme="dark"] body { color-scheme: dark !important; }
+html[data-sbw-theme="light"] body { color-scheme: light; }
+html[data-sbw-theme="dark"] input:-webkit-autofill {
+  -webkit-text-fill-color: var(--sbw-theme-text) !important;
+  caret-color: var(--sbw-theme-text);
+  box-shadow: 0 0 0 1000px var(--sbw-theme-field) inset !important;
+}
+.sbw-theme-mount {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.sbw-theme-control {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  min-height: 44px;
+  border: 1px solid var(--sbw-theme-border) !important;
+  border-radius: 10px;
+  background: var(--sbw-theme-panel) !important;
+  color: var(--sbw-theme-text) !important;
+  font: 600 12px/1.3 system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.sbw-theme-control > svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  color: inherit;
+}
+.sbw-theme-control .sbw-theme-control__caption { color: inherit !important; font: inherit !important; margin: 0; }
+.sbw-theme-control select[data-sbw-theme-select] {
+  display: block !important;
+  width: auto !important;
+  min-width: 94px;
+  max-width: 100%;
+  min-height: 42px;
+  margin: 0 !important;
+  padding: 7px 2px !important;
+  border: 0 !important;
+  border-radius: 4px;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  font: inherit !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+  appearance: auto !important;
+  cursor: pointer;
+}
+.sbw-theme-control select[data-sbw-theme-select] option { color: var(--sbw-theme-text); background: var(--sbw-theme-panel); }
+.sbw-theme-control:focus-within { outline: 3px solid var(--sbw-theme-focus); outline-offset: 3px; }
+.sbw-theme-control select[data-sbw-theme-select]:focus { outline: 0 !important; }
+.sbw-theme-mount--sidebar {
+  margin: 16px 14px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--sbw-theme-border);
+}
+.sbw-theme-mount--sidebar .sbw-theme-control { width: 100%; justify-content: space-between; }
+.sbw-theme-mount--floating {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  right: calc(14px + env(safe-area-inset-right, 0px));
+  z-index: 850;
+  filter: drop-shadow(0 3px 10px rgb(0 0 0 / 12%));
+}
+.sbw-theme-mount--dark-header {
+  --sbw-theme-panel: #102331;
+  --sbw-theme-text: #edf5fa;
+  --sbw-theme-border: #315267;
+  --sbw-theme-focus: #54d5f2;
+  color-scheme: dark;
+}
+.sbw-theme-mount--dark-header select { color-scheme: dark; }
+.hub-topbar { flex-wrap: wrap; gap: 10px; }
+.hub-topbar .sbw-theme-mount { margin-left: auto; }
+.hub-topbar .sbw-theme-control__caption { display: none; }
+.dlucca-header-inner { flex-wrap: wrap; gap: 12px; }
+.app-header__inner { flex-wrap: wrap; }
+.app-header__inner .sbw-theme-mount { margin-left: auto; }
+@media (min-width: 821px) and (max-width: 1200px) {
+  .site-nav { gap: 15px; font-size: .82rem; }
+  .header-inner { gap: 18px; }
+}
+@media (max-width: 820px) {
+  .site-nav { overflow-y: auto; }
+  .site-nav .sbw-theme-mount { width: 100%; padding-bottom: 12px; }
+}
+@media (max-width: 980px) {
+  #sbwSiteNavigation .sbw-theme-mount { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .sbw-theme-control__caption { display: none; }
+  .sbw-theme-mount--sidebar .sbw-theme-control__caption { display: inline; }
+  .sbw-theme-mount--floating { top: calc(10px + env(safe-area-inset-top, 0px)); right: 10px; }
+  .dlucca-header-label { flex: 1 1 auto; }
+}
+@media print {
+  .sbw-theme-mount { display: none !important; }
+  html[data-sbw-theme="dark"], html[data-sbw-theme="dark"] body {
+    --sbw-theme-page: #fff;
+    --sbw-theme-panel: #fff;
+    --sbw-theme-raised: #f3f3f3;
+    --sbw-theme-soft: #eee;
+    --sbw-theme-field: #fff;
+    --sbw-theme-deep: #eee;
+    --sbw-theme-text: #000;
+    --sbw-theme-muted: #333;
+    --sbw-theme-border: #888;
+    --sbw-theme-accent: #143e60;
+    color: #000 !important;
+    background: #fff !important;
+    color-scheme: light !important;
+  }
+}
+/* Áreas de marca preservam a cor das imagens oficiais. */
+html[data-sbw-theme="dark"][data-sbw-theme-site="project"] .brand {
+  background: #edf2f6;
+  border-radius: 4px;
+  box-shadow: 0 0 0 7px #edf2f6;
+}
+html[data-sbw-theme="dark"][data-sbw-theme-site="project"] .brand .brand-sub { color: #243446; }
+html[data-sbw-theme="dark"][data-sbw-theme-site="project"] :is(.text-link, .card-link) { color: var(--sbw-theme-text); }
+html[data-sbw-theme="dark"][data-sbw-theme-site="project"] :is(.text-link, .card-link) > span { color: inherit; }
+html[data-sbw-theme="dark"] :is(.brand-media--concept, .hub-brand-mark--concept, .hub-avatar--project, .dlucca-project-mark--project) { background: #fff !important; }
+html[data-sbw-theme="dark"] :is(.hub-card--concept, .hub-card--project) .hub-card__logo { background: #fff; }
+html[data-sbw-theme="dark"] .sbw-hub :is(.hub-card--featured, .hub-card--discord) .hub-card__copy small { color: #eef6ff; }
+html[data-sbw-theme="dark"] .sbw-sidebar__brand { background: var(--sbw-theme-deep); color: var(--sbw-theme-text); border: 1px solid var(--sbw-theme-border); }
+html[data-sbw-theme="dark"] .sbw-championship-logo { border-color: var(--sbw-theme-border) !important; }
+html[data-sbw-theme="dark"] #tournamentDetailRoot a:is(.detail-btn, .participant-empty-action, .overview-team-battle-round-preview__stream) { color: var(--sbw-theme-text); }
+/* Links oficiais também oferecem uma variante clara. */
+html[data-sbw-theme="light"] body.sbw-hub {
+  --hub-bg: #eef2f5;
+  --hub-text: #142639;
+  --hub-muted: #455b6d;
+  --hub-accent: #096d96;
+  --hub-card: #fff;
+  --hub-border: #b9c8d4;
+  background: var(--hub-bg);
+  color: var(--hub-text);
+}
+html[data-sbw-theme="light"] .sbw-hub .hub-art { background: linear-gradient(145deg, #f4f7f9, #e5edf3); }
+html[data-sbw-theme="light"] .sbw-hub .hub-art::before,
+html[data-sbw-theme="light"] .sbw-hub .hub-art::after { opacity: .1; }
+html[data-sbw-theme="light"] .sbw-hub .hub-card { color: #142639; background: #fff; border-color: #b9c8d4; }
+html[data-sbw-theme="light"] .sbw-hub :is(.hub-card--featured, .hub-card--discord) { color: #fff; background: #096eaa; border-color: #096eaa; }
+html[data-sbw-theme="light"] .sbw-hub :is(.hub-card--featured, .hub-card--discord) small { color: #eef6ff; }
+html[data-sbw-theme="light"] .sbw-hub :is(.hub-share, .hub-copy-button, .hub-copy-panel) { color: #142639; background: #fff; border-color: #b9c8d4; }
+/* A tela offline permanece legível nos dois modos. */
+html[data-sbw-theme="light"][data-sbw-theme-page="offline"] body { color: var(--sbw-theme-text); background: var(--sbw-theme-page); }
+html[data-sbw-theme="light"][data-sbw-theme-page="offline"] main { background: var(--sbw-theme-panel); border-color: var(--sbw-theme-border); }
+html[data-sbw-theme="light"][data-sbw-theme-page="offline"] h1 { color: var(--sbw-theme-text); }
+html[data-sbw-theme="light"][data-sbw-theme-page="offline"] p { color: var(--sbw-theme-muted); }
+html[data-sbw-theme="light"][data-sbw-theme-page="offline"] .sbw-offline-button--secondary { color: var(--sbw-theme-text); background: var(--sbw-theme-soft); border-color: var(--sbw-theme-border); }
+
   </style>
 </head>
 

@@ -1,0 +1,174 @@
+/* SBW dark color adapter: css/home/home-landing.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] {
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] body.sbw-home-page {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-home-page :where(a, button):focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-skip-link {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-header {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border-bottom: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-brand {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-home-brand strong {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-home-nav a {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-home-nav a:hover {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-home-nav .sbw-home-nav__championship {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-home-nav__championship:hover {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-home-header :where(a, button):focus-visible,
+html[data-sbw-theme="dark"] .sbw-home-hero :where(a, button):focus-visible {
+    outline-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-menu-toggle {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-deep);
+    border-bottom: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero__overlay {
+    background: linear-gradient(90deg, var(--sbw-theme-deep) 0%, color-mix(in srgb, var(--sbw-theme-deep) 90%, transparent) 28%, color-mix(in srgb, var(--sbw-theme-deep) 50%, transparent) 50%, color-mix(in srgb, var(--sbw-theme-deep) 6%, transparent) 76%)
+}
+html[data-sbw-theme="dark"] .sbw-kicker {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero .sbw-kicker {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-kicker > span {
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero h1 strong {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-btn--primary {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-action);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-btn--primary:hover {
+    background: var(--sbw-theme-action);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-btn--ghost {
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 55%, transparent);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-btn--ghost:hover {
+    background: var(--sbw-theme-deep);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-home-hero .sbw-pwa-status {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-section-heading h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-section-heading p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .sbw-org-section {
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel);
+    border: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member:hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member__photo {
+    background: linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep));
+    border-bottom: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member__tag {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member__content h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member__content p {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-feature-member__cta {
+    border-bottom: 2px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-ecosystem-section {
+    background: var(--sbw-theme-panel);
+    border-top: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-module-card {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-module-card:hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-module-card > span {
+    color: var(--sbw-theme-accent);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .sbw-module-card h3 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-module-card p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body.sbw-home-page > .sbw-site-footer {
+    color: var(--sbw-theme-muted);
+    background: var(--sbw-theme-deep);
+    border-top: 2px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] body.sbw-home-page .sbw-site-footer__copy {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] body.sbw-home-page .sbw-site-footer__legal a {
+    color: var(--sbw-theme-muted)
+}
+@media (max-width: 1199px) {
+    html[data-sbw-theme="dark"] .sbw-home-header.is-menu-ready .sbw-home-nav {
+        border-bottom: 1px solid var(--sbw-theme-border);
+        background: var(--sbw-theme-deep)
+    }
+    html[data-sbw-theme="dark"] .sbw-home-header.is-menu-ready .sbw-home-nav a {
+        background: var(--sbw-theme-deep)
+    }
+}
+@media (max-width: 850px) {
+    html[data-sbw-theme="dark"] .sbw-home-hero__overlay {
+        background: linear-gradient(90deg, color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent), color-mix(in srgb, var(--sbw-theme-deep) 82%, transparent) 44%, color-mix(in srgb, var(--sbw-theme-deep) 40%, transparent))
+    }
+}

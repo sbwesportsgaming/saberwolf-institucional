@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-sbw-theme-page="pages-sobre">
 <head>
+  <script src="../js/core/sbw-theme.js?v=20261020-theme-1" data-sbw-theme-site="esports"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
@@ -33,8 +34,11 @@
   <meta property="og:image:alt" content="SaberWolf Esports — -SBW-" />
 
   <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-page-state.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="../css/sobre.css" />
+  <link rel="stylesheet" href="../css/themes/dark/sobre.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
 
   <style>
     body.sbw-about-institutional-body {
@@ -138,13 +142,28 @@
   <script defer src="../js/core/sbw-page-state.js"></script>
   <script defer src="../js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
   <script defer src="../js/core/sbw-site-compliance.js"></script>
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
   <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
+  <style data-sbw-theme-inline>
+/* SBW dark color adapter: pages/sobre.html inline styles. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-about-institutional-body .sbw-about-button[aria-disabled="true"],
+html[data-sbw-theme="dark"] .sbw-about-institutional-body .sbw-about-button[aria-disabled="true"]:hover {
+    color: var(--sbw-theme-muted);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent);
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-about-institutional-body a:focus-visible,
+html[data-sbw-theme="dark"] .sbw-about-institutional-body button:focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+  </style>
+  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261020-theme-1" />
 </head>
 
 <body

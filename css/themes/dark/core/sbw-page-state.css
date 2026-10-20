@@ -1,0 +1,70 @@
+/* SBW dark color adapter: css/core/sbw-page-state.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] .sbw-page-state {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 18%, transparent);
+    background: radial-gradient(
+      circle at 0% 0%,
+      color-mix(in srgb, var(--sbw-theme-action) 12%, transparent),
+      transparent 26rem
+    ),
+    color-mix(in srgb, var(--sbw-theme-deep) 76%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 92%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-page-state strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-page-state p,
+html[data-sbw-theme="dark"] .sbw-page-state small {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 84%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-page-state__orb,
+html[data-sbw-theme="dark"] .sbw-page-state__icon {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 24%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-page-state__orb::before {
+    border: 3px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    border-top-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-skeleton-line {
+    background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--sbw-theme-panel) 6%, transparent),
+    color-mix(in srgb, var(--sbw-theme-action) 14%, transparent),
+    color-mix(in srgb, var(--sbw-theme-panel) 6%, transparent)
+  )
+}
+html[data-sbw-theme="dark"] .sbw-page-state--empty .sbw-page-state__icon {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-page-state--error {
+    border-color: color-mix(in srgb, var(--sbw-theme-danger) 28%, transparent);
+    background: radial-gradient(
+      circle at 0% 0%,
+      color-mix(in srgb, var(--sbw-theme-danger-soft) 12%, transparent),
+      transparent 26rem
+    ),
+    color-mix(in srgb, var(--sbw-theme-deep) 78%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-page-state--error .sbw-page-state__icon {
+    border-color: color-mix(in srgb, var(--sbw-theme-danger) 34%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-danger-soft) 8%, transparent);
+    color: var(--sbw-theme-danger)
+}
+html[data-sbw-theme="dark"] .sbw-page-state__action,
+html[data-sbw-theme="dark"] .sbw-page-state__button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-action) 10%, transparent);
+    color: var(--sbw-theme-text)
+}
+@media (hover: hover) {
+    html[data-sbw-theme="dark"] .sbw-page-state__action:hover,
+html[data-sbw-theme="dark"] .sbw-page-state__button:not(:disabled):hover {
+        border-color: color-mix(in srgb, var(--sbw-theme-border) 60%, transparent);
+        background-color: color-mix(in srgb, var(--sbw-theme-action) 18%, transparent)
+    }
+}
+html[data-sbw-theme="dark"] .sbw-page-state__action:focus-visible,
+html[data-sbw-theme="dark"] .sbw-page-state__button:focus-visible {
+    outline: 2px solid var(--sbw-theme-border)
+}

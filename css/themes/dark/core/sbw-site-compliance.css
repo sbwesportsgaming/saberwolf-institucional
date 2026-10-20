@@ -1,0 +1,106 @@
+/* SBW dark color adapter: css/core/sbw-site-compliance.css. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] :where(
+  .sbw-site-footer,
+  .sbw-cookie-banner,
+  .sbw-cookie-modal,
+  .sbw-pwa-update-notice
+) :where(a, button, input, [tabindex]):focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .sbw-site-footer {
+    color: color-mix(in srgb, var(--sbw-theme-text) 70%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-site-footer__copy {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 66%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-site-footer__legal a,
+html[data-sbw-theme="dark"] .sbw-site-footer__links a {
+    color: color-mix(in srgb, var(--sbw-theme-text) 58%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-site-footer__legal a:hover,
+html[data-sbw-theme="dark"] .sbw-site-footer__links a:hover {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-site-footer__version {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 44%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-banner {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 26%, transparent);
+    background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 34rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 94%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-banner__text strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-banner__text span,
+html[data-sbw-theme="dark"] .sbw-cookie-banner__text p {
+    color: color-mix(in srgb, var(--sbw-theme-text) 76%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-banner__text a {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-button {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 34%, transparent);
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-cookie-button--ghost {
+    color: color-mix(in srgb, var(--sbw-theme-text) 86%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 4.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__backdrop {
+    background: color-mix(in srgb, var(--sbw-theme-deep) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__panel {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 22%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-deep) 98%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__header {
+    border-bottom: 1px solid color-mix(in srgb, var(--sbw-theme-border) 12%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__eyebrow {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__header h2 {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-modal__close {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 14%, transparent);
+    color: var(--sbw-theme-text);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-option {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 12%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 90%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-option input[type="checkbox"] {
+    accent-color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .sbw-cookie-option small {
+    color: color-mix(in srgb, var(--sbw-theme-muted) 68%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 28%, transparent);
+    color: color-mix(in srgb, var(--sbw-theme-text) 92%, transparent);
+    background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--sbw-theme-action) 18%, transparent), transparent 34rem),
+    color-mix(in srgb, var(--sbw-theme-deep) 96%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__text strong {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__text span {
+    color: color-mix(in srgb, var(--sbw-theme-text) 72%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__button,
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__dismiss {
+    border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 32%, transparent)
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__button {
+    color: var(--sbw-theme-text);
+    background: linear-gradient(135deg, var(--sbw-theme-action), var(--sbw-theme-action))
+}
+html[data-sbw-theme="dark"] .sbw-pwa-update-notice__dismiss {
+    color: color-mix(in srgb, var(--sbw-theme-text) 82%, transparent);
+    background: color-mix(in srgb, var(--sbw-theme-panel) 5.5%, transparent)
+}

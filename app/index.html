@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-sbw-theme-page="app-index">
 <head>
+  <script src="../js/core/sbw-theme.js?v=20261020-theme-1" data-sbw-theme-site="esports"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f3f4f6" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="robots" content="noindex, follow" />
 
   <meta
@@ -541,6 +542,123 @@
     defer
     src="../js/pwa/sbw-pwa.js?v=20261008-project-1"
   ></script>
+  <style data-sbw-theme-inline>
+/* SBW dark color adapter: app/index.html inline styles. Layout and artwork stay in the source stylesheet. */
+html[data-sbw-theme="dark"] {
+    color-scheme: dark
+}
+html[data-sbw-theme="dark"] body {
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-page)
+}
+html[data-sbw-theme="dark"] a:focus-visible,
+html[data-sbw-theme="dark"] button:focus-visible,
+html[data-sbw-theme="dark"] main:focus-visible {
+    outline: 3px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-skip {
+    background: var(--sbw-theme-deep);
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .app-header {
+    border-bottom: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-header__label {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-eyebrow {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .app-intro__copy {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-notice {
+    border: 1px solid var(--sbw-theme-warning);
+    background: var(--sbw-theme-panel);
+    color: var(--sbw-theme-warning)
+}
+html[data-sbw-theme="dark"] .app-update {
+    border: 1px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .app-update p {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-update button {
+    border: 1px solid var(--sbw-theme-border);
+    color: var(--sbw-theme-text);
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .app-update button:hover:not(:disabled) {
+    background: var(--sbw-theme-action)
+}
+html[data-sbw-theme="dark"] .app-update .app-update__later {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .app-update .app-update__later:hover:not(:disabled) {
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .app-sites__heading::after {
+    background: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-card {
+    border: 1px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .app-card:hover {
+    border-color: var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-card__visual {
+    background: var(--sbw-theme-deep);
+    border-bottom: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-card__visual--project {
+    background: radial-gradient(
+          circle at 100% 0,
+          color-mix(in srgb, var(--sbw-theme-action) 14%, transparent),
+          transparent 70%
+        ),
+        var(--sbw-theme-panel)
+}
+html[data-sbw-theme="dark"] .app-card__visual--concept {
+    background: var(--sbw-theme-deep)
+}
+html[data-sbw-theme="dark"] .app-logo-fallback {
+    color: var(--sbw-theme-text)
+}
+html[data-sbw-theme="dark"] .app-card__meta {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-card__status {
+    border: 1px solid var(--sbw-theme-border);
+    background: var(--sbw-theme-panel);
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .app-card__status--soon {
+    border-color: var(--sbw-theme-warning);
+    background: var(--sbw-theme-panel);
+    color: var(--sbw-theme-warning)
+}
+html[data-sbw-theme="dark"] .app-card__description {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-card__action {
+    border-top: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-card__action svg {
+    color: var(--sbw-theme-accent)
+}
+html[data-sbw-theme="dark"] .app-help {
+    color: var(--sbw-theme-muted)
+}
+html[data-sbw-theme="dark"] .app-footer {
+    border-top: 1px solid var(--sbw-theme-border)
+}
+html[data-sbw-theme="dark"] .app-footer__inner {
+    color: var(--sbw-theme-muted)
+}
+  </style>
+  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261020-theme-1" />
 </head>
 
 <body>
