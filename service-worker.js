@@ -6,7 +6,7 @@
 "use strict";
 
 const SITE_BASE_URL = new URL(self.registration.scope);
-const CACHE_VERSION = "2026-10-20-themes-1";
+const CACHE_VERSION = "2026-10-21-black-1";
 
 // Mantém o prefixo anterior para limpar somente o cache deste site.
 const CACHE_PREFIX =

@@ -67,6 +67,34 @@
   --sbw-theme-border: #36536b;
   --sbw-theme-accent: #38c8ef;
 }
+/* Preto reutiliza os componentes escuros com uma paleta neutra própria. */
+:root[data-sbw-theme="dark"][data-sbw-theme-palette="black"] {
+  --sbw-theme-page: #000000;
+  --sbw-theme-panel: #111111;
+  --sbw-theme-raised: #191919;
+  --sbw-theme-soft: #0b0b0b;
+  --sbw-theme-field: #0d0d0d;
+  --sbw-theme-deep: #050505;
+  --sbw-theme-text: #f2f2f2;
+  --sbw-theme-muted: #bcc0c6;
+  --sbw-theme-border: #3c3c3c;
+  --sbw-theme-accent: #38c9ed;
+  --sbw-theme-action: #006e85;
+  --sbw-theme-action-hover: #00566b;
+  --sbw-theme-focus: #5eddf4;
+  background: #000000;
+}
+@media screen {
+  html[data-sbw-theme="dark"][data-sbw-theme-palette="black"][data-sbw-theme-site] body {
+    background: #000000 !important;
+  }
+}
+html[data-sbw-theme-palette="black"] .sbw-theme-mount--dark-header {
+  --sbw-theme-panel: #111111;
+  --sbw-theme-text: #f2f2f2;
+  --sbw-theme-border: #3c3c3c;
+  --sbw-theme-focus: #5eddf4;
+}
 html[data-sbw-theme="dark"] body { color-scheme: dark !important; }
 html[data-sbw-theme="light"] body { color-scheme: light; }
 html[data-sbw-theme="dark"] input:-webkit-autofill {

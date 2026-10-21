@@ -1,7 +1,9 @@
-# Aparência: Claro, Escuro e Automático
+# Aparência: Claro, Escuro, Preto e Automático
 
 O seletor mantém a escolha em `localStorage` na chave `sbw-theme-v1`.
 A preferência inicial é Automático, que acompanha `prefers-color-scheme`.
+Preto é uma escolha adicional com fundo preto e superfícies grafite; Automático
+continua alternando entre Claro e o Escuro original conforme o sistema.
 Cada domínio mantém sua própria escolha. Com armazenamento bloqueado, a troca
 continua funcionando durante a visita. Não altera autenticação nem dados.
 
@@ -43,7 +45,7 @@ páginas alteradas para que o navegador solicite a nova versão.
 
 ## Conferência de uso
 
-1. Trocar Claro → Escuro → Automático no computador e no menu móvel.
+1. Trocar Claro → Escuro → Preto → Automático no computador e no menu móvel.
 2. Recarregar e navegar para outra página: a escolha deve continuar.
 3. Em Automático, alternar a aparência do sistema operacional.
 4. Conferir campos, foco pelo teclado, modais, cards e rodapés.
@@ -51,3 +53,12 @@ páginas alteradas para que o navegador solicite a nova versão.
 
 Os dados e as permissões de perfis, equipes, torneios e administração
 continuam sendo controlados pelos módulos existentes e pelo servidor.
+
+## Contrato de aparência
+
+`data-sbw-theme` e `getResolvedTheme()` continuam representando o esquema
+claro/escuro dos componentes. Preto usa `dark` nesse contrato existente.
+`data-sbw-theme-palette` e `getResolvedPalette()` distinguem `light`, `dark`
+e `black`. A preferência salva também aceita `black`. O evento
+`sbw:theme-change` preserva `preference`/`theme` e acrescenta `palette`.
+As cores dos temas Claro e Escuro existentes permanecem preservadas.

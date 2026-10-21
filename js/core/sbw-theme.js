@@ -7,7 +7,7 @@
   var script = document.currentScript;
   var site = script && script.getAttribute("data-sbw-theme-site") || "project";
   var storageKey = "sbw-theme-v1";
-  var allowed = ["light", "dark", "system"];
+  var allowed = ["light", "dark", "black", "system"];
   var preference = "system";
   var media = typeof window.matchMedia === "function"
     ? window.matchMedia("(prefers-color-scheme: dark)") : null;
@@ -16,9 +16,9 @@
   var sidebarObserver = null;
   var scheduled = false;
   var colors = {
-    project: { light: "#f3f4f6", dark: "#11151b" },
-    esports: { light: "#ffffff", dark: "#050d14" },
-    championship: { light: "#dde2e8", dark: "#081321" }
+    project: { light: "#f3f4f6", dark: "#11151b", black: "#000000" },
+    esports: { light: "#ffffff", dark: "#050d14", black: "#000000" },
+    championship: { light: "#dde2e8", dark: "#081321", black: "#000000" }
   };
   if (!Object.prototype.hasOwnProperty.call(colors, site)) site = "project";
   root.setAttribute("data-sbw-theme-site", site);
@@ -31,24 +31,32 @@
   catch (error) { /* A aparência também funciona com armazenamento bloqueado. */ }
 
   function resolved() {
+    if (preference === "black") return "dark";
     return preference === "system" ? (media && media.matches ? "dark" : "light") : preference;
+  }
+
+  function resolvedPalette() {
+    return preference === "black" ? "black" : resolved();
   }
 
   function apply() {
     var theme = resolved();
+    var palette = resolvedPalette();
     var previous = root.getAttribute("data-sbw-theme");
+    var previousPalette = root.getAttribute("data-sbw-theme-palette");
     root.setAttribute("data-sbw-theme", theme);
+    root.setAttribute("data-sbw-theme-palette", palette);
     root.setAttribute("data-sbw-theme-preference", preference);
     root.style.colorScheme = theme;
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
-      if (!meta.hasAttribute("media")) meta.content = colors[site][theme];
+      if (!meta.hasAttribute("media")) meta.content = colors[site][palette];
     });
     document.querySelectorAll("[data-sbw-theme-select]").forEach(function (select) {
       select.value = preference;
     });
-    if (previous !== theme || control) {
+    if (previous !== theme || previousPalette !== palette || control) {
       window.dispatchEvent(new CustomEvent("sbw:theme-change", {
-        detail: { preference: preference, theme: theme }
+        detail: { preference: preference, theme: theme, palette: palette }
       }));
     }
     return theme;
@@ -85,7 +93,7 @@
     var select = document.createElement("select");
     select.setAttribute("data-sbw-theme-select", "");
     select.setAttribute("aria-label", english ? "Website theme" : "Tema do site");
-    var names = english ? ["Light", "Dark", "Automatic"] : ["Claro", "Escuro", "Automático"];
+    var names = english ? ["Light", "Dark", "Black", "Automatic"] : ["Claro", "Escuro", "Preto", "Automático"];
     allowed.forEach(function (value, index) {
       var option = document.createElement("option");
       option.value = value;
@@ -173,6 +181,7 @@
   window.SBWTheme = {
     getPreference: function () { return preference; },
     getResolvedTheme: resolved,
+    getResolvedPalette: resolvedPalette,
     setPreference: setPreference,
     refresh: mountControl
   };
