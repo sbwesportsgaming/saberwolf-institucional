@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-sbw-theme-page="analytics-admin">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Acessos do site | SaberWolf Esports</title>
+  <script src="../js/core/sbw-theme.js?v=20261021-black-1" data-sbw-theme-site="esports"></script>
+  <link rel="icon" href="../assets/images/sbw-esports-oficial.png" />
+  <link rel="stylesheet" href="../css/analytics/access-analytics.css?v=20261102-access-1" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+</head>
+<body class="sbw-access-admin">
+  <main class="sbw-access-shell">
+    <header class="sbw-access-header">
+      <div class="sbw-access-brand"><img src="../assets/images/sbw-esports-oficial.png" alt="SaberWolf Esports" width="72" height="72" /><div><p>SaberWolf Esports · Administração</p><h1>Acessos do site</h1></div></div>
+      <div><a href="../index.html">Voltar ao site</a> <button type="button" data-access-logout hidden>Sair</button></div>
+    </header>
+    <p class="sbw-access-admin-status" data-access-status role="status" aria-live="polite">Preparando acesso...</p>
+    <section class="sbw-access-login" data-access-login-panel aria-labelledby="accessLoginTitle">
+      <h2 id="accessLoginTitle">Acesso administrativo</h2>
+      <p>Use sua conta administrativa da SaberWolf Esports para consultar os relatórios.</p>
+      <form data-access-login method="post">
+        <fieldset disabled style="border:0;margin:0;padding:0;display:grid;gap:16px" aria-label="Entrar na administração">
+          <label for="accessEmail">E-mail<input id="accessEmail" name="email" type="email" autocomplete="username" required /></label>
+          <label for="accessPassword">Senha<input id="accessPassword" name="password" type="password" autocomplete="current-password" required /></label>
+          <button type="submit" disabled>Entrar</button>
+        </fieldset>
+      </form>
+      
+      <noscript><p>Ative o JavaScript para consultar os acessos.</p></noscript>
+    </section>
+    <section data-access-panel hidden aria-label="Relatório de acessos">
+      <div class="sbw-access-toolbar">
+        <div class="sbw-access-presets" role="group" aria-label="Período"><button class="is-active" type="button" data-access-days="7">7 dias</button><button type="button" data-access-days="30">30 dias</button><button type="button" data-access-days="90">90 dias</button></div>
+        <form data-access-range><label for="accessStart">De<input id="accessStart" type="date" name="start" required /></label><label for="accessEnd">Até<input id="accessEnd" type="date" name="end" required /></label><button type="submit">Aplicar</button></form>
+        <label for="accessStreamer">Link de streamer<select id="accessStreamer" data-access-streamer><option value="">Todas as origens</option></select></label>
+        <button type="button" data-access-refresh>Atualizar</button>
+      </div>
+      <div data-access-results class="sbw-access-report"></div>
+    </section>
+  </main>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
+  <script defer src="../js/analytics/access-config.js?v=20261102-access-1"></script>
+  
+  <script defer src="../js/analytics/access-report.js?v=20261102-access-1"></script>
+  <script defer src="../js/analytics/access-admin.js?v=20261102-access-1"></script>
+  <script defer src="../js/core/sbw-site-compliance.js?v=20261102-access-1"></script>
+</body>
+</html>

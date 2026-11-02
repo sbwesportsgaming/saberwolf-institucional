@@ -29,7 +29,8 @@
     "saberwolf_esports_cookie_consent_v1:" + SITE_BASE_URL.pathname;
 
   // Mantém a versão do consentimento e as escolhas já salvas.
-  const CONSENT_VERSION = "2026-09-11-2";
+  const CONSENT_VERSION = "2026-11-02-access";
+  const LEGACY_CONSENT_VERSION = "2026-09-11-2";
 
   const SBW_SITE_VERSION =
     document.querySelector('meta[name="sbw-site-version"]')
@@ -62,7 +63,7 @@
 
       if (
         !consent ||
-        consent.version !== CONSENT_VERSION ||
+        ![CONSENT_VERSION, LEGACY_CONSENT_VERSION].includes(consent.version) ||
         consent.necessary !== true ||
         typeof consent.analytics !== "boolean" ||
         typeof consent.externalMedia !== "boolean"
@@ -74,8 +75,8 @@
         version: CONSENT_VERSION,
         necessary: true,
 
-        // Métricas permanecem indisponíveis nesta etapa.
-        analytics: false,
+        analytics: consent.version === CONSENT_VERSION && consent.analytics === true,
+        needsAnalyticsChoice: consent.version !== CONSENT_VERSION,
 
         externalMedia: consent.externalMedia,
         updatedAt:
@@ -96,6 +97,8 @@
 
   function isAllowed(category) {
     if (category === "necessary") return true;
+
+    if (category === "analytics") return currentConsent?.analytics === true;
 
     if (category === "externalMedia") {
       return currentConsent?.externalMedia === true;
@@ -143,14 +146,15 @@
     activeModal.querySelector("[data-sbw-cookie-external-media]").checked =
       isAllowed("externalMedia");
 
-    activeModal.querySelector("[data-sbw-cookie-analytics]").checked = false;
+    activeModal.querySelector("[data-sbw-cookie-analytics]").checked = isAllowed("analytics");
   }
 
   function saveConsent(options = {}) {
     currentConsent = {
       version: CONSENT_VERSION,
       necessary: true,
-      analytics: false,
+      analytics: options?.analytics === true,
+      needsAnalyticsChoice: false,
       externalMedia: options?.externalMedia === true,
       updatedAt: new Date().toISOString()
     };
@@ -373,14 +377,14 @@
               <input
                 type="checkbox"
                 data-sbw-cookie-analytics
-                disabled
               />
 
               <span>
-                <strong>Métricas de uso · Em preparação</strong>
+                <strong>Métricas de acesso</strong>
                 <small>
-                  Esta opção ficará disponível quando a ferramenta
-                  e sua finalidade forem definidas.
+                  Permite contar páginas visitadas, sessões, navegador ou aplicativo
+                  e a origem dos links, incluindo divulgação por streamers.
+                  A escolha é independente dos vídeos e chats da Twitch.
                 </small>
               </span>
             </label>
@@ -484,7 +488,8 @@
         saveConsent({
           externalMedia: modal.querySelector(
             "[data-sbw-cookie-external-media]"
-          ).checked
+          ).checked,
+          analytics: modal.querySelector("[data-sbw-cookie-analytics]").checked
         });
 
         closeModal();
@@ -495,7 +500,7 @@
   }
 
   function ensureCookieBanner() {
-    if (currentConsent) {
+    if (currentConsent && !currentConsent.needsAnalyticsChoice) {
       closeCookieBanner();
       return;
     }
@@ -512,9 +517,9 @@
           <strong>Cookies e preferências</strong>
 
           <span>
-            Guardamos suas preferências neste navegador.
-            Em Preferências, você pode decidir se deseja permitir
-            conteúdos externos ou manter somente os recursos necessários.
+            Com sua autorização, contamos páginas visitadas, sessões,
+            navegador ou aplicativo e a origem dos links de divulgação.
+            Em Preferências, você também controla vídeos e chats da Twitch.
           </span>
 
           <span>
@@ -541,6 +546,7 @@
             class="sbw-cookie-button sbw-cookie-button--ghost"
             data-sbw-cookie-necessary
           >Somente necessários</button>
+          <button type="button" class="sbw-cookie-button" data-sbw-cookie-accept>Permitir métricas</button>
         </div>
       </section>
     `);
@@ -557,6 +563,10 @@
     } else {
       document.body.appendChild(banner);
     }
+
+    banner.querySelector("[data-sbw-cookie-accept]").addEventListener("click", () => {
+      saveConsent({ analytics: true, externalMedia: currentConsent?.externalMedia === true });
+    });
 
     banner
       .querySelector("[data-sbw-cookie-necessary]")
@@ -745,7 +755,25 @@
     ensureCookieBanner();
   }
 
+
+  function loadAccessAnalytics() {
+    if (window.__sbwAccessLoading || window.SBWAccessAnalytics) return;
+    window.__sbwAccessLoading = true;
+    const files = ["access-config.js", "access-core.js", "sbw-access-analytics.js"];
+    function next(index) {
+      if (index >= files.length) return;
+      const script = document.createElement("script");
+      script.src = new URL("js/analytics/" + files[index] + "?v=20261102-access-1", SITE_BASE_URL).href;
+      script.async = true;
+      script.onload = () => next(index + 1);
+      script.onerror = () => { window.__sbwAccessLoading = false; };
+      document.head.appendChild(script);
+    }
+    next(0);
+  }
+
   function initCompliance() {
+    loadAccessAnalytics();
     ensureFooter();
     ensureCookieBanner();
 
