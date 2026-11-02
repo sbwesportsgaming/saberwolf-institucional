@@ -1,0 +1,28 @@
+name: Site access analytics
+on:
+  push:
+    branches: [main]
+    paths: ['js/analytics/**', 'js/core/sbw-site-compliance.js', 'admin/**', 'css/analytics/**', 'tests/access*', 'tools/access-checks/**', '.github/workflows/access-analytics.yml']
+  pull_request:
+    paths: ['js/analytics/**', 'js/core/sbw-site-compliance.js', 'admin/**', 'css/analytics/**', 'tests/access*', 'tools/access-checks/**', '.github/workflows/access-analytics.yml']
+permissions:
+  contents: read
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Consent, attribution, session and collector tests
+        run: node --test tests/access-analytics.test.cjs
+      - name: Prepare pinned browser tooling
+        run: |
+          npm ci --prefix tools/access-checks --ignore-scripts --no-audit --no-fund
+          tools/access-checks/node_modules/.bin/playwright install --with-deps chromium
+      - name: Browser dashboard, permissions, filters and attributed visits
+        run: |
+          python -m http.server 8763 --bind 127.0.0.1 > /tmp/sbw-access-http.log 2>&1 &
+          node tools/access-checks/browser-check.cjs
