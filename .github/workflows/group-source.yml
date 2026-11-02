@@ -1,0 +1,19 @@
+name: Group analytics read-only source
+on:
+  pull_request:
+    paths: ['supabase/functions/sbw-project-*/**', 'supabase/migrations/*project_analytics*', 'tests/group-source*', '.github/workflows/group-source.yml']
+  push:
+    branches: [main]
+    paths: ['supabase/functions/sbw-project-*/**', 'supabase/migrations/*project_analytics*', 'tests/group-source*', '.github/workflows/group-source.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: node --test tests/group-source.test.cjs tests/access-analytics.test.cjs
