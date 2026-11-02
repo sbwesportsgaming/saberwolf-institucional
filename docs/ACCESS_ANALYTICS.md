@@ -36,3 +36,7 @@ Não são enviados conteúdo de formulários, senhas, tokens, URL completa, quer
 - Navegador em CI com autenticação simulada, chamadas externas bloqueadas e coletores interceptados. Nenhuma senha real é utilizada nem e-mail enviado.
 
 A infraestrutura mantém o Product Analytics anterior para evolução separada; esta interface apresenta acessos do site.
+
+## Central da SBW Project
+
+A central privada em `https://sbwproject.com/admin/` reúne os relatórios das duas marcas com a conta proprietária do Championship. Ela não substitui este coletor nem copia seus eventos. Cada chamada confirma a propriedade no servidor; contas comuns e outros administradores não ganham leitura global. A função `sbw-project-access-source` verifica o proprietário no Auth e nas permissões do Championship antes de executar uma consulta agregada de servidor no próprio banco. A RPC adicional não é executável por `anon` ou `authenticated`. Nenhuma conta ou senha nova é criada, e os painéis individuais mantêm seus acessos próprios.
