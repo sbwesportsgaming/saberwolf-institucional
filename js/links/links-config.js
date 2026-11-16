@@ -96,8 +96,8 @@
         {
           id: "instagram",
           label: "Instagram oficial",
-          description: "@saberwolfesports",
-          href: "https://www.instagram.com/saberwolfesports/",
+          description: "@sbw_esports_",
+          href: "https://www.instagram.com/sbw_esports_/",
           mark: "IG",
           external: true
         }
