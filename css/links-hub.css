@@ -172,6 +172,24 @@ body.sbw-hub {
 .hub-card:hover { border-color: var(--hub-accent); background: rgb(12 45 59 / 97%); transform: translateY(-2px); }
 .hub-card__icon { display: grid; place-items: center; width: 46px; height: 46px; color: var(--hub-accent); background: rgb(var(--hub-rgb) / 8%); border-radius: 12px; }
 .hub-card__icon .hub-icon { width: 27px; height: 27px; }
+.hub--esports .hub-brand-icon { object-fit: contain; }
+.hub--esports .hub-card__icon[data-icon],
+.hub--esports .hub-socials a[data-icon] {
+  color: var(--hub-icon-color, #fff);
+  background: var(--hub-icon-bg);
+}
+.hub--esports .hub-socials a[data-icon] { border-radius: 12px; }
+.hub--esports [data-icon="instagram"] { --hub-icon-bg: #fceff7; }
+.hub--esports [data-icon="x"],
+.hub--esports [data-icon="tiktok"] { --hub-icon-bg: #000; }
+.hub--esports [data-icon="youtube"] { --hub-icon-bg: #ffedf0; }
+.hub--esports [data-icon="tiktok"] .hub-brand-icon { width: 38px; height: 38px; border-radius: 8px; }
+.hub--esports [data-icon="athletes"] { --hub-icon-bg: #fff3d5; --hub-icon-color: #8c5a10; }
+.hub--esports [data-icon="creators"] { --hub-icon-bg: #6447b9; }
+.hub--esports [data-icon="communities"] { --hub-icon-bg: #137a96; }
+.hub--esports [data-icon="news"] { --hub-icon-bg: #e5f0fa; --hub-icon-color: #28658b; }
+.hub--esports [data-icon="exitlag"] { --hub-icon-bg: #211317; }
+.hub--esports [data-icon="exitlag"] .hub-brand-icon { width: 24px; height: 24px; }
 .hub-card__copy { min-width: 0; }
 .hub-card__copy strong { display: block; font-size: .97rem; line-height: 1.35; font-weight: 750; overflow-wrap: anywhere; }
 .hub-card__copy small { display: block; margin-top: 4px; color: var(--hub-muted); font-size: .76rem; line-height: 1.5; overflow-wrap: anywhere; }
@@ -240,4 +258,8 @@ body.hub--project { --hub-bg: #edf0f2; --hub-text: #121b26; --hub-muted: #53616f
   .hub--project .hub-art__emblem { width: 570px; left: calc(50% - 100px); }
 }
 @media (prefers-reduced-motion: reduce) { .sbw-hub *, .sbw-hub *::before, .sbw-hub *::after { transition: none !important; scroll-behavior: auto !important; } .hub-card:hover { transform: none; } }
-@media (forced-colors: active) { .hub-art { display: none; } .hub-card, .hub-avatar, .hub-share, .hub-socials a { border: 1px solid ButtonText; } }
+@media (forced-colors: active) {
+  .hub-art { display: none; }
+  .hub-card, .hub-avatar, .hub-share, .hub-socials a { border: 1px solid ButtonText; }
+  .hub--esports [data-icon]:has(.hub-brand-icon) { forced-color-adjust: none; }
+}
