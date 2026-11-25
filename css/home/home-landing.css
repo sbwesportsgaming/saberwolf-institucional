@@ -178,10 +178,11 @@ body.sbw-home-page {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url("../../assets/home/sbw-home-banner.png");
-  background-position: center right;
+  background-image: url("../../assets/images/sbw-esports-oficial.png"),
+    radial-gradient(ellipse at 72% 52%, #123854, #050d14 70%);
+  background-position: right clamp(28px, 8vw, 140px) center, center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: min(38vw, 410px) auto, cover;
 }
 
 .sbw-home-hero__overlay {
@@ -630,7 +631,8 @@ body.sbw-home-page .sbw-site-footer__legal a {
 
   .sbw-home-hero__banner {
     opacity: 0.6;
-    background-position: 70% center;
+    background-position: right -26px center, center;
+    background-size: min(76vw, 320px) auto, cover;
   }
 
   .sbw-home-hero h1 {
