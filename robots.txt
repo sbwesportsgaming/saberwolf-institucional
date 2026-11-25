@@ -1,4 +1,12 @@
 # -SBW- beta fechado
 # Evita indexação enquanto a plataforma está em teste online.
 User-agent: *
+Allow: /ads.txt$
+Disallow: /
+
+# Permite ao verificador do AdSense acessar a página inicial pública.
+User-agent: Google-Display-Ads-Bot
+Allow: /$
+Allow: /index.html$
+Allow: /ads.txt$
 Disallow: /
