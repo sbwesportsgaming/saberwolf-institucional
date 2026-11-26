@@ -100,6 +100,14 @@
           href: "https://www.instagram.com/sbw_esports_/",
           mark: "IG",
           external: true
+        },
+        {
+          id: "threads",
+          label: "Threads",
+          description: "@sbw_esports_",
+          href: "https://www.threads.com/@sbw_esports_",
+          mark: "TH",
+          external: true
         }
       ],
 

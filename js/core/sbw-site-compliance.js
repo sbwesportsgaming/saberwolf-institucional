@@ -224,6 +224,17 @@
 
     setLegalLinks(legal);
 
+    const officialLinks = legal.querySelector('a[href$="links/index.html"], a[href$="/links/"]');
+    const threadsUrl = "https://www.threads.com/@sbw_esports_";
+    if (officialLinks && !legal.querySelector(`a[href="${threadsUrl}"]`)) {
+      const threads = document.createElement("a");
+      threads.href = threadsUrl;
+      threads.textContent = "Threads";
+      threads.target = "_blank";
+      threads.rel = "noopener noreferrer";
+      officialLinks.after(threads);
+    }
+
     legal.querySelectorAll("a[href]").forEach((link) => {
       let url;
 

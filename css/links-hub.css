@@ -181,6 +181,7 @@ body.sbw-hub {
 .hub--esports .hub-socials a[data-icon] { border-radius: 12px; }
 .hub--esports [data-icon="instagram"] { --hub-icon-bg: #fceff7; }
 .hub--esports [data-icon="x"],
+.hub--esports [data-icon="threads"],
 .hub--esports [data-icon="tiktok"] { --hub-icon-bg: #000; }
 .hub--esports [data-icon="youtube"] { --hub-icon-bg: #ffedf0; }
 .hub--esports [data-icon="tiktok"] .hub-brand-icon { width: 38px; height: 38px; border-radius: 8px; }
