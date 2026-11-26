@@ -30,7 +30,7 @@
       badge: "Oficial",
       description:
         "Fundador da -SBW-, creator e responsável por iniciativas de conteúdo e comunidade da SaberWolf Esports.",
-      avatar: "assets/images/dlucca-avatar.jpeg",
+      avatar: "assets/images/dlucca-sbw.png",
       href: "creators/creator-dlucca.html",
       tags: ["Fundador", "Conteúdo", "Comunidade"],
       filters: ["sbw", "community"]
@@ -49,13 +49,13 @@
     },
     {
       id: "kari-akane",
-      name: "Kari Akane",
+      name: "Kary Akane",
       role: "FGC / Comunidade parceira",
       badge: "Parceira",
       description:
         "Representante da Fighting Girls Community, fortalecendo presença, acolhimento e visibilidade feminina na FGC.",
-      avatar: "assets/images/logo-sbw.png",
-      avatarAlt: "Logo da SaberWolf Esports",
+      avatar: "assets/images/kary-akane-retrato.jpg",
+      avatarAlt: "Retrato de Kary Akane",
       href: "creators/creator-kari-akane.html",
       tags: ["FGC", "Comunidade", "Fighting Girls"],
       filters: ["fgc", "community"]

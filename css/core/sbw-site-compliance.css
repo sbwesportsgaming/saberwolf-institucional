@@ -1,5 +1,5 @@
 /* =========================================================
-   SaberWolf Esports — Rodapé, cookies e atualização da PWA
+   SaberWolf Esports — Rodapé e cookies
 ========================================================= */
 
 /* Base restrita aos componentes deste arquivo. */
@@ -15,39 +15,31 @@
 .sbw-cookie-modal,
 .sbw-cookie-modal *,
 .sbw-cookie-modal *::before,
-.sbw-cookie-modal *::after,
-.sbw-pwa-update-notice,
-.sbw-pwa-update-notice *,
-.sbw-pwa-update-notice *::before,
-.sbw-pwa-update-notice *::after {
+.sbw-cookie-modal *::after {
   box-sizing: border-box;
 }
 
 .sbw-site-footer,
 .sbw-cookie-banner,
-.sbw-cookie-modal,
-.sbw-pwa-update-notice {
+.sbw-cookie-modal {
   overflow-wrap: anywhere;
 }
 
 .sbw-site-footer *,
 .sbw-cookie-banner *,
-.sbw-cookie-modal *,
-.sbw-pwa-update-notice * {
+.sbw-cookie-modal * {
   min-width: 0;
 }
 
 :where(
   .sbw-site-footer,
   .sbw-cookie-banner,
-  .sbw-cookie-modal,
-  .sbw-pwa-update-notice
+  .sbw-cookie-modal
 )[hidden]:not([hidden="until-found"]),
 :where(
   .sbw-site-footer,
   .sbw-cookie-banner,
-  .sbw-cookie-modal,
-  .sbw-pwa-update-notice
+  .sbw-cookie-modal
 ) [hidden]:not([hidden="until-found"]) {
   display: none !important;
 }
@@ -55,8 +47,7 @@
 :where(
   .sbw-site-footer,
   .sbw-cookie-banner,
-  .sbw-cookie-modal,
-  .sbw-pwa-update-notice
+  .sbw-cookie-modal
 ) :where(a, button, input, [tabindex]):focus-visible {
   outline: 3px solid #7ddfff;
   outline-offset: 3px;
@@ -399,113 +390,6 @@ body.sbw-has-sidebar > .sbw-site-footer {
 }
 
 /* =========================
-   ATUALIZAÇÃO DA PWA
-========================= */
-
-.sbw-pwa-update-notice {
-  position: fixed;
-  right: calc(18px + env(safe-area-inset-right, 0px));
-  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-  z-index: 10020;
-  width: min(
-    420px,
-    calc(100% - 36px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))
-  );
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: center;
-  padding: 14px;
-  border: 1px solid rgba(76, 202, 255, 0.28);
-  border-radius: 20px;
-  color: rgba(232, 244, 255, 0.92);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(55, 200, 255, 0.18), transparent 34rem),
-    rgba(4, 12, 26, 0.96);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-}
-
-/* A atualização fica no topo quando aparece após o banner. */
-
-.sbw-cookie-banner:not([hidden]) ~ .sbw-pwa-update-notice {
-  top: calc(18px + env(safe-area-inset-top, 0px));
-  bottom: auto;
-}
-
-.sbw-pwa-update-notice__text {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 3px;
-  min-width: 0;
-}
-
-.sbw-pwa-update-notice__text strong {
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 900;
-  line-height: 1.4;
-}
-
-.sbw-pwa-update-notice__text span {
-  color: rgba(215, 231, 245, 0.72);
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.sbw-pwa-update-notice__actions {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.sbw-pwa-update-notice__button,
-.sbw-pwa-update-notice__dismiss {
-  border: 1px solid rgba(76, 202, 255, 0.32);
-  font: inherit;
-  cursor: pointer;
-}
-
-.sbw-pwa-update-notice__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  max-width: 100%;
-  padding: 10px 14px;
-  border-radius: 999px;
-  color: #04101f;
-  background: linear-gradient(135deg, #7ddfff, #35b8ff);
-  font-size: 12px;
-  font-weight: 900;
-  line-height: 1.4;
-  text-align: center;
-  white-space: normal;
-}
-
-.sbw-pwa-update-notice__button:disabled {
-  cursor: wait;
-  opacity: 0.72;
-}
-
-.sbw-pwa-update-notice__dismiss {
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 12px;
-  color: rgba(232, 244, 255, 0.82);
-  background: rgba(255, 255, 255, 0.055);
-  font-size: 18px;
-  line-height: 1;
-}
-
-/* =========================
    RESPONSIVO
 ========================= */
 
@@ -556,23 +440,5 @@ body.sbw-has-sidebar > .sbw-site-footer {
   .sbw-cookie-modal__content,
   .sbw-cookie-modal__actions {
     padding: 16px;
-  }
-
-  .sbw-pwa-update-notice {
-    right: calc(12px + env(safe-area-inset-right, 0px));
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    width: calc(
-      100% - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)
-    );
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .sbw-cookie-banner:not([hidden]) ~ .sbw-pwa-update-notice {
-    top: calc(78px + env(safe-area-inset-top, 0px));
-    bottom: auto;
-  }
-
-  .sbw-pwa-update-notice__actions {
-    justify-content: space-between;
   }
 }

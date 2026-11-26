@@ -294,7 +294,7 @@
       .then((registration) => {
         currentRegistration = registration;
 
-        // Permite que sbw-site-compliance.js acompanhe as atualizações.
+        // Informa a Central do app sobre o registro.
         window.dispatchEvent(
           new CustomEvent("sbw:pwa-registered", {
             detail: { registration }
