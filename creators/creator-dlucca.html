@@ -56,7 +56,7 @@
 
   <meta property="og:image:alt" content="Retrato de D’Lucca" />
 
-  <link rel="stylesheet" href="../css/creators.css" />
+  <link rel="stylesheet" href="../css/creators.css?v=20261126-redes-1" />
   <link rel="stylesheet" href="../css/themes/dark/creators.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="../css/core/sbw-site-compliance.css?v=20261125-web-1" />
   <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
@@ -115,56 +115,6 @@
       align-items: center;
       gap: 12px;
       margin-top: 18px;
-    }
-
-    .sbw-dlucca-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .sbw-dlucca-card {
-      min-width: 0;
-      display: grid;
-      align-content: start;
-      gap: 12px;
-      padding: 22px;
-      color: var(--sbw-creators-text);
-      text-decoration: none;
-      border: 1px solid var(--sbw-creators-border);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .sbw-dlucca-card:hover {
-      border-color: var(--sbw-creators-border-strong);
-      background: rgba(85, 214, 255, 0.06);
-    }
-
-    .sbw-dlucca-card h3,
-    .sbw-dlucca-card p {
-      margin: 0;
-    }
-
-    .sbw-dlucca-card p {
-      color: var(--sbw-creators-muted);
-      line-height: 1.65;
-    }
-
-    .sbw-dlucca-card__mark {
-      width: 48px;
-      min-height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      color: var(--sbw-creators-cyan);
-      background: rgba(85, 214, 255, 0.08);
-      font: 900 0.8rem "Segoe UI", Arial, sans-serif;
-    }
-
-    .sbw-dlucca-card__cta {
-      color: var(--sbw-creators-cyan);
-      font-weight: 700;
     }
 
     .sbw-dlucca-twitch-slot {
@@ -226,11 +176,6 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .sbw-dlucca-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
   </style>
 
   <script defer src="../js/core/sbw-routes.js"></script>
@@ -248,25 +193,6 @@
 html[data-sbw-theme="dark"] .sbw-dlucca-copy p,
 html[data-sbw-theme="dark"] .sbw-dlucca-note {
     color: var(--sbw-theme-muted)
-}
-html[data-sbw-theme="dark"] .sbw-dlucca-card {
-    color: var(--sbw-theme-text);
-    border: 1px solid var(--sbw-theme-border);
-    background: color-mix(in srgb, var(--sbw-theme-panel) 3.5%, transparent)
-}
-html[data-sbw-theme="dark"] .sbw-dlucca-card:hover {
-    border-color: var(--sbw-theme-border);
-    background: color-mix(in srgb, var(--sbw-theme-action) 6%, transparent)
-}
-html[data-sbw-theme="dark"] .sbw-dlucca-card p {
-    color: var(--sbw-theme-muted)
-}
-html[data-sbw-theme="dark"] .sbw-dlucca-card__mark {
-    color: var(--sbw-theme-accent);
-    background: color-mix(in srgb, var(--sbw-theme-action) 8%, transparent)
-}
-html[data-sbw-theme="dark"] .sbw-dlucca-card__cta {
-    color: var(--sbw-theme-accent)
 }
 html[data-sbw-theme="dark"] .sbw-dlucca-player,
 html[data-sbw-theme="dark"] .sbw-dlucca-chat {
@@ -375,6 +301,17 @@ html[data-sbw-theme="dark"] .sbw-creator-detail-body button:focus-visible {
             Redes sociais
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="sbw-creators-official sbw-profile-socials" id="redes-dlucca" aria-labelledby="dluccaSocialTitle">
+      <h2 id="dluccaSocialTitle">Redes sociais</h2>
+      <div class="sbw-profile-socials__links">
+        <a class="sbw-creators-button" href="https://www.instagram.com/dlucca_sbw" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="sbw-creators-button" href="https://www.tiktok.com/@dlucca_sbw" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a class="sbw-creators-button" href="https://www.twitch.tv/dlucca_sbw" target="_blank" rel="noopener noreferrer">Twitch</a>
+        <a class="sbw-creators-button" href="https://www.youtube.com/@dlucca_sbw" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a class="sbw-creators-button" href="https://x.com/DLucca_SBW" target="_blank" rel="noopener noreferrer">X</a>
       </div>
     </section>
 
@@ -508,185 +445,6 @@ html[data-sbw-theme="dark"] .sbw-creator-detail-body button:focus-visible {
       </noscript>
     </section>
 
-    <!-- YOUTUBE -->
-
-    <section
-      class="sbw-creators-official"
-      aria-labelledby="dluccaYouTubeTitle"
-    >
-      <div class="sbw-creators-section-heading">
-        <span>YouTube</span>
-        <h2 id="dluccaYouTubeTitle">Live no YouTube</h2>
-
-        <p>
-          Acompanhe as transmissões e gravações disponíveis
-          no canal oficial do D’Lucca.
-        </p>
-      </div>
-
-      <div class="sbw-dlucca-actions">
-        <a
-          class="sbw-creators-button sbw-creators-button--primary"
-          href="https://www.youtube.com/@dlucca_sbw"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir o YouTube do D’Lucca em nova aba"
-        >
-          Abrir canal no YouTube ↗
-        </a>
-      </div>
-    </section>
-
-    <!-- VÍDEOS -->
-
-    <section
-      class="sbw-creators-official"
-      aria-labelledby="dluccaVideosTitle"
-    >
-      <div class="sbw-creators-section-heading">
-        <span>Conteúdo</span>
-        <h2 id="dluccaVideosTitle">Vídeos e cortes</h2>
-
-        <p>Veja os vídeos disponíveis no canal oficial.</p>
-      </div>
-
-      <a
-        class="sbw-creators-button"
-        href="https://www.youtube.com/@dlucca_sbw"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Ver os vídeos do D’Lucca no YouTube em nova aba"
-      >
-        Ver vídeos no YouTube ↗
-      </a>
-    </section>
-
-    <!-- REDES SOCIAIS -->
-
-    <section
-      class="sbw-creators-official"
-      id="redes-dlucca"
-      aria-labelledby="dluccaSocialTitle"
-    >
-      <div class="sbw-creators-section-heading">
-        <span>Conexões oficiais</span>
-        <h2 id="dluccaSocialTitle">Redes sociais</h2>
-
-        <p>
-          Lives, vídeos, bastidores e novidades nos canais do D’Lucca.
-        </p>
-      </div>
-
-      <div class="sbw-dlucca-grid">
-        <a
-          class="sbw-dlucca-card"
-          href="https://www.youtube.com/@dlucca_sbw"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="sbw-dlucca-card__mark" aria-hidden="true">
-            YT
-          </span>
-
-          <h3>YouTube</h3>
-
-          <p>
-            Conteúdos, vídeos, transmissões e projetos
-            relacionados à -SBW-.
-          </p>
-
-          <span class="sbw-dlucca-card__cta">
-            Abrir em nova aba ↗
-          </span>
-        </a>
-
-        <a
-          class="sbw-dlucca-card"
-          href="https://www.twitch.tv/dlucca_sbw"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="sbw-dlucca-card__mark" aria-hidden="true">
-            LIVE
-          </span>
-
-          <h3>Twitch</h3>
-
-          <p>
-            Lives, gameplay, interação com a comunidade
-            e conteúdos ao vivo.
-          </p>
-
-          <span class="sbw-dlucca-card__cta">
-            Abrir em nova aba ↗
-          </span>
-        </a>
-
-        <a
-          class="sbw-dlucca-card"
-          href="https://www.instagram.com/dlucca_sbw"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="sbw-dlucca-card__mark" aria-hidden="true">
-            IG
-          </span>
-
-          <h3>Instagram</h3>
-
-          <p>
-            Bastidores, atualizações e conteúdos rápidos do creator.
-          </p>
-
-          <span class="sbw-dlucca-card__cta">
-            Abrir em nova aba ↗
-          </span>
-        </a>
-
-        <a
-          class="sbw-dlucca-card"
-          href="https://www.tiktok.com/@dlucca_sbw"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="sbw-dlucca-card__mark" aria-hidden="true">
-            TT
-          </span>
-
-          <h3>TikTok</h3>
-
-          <p>
-            Clipes, highlights e conteúdos curtos para a comunidade.
-          </p>
-
-          <span class="sbw-dlucca-card__cta">
-            Abrir em nova aba ↗
-          </span>
-        </a>
-
-        <a
-          class="sbw-dlucca-card"
-          href="https://x.com/DLucca_SBW"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="sbw-dlucca-card__mark" aria-hidden="true">
-            X
-          </span>
-
-          <h3>X</h3>
-
-          <p>
-            Atualizações rápidas, publicações
-            e comunicação com a comunidade.
-          </p>
-
-          <span class="sbw-dlucca-card__cta">
-            Abrir em nova aba ↗
-          </span>
-        </a>
-      </div>
-    </section>
   </main>
 
   <!-- RODAPÉ INSTITUCIONAL -->

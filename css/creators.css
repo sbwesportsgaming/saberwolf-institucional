@@ -319,6 +319,33 @@ body.sbw-creators-body::before {
   border-radius: 26px;
 }
 
+/* Redes cadastradas para o perfil. */
+.sbw-creators-official.sbw-profile-socials {
+  padding: 14px clamp(14px, 2vw, 22px);
+  border-radius: 14px;
+  scroll-margin-top: 120px;
+}
+
+.sbw-profile-socials h2 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.sbw-profile-socials__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sbw-profile-socials__links .sbw-creators-button {
+  min-width: 44px;
+  width: auto;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
 /* Criador em destaque. */
 
 .sbw-featured-creator {
