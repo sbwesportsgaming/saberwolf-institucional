@@ -1,5 +1,5 @@
 /*
-  SaberWolf Esports — preferências, rodapé e atualização do app.
+  SaberWolf Esports — preferências e rodapé.
 
   A escolha sobre vídeos e chats da Twitch fica em Preferências.
   A preferência externalMedia mantém a integração com os players.
@@ -40,12 +40,8 @@
     document.querySelector('meta[name="sbw-app-version"]')
       ?.content?.trim() || "App SaberWolf Esports";
 
-  const SERVICE_WORKER_URL = new URL("service-worker.js", SITE_BASE_URL);
-
   let currentConsent = readStoredConsent();
   let activeModal = null;
-  let updateRequested = false;
-  let reloading = false;
 
   function defaultConsent() {
     return {
@@ -552,17 +548,7 @@
     `);
 
     setLegalLinks(banner);
-
-    // Mantém a ordem usada pelo CSS quando os dois avisos estão presentes.
-    const updateNotice = document.querySelector(
-      "body > [data-sbw-pwa-update-notice]"
-    );
-
-    if (updateNotice) {
-      document.body.insertBefore(banner, updateNotice);
-    } else {
-      document.body.appendChild(banner);
-    }
+    document.body.appendChild(banner);
 
     banner.querySelector("[data-sbw-cookie-accept]").addEventListener("click", () => {
       saveConsent({ analytics: true, externalMedia: currentConsent?.externalMedia === true });
@@ -573,178 +559,6 @@
       .addEventListener("click", () => {
         saveConsent({ externalMedia: false });
       });
-  }
-
-  function isSiteWorker(worker) {
-    if (!worker) return false;
-
-    try {
-      const url = new URL(worker.scriptURL);
-
-      return (
-        url.origin === SERVICE_WORKER_URL.origin &&
-        url.pathname === SERVICE_WORKER_URL.pathname
-      );
-    } catch {
-      return false;
-    }
-  }
-
-  function reloadOnce() {
-    if (reloading) return;
-
-    reloading = true;
-    window.location.reload();
-  }
-
-  function createPwaUpdateNotice(registration) {
-    if (document.querySelector("[data-sbw-pwa-update-notice]")) return;
-
-    const notice = createElementFromHtml(`
-      <section
-        class="sbw-pwa-update-notice"
-        data-sbw-pwa-update-notice
-        role="status"
-        aria-live="polite"
-      >
-        <div class="sbw-pwa-update-notice__text">
-          <strong>Nova versão disponível</strong>
-          <span>
-            Atualize a SaberWolf Esports para carregar
-            as melhorias mais recentes.
-          </span>
-        </div>
-
-        <div class="sbw-pwa-update-notice__actions">
-          <button
-            type="button"
-            class="sbw-pwa-update-notice__button"
-            data-sbw-pwa-update-apply
-          >Atualizar agora</button>
-
-          <button
-            type="button"
-            class="sbw-pwa-update-notice__dismiss"
-            data-sbw-pwa-update-dismiss
-            aria-label="Fechar aviso"
-          >×</button>
-        </div>
-      </section>
-    `);
-
-    document.body.appendChild(notice);
-
-    notice
-      .querySelector("[data-sbw-pwa-update-dismiss]")
-      .addEventListener("click", () => notice.remove());
-
-    notice
-      .querySelector("[data-sbw-pwa-update-apply]")
-      .addEventListener("click", () => {
-        if (!registration.waiting) {
-          reloadOnce();
-          return;
-        }
-
-        const button = notice.querySelector("[data-sbw-pwa-update-apply]");
-
-        button.disabled = true;
-        button.textContent = "Atualizando...";
-        updateRequested = true;
-
-        try {
-          registration.waiting.postMessage({
-            type: "SBW_APPLY_UPDATE"
-          });
-        } catch {
-          updateRequested = false;
-          button.disabled = false;
-          button.textContent = "Tentar novamente";
-        }
-      });
-  }
-
-  function watchPwaUpdates() {
-    if (
-      !("serviceWorker" in navigator) ||
-      !window.isSecureContext ||
-      !["http:", "https:"].includes(window.location.protocol)
-    ) {
-      return;
-    }
-
-    const serviceWorker = navigator.serviceWorker;
-    const watched = new WeakSet();
-
-    function observeRegistration(registration) {
-      // Não acompanha registros de outras pastas ou do outro site.
-      if (
-        !registration ||
-        registration.scope !== SITE_BASE_URL.href ||
-        watched.has(registration)
-      ) {
-        return;
-      }
-
-      watched.add(registration);
-
-      function showUpdate() {
-        if (isSiteWorker(serviceWorker.controller)) {
-          createPwaUpdateNotice(registration);
-        }
-      }
-
-      if (isSiteWorker(registration.waiting)) {
-        showUpdate();
-      }
-
-      function watchInstallingWorker() {
-        const worker = registration.installing;
-
-        if (!isSiteWorker(worker)) return;
-
-        const checkState = () => {
-          if (worker.state === "installed") {
-            showUpdate();
-          }
-        };
-
-        worker.addEventListener("statechange", checkState);
-        checkState();
-      }
-
-      registration.addEventListener(
-        "updatefound",
-        watchInstallingWorker
-      );
-
-      watchInstallingWorker();
-    }
-
-    // O registro do service worker continua em js/pwa/sbw-pwa.js.
-    serviceWorker
-      .getRegistration(SITE_BASE_URL.href)
-      .then(observeRegistration)
-      .catch((error) => {
-        console.warn("[SBW PWA] Falha ao consultar o app:", error);
-      });
-
-    serviceWorker.ready
-      .then(observeRegistration)
-      .catch(() => {});
-
-    window.addEventListener("sbw:pwa-registered", (event) => {
-      observeRegistration(event.detail?.registration);
-    });
-
-    serviceWorker.addEventListener("controllerchange", () => {
-      if (
-        updateRequested &&
-        isSiteWorker(serviceWorker.controller)
-      ) {
-        reloadOnce();
-      }
-    });
   }
 
   function refreshConsentFromStorage() {
@@ -813,7 +627,6 @@
     window.SBWRoutes?.rewriteLinks?.();
 
     publishConsent();
-    watchPwaUpdates();
   }
 
   window.SBWVersions = {

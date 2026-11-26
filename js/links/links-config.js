@@ -118,7 +118,7 @@
       title: "D’Lucca",
       handle: "@dlucca_sbw",
       description: "Jogos de luta, desafios competitivos e muita resenha. Um espaço para jogar, aprender e fortalecer a comunidade.",
-      image: siteUrl("assets/images/dlucca-avatar.jpeg"),
+      image: siteUrl("assets/images/dlucca-sbw.png"),
       imageAlt: "Retrato de D’Lucca",
 
       links: [
