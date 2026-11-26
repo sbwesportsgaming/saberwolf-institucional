@@ -131,7 +131,7 @@ body.sbw-communities-body {
   opacity: 0.50;
   background:
     linear-gradient(90deg, rgba(2, 7, 19, 0.04), rgba(2, 7, 19, 0.72)),
-    url("../assets/home/sbw-home-banner.png") center / cover no-repeat;
+    url("../assets/home/sbw-home-banner.webp") center / cover no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
   pointer-events: none;
@@ -447,7 +447,7 @@ body.sbw-communities-body {
   background-image:
     radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.18), transparent 12rem),
     linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 7, 19, 0.78)),
-    var(--community-image, url("../assets/home/sbw-home-banner.png"));
+    var(--community-image, url("../assets/home/sbw-home-banner.webp"));
   background-position: center, center, center;
   background-size: cover, cover, contain;
   background-repeat: no-repeat, no-repeat, no-repeat;
@@ -658,7 +658,7 @@ body.sbw-has-sidebar .sbw-community-detail-page {
   inset: 0 0 auto auto;
   width: min(760px, 52vw);
   height: 540px;
-  background: url("../assets/home/sbw-home-banner.png") center top / cover no-repeat;
+  background: url("../assets/home/sbw-home-banner.webp") center top / cover no-repeat;
   opacity: 0.16;
   filter: saturate(1.08) contrast(1.06);
   pointer-events: none;

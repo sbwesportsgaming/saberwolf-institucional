@@ -32,14 +32,6 @@
   const CONSENT_VERSION = "2026-11-02-access";
   const LEGACY_CONSENT_VERSION = "2026-09-11-2";
 
-  const SBW_SITE_VERSION =
-    document.querySelector('meta[name="sbw-site-version"]')
-      ?.content?.trim() || "v1.6.84.1";
-
-  const SBW_APP_VERSION =
-    document.querySelector('meta[name="sbw-app-version"]')
-      ?.content?.trim() || "App SaberWolf Esports";
-
   let currentConsent = readStoredConsent();
   let activeModal = null;
 
@@ -274,16 +266,6 @@
       );
     }
 
-    let version = footer.querySelector("[data-sbw-version-label]");
-
-    if (!version) {
-      version = document.createElement("p");
-      version.className = "sbw-site-footer__version";
-      version.setAttribute("data-sbw-version-label", "");
-      legal.before(version);
-    }
-
-    version.textContent = `Site ${SBW_SITE_VERSION} · ${SBW_APP_VERSION}`;
   }
 
   function closeCookieBanner() {
@@ -511,38 +493,23 @@
       >
         <div class="sbw-cookie-banner__text">
           <strong>Cookies e preferências</strong>
-
-          <span>
-            Com sua autorização, contamos páginas visitadas, sessões,
-            navegador ou aplicativo e a origem dos links de divulgação.
-            Em Preferências, você também controla vídeos e chats da Twitch.
-          </span>
-
-          <span>
-            <a
-              data-sbw-legal-link="pages/privacidade.html"
-            >Privacidade</a>
-            ·
-            <a
-              data-sbw-legal-link="pages/cookies.html"
-            >Cookies</a>
-          </span>
+          <span>Você pode permitir métricas de visita e ajustar vídeos externos em Preferências.</span>
+          <span><a data-sbw-legal-link="pages/privacidade.html">Privacidade</a> · <a data-sbw-legal-link="pages/cookies.html">Cookies</a></span>
         </div>
 
         <div class="sbw-cookie-banner__actions">
           <button
             type="button"
             class="sbw-cookie-button sbw-cookie-button--ghost"
-            aria-haspopup="dialog"
-            data-sbw-cookie-preferences
-          >Preferências</button>
-
-          <button
-            type="button"
-            class="sbw-cookie-button sbw-cookie-button--ghost"
             data-sbw-cookie-necessary
           >Somente necessários</button>
           <button type="button" class="sbw-cookie-button" data-sbw-cookie-accept>Permitir métricas</button>
+          <button
+            type="button"
+            class="sbw-cookie-button sbw-cookie-button--ghost"
+            aria-haspopup="dialog"
+            data-sbw-cookie-preferences
+          >Preferências</button>
         </div>
       </section>
     `);
@@ -629,10 +596,6 @@
     publishConsent();
   }
 
-  window.SBWVersions = {
-    site: SBW_SITE_VERSION,
-    app: SBW_APP_VERSION
-  };
 
   window.SBWCompliance = {
     getConsent,

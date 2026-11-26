@@ -183,7 +183,7 @@ body.sbw-news-body {
       rgba(3, 8, 18, 0.15),
       rgba(3, 8, 18, 0.78)
     ),
-    url("../assets/home/sbw-home-banner.png")
+    url("../assets/home/sbw-home-banner.webp")
       center / contain no-repeat;
   opacity: 0.18;
   filter: saturate(1.12) contrast(1.05);

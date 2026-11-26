@@ -678,7 +678,7 @@ body.sbw-creators-body::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: url("../assets/home/sbw-home-banner.png") right center / contain no-repeat;
+  background: url("../assets/home/sbw-home-banner.webp") right center / contain no-repeat;
   opacity: 0.12;
   filter: saturate(1.05) contrast(1.08);
 }

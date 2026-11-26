@@ -1,288 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR" data-sbw-theme-page="blog-noticias">
+<!doctype html>
+<html lang="pt-BR" data-sbw-theme-page="editorial">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notícias e vídeos | SaberWolf Esports</title>
+  <meta name="description" content="Acompanhe notícias, histórias, lives e vídeos da SaberWolf Esports, de seus creators e comunidades.">
+  <meta name="theme-color" content="#050d14">
+  <meta name="sbw-championship-origin" content="https://sbwchampionship.com">
+  <link rel="canonical" href="https://sbwgg.com.br/blog/noticias">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="SaberWolf Esports">
+  <meta property="og:title" content="Notícias e vídeos | SaberWolf Esports">
+  <meta property="og:description" content="Acompanhe notícias, histórias, lives e vídeos da SaberWolf Esports, de seus creators e comunidades.">
+  <meta property="og:url" content="https://sbwgg.com.br/blog/noticias">
+  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-social.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <script src="../js/core/sbw-theme.js?v=20261021-black-1" data-sbw-theme-site="esports"></script>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-
-  <title>Notícias | SaberWolf Esports</title>
-
-  <meta
-    name="description"
-    content="Notícias da SaberWolf Esports: comunicados da organização, atletas, creators, comunidades, eventos e projetos."
-  />
-
-  <meta name="theme-color" content="#050d14" />
-  <meta name="sbw-site-version" content="v1.6.84.3" />
-  <meta name="sbw-app-version" content="App SBW Project" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
-  />
-
-  <link
-    rel="canonical"
-    href="https://sbwgg.com.br/blog/noticias.html"
-  />
-  <link
-    rel="icon"
-    href="../assets/icons/icon-192-v3.png"
-    type="image/png"
-  />
-  <link
-    rel="apple-touch-icon"
-    href="../assets/icons/apple-touch-icon-v3.png"
-  />
-  <link
-    rel="manifest"
-    href="../manifest.webmanifest?v=20261008-project-1"
-  />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="SaberWolf Esports" />
-  <meta
-    property="og:title"
-    content="Notícias | SaberWolf Esports"
-  />
-  <meta
-    property="og:description"
-    content="Acompanhe os comunicados, atletas, creators, comunidades e projetos da SaberWolf Esports."
-  />
-  <meta
-    property="og:url"
-    content="https://sbwgg.com.br/blog/noticias.html"
-  />
-  <meta
-    property="og:image"
-    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
-  />
-  <meta
-    property="og:image:alt"
-    content="SaberWolf Esports — -SBW-"
-  />
-
-  <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-page-state.css?v=20261020-theme-1" />
-  <link rel="stylesheet" href="../css/noticias.css" />
-  <link rel="stylesheet" href="../css/themes/dark/noticias.css?v=20261020-theme-1" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
-
-  <style>
-    body.sbw-news-institutional-body {
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    .sbw-news-institutional-body [hidden] {
-      display: none !important;
-    }
-
-    .sbw-news-institutional-body :where(
-      .sbw-news-hero__content,
-      .sbw-news-hero__panel,
-      .sbw-news-main-column,
-      .sbw-news-sidebar,
-      .sbw-news-section,
-      .sbw-news-card,
-      .sbw-news-search
-    ) {
-      min-width: 0;
-    }
-
-    .sbw-news-institutional-body :where(h1, h2, h3, p, a, strong) {
-      overflow-wrap: anywhere;
-    }
-
-    .sbw-news-institutional-body .sbw-news-search input {
-      min-width: 0;
-    }
-
-    .sbw-news-institutional-body .sbw-news-button {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      text-align: center;
-    }
-
-    .sbw-news-institutional-body .sbw-news-icon {
-      flex: 0 0 auto;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    .sbw-news-institutional-body .sbw-news-side-card__head .sbw-news-icon {
-      color: var(--news-cyan);
-      font-size: 1rem;
-    }
-
-    .sbw-news-institutional-body .sbw-news-side-list a {
-      display: grid;
-      gap: 4px;
-      color: var(--news-text);
-      text-decoration: none;
-    }
-
-    .sbw-news-institutional-body .sbw-news-side-list a:hover strong {
-      color: var(--news-cyan);
-    }
-
-    .sbw-news-institutional-body .sbw-news-side-card--cta .sbw-news-button {
-      margin-top: 18px;
-    }
-
-    .sbw-news-institutional-body a:focus-visible,
-    .sbw-news-institutional-body button:focus-visible,
-    .sbw-news-institutional-body .sbw-news-search:focus-within {
-      outline: 3px solid var(--news-cyan);
-      outline-offset: 4px;
-    }
-
-    /* Link para acessar o conteúdo diretamente pelo teclado. */
-
-    .sbw-news-skip-link {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 10000;
-      box-sizing: border-box;
-      max-width: calc(100% - 24px);
-      padding: 12px 18px;
-      border: 1px solid var(--news-cyan);
-      border-radius: 14px;
-      color: var(--news-text);
-      background: #04101f;
-      font-weight: 800;
-      line-height: 1.4;
-      text-decoration: none;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-      transform: translateY(calc(-100% - 24px));
-    }
-
-    .sbw-news-skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .sbw-news-noscript {
-      margin: 0 0 22px;
-      color: var(--news-muted);
-      line-height: 1.6;
-    }
-
-    @media (max-width: 1280px) {
-      .sbw-news-institutional-body .sbw-news-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .sbw-news-institutional-body .sbw-news-sidebar {
-        position: static;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 1200px) {
-      .sbw-news-institutional-body .sbw-news-hero {
-        grid-template-columns: minmax(0, 1fr);
-        min-height: auto;
-      }
-
-      .sbw-news-institutional-body .sbw-news-hero__panel {
-        min-height: auto;
-      }
-
-      .sbw-news-institutional-body .sbw-news-section__head {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .sbw-news-institutional-body .sbw-news-search {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 980px) {
-      body.sbw-news-institutional-body .sbw-news-page {
-        
-      }
-
-      .sbw-news-institutional-body .sbw-news-sidebar {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      body.sbw-news-institutional-body.sbw-page-ready main {
-        animation: none;
-      }
-    }
-  </style>
-
-  <noscript>
-    <style>
-      .sbw-news-categories,
-      .sbw-news-search,
-      .sbw-news-load-more {
-        display: none !important;
-      }
-    </style>
-  </noscript>
-
+  <link rel="stylesheet" href="../css/core/sbw-editorial.css?v=20261125-web-1">
+  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1">
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1">
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css?v=20261125-web-1">
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1">
+  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261021-black-1">
   <script defer src="../js/core/sbw-routes.js"></script>
-  <script defer src="../js/core/sbw-page-state.js"></script>
-  <script defer src="../js/news/news-page.js"></script>
-  <script
-    defer
-    src="../js/pwa/sbw-pwa.js?v=20261008-project-1"
-  ></script>
-  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-no-update-notice-1"></script>
-  <meta name="color-scheme" content="light dark" />
-  <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
-  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
-  <style data-sbw-theme-inline>
-/* SBW dark color adapter: blog/noticias.html inline styles. Layout and artwork stay in the source stylesheet. */
-html[data-sbw-theme="dark"] .sbw-news-institutional-body .sbw-news-side-card__head .sbw-news-icon {
-    color: var(--sbw-theme-accent)
-}
-html[data-sbw-theme="dark"] .sbw-news-institutional-body .sbw-news-side-list a {
-    color: var(--sbw-theme-text)
-}
-html[data-sbw-theme="dark"] .sbw-news-institutional-body .sbw-news-side-list a:hover strong {
-    color: var(--sbw-theme-accent)
-}
-html[data-sbw-theme="dark"] .sbw-news-institutional-body a:focus-visible,
-html[data-sbw-theme="dark"] .sbw-news-institutional-body button:focus-visible,
-html[data-sbw-theme="dark"] .sbw-news-institutional-body .sbw-news-search:focus-within {
-    outline: 3px solid var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-news-skip-link {
-    border: 1px solid var(--sbw-theme-border);
-    color: var(--sbw-theme-text);
-    background: var(--sbw-theme-deep)
-}
-html[data-sbw-theme="dark"] .sbw-news-noscript {
-    color: var(--sbw-theme-muted)
-}
-  </style>
-  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261021-black-1" />
+  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-web-1"></script>
 </head>
-
-<body
-  class="sbw-news-body sbw-news-institutional-body sbw-esports-page sbw-site-light"
-  data-sbw-active-page="news"
->
-  <a class="sbw-news-skip-link" href="#sbwNewsPage">
-    Pular para as notícias
-  </a>
-
-    <header class="sbw-site-header" data-sbw-site-header>
+<body class="sbw-editorial-page">
+  <a class="sbw-site-skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+  <header class="sbw-site-header" data-sbw-site-header>
     <div class="sbw-site-header__inner">
       <a class="sbw-site-brand" href="../index.html" aria-label="SaberWolf Esports — início">
         <span>SaberWolf <strong>Esports</strong></span>
@@ -301,331 +53,85 @@ html[data-sbw-theme="dark"] .sbw-news-noscript {
         <a href="../atletas/atletas-sbw.html">Atletas</a>
         <a href="../creators/creators.html">Creators</a>
         <a href="../comunidades/comunidades.html">Comunidades</a>
-        <a href="../blog/noticias.html" class="is-active" aria-current="page">Notícias</a>
-        <a href="../pages/conteudo.html">Conteúdo</a>
-        <a href="../pages/loja.html">Loja</a>
-        <a href="../links/index.html">Links oficiais</a>
+        <a href="../blog/noticias.html" aria-current="page">Notícias e vídeos</a>
+        <a href="../pages/loja.html">SBW Concept</a>
+        <a href="../pages/parcerias.html">Parcerias</a>
         <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
-          SBW Championship <span aria-hidden="true">↗</span>
+          SBW Championship
         </a>
       </nav>
     </div>
   </header>
+  <main id="conteudo-principal" tabindex="-1">
+    <section class="sbw-ed-hero" aria-labelledby="pagina-titulo">
+      <div class="sbw-ed-width sbw-ed-hero__inner">
+        <div>
 
-<main
-    class="sbw-news-page"
-    id="sbwNewsPage"
-    tabindex="-1"
-  >
-    <!-- APRESENTAÇÃO -->
-
-    <section class="sbw-news-hero" aria-labelledby="sbwNewsTitle">
-      <div class="sbw-news-hero__content">
-        <span class="sbw-news-eyebrow">
-          <span class="sbw-news-icon" aria-hidden="true">▤</span>
-          SaberWolf Esports
-        </span>
-
-        <h1 id="sbwNewsTitle">Notícias</h1>
-
-        <p>
-          Acompanhe os comunicados da SaberWolf Esports, a trajetória
-          de nossos atletas e creators, as ações da comunidade
-          e os projetos da organização.
-        </p>
-
-        <div class="sbw-news-hero__actions">
-          <a class="sbw-news-button" href="../pages/sobre.html">
-            Conhecer a SaberWolf
-          </a>
-
-          <a
-            class="sbw-news-button sbw-news-button--ghost"
-            href="../comunidades/comunidades.html"
-          >
-            Explorar comunidades
-          </a>
+          <h1 id="pagina-titulo">Notícias e vídeos</h1>
+          <p>Acompanhe quem representa a SaberWolf, os projetos da comunidade e os conteúdos da SBW.</p>
+          <div class="sbw-ed-actions">
+          <a class="sbw-ed-btn" href="#publicacoes">Ler publicações</a>
+          <a class="sbw-ed-btn sbw-ed-btn--quiet" href="#videos-e-lives">Ver vídeos e lives</a>
         </div>
+        </div>
+
       </div>
-
-      <aside
-        class="sbw-news-hero__panel"
-        aria-label="Comunicação da organização"
-      >
-        <span>SBW Media</span>
-        <strong>Gente, projetos e comunidade</strong>
-
-        <p>
-          Um espaço para acompanhar quem representa a -SBW-,
-          conhecer nossas iniciativas e ficar por dentro das novidades.
-        </p>
-      </aside>
     </section>
-
-    <!-- CATEGORIAS -->
-
-    <section
-      class="sbw-news-categories"
-      aria-label="Filtrar notícias por categoria"
-    >
-      <button
-        class="is-active"
-        type="button"
-        data-sbw-news-category="all"
-        aria-controls="sbwNewsGrid"
-      >
-        Todas
-      </button>
-
-      <button
-        type="button"
-        data-sbw-news-category="organizacao"
-        aria-controls="sbwNewsGrid"
-      >
-        Organização
-      </button>
-
-      <button
-        type="button"
-        data-sbw-news-category="atletas"
-        aria-controls="sbwNewsGrid"
-      >
-        Atletas
-      </button>
-
-      <button
-        type="button"
-        data-sbw-news-category="creators"
-        aria-controls="sbwNewsGrid"
-      >
-        Creators
-      </button>
-
-      <button
-        type="button"
-        data-sbw-news-category="comunidades"
-        aria-controls="sbwNewsGrid"
-      >
-        Comunidades
-      </button>
-
-      <button
-        type="button"
-        data-sbw-news-category="eventos"
-        aria-controls="sbwNewsGrid"
-      >
-        Eventos
-      </button>
-    </section>
-
-    <noscript>
-      <p class="sbw-news-noscript">
-        Ative o JavaScript para carregar as publicações e utilizar a busca.
-        Os links da organização continuam disponíveis nesta página.
-      </p>
-    </noscript>
-
-    <!-- PUBLICAÇÕES -->
-
-    <section
-      class="sbw-news-layout"
-      aria-label="Publicações da SaberWolf Esports"
-    >
-      <div class="sbw-news-main-column">
-        <article class="sbw-news-featured" data-sbw-news-featured>
-          <div class="sbw-news-featured__meta">
-            <span class="sbw-news-chip">Publicações oficiais</span>
-            <span>Em breve</span>
-          </div>
-
-          <h2>As novidades da -SBW- estarão aqui.</h2>
-
-          <p>
-            Comunicados, coberturas de eventos, histórias de atletas
-            e ações dos creators serão reunidos nesta página.
-            Enquanto isso, conheça a SaberWolf e acompanhe nossos canais oficiais.
-          </p>
-
-          <div class="sbw-news-featured__footer">
-            <a class="sbw-news-button" href="../links/index.html">
-              Acompanhar a -SBW-
-            </a>
-
-            <span class="sbw-news-featured__status">
-              Comunicação oficial da SaberWolf Esports.
-            </span>
-          </div>
+    <section class="sbw-ed-width sbw-ed-section" id="publicacoes" aria-labelledby="publicacoes-titulo">
+      <h2 id="publicacoes-titulo">Publicações</h2>
+      <div class="sbw-ed-grid">
+        <article class="sbw-ed-card">
+          <img src="../assets/images/kary-akane-retrato.jpg" width="343" height="440" alt="Kary Akane" loading="lazy" decoding="async">
+          <span class="sbw-ed-kicker">Creators</span>
+          <h3>Conheça Kary Akane</h3>
+          <p>Creator parceira e representante da Fighting Girls Community no cenário de jogos de luta.</p>
+          <a href="kary-akane.html">Ler sobre Kary Akane</a>
         </article>
+        <article class="sbw-ed-card">
 
-        <section
-          class="sbw-news-section"
-          aria-labelledby="sbwNewsGridTitle"
-        >
-          <div class="sbw-news-section__head">
-            <div>
-              <span class="sbw-news-eyebrow">Publicações</span>
-              <h2 id="sbwNewsGridTitle">Últimas notícias</h2>
-            </div>
+          <span class="sbw-ed-kicker">Comunidade</span>
+          <h3>Fighting Girls Community na SaberWolf</h3>
+          <p>Conheça a comunidade parceira voltada à participação feminina nos jogos de luta.</p>
+          <a href="fighting-girls-community.html">Ler sobre a Fighting Girls</a>
+        </article>
+        <article class="sbw-ed-card">
 
-            <label class="sbw-news-search" for="sbwNewsSearch">
-              <span class="sr-only">Buscar notícias</span>
-
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <circle cx="10.5" cy="10.5" r="6.5" />
-                <path d="M16 16L21 21" />
-              </svg>
-
-              <input
-                id="sbwNewsSearch"
-                name="q"
-                type="search"
-                placeholder="Buscar notícias..."
-                autocomplete="off"
-                aria-controls="sbwNewsGrid"
-                data-sbw-news-search
-              />
-            </label>
-          </div>
-
-          <div
-            class="sbw-news-grid"
-            id="sbwNewsGrid"
-            data-sbw-news-grid
-          ></div>
-
-          <div
-            class="sbw-news-empty"
-            data-sbw-news-empty
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <div class="sbw-news-empty__icon" aria-hidden="true">
-              ▤
-            </div>
-
-            <strong>Nenhuma publicação para exibir no momento.</strong>
-
-            <p>
-              Novas notícias da SaberWolf serão divulgadas nesta página.
-            </p>
-          </div>
-
-          <button
-            class="sbw-news-load-more"
-            type="button"
-            data-sbw-news-load-more
-            aria-controls="sbwNewsGrid"
-            disabled
-            hidden
-          >
-            Carregar mais notícias
-          </button>
-        </section>
+          <span class="sbw-ed-kicker">Competição</span>
+          <h3>World Warrior reforça importância da comunicação na FGC</h3>
+          <p>Uma leitura sobre comunicação entre jogadores e organização na cena competitiva de Street Fighter.</p>
+          <a href="noticia.html">Ler a matéria sobre World Warrior</a>
+        </article>
       </div>
+    </section>
+    <section class="sbw-ed-width sbw-ed-section" id="videos-e-lives" aria-labelledby="videos-e-lives-titulo">
+      <h2 id="videos-e-lives-titulo">Vídeos e lives</h2>
+      <div class="sbw-ed-grid">
+        <article class="sbw-ed-card">
 
-      <!-- DESTAQUES E LINKS -->
+          <h3>SaberWolf Esports</h3>
+          <p>Vídeos, cortes e conteúdos da organização.</p>
+          <a href="https://www.youtube.com/@SBW_Esports">Abrir o YouTube da SaberWolf</a>
+        </article>
+        <article class="sbw-ed-card">
 
-      <aside
-        class="sbw-news-sidebar"
-        aria-label="Destaques e canais da organização"
-      >
-        <section class="sbw-news-side-card">
-          <div class="sbw-news-side-card__head">
-            <span>Em destaque</span>
-            <span class="sbw-news-icon" aria-hidden="true">✦</span>
-          </div>
+          <h3>Kary Akane</h3>
+          <p>Lives e conteúdo de games com Kary.</p>
+          <a href="https://www.twitch.tv/kari_akane">Abrir a Twitch da Kary</a>
+        </article>
+        <article class="sbw-ed-card">
 
-          <p>
-            Os próximos destaques da SaberWolf serão divulgados aqui.
-          </p>
-        </section>
-
-        <section class="sbw-news-side-card">
-          <div class="sbw-news-side-card__head">
-            <span>Explore a SaberWolf</span>
-            <span class="sbw-news-icon" aria-hidden="true">↗</span>
-          </div>
-
-          <ul class="sbw-news-side-list">
-            <li>
-              <a href="../pages/sobre.html">
-                <strong>Sobre a organização</strong>
-                <small>
-                  Conheça a SaberWolf Esports e suas iniciativas.
-                </small>
-              </a>
-            </li>
-
-            <li>
-              <a href="../creators/creators.html">
-                <strong>Creators</strong>
-                <small>
-                  Conteúdo, lives e representantes da -SBW-.
-                </small>
-              </a>
-            </li>
-
-            <li>
-              <a href="../comunidades/comunidades.html">
-                <strong>Comunidades</strong>
-                <small>
-                  Grupos, projetos e conexões da comunidade gamer.
-                </small>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <section class="sbw-news-side-card sbw-news-side-card--cta">
-          <span>Canais oficiais</span>
-          <h3>Acompanhe a SaberWolf.</h3>
-
-          <p>
-            Encontre nossas redes sociais e acompanhe
-            os conteúdos e novidades da organização.
-          </p>
-
-          <a
-            class="sbw-news-button sbw-news-button--full"
-            href="../links/index.html"
-          >
-            Abrir links oficiais
-          </a>
-        </section>
-      </aside>
+          <h3>Creators da SBW</h3>
+          <p>Encontre os canais de cada creator e acompanhe seus conteúdos.</p>
+          <a href="../creators/creators.html">Conheça os creators</a>
+        </article>
+      </div>
     </section>
   </main>
-
-  <!-- RODAPÉ INSTITUCIONAL -->
-
   <footer class="sbw-site-footer" data-sbw-site-footer>
     <div class="sbw-site-footer__inner">
-      <p class="sbw-site-footer__copy">
-        © 2026 SaberWolf Esports. Todos os direitos reservados.
-      </p>
-
-      <p
-        class="sbw-site-footer__version"
-        data-sbw-version-label
-      >
-        Site v1.6.84.3 · App SBW Project
-      </p>
-
-      <nav
-        class="sbw-site-footer__legal"
-        aria-label="Links legais"
-      >
+      <p class="sbw-site-footer__copy">© 2026 SaberWolf Esports.</p>
+      <nav class="sbw-site-footer__legal" aria-label="Links do rodapé">
+        <a href="../links/index.html">Links oficiais</a>
         <a href="../pages/termos.html">Termos</a>
         <a href="../pages/privacidade.html">Privacidade</a>
         <a href="../pages/cookies.html">Cookies</a>

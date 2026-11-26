@@ -208,7 +208,7 @@ body.sbw-hub {
 .hub-footer__brand { display: inline-block; min-height: 44px; padding: 12px; color: var(--hub-text); font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-decoration: none; }
 .hub-footer p { margin: 2px 0 8px; font-size: .68rem; line-height: 1.6; }
 .hub-footer__legal { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; column-gap: 16px; }
-.hub-footer__legal a { display: inline-flex; align-items: center; min-height: 44px; color: var(--hub-muted); font-size: .7rem; text-decoration: none; }
+.hub-footer .hub-footer__legal a { display: inline-flex; align-items: center; min-height: 44px; color: #22506a; font-size: .85rem; text-decoration: underline; text-underline-offset: 3px; }
 .hub-footer__legal a:hover, .hub-footer__brand:hover { color: var(--hub-accent); text-decoration: underline; text-underline-offset: 4px; }
 body.hub--championship { --hub-bg: #07101e; --hub-accent: #69dcec; --hub-rgb: 105 220 236; --hub-card: rgb(15 29 48 / 94%); --hub-border: rgb(179 203 224 / 32%); --hub-muted: #bdcadb; }
 .hub--championship .hub-art { background: radial-gradient(ellipse at 78% 0%, #184464, transparent 58%), radial-gradient(ellipse at 2% 78%, #0b3044, transparent 50%), #070f1d; }
@@ -262,4 +262,9 @@ body.hub--project { --hub-bg: #edf0f2; --hub-text: #121b26; --hub-muted: #53616f
   .hub-art { display: none; }
   .hub-card, .hub-avatar, .hub-share, .hub-socials a { border: 1px solid ButtonText; }
   .hub--esports [data-icon]:has(.hub-brand-icon) { forced-color-adjust: none; }
+}
+
+html[data-sbw-theme="light"] .hub-footer .sbw-cookie-button--ghost {
+  color: #22506a;
+  border-color: #52768a;
 }

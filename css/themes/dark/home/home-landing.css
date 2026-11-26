@@ -88,63 +88,10 @@ html[data-sbw-theme="dark"] .sbw-btn--ghost:hover {
     background: var(--sbw-theme-deep);
     border-color: var(--sbw-theme-border)
 }
-html[data-sbw-theme="dark"] .sbw-home-hero .sbw-pwa-status {
-    color: var(--sbw-theme-muted)
-}
 html[data-sbw-theme="dark"] .sbw-section-heading h2 {
     color: var(--sbw-theme-text)
 }
 html[data-sbw-theme="dark"] .sbw-section-heading p {
-    color: var(--sbw-theme-muted)
-}
-html[data-sbw-theme="dark"] .sbw-org-section {
-    background: var(--sbw-theme-panel)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member {
-    color: var(--sbw-theme-text);
-    background: var(--sbw-theme-panel);
-    border: 1px solid var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member:hover {
-    border-color: var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member__photo {
-    background: linear-gradient(135deg, var(--sbw-theme-deep), var(--sbw-theme-deep));
-    border-bottom: 3px solid var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member__tag {
-    color: var(--sbw-theme-accent)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member__content h3 {
-    color: var(--sbw-theme-text)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member__content p {
-    color: var(--sbw-theme-accent)
-}
-html[data-sbw-theme="dark"] .sbw-feature-member__cta {
-    border-bottom: 2px solid var(--sbw-theme-border);
-    color: var(--sbw-theme-accent)
-}
-html[data-sbw-theme="dark"] .sbw-ecosystem-section {
-    background: var(--sbw-theme-panel);
-    border-top: 1px solid var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-module-card {
-    border: 1px solid var(--sbw-theme-border);
-    color: var(--sbw-theme-text);
-    background: var(--sbw-theme-panel)
-}
-html[data-sbw-theme="dark"] .sbw-module-card:hover {
-    border-color: var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-module-card > span {
-    color: var(--sbw-theme-accent);
-    background: var(--sbw-theme-panel)
-}
-html[data-sbw-theme="dark"] .sbw-module-card h3 {
-    color: var(--sbw-theme-text)
-}
-html[data-sbw-theme="dark"] .sbw-module-card p {
     color: var(--sbw-theme-muted)
 }
 html[data-sbw-theme="dark"] body.sbw-home-page > .sbw-site-footer {

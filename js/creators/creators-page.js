@@ -30,7 +30,7 @@
       badge: "Oficial",
       description:
         "Fundador da -SBW-, creator e responsável por iniciativas de conteúdo e comunidade da SaberWolf Esports.",
-      avatar: "assets/images/dlucca-sbw.png",
+      avatar: "assets/images/dlucca-sbw.webp",
       href: "creators/creator-dlucca.html",
       tags: ["Fundador", "Conteúdo", "Comunidade"],
       filters: ["sbw", "community"]
@@ -38,11 +38,11 @@
     {
       id: "elitz",
       name: "-SBW- | EliTz",
-      role: "Creator oficial",
+      role: "Atleta de Call of Duty e creator",
       badge: "Oficial",
       description:
         "Jogador profissional de Call of Duty e creator da -SBW-, com conteúdo voltado a gameplay e evolução dentro do jogo.",
-      avatar: "assets/images/elitz-avatar.jpg",
+      avatar: "assets/home/elitz.webp",
       href: "creators/creator-elitz.html",
       tags: ["Call of Duty", "Conteúdo", "SBW"],
       filters: ["sbw", "gameplay", "community"]
@@ -50,7 +50,7 @@
     {
       id: "kari-akane",
       name: "Kary Akane",
-      role: "FGC / Comunidade parceira",
+      role: "Creator parceira da Fighting Girls",
       badge: "Parceira",
       description:
         "Representante da Fighting Girls Community, fortalecendo presença, acolhimento e visibilidade feminina na FGC.",
@@ -67,7 +67,7 @@
       badge: "Parceira",
       description:
         "Creator parceira conectada a fighting games, gameplay, comunidade e conteúdo competitivo da SaberWolf Esports.",
-      avatar: "assets/images/tigerfurious-avatar.jpg",
+      avatar: "assets/home/tigerfurious.webp",
       href: "creators/creator-tiger-furious.html",
       tags: ["FGC", "Live", "Comunidade"],
       filters: ["fgc", "gameplay", "community"]
@@ -191,7 +191,7 @@
           />
 
           <span class="sbw-creator-card__badge">
-            ${escapeHtml(creator.badge)}
+            ${escapeHtml(creator.role)}
           </span>
         </div>
 
@@ -202,7 +202,7 @@
 
         <div class="sbw-creator-card__footer">
           <div class="sbw-creator-card__tags">${tags}</div>
-          <span>Ver perfil →</span>
+          <span>Ver perfil</span>
         </div>
       </a>
     `;

@@ -14,30 +14,25 @@
 
   <meta name="theme-color" content="#050d14" />
   <meta name="sbw-site-version" content="v1.6.84.3" />
-  <meta name="sbw-app-version" content="App SBW Project" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <link rel="canonical" href="https://sbwgg.com.br/pages/sobre.html" />
+  <link rel="canonical" href="https://sbwgg.com.br/pages/sobre" />
   <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png" />
   <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon-v3.png" />
-  <link rel="manifest" href="../manifest.webmanifest?v=20261008-project-1" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="SaberWolf Esports" />
   <meta property="og:title" content="Sobre a SaberWolf Esports | -SBW-" />
   <meta property="og:description" content="Competição, criação de conteúdo e comunidade. Conheça a SaberWolf Esports e suas iniciativas." />
-  <meta property="og:url" content="https://sbwgg.com.br/pages/sobre.html" />
-  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-home-banner.png" />
+  <meta property="og:url" content="https://sbwgg.com.br/pages/sobre" />
+  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-home-banner.webp" />
   <meta property="og:image:alt" content="SaberWolf Esports — -SBW-" />
 
   <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
   <link rel="stylesheet" href="../css/themes/dark/core/sbw-page-state.css?v=20261020-theme-1" />
   <link rel="stylesheet" href="../css/sobre.css" />
   <link rel="stylesheet" href="../css/themes/dark/sobre.css?v=20261020-theme-1" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css?v=20261125-web-1" />
   <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
 
   <style>
@@ -140,8 +135,7 @@
 
   <script defer src="../js/core/sbw-routes.js"></script>
   <script defer src="../js/core/sbw-page-state.js"></script>
-  <script defer src="../js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
-  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-no-update-notice-1"></script>
+  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-web-1"></script>
   <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -191,10 +185,9 @@ html[data-sbw-theme="dark"] .sbw-about-institutional-body button:focus-visible {
         <a href="../atletas/atletas-sbw.html">Atletas</a>
         <a href="../creators/creators.html">Creators</a>
         <a href="../comunidades/comunidades.html">Comunidades</a>
-        <a href="../blog/noticias.html">Notícias</a>
-        <a href="../pages/conteudo.html">Conteúdo</a>
-        <a href="../pages/loja.html">Loja</a>
-        <a href="../links/index.html">Links oficiais</a>
+        <a href="../blog/noticias.html">Notícias e vídeos</a>
+        <a href="../pages/loja.html">SBW Concept</a>
+        <a href="../pages/parcerias.html">Parcerias</a>
         <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
           SBW Championship <span aria-hidden="true">↗</span>
         </a>
@@ -373,25 +366,15 @@ html[data-sbw-theme="dark"] .sbw-about-institutional-body button:focus-visible {
 
       <div class="sbw-about-hero__actions">
         <a
-          id="sbwAboutChampionshipLink"
           class="sbw-about-button sbw-about-button--primary"
-          role="link"
-          aria-disabled="true"
-          aria-describedby="sbwAboutChampionshipStatus"
-          tabindex="-1"
+          href="https://sbwchampionship.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          SBW Championship em preparação
+          Abrir SBW Championship
         </a>
       </div>
 
-      <p
-        class="sbw-about-panel-note"
-        id="sbwAboutChampionshipStatus"
-      >
-        O acesso ao site da SBW Championship estará disponível aqui em breve.
-      </p>
     </section>
 
     <!-- ÁREAS DO SITE INSTITUCIONAL -->
@@ -536,88 +519,16 @@ html[data-sbw-theme="dark"] .sbw-about-institutional-body button:focus-visible {
         © 2026 SaberWolf Esports. Todos os direitos reservados.
       </p>
 
-      <p
-        class="sbw-site-footer__version"
-        data-sbw-version-label
-      >
-        Site v1.6.84.3 · App SBW Project
-      </p>
-
       <nav
         class="sbw-site-footer__legal"
         aria-label="Links legais"
       >
+        <a href="../links/index.html">Links oficiais</a>
         <a href="./termos.html">Termos</a>
         <a href="./privacidade.html">Privacidade</a>
         <a href="./cookies.html">Cookies</a>
       </nav>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      "use strict";
-
-      function initChampionshipLink() {
-        const link = document.getElementById(
-          "sbwAboutChampionshipLink"
-        );
-
-        const status = document.getElementById(
-          "sbwAboutChampionshipStatus"
-        );
-
-        if (!link) return;
-
-        try {
-          // Usa a configuração central dos dois sites.
-          const destination =
-            window.SBWRoutes?.championship?.("/");
-
-          if (!destination) return;
-
-          const url = new URL(destination);
-
-          if (!["http:", "https:"].includes(url.protocol)) {
-            return;
-          }
-
-          // Evita direcionar o visitante de volta ao site institucional.
-          if (url.origin === window.location.origin) {
-            return;
-          }
-
-          link.href = url.href;
-          link.textContent = "Abrir SBW Championship ↗";
-
-          link.setAttribute(
-            "aria-label",
-            "Abrir o site da SBW Championship em nova aba"
-          );
-
-          link.removeAttribute("role");
-          link.removeAttribute("aria-disabled");
-          link.removeAttribute("aria-describedby");
-          link.removeAttribute("tabindex");
-
-          if (status) {
-            status.hidden = true;
-          }
-        } catch {
-          // Sem um endereço válido, permanece a indicação de preparação.
-        }
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener(
-          "DOMContentLoaded",
-          initChampionshipLink,
-          { once: true }
-        );
-      } else {
-        initChampionshipLink();
-      }
-    })();
-  </script>
 </body>
 </html>

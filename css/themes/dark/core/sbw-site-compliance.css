@@ -20,9 +20,6 @@ html[data-sbw-theme="dark"] .sbw-site-footer__legal a:hover,
 html[data-sbw-theme="dark"] .sbw-site-footer__links a:hover {
     color: var(--sbw-theme-text)
 }
-html[data-sbw-theme="dark"] .sbw-site-footer__version {
-    color: color-mix(in srgb, var(--sbw-theme-muted) 44%, transparent)
-}
 html[data-sbw-theme="dark"] .sbw-cookie-banner {
     border: 1px solid color-mix(in srgb, var(--sbw-theme-border) 26%, transparent);
     background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--sbw-theme-action) 16%, transparent), transparent 34rem),

@@ -1,12 +1,8 @@
-# -SBW- beta fechado
-# Evita indexação enquanto a plataforma está em teste online.
 User-agent: *
-Allow: /ads.txt$
-Disallow: /
+Disallow: /admin
+Disallow: /supabase/
+Disallow: /tests/
+Disallow: /tools/
+Disallow: /docs/
 
-# Permite ao verificador do AdSense acessar a página inicial pública.
-User-agent: Google-Display-Ads-Bot
-Allow: /$
-Allow: /index.html$
-Allow: /ads.txt$
-Disallow: /
+Sitemap: https://sbwgg.com.br/sitemap.xml

@@ -1,225 +1,39 @@
-<!DOCTYPE html>
-<html lang="pt-BR" data-sbw-theme-page="comunidades-comunidades">
+<!doctype html>
+<html lang="pt-BR" data-sbw-theme-page="editorial">
 <head>
-  <script src="../js/core/sbw-theme.js?v=20261021-black-1" data-sbw-theme-site="esports"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Comunidades | SaberWolf Esports</title>
+  <meta name="description" content="Conheça as comunidades parceiras da SaberWolf Esports e saiba como participar.">
+  <meta name="theme-color" content="#050d14">
+  <meta name="sbw-championship-origin" content="https://sbwchampionship.com">
+  <link rel="canonical" href="https://sbwgg.com.br/comunidades/comunidades">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="SaberWolf Esports">
+  <meta property="og:title" content="Comunidades | SaberWolf Esports">
+  <meta property="og:description" content="Conheça as comunidades parceiras da SaberWolf Esports e saiba como participar.">
+  <meta property="og:url" content="https://sbwgg.com.br/comunidades/comunidades">
+  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-social.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <meta
-    name="description"
-    content="Descubra comunidades, grupos e cenas conectadas à SaberWolf Esports. Explore por jogo, região, tipo e atividade."
-  />
-
-  <meta name="theme-color" content="#050d14" />
-  <meta name="sbw-site-version" content="v1.6.84.3" />
-  <meta name="sbw-app-version" content="App SBW Project" />
-
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="SaberWolf" />
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
-  />
-
-  <link
-    rel="canonical"
-    href="https://sbwgg.com.br/comunidades/comunidades.html"
-  />
-
-  <link
-    rel="icon"
-    href="../assets/icons/icon-192-v3.png"
-    type="image/png"
-  />
-
-  <link
-    rel="apple-touch-icon"
-    href="../assets/icons/apple-touch-icon-v3.png"
-  />
-
-  <link
-    rel="manifest"
-    href="../manifest.webmanifest?v=20261008-project-1"
-  />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="SaberWolf Esports" />
-  <meta property="og:title" content="Comunidades | SaberWolf Esports" />
-  <meta
-    property="og:description"
-    content="Encontre comunidades, conecte-se e jogue junto com cenas parceiras da SaberWolf Esports."
-  />
-  <meta
-    property="og:url"
-    content="https://sbwgg.com.br/comunidades/comunidades.html"
-  />
-  <meta
-    property="og:image"
-    content="https://sbwgg.com.br/assets/home/sbw-home-banner.png"
-  />
-
-  <link rel="stylesheet" href="../css/core/sbw-page-state.css" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-page-state.css?v=20261020-theme-1" />
-  <link rel="stylesheet" href="../css/comunidades.css" />
-  <link rel="stylesheet" href="../css/themes/dark/comunidades.css?v=20261020-theme-1" />
-  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
-
-  <style>
-    body.sbw-communities-institutional-body {
-      margin: 0;
-      color-scheme: dark;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    .sbw-communities-institutional-body [hidden] {
-      display: none !important;
-    }
-
-    .sbw-communities-institutional-body .sbw-communities-page {
-      overflow-wrap: anywhere;
-    }
-
-    .sbw-communities-institutional-body :where(
-      .sbw-communities-hero > *,
-      .sbw-communities-filters > *,
-      .sbw-communities-category-card,
-      .sbw-communities-card,
-      .sbw-communities-cta > *
-    ) {
-      min-width: 0;
-    }
-
-    .sbw-communities-institutional-body .sbw-communities-hero h1 {
-      font-size: clamp(2.2rem, 7vw, 6.6rem);
-    }
-
-    .sbw-communities-institutional-body .sbw-communities-heading--row {
-      flex-wrap: wrap;
-    }
-
-    .sbw-communities-institutional-body :where(
-      .sbw-communities-hero-card a,
-      .sbw-communities-cta a
-    ) {
-      max-width: 100%;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      text-align: center;
-    }
-
-    .sbw-communities-institutional-body .sbw-communities-cta > a {
-      flex-shrink: 0;
-    }
-
-    .sbw-communities-institutional-body #communitiesList {
-      scroll-margin-top: 84px;
-    }
-
-    .sbw-communities-institutional-body :where(
-      a,
-      button,
-      input,
-      select
-    ):focus-visible {
-      outline: 2px solid #53d7ff;
-      outline-offset: 4px;
-    }
-
-    .sbw-communities-institutional-body .sbw-communities-empty a {
-      color: #7de8ff;
-      text-underline-offset: 4px;
-    }
-
-    @media (max-width: 1280px) {
-      .sbw-communities-institutional-body .sbw-communities-hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .sbw-communities-institutional-body :where(
-        .sbw-communities-filters,
-        .sbw-communities-category-grid,
-        .sbw-communities-grid
-      ) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .sbw-communities-institutional-body .sbw-communities-cta {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .sbw-communities-institutional-body .sbw-communities-page {
-        
-      }
-    }
-
-    @media (max-width: 680px) {
-      .sbw-communities-institutional-body :where(
-        .sbw-communities-filters,
-        .sbw-communities-category-grid,
-        .sbw-communities-grid
-      ) {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      body.sbw-communities-institutional-body.sbw-page-ready main {
-        animation: none;
-      }
-
-      .sbw-communities-institutional-body .sbw-communities-card {
-        transition: none;
-      }
-
-      .sbw-communities-institutional-body .sbw-communities-card:hover {
-        transform: none;
-      }
-    }
-  </style>
-
+  <link rel="icon" href="../assets/icons/icon-192-v3.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="../js/core/sbw-theme.js?v=20261021-black-1" data-sbw-theme-site="esports"></script>
+  <link rel="stylesheet" href="../css/core/sbw-editorial.css?v=20261125-web-1">
+  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1">
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1">
+  <link rel="stylesheet" href="../css/core/sbw-site-compliance.css?v=20261125-web-1">
+  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1">
+  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261021-black-1">
   <script defer src="../js/core/sbw-routes.js"></script>
-  <script defer src="../js/core/sbw-page-state.js"></script>
-  <script defer src="../js/communities/communities-page.js?v=20261012-site-1"></script>
-  <script defer src="../js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
-  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-no-update-notice-1"></script>
-  <meta name="color-scheme" content="light dark" />
-  <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" />
-  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1" />
-  <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="../js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
-  <style data-sbw-theme-inline>
-/* SBW dark color adapter: comunidades/comunidades.html inline styles. Layout and artwork stay in the source stylesheet. */
-html[data-sbw-theme="dark"] .sbw-communities-institutional-body :where(
-      a,
-      button,
-      input,
-      select
-    ):focus-visible {
-    outline: 2px solid var(--sbw-theme-border)
-}
-html[data-sbw-theme="dark"] .sbw-communities-institutional-body .sbw-communities-empty a {
-    color: var(--sbw-theme-accent)
-}
-  </style>
-  <link rel="stylesheet" href="../css/core/sbw-theme.css?v=20261021-black-1" />
+  <script defer src="../js/core/sbw-site-compliance.js?v=20261125-web-1"></script>
 </head>
-
-<body
-  class="sbw-communities-body sbw-communities-institutional-body sbw-esports-page sbw-site-light"
-  data-sbw-active-page="communities"
->
-    <a class="sbw-site-skip-link" href="#sbwCommunitiesPage">Pular para o conteúdo</a>
-
+<body class="sbw-editorial-page">
+  <a class="sbw-site-skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
   <header class="sbw-site-header" data-sbw-site-header>
     <div class="sbw-site-header__inner">
       <a class="sbw-site-brand" href="../index.html" aria-label="SaberWolf Esports — início">
@@ -238,240 +52,49 @@ html[data-sbw-theme="dark"] .sbw-communities-institutional-body .sbw-communities
         <a href="../pages/sobre.html">Sobre</a>
         <a href="../atletas/atletas-sbw.html">Atletas</a>
         <a href="../creators/creators.html">Creators</a>
-        <a href="../comunidades/comunidades.html" class="is-active" aria-current="page">Comunidades</a>
-        <a href="../blog/noticias.html">Notícias</a>
-        <a href="../pages/conteudo.html">Conteúdo</a>
-        <a href="../pages/loja.html">Loja</a>
-        <a href="../links/index.html">Links oficiais</a>
+        <a href="../comunidades/comunidades.html" aria-current="page">Comunidades</a>
+        <a href="../blog/noticias.html">Notícias e vídeos</a>
+        <a href="../pages/loja.html">SBW Concept</a>
+        <a href="../pages/parcerias.html">Parcerias</a>
         <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
-          SBW Championship <span aria-hidden="true">↗</span>
+          SBW Championship
         </a>
       </nav>
     </div>
   </header>
-
-<main class="sbw-communities-page" id="sbwCommunitiesPage" tabindex="-1">
-    <section
-      class="sbw-communities-hero"
-      aria-labelledby="communitiesPageTitle"
-    >
-      <div class="sbw-communities-hero__content">
-        <span class="sbw-communities-kicker">
-          Ecossistema Gamer
-        </span>
-
-        <h1 id="communitiesPageTitle">Comunidades</h1>
-
-        <p>
-          Descubra grupos e cenas conectadas à SaberWolf Esports.
-          Encontre seu lugar, conecte-se e jogue junto.
-        </p>
-      </div>
-
-      <aside
-        class="sbw-communities-hero-card"
-        aria-label="Chamada para comunidades"
-      >
-        <span aria-hidden="true">◎</span>
-
-        <strong>Entre em comunidades e jogue junto!</strong>
-
-        <p>
-          Explore grupos por jogo, região, tipo de cena e atividade.
-        </p>
-
-        <a href="#communitiesList">Explorar comunidades</a>
-      </aside>
-    </section>
-
-    <section
-      class="sbw-communities-search"
-      aria-label="Busca e filtros de comunidades"
-    >
-      <label
-        class="sbw-communities-search__field"
-        for="sbwCommunitySearch"
-      >
-        <span>Buscar comunidades</span>
-
-        <input
-          id="sbwCommunitySearch"
-          name="community-search"
-          type="search"
-          placeholder="Buscar por nome ou palavra-chave..."
-          autocomplete="off"
-          aria-controls="sbwCommunitiesGrid"
-          data-community-search
-        />
-      </label>
-
-      <div class="sbw-communities-filters">
-        <label for="sbwCommunityGame">
-          <span>Jogo</span>
-
-          <select
-            id="sbwCommunityGame"
-            name="game"
-            aria-controls="sbwCommunitiesGrid"
-            data-community-filter="game"
-          >
-            <option value="all">Todos os jogos</option>
-          </select>
-        </label>
-
-        <label for="sbwCommunityRegion">
-          <span>Região</span>
-
-          <select
-            id="sbwCommunityRegion"
-            name="region"
-            aria-controls="sbwCommunitiesGrid"
-            data-community-filter="region"
-          >
-            <option value="all">Todas as regiões</option>
-          </select>
-        </label>
-
-        <label for="sbwCommunityType">
-          <span>Tipo</span>
-
-          <select
-            id="sbwCommunityType"
-            name="type"
-            aria-controls="sbwCommunitiesGrid"
-            data-community-filter="type"
-          >
-            <option value="all">Todos os tipos</option>
-          </select>
-        </label>
-
-        <label for="sbwCommunityActivity">
-          <span>Atividade</span>
-
-          <select
-            id="sbwCommunityActivity"
-            name="activity"
-            aria-controls="sbwCommunitiesGrid"
-            data-community-filter="activity"
-          >
-            <option value="all">Todas</option>
-          </select>
-        </label>
-
-        <button
-          type="button"
-          aria-controls="sbwCommunitiesGrid"
-          data-community-clear
-        >
-          Limpar filtros
-        </button>
-      </div>
-    </section>
-
-    <section
-      class="sbw-communities-quick"
-      aria-labelledby="communityCategoriesTitle"
-    >
-      <div class="sbw-communities-heading">
-        <span class="sbw-communities-kicker">
-          Categorias rápidas
-        </span>
-
-        <h2 id="communityCategoriesTitle">Encontre sua cena</h2>
-      </div>
-
-      <div
-        class="sbw-communities-category-grid"
-        data-community-categories
-      ></div>
-    </section>
-
-    <section
-      class="sbw-communities-all"
-      id="communitiesList"
-      aria-labelledby="allCommunitiesTitle"
-    >
-      <div class="sbw-communities-heading sbw-communities-heading--row">
+  <main id="conteudo-principal" tabindex="-1">
+    <section class="sbw-ed-hero" aria-labelledby="pagina-titulo">
+      <div class="sbw-ed-width sbw-ed-hero__inner">
         <div>
-          <span class="sbw-communities-kicker">
-            Diretório público
-          </span>
 
-          <h2 id="allCommunitiesTitle">Todas as comunidades</h2>
+          <h1 id="pagina-titulo">Comunidades da SaberWolf</h1>
+          <p>Conheça quem reúne jogadores, creators e fãs para fortalecer a cena gamer brasileira.</p>
+          <div class="sbw-ed-actions">
+          <a class="sbw-ed-btn" href="#fighting-girls">Explorar a Fighting Girls</a>
+        </div>
         </div>
 
-        <small
-          role="status"
-          aria-live="polite"
-          aria-atomic="true"
-          data-community-count
-        >
-          Diretório de comunidades
-        </small>
-      </div>
-
-      <div
-        class="sbw-communities-grid"
-        id="sbwCommunitiesGrid"
-        data-community-grid
-      >
-        <noscript>
-          <div class="sbw-communities-empty">
-            <p>
-              Ative o JavaScript para utilizar a busca e os filtros
-              de comunidades.
-            </p>
-
-            <a href="./comunidade-fighting-girls.html">
-              Conhecer a Fighting Girls Community
-            </a>
-          </div>
-        </noscript>
       </div>
     </section>
-
-    <section
-      class="sbw-communities-cta"
-      aria-labelledby="communityCtaTitle"
-    >
-      <div>
-        <span class="sbw-communities-kicker">
-          Sua comunidade e a SaberWolf
-        </span>
-
-        <h2 id="communityCtaTitle">
-          Vamos fortalecer nossas comunidades
-        </h2>
-
-        <p>
-          Conheça nossos canais oficiais, acompanhe as iniciativas
-          da organização e converse com a equipe sobre sua comunidade.
-        </p>
+    <section class="sbw-ed-width sbw-ed-section" id="fighting-girls" aria-labelledby="fighting-girls-titulo">
+      <h2 id="fighting-girls-titulo">Fighting Girls Community</h2>
+      <div class="sbw-ed-grid">
+        <div class="sbw-ed-card">
+          <span class="sbw-ed-kicker">Comunidade parceira · Jogos de luta</span>
+          <p>A Fighting Girls Community fortalece a visibilidade e a participação de mulheres nos jogos de luta. Conheça a comunidade e acompanhe seus canais para saber como participar das próximas iniciativas.</p>
+          <div class="sbw-ed-actions">
+          <a class="sbw-ed-btn" href="comunidade-fighting-girls.html">Conhecer a comunidade</a>
+          <a class="sbw-ed-btn sbw-ed-btn--quiet" href="https://www.instagram.com/fightingirlscbr/">Falar com a Fighting Girls</a>
+        </div>
+        </div>
       </div>
-
-      <a href="../links/index.html">
-        Acessar canais oficiais
-      </a>
     </section>
   </main>
-
   <footer class="sbw-site-footer" data-sbw-site-footer>
     <div class="sbw-site-footer__inner">
-      <p class="sbw-site-footer__copy">
-        © 2026 SaberWolf Esports. Todos os direitos reservados.
-      </p>
-
-      <p
-        class="sbw-site-footer__version"
-        data-sbw-version-label
-      >
-        Site v1.6.84.3 · App SBW Project
-      </p>
-
-      <nav
-        class="sbw-site-footer__legal"
-        aria-label="Links legais"
-      >
+      <p class="sbw-site-footer__copy">© 2026 SaberWolf Esports.</p>
+      <nav class="sbw-site-footer__legal" aria-label="Links do rodapé">
+        <a href="../links/index.html">Links oficiais</a>
         <a href="../pages/termos.html">Termos</a>
         <a href="../pages/privacidade.html">Privacidade</a>
         <a href="../pages/cookies.html">Cookies</a>

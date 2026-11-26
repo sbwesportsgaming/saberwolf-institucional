@@ -102,7 +102,7 @@ html[data-sbw-theme="dark"] .hub-footer {
 html[data-sbw-theme="dark"] .hub-footer__brand {
     color: var(--sbw-theme-text)
 }
-html[data-sbw-theme="dark"] .hub-footer__legal a {
+html[data-sbw-theme="dark"] .hub-footer .hub-footer__legal a {
     color: var(--sbw-theme-muted)
 }
 html[data-sbw-theme="dark"] .hub-footer__legal a:hover,

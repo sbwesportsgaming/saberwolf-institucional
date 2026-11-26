@@ -126,16 +126,6 @@ body.sbw-has-sidebar > .sbw-site-footer {
   color: #ffffff;
 }
 
-.sbw-site-footer__version {
-  margin: -2px 0 0;
-  color: rgba(199, 216, 231, 0.44);
-  font-size: 10.5px;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-align: center;
-}
 
 /* =========================
    AVISO DE COOKIES
@@ -164,10 +154,10 @@ body.sbw-has-sidebar > .sbw-site-footer {
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 14px;
+  gap: 9px;
   align-items: center;
   justify-items: center;
-  padding: 16px;
+  padding: 12px;
   border: 1px solid rgba(76, 202, 255, 0.26);
   border-radius: 20px;
   background:
@@ -440,5 +430,28 @@ body.sbw-has-sidebar > .sbw-site-footer {
   .sbw-cookie-modal__content,
   .sbw-cookie-modal__actions {
     padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sbw-cookie-banner .sbw-cookie-banner__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .sbw-cookie-banner .sbw-cookie-banner__actions .sbw-cookie-button {
+    width: 100%;
+    min-height: 44px;
+    padding: 6px 8px;
+  }
+
+  .sbw-cookie-banner__actions [data-sbw-cookie-preferences] {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .sbw-cookie-banner .sbw-cookie-banner__text {
+    gap: 3px;
   }
 }

@@ -1,38 +1,4 @@
 {
-  "name": "SBW Project",
-  "short_name": "SBW Project",
-  "description": "Central de acesso da SBW Project: SaberWolf Esports, SBW Championship e SBW Concept.",
-  "lang": "pt-BR",
-  "id": "/?source=pwa-saberwolf",
-  "start_url": "./app/index.html?source=pwa-saberwolf",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "any",
-  "background_color": "#f3f4f6",
-  "theme_color": "#f3f4f6",
-  "categories": [
-    "games",
-    "sports",
-    "entertainment"
-  ],
-  "icons": [
-    {
-      "src": "./assets/icons/sbw-project-app-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./assets/icons/sbw-project-app-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "./assets/icons/sbw-project-app-180.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ]
+  "name": "SaberWolf Esports",
+  "display": "browser"
 }

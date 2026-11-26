@@ -7,6 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>SaberWolf Esports | Organização, conteúdo e comunidade</title>
+  <link rel="canonical" href="https://sbwgg.com.br/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="SaberWolf Esports">
+  <meta property="og:title" content="SaberWolf Esports">
+  <meta property="og:description" content="Conheça os atletas, creators e comunidades da SaberWolf Esports.">
+  <meta property="og:url" content="https://sbwgg.com.br/">
+  <meta property="og:image" content="https://sbwgg.com.br/assets/home/sbw-social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SaberWolf Esports, com o escudo oficial da organização">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SaberWolf Esports",
+      "url": "https://sbwgg.com.br/",
+      "logo": "https://sbwgg.com.br/assets/images/sbw-esports-oficial.png",
+      "sameAs": [
+        "https://www.instagram.com/sbw_esports_/",
+        "https://www.youtube.com/@SBW_Esports",
+        "https://x.com/SBW_esports"
+      ]
+    }
+  </script>
 
   <meta
     name="description"
@@ -17,14 +43,6 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <meta name="sbw-site-version" content="v1.6.84.3" />
-  <meta name="sbw-app-version" content="App SBW Project" />
-
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="-SBW-" />
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
-  />
 
   <link
     rel="icon"
@@ -37,11 +55,6 @@
     href="./assets/icons/apple-touch-icon-v3.png"
   />
 
-  <link
-    rel="manifest"
-    href="./manifest.webmanifest?v=20261008-project-1"
-  />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -52,20 +65,18 @@
 
   <link
     rel="stylesheet"
-    href="./css/home/home-landing.css?v=20261125-crest-1"
+    href="./css/home/home-landing.css?v=20261125-web-1"
   />
-  <link rel="stylesheet" href="css/themes/dark/home/home-landing.css?v=20261020-theme-1" />
+  <link rel="stylesheet" href="css/themes/dark/home/home-landing.css?v=20261125-web-1" />
 
   <link
     rel="stylesheet"
-    href="./css/core/sbw-site-compliance.css"
+    href="./css/core/sbw-site-compliance.css?v=20261125-web-1"
   />
   <link rel="stylesheet" href="css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1" />
 
   <script defer src="./js/core/sbw-routes.js"></script>
-  <script defer src="./js/home/home-page.js?v=20261012-site-1"></script>
-  <script defer src="./js/pwa/sbw-pwa.js?v=20261008-project-1"></script>
-  <script defer src="./js/core/sbw-site-compliance.js?v=20261125-no-update-notice-1"></script>
+  <script defer src="./js/core/sbw-site-compliance.js?v=20261125-web-1"></script>
   <link rel="stylesheet" href="./css/core/sbw-site-theme.css?v=20261012-site-1" />
   <link rel="stylesheet" href="css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="./js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
@@ -96,10 +107,9 @@
         <a href="./atletas/atletas-sbw.html">Atletas</a>
         <a href="./creators/creators.html">Creators</a>
         <a href="./comunidades/comunidades.html">Comunidades</a>
-        <a href="./blog/noticias.html">Notícias</a>
-        <a href="./pages/conteudo.html">Conteúdo</a>
-        <a href="./pages/loja.html">Loja</a>
-        <a href="./links/index.html">Links oficiais</a>
+        <a href="./blog/noticias.html">Notícias e vídeos</a>
+        <a href="./pages/loja.html">SBW Concept</a>
+        <a href="./pages/parcerias.html">Parcerias</a>
         <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
           SBW Championship <span aria-hidden="true">↗</span>
         </a>
@@ -108,262 +118,90 @@
   </header>
 
 <main class="sbw-home-shell" id="conteudo-principal" tabindex="-1">
-    <section
-      class="sbw-home-hero"
-      aria-labelledby="sbwHomeTitle"
-    >
-      <div
-        class="sbw-home-hero__banner"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="sbw-home-hero__overlay"
-        aria-hidden="true"
-      ></div>
-
-      <div class="sbw-home-hero__content sbw-reveal">
-        <span class="sbw-kicker">
-          <span aria-hidden="true"></span>
-          Organização de esports
-        </span>
-
-        <h1 id="sbwHomeTitle">
-          SaberWolf
-          <strong>Esports</strong>
-        </h1>
-
-        <p>
-          Organização brasileira de esports, creators e projetos de comunidade.
-          Conheça quem representa a SaberWolf, acompanhe nossas iniciativas
-          e acesse a plataforma competitiva SBW Championship.
-        </p>
-
+    <section class="sbw-home-hero" aria-labelledby="sbwHomeTitle">
+      <div class="sbw-home-hero__banner" aria-hidden="true"></div>
+      <div class="sbw-home-hero__overlay" aria-hidden="true"></div>
+      <div class="sbw-home-hero__content">
+        <h1 id="sbwHomeTitle">SaberWolf <strong>Esports</strong></h1>
+        <p>Organização brasileira de esports. Conheça nossos atletas e creators, acompanhe as competições e participe das comunidades da SBW.</p>
         <div class="sbw-home-hero__actions">
-          <a
-            class="sbw-btn sbw-btn--ghost"
-            href="#destaques-sbw"
-          >
-            -SBW-
-            <span aria-hidden="true">→</span>
-          </a>
-
-          <button
-            class="sbw-btn sbw-btn--primary sbw-btn--app-install"
-            type="button"
-            data-sbw-pwa-install
-            data-sbw-install-app
-          >
-            Baixe o app
-            <span aria-hidden="true">↓</span>
-          </button>
+          <a class="sbw-btn sbw-btn--primary" href="#equipe-sbw">Conheça a equipe</a>
+          <a class="sbw-btn sbw-btn--ghost" href="https://sbwchampionship.com/calendario/calendario.html">Ver competições</a>
         </div>
       </div>
     </section>
 
-    <section
-      class="sbw-section sbw-org-section"
-      id="destaques-sbw"
-      aria-labelledby="sbwHighlightsTitle"
-    >
-      <div class="sbw-section-heading sbw-reveal">
-        <span class="sbw-kicker">Destaques -SBW-</span>
-
-        <h2 id="sbwHighlightsTitle">Destaques da -SBW-</h2>
-
-        <p>
-          Conheça nomes que representam a SaberWolf dentro do cenário
-          competitivo, da criação de conteúdo e da comunidade gamer.
-        </p>
+    <section class="sbw-section sbw-home-discover" id="acontece-na-sbw" aria-labelledby="acontece-titulo">
+      <div class="sbw-section-heading">
+        <h2 id="acontece-titulo">Acontece na SBW</h2>
       </div>
-
-      <div class="sbw-highlight-list">
-        <a
-          class="sbw-feature-member sbw-feature-member--link sbw-reveal"
-          href="./creators/creator-elitz.html"
-          aria-label="Abrir perfil Creator de EliTz -SBW-"
-        >
-          <div
-            class="sbw-feature-member__photo sbw-feature-member__photo--elitz"
-          >
-            <img
-              src="./assets/home/elitz.jpeg"
-              width="2419"
-              height="2560"
-              loading="lazy"
-              decoding="async"
-              alt="-SBW- | EliTz"
-            />
-          </div>
-
-          <div class="sbw-feature-member__content">
-            <span class="sbw-feature-member__tag">
-              Creator em destaque
-            </span>
-
-            <h3>-SBW- | EliTz</h3>
-
-            <p>
-              Gabriel Batista, mais conhecido como EliTz, tem 28 anos e reside
-              em Nilópolis, RJ. Jogador profissional de Call of Duty, ele acumula
-              mais de uma década de experiência no game e ampla vivência
-              internacional.
-            </p>
-
-            <p>
-              Ao longo da carreira, Gabriel morou nos Estados Unidos em duas
-              ocasiões, somando quatro meses no país. Durante esse período,
-              participou de 2 Majors e também competiu em um Mundial em outra
-              oportunidade.
-            </p>
-
-            <p>
-              Hoje, EliTz segue competindo ativamente e também se dedica à
-              criação de conteúdo, ajudando seu público a evoluir dentro do jogo.
-            </p>
-
-            <strong class="sbw-feature-member__cta">
-              Ver perfil Creator →
-            </strong>
-          </div>
-        </a>
-
-        <a
-          class="sbw-feature-member sbw-feature-member--link sbw-reveal"
-          href="https://www.start.gg/user/267d7096"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir perfil start.gg de TigerFurious em nova aba"
-        >
-          <div
-            class="sbw-feature-member__photo sbw-feature-member__photo--tiger"
-          >
-            <img
-              src="./assets/home/tigerfurious.jpeg"
-              width="740"
-              height="1600"
-              loading="lazy"
-              decoding="async"
-              alt="-SBW- | TigerFurious"
-            />
-          </div>
-
-          <div class="sbw-feature-member__content">
-            <span class="sbw-feature-member__tag">
-              FGC em destaque
-            </span>
-
-            <h3>-SBW- | TigerFurious</h3>
-
-            <p>
-              Lorena Kathleen, conhecida como TigerFurious, tem 30 anos, mora
-              em Brasília/DF e joga desde os 3 ou 4 anos de idade. Com uma
-              trajetória marcada por paixão pelos games, já competiu semi
-              profissionalmente em The King of Fighters e Street Fighter V.
-            </p>
-
-            <p>
-              No Street Fighter V, alcançou o rank Diamond usando Cammy e Sagat.
-              No KOF, seu trio principal conta com Iori e Chris, enquanto o
-              terceiro personagem varia conforme o momento e o estilo de jogo.
-            </p>
-
-            <p>
-              Além dos fighting games, Lorena também teve passagem pelo Dota 2,
-              atuando como offlaner pelo time Hateful Queens. Começou calibrando
-              com 1k MMR e chegou ao pico de 5.1k MMR entre 2017 e 2018.
-            </p>
-
-            <p>
-              Fora dos controles, é formada como professora de química, física e
-              pedagogia, trazendo uma mistura única de experiência competitiva,
-              didática e presença ativa dentro da comunidade gamer.
-            </p>
-
-            <strong class="sbw-feature-member__cta">
-              Ver perfil start.gg →
-            </strong>
-          </div>
-        </a>
+      <div class="sbw-home-story-grid">
+        <article class="sbw-home-story">
+          <span class="sbw-kicker">Notícias</span>
+          <h3>Conheça Kary Akane</h3>
+          <p>Creator parceira da SaberWolf e representante da Fighting Girls Community.</p>
+          <a href="./blog/kary-akane.html">Ler a apresentação</a>
+        </article>
+        <article class="sbw-home-story">
+          <span class="sbw-kicker">Competição</span>
+          <h3>World Warrior e a cena de Street Fighter</h3>
+          <p>Veja a matéria da SBW sobre comunicação entre jogadores e organização na FGC.</p>
+          <a href="./blog/noticia.html">Ler a matéria sobre World Warrior</a>
+          <a class="sbw-home-story__link" href="https://sbwchampionship.com/calendario/calendario.html">Ver calendário de competições</a>
+        </article>
+        <article class="sbw-home-story">
+          <span class="sbw-kicker">Comunidade</span>
+          <h3>Fighting Girls Community</h3>
+          <p>Uma comunidade parceira que fortalece a participação feminina nos jogos de luta.</p>
+          <a href="./comunidades/comunidade-fighting-girls.html">Conhecer a Fighting Girls</a>
+        </article>
       </div>
     </section>
 
-    <section
-      class="sbw-section sbw-ecosystem-section"
-      aria-labelledby="sbwHomeAreasTitle"
-    >
-      <div class="sbw-section-heading sbw-reveal">
-        <span class="sbw-kicker">SaberWolf</span>
-
-        <h2 id="sbwHomeAreasTitle">
-          Organização e competição com papéis claros
-        </h2>
-
-        <p>
-          Este site apresenta a organização SaberWolf. Torneios, perfis e rankings
-          passam a funcionar no produto independente SBW Championship.
-        </p>
+    <section class="sbw-section sbw-home-discover" id="equipe-sbw" aria-labelledby="equipe-titulo">
+      <div class="sbw-section-heading">
+        <h2 id="equipe-titulo">Atletas e creators</h2>
+        <p>Conheça quem compete, produz conteúdo e movimenta as comunidades da SaberWolf.</p>
       </div>
-
-      <div class="sbw-ecosystem-grid">
-        <a
-          href="./blog/noticias.html"
-          class="sbw-module-card sbw-reveal"
-        >
-          <span aria-hidden="true">▤<svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
-          <h3>Notícias</h3>
-          <p>Atualizações, anúncios e novidades da organização.</p>
+      <div class="sbw-home-people">
+        <a class="sbw-home-person" href="./creators/creator-elitz.html">
+          <img src="./assets/home/elitz.webp" width="600" height="635" alt="" loading="lazy" decoding="async">
+          <span><strong>EliTz</strong> Atleta de Call of Duty e creator</span>
         </a>
-
-        <a
-          href="./creators/creators.html"
-          class="sbw-module-card sbw-reveal"
-        >
-          <span aria-hidden="true">✦<svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3Z"/></svg></span>
-          <h3>Creators</h3>
-          <p>Conteúdo, lives e representantes oficiais da SaberWolf.</p>
+        <a class="sbw-home-person" href="./creators/creator-kari-akane.html">
+          <img src="./assets/images/kary-akane-retrato.jpg" width="343" height="440" alt="" loading="lazy" decoding="async">
+          <span><strong>Kary Akane</strong> Creator parceira · Fighting Girls</span>
         </a>
-
-        <a
-          href="./atletas/atletas-sbw.html"
-          class="sbw-module-card sbw-reveal"
-        >
-          <span aria-hidden="true">♟<svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3M9 14l3 3 3-3"/></svg></span>
-          <h3>Atletas</h3>
-          <p>Modalidades, jogadores e projetos competitivos da organização.</p>
+        <a class="sbw-home-person" href="./creators/creator-dlucca.html">
+          <img src="./assets/images/dlucca-sbw.webp" width="380" height="510" alt="" loading="lazy" decoding="async">
+          <span><strong>D’Lucca</strong> Fundador e creator</span>
         </a>
-
-        <a
-          href="./comunidades/comunidades.html"
-          class="sbw-module-card sbw-reveal"
-        >
-          <span aria-hidden="true">🌐<svg viewBox="0 0 24 24" focusable="false"><circle cx="8" cy="8" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3M16 6a3 3 0 0 1 0 6M17 15a5 5 0 0 1 5 5v1"/></svg></span>
-          <h3>Comunidades</h3>
-          <p>Encontre grupos, clans, eventos e iniciativas parceiras.</p>
+        <a class="sbw-home-person" href="./creators/creator-tiger-furious.html">
+          <img src="./assets/home/tigerfurious.webp" width="301" height="650" alt="" loading="lazy" decoding="async">
+          <span><strong>TigerFurious</strong> Creator parceira · Fighting games</span>
         </a>
+      </div>
+      <div class="sbw-home-discover__actions">
+        <a class="sbw-home-textlink" href="./atletas/atletas-sbw.html">Ver atletas por modalidade</a>
+        <a class="sbw-home-textlink" href="./creators/creators.html">Ver todos os creators</a>
+      </div>
+    </section>
 
-        <a
-          href="https://sbwchampionship.com/"
-          class="sbw-module-card sbw-reveal"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir SBW Championship em nova aba"
-        >
-          <span aria-hidden="true">🏆<svg viewBox="0 0 24 24" focusable="false"><path d="M8 3h8v7a4 4 0 0 1-8 0ZM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-4 2h8m-6-2h4"/></svg></span>
-          <h3>SBW Championship</h3>
-          <p>
-            Torneios, equipes, perfis, organizadores e rankings
-            em uma plataforma própria.
-          </p>
+    <section class="sbw-section sbw-home-discover" aria-label="Vestuário e parcerias">
+      <div class="sbw-home-projects">
+        <a class="sbw-home-project sbw-home-project--concept" href="./pages/loja.html">
+          <div>
+            <h2>SBW Concept</h2>
+            <p>A marca de vestuário da SBW. Conheça a identidade da marca e acompanhe os lançamentos.</p>
+            <strong>Conhecer a SBW Concept</strong>
+          </div>
         </a>
-
-        <a
-          href="./pages/loja.html"
-          class="sbw-module-card sbw-reveal"
-        >
-          <span aria-hidden="true">◇<svg viewBox="0 0 24 24" focusable="false"><path d="M4 8h16l-1 13H5ZM8 8V6a4 4 0 0 1 8 0v2"/></svg></span>
-          <h3>Loja</h3>
-          <p>Produtos e iniciativas comerciais da SaberWolf.</p>
+        <a class="sbw-home-project" href="./pages/parcerias.html">
+          <div>
+            <h2>Parcerias</h2>
+            <p>Crie com a SBW. Conteúdo, ativações em competições e projetos de comunidade.</p>
+            <strong>Fale com o SBW Project</strong>
+          </div>
         </a>
       </div>
     </section>
@@ -375,6 +213,7 @@
         © 2026 SaberWolf Esports. Todos os direitos reservados.
       </p>
       <nav class="sbw-site-footer__legal" aria-label="Links legais">
+        <a href="./links/index.html">Links oficiais</a>
         <a href="./pages/termos.html" data-sbw-legal-link="pages/termos.html">Termos</a>
         <a href="./pages/privacidade.html" data-sbw-legal-link="pages/privacidade.html">Privacidade</a>
         <a href="./pages/cookies.html" data-sbw-legal-link="pages/cookies.html">Cookies</a>

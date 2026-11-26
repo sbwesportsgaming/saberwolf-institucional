@@ -176,7 +176,7 @@ body > header nav a::after {
       rgba(2, 6, 23, 0.45) 60%,
       rgba(2, 6, 23, 0.18) 100%
     ),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -564,7 +564,7 @@ section a.btn {
 .game-fighting {
   background:
     linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.40)),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center;
 }
@@ -572,7 +572,7 @@ section a.btn {
 .game-fps {
   background:
     linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.40)),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center;
 }
@@ -580,7 +580,7 @@ section a.btn {
 .game-moba {
   background:
     linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.40)),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center;
 }
@@ -588,7 +588,7 @@ section a.btn {
 .game-sports {
   background:
     linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.40)),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center;
 }
@@ -596,7 +596,7 @@ section a.btn {
 .game-tournaments {
   background:
     linear-gradient(180deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.40)),
-    url("../assets/home/sbw-home-banner.png");
+    url("../assets/home/sbw-home-banner.webp");
   background-size: cover;
   background-position: center;
 }
@@ -1551,7 +1551,7 @@ body > header nav a[aria-current="page"]::after {
     padding: 100px 24px;
     background:
       linear-gradient(rgba(2, 6, 23, 0.75), rgba(2, 6, 23, 0.98)),
-      url("../assets/home/sbw-home-banner.png");
+      url("../assets/home/sbw-home-banner.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
