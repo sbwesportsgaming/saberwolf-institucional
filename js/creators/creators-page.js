@@ -27,7 +27,6 @@
       id: "dlucca",
       name: "-SBW- | D’Lucca",
       role: "Fundador e creator",
-      badge: "Oficial",
       description:
         "Fundador da -SBW-, creator e responsável por iniciativas de conteúdo e comunidade da SaberWolf Esports.",
       avatar: "assets/images/dlucca-sbw.webp",
@@ -38,38 +37,35 @@
     {
       id: "elitz",
       name: "-SBW- | EliTz",
-      role: "Atleta de Call of Duty e creator",
-      badge: "Oficial",
+      role: "Atleta profissional",
       description:
-        "Jogador profissional de Call of Duty e creator da -SBW-, com conteúdo voltado a gameplay e evolução dentro do jogo.",
+        "Atleta profissional de Street Fighter 6 da SaberWolf Esports.",
       avatar: "assets/home/elitz.webp",
       href: "creators/creator-elitz.html",
-      tags: ["Call of Duty", "Conteúdo", "SBW"],
-      filters: ["sbw", "gameplay", "community"]
+      tags: ["Street Fighter 6", "Competição", "SBW"],
+      filters: ["sbw", "fgc", "gameplay"]
     },
     {
       id: "kari-akane",
       name: "Kary Akane",
-      role: "Creator parceira da Fighting Girls",
-      badge: "Parceira",
+      role: "Comunicadora da SBW",
       description:
-        "Representante da Fighting Girls Community, fortalecendo presença, acolhimento e visibilidade feminina na FGC.",
+        "Fundadora e presidente da Fighting Girls Community.",
       avatar: "assets/images/kary-akane-retrato.jpg",
       avatarAlt: "Retrato de Kary Akane",
       href: "creators/creator-kari-akane.html",
-      tags: ["FGC", "Comunidade", "Fighting Girls"],
-      filters: ["fgc", "community"]
+      tags: ["Comunicação", "Fighting Girls"],
+      filters: ["sbw", "fgc", "community"]
     },
     {
       id: "tiger-furious",
       name: "-SBW- | TigerFurious",
-      role: "Creator parceira",
-      badge: "Parceira",
+      role: "Criadora de conteúdo",
       description:
-        "Creator parceira conectada a fighting games, gameplay, comunidade e conteúdo competitivo da SaberWolf Esports.",
+        "Criadora de conteúdo de Dota 2 e Just Chatting e vice-presidente da Fighting Girls Community.",
       avatar: "assets/home/tigerfurious.webp",
       href: "creators/creator-tiger-furious.html",
-      tags: ["FGC", "Live", "Comunidade"],
+      tags: ["Dota 2", "Just Chatting", "Fighting Girls"],
       filters: ["fgc", "gameplay", "community"]
     }
   ];
@@ -272,7 +268,7 @@
 
       featuredCard.setAttribute(
         "aria-label",
-        `Creator em destaque: ${creator.name}`
+        `Perfil em destaque: ${creator.name}`
       );
 
       featuredCard.classList.remove("is-changing");
