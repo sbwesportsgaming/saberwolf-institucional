@@ -93,6 +93,7 @@ body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--
 .sbw-arena-hero__media::before {
   content: "";
   position: absolute;
+  z-index: 1;
   inset: 0;
   background: linear-gradient(90deg, #0b111b 0%, #0b111bf2 15%, #0b111bc9 38%, #0b111b19 68%),
     linear-gradient(0deg, #0b111b9e 0%, transparent 44%);
@@ -100,6 +101,7 @@ body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--
 .sbw-arena-hero__media::after {
   content: "";
   position: absolute;
+  z-index: 2;
   inset: 0 0 auto auto;
   width: clamp(3.5rem, 10vw, 9rem);
   height: clamp(.8rem, 2.5vw, 1.8rem);
@@ -108,6 +110,7 @@ body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--
 }
 .sbw-arena-hero__media figcaption {
   position: absolute;
+  z-index: 2;
   right: var(--arena-gutter);
   bottom: .75rem;
   padding: .2rem .45rem;
