@@ -40,7 +40,7 @@
     content="Site oficial da SaberWolf Esports: organização, atletas, creators, notícias, projetos e comunidades."
   />
 
-  <meta name="theme-color" content="#050d14" />
+  <meta name="theme-color" content="#0a0d12" />
   <meta name="color-scheme" content="light dark" />
   <meta name="sbw-championship-origin" content="https://sbwchampionship.com" />
   <meta name="sbw-site-version" content="v1.6.84.3" />
@@ -82,9 +82,10 @@
   <link rel="stylesheet" href="css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1" />
   <script defer src="./js/layout/sbw-site-nav.js?v=20261012-site-1"></script>
   <link rel="stylesheet" href="css/core/sbw-theme.css?v=20261021-black-1" />
+  <link rel="stylesheet" href="./css/home/home-arena.css?v=20261127-1" />
 </head>
 
-<body class="sbw-home-page sbw-esports-page sbw-site-light" data-sbw-active-page="home">
+<body class="sbw-home-page sbw-arena sbw-esports-page sbw-site-light" data-sbw-active-page="home">
   <a class="sbw-home-skip-link" href="#conteudo-principal">
     Pular para o conteúdo
   </a>
@@ -92,7 +93,8 @@
     <header class="sbw-site-header" data-sbw-site-header>
     <div class="sbw-site-header__inner">
       <a class="sbw-site-brand" href="./index.html" aria-label="SaberWolf Esports — início" aria-current="page">
-        <span>SaberWolf <strong>Esports</strong></span>
+        <img src="./assets/images/sbw-esports-oficial-mobile.webp" width="33" height="40" alt="" />
+        <span>SaberWolf Esports</span>
       </a>
       <button
         class="sbw-site-menu-toggle"
@@ -104,9 +106,7 @@
         hidden
       ><span aria-hidden="true">☰</span></button>
       <nav class="sbw-site-nav" id="sbwSiteNavigation" aria-label="Navegação principal" data-sbw-site-nav>
-        <a href="./pages/sobre.html">Sobre</a>
-        <a href="./atletas/atletas-sbw.html">Atletas</a>
-        <a href="./creators/creators.html">Creators</a>
+        <a href="#equipe-sbw">Equipe</a>
         <a href="./comunidades/comunidades.html">Comunidades</a>
         <a href="./blog/noticias.html">Notícias e vídeos</a>
         <a href="./pages/loja.html">SBW Concept</a>
@@ -119,22 +119,40 @@
   </header>
 
 <main class="sbw-home-shell" id="conteudo-principal" tabindex="-1">
-    <section class="sbw-home-hero" aria-labelledby="sbwHomeTitle">
-      <div class="sbw-home-hero__banner" aria-hidden="true"></div>
-      <div class="sbw-home-hero__overlay" aria-hidden="true"></div>
-      <div class="sbw-home-hero__content">
-        <h1 id="sbwHomeTitle">SaberWolf <strong>Esports</strong></h1>
-        <p>Organização brasileira de esports. Conheça nossos atletas e creators, acompanhe as competições e participe das comunidades da SBW.</p>
-        <div class="sbw-home-hero__actions">
-          <a class="sbw-btn sbw-btn--primary" href="#equipe-sbw">Conheça a equipe</a>
-          <a class="sbw-btn sbw-btn--ghost" href="https://sbwchampionship.com/calendario/calendario.html">Ver competições</a>
+    <section class="sbw-arena-hero" aria-labelledby="sbwHomeTitle">
+      <figure class="sbw-arena-hero__media">
+        <img src="./assets/home/elitz.webp" width="600" height="635" alt="EliTz em um evento de jogos" fetchpriority="high" decoding="async" />
+        <figcaption>EliTz / Street Fighter 6</figcaption>
+      </figure>
+      <div class="sbw-arena-inner sbw-arena-hero__inner">
+        <p class="sbw-arena-label">Pedro Leopoldo / MG <span>· Esports brasileiro</span></p>
+        <h1 id="sbwHomeTitle">O jogo<br /> <strong>vai além.</strong></h1>
+        <p class="sbw-arena-hero__summary">Competição, conteúdo e comunidade.</p>
+        <div class="sbw-arena-actions">
+          <a class="sbw-arena-primary" href="#equipe-sbw">Ver equipe <span aria-hidden="true">→</span></a>
+          <a href="./pages/sobre.html">Nossa história <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
 
+    <section class="sbw-arena-agenda" aria-labelledby="sbwAgendaTitle">
+      <div class="sbw-arena-inner sbw-arena-agenda__inner">
+        <div>
+          <p class="sbw-arena-label">No radar</p>
+          <h2 id="sbwAgendaTitle">Agenda competitiva</h2>
+        </div>
+        <a href="https://sbwchampionship.com/calendario/calendario.html">
+          Ver calendário Championship <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Inserir a Galeria SBW aqui quando houver um primeiro álbum autorizado.
+         Até lá, não renderizar cards vazios nem divulgar uma rota inexistente. -->
+
     <section class="sbw-section sbw-home-discover" id="acontece-na-sbw" aria-labelledby="acontece-titulo">
       <div class="sbw-section-heading">
-        <h2 id="acontece-titulo">Acontece na SBW</h2>
+        <h2 id="acontece-titulo">Giro SBW</h2>
       </div>
       <div class="sbw-home-story-grid">
         <article class="sbw-home-story">
@@ -161,7 +179,7 @@
 
     <section class="sbw-section sbw-home-discover" id="equipe-sbw" aria-labelledby="equipe-titulo">
       <div class="sbw-section-heading">
-        <h2 id="equipe-titulo">Equipe SBW</h2>
+        <h2 id="equipe-titulo">Quem veste a SBW</h2>
         <p>Conheça quem compete, comunica e cria conteúdo na SaberWolf.</p>
       </div>
       <div class="sbw-home-people">
