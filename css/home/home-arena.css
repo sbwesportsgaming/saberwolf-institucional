@@ -1,0 +1,216 @@
+/* Home institucional — direção “De Minas. Pro jogo.” */
+body.sbw-arena {
+  --arena-ink: #0a0d12;
+  --arena-hero: #0b111b;
+  --arena-white: #f1f4fa;
+  --arena-silver: #d8e0eb;
+  --arena-cobalt: #2f54b8;
+  --arena-focus: #a9beff;
+  --arena-gutter: clamp(1rem, 4vw, 3rem);
+  --arena-text: #172130;
+  --arena-muted: #46556c;
+  --arena-bg: #f1f4fa;
+  --arena-raised: #fff;
+  --arena-line: #bbc5d3;
+}
+html[data-sbw-theme="dark"] body.sbw-arena {
+  --arena-text: #f1f4fa;
+  --arena-muted: #a5afbe;
+  --arena-bg: #141b25;
+  --arena-raised: #191f29;
+  --arena-line: #35404e;
+}
+html[data-sbw-theme-palette="black"] body.sbw-arena {
+  --arena-bg: #0a0d12;
+  --arena-raised: #171b21;
+}
+body.sbw-arena.sbw-esports-page .sbw-home-shell {
+  color: var(--arena-text);
+  background: var(--arena-bg);
+}
+.sbw-arena-inner {
+  width: min(1200px, calc(100% - 2 * var(--arena-gutter)));
+  margin-inline: auto;
+}
+body.sbw-arena .sbw-site-header {
+  background: var(--arena-ink);
+  border-bottom: 1px solid #35404e;
+}
+.sbw-arena .sbw-site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--arena-white);
+  font-size: clamp(1rem, 2.1vw, 1.25rem);
+  letter-spacing: -.025em;
+}
+.sbw-arena .sbw-site-brand img {
+  display: block;
+  width: 33px;
+  height: 40px;
+  object-fit: contain;
+}
+body.sbw-arena .sbw-site-nav a:hover { color: var(--arena-white); text-decoration: underline; }
+body.sbw-arena .sbw-site-nav .sbw-site-nav__championship {
+  border: 1px solid #697586;
+  border-radius: 0;
+  color: var(--arena-silver);
+  background: transparent;
+}
+body.sbw-arena .sbw-theme-mount--dark-header {
+  --sbw-theme-panel: #171b21;
+  --sbw-theme-border: #697586;
+  --sbw-theme-focus: var(--arena-focus);
+}
+body.sbw-arena .sbw-site-menu-toggle { background: #171b21; border-color: #697586; }
+body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--arena-white); border-color: var(--arena-focus); }
+
+.sbw-arena-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: clamp(26rem, 42vw, 37rem);
+  color: var(--arena-white);
+  background: var(--arena-hero);
+  overflow: hidden;
+}
+.sbw-arena-hero__media {
+  position: absolute;
+  inset: 0 0 0 27%;
+  z-index: -1;
+  margin: 0;
+  overflow: hidden;
+}
+.sbw-arena-hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+  filter: saturate(.78);
+}
+.sbw-arena-hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0b111b 0%, #0b111bf2 15%, #0b111bc9 38%, #0b111b19 68%),
+    linear-gradient(0deg, #0b111b9e 0%, transparent 44%);
+}
+.sbw-arena-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: clamp(3.5rem, 10vw, 9rem);
+  height: clamp(.8rem, 2.5vw, 1.8rem);
+  background: var(--arena-silver);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 24% 100%);
+}
+.sbw-arena-hero__media figcaption {
+  position: absolute;
+  right: var(--arena-gutter);
+  bottom: .75rem;
+  padding: .2rem .45rem;
+  color: var(--arena-white);
+  background: #0a0d12e8;
+  font: .71rem/1.35 ui-monospace, monospace;
+  text-transform: uppercase;
+}
+.sbw-arena-hero__inner { padding-block: clamp(2.5rem, 6vw, 5rem); }
+.sbw-arena .sbw-arena-label {
+  margin: 0;
+  font: 600 .75rem/1.5 ui-monospace, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.sbw-arena-hero .sbw-arena-label { color: var(--arena-silver); }
+.sbw-arena-hero h1 {
+  margin: .22em 0 .21em;
+  font: italic 800 clamp(3rem, 8.2vw, 8rem)/.91 Sora, Inter, system-ui, sans-serif;
+  letter-spacing: -.067em;
+  text-transform: uppercase;
+  color: var(--arena-white);
+}
+.sbw-arena-hero h1 strong { color: var(--arena-silver); font-weight: inherit; }
+.sbw-arena-hero__summary { margin: 0 0 1.25rem; color: var(--arena-white); font-size: clamp(1rem, 1.8vw, 1.2rem); }
+.sbw-arena-actions { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: center; }
+.sbw-arena .sbw-arena-actions a, .sbw-arena .sbw-arena-agenda a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: fit-content;
+  min-height: 44px;
+  color: inherit;
+  font-size: .9rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+.sbw-arena .sbw-arena-actions a:hover, .sbw-arena .sbw-arena-agenda a:hover { text-decoration: underline; text-underline-offset: .2em; }
+.sbw-arena .sbw-arena-actions .sbw-arena-primary {
+  padding: .5rem 1rem;
+  color: var(--arena-white);
+  background: var(--arena-cobalt);
+  border: 1px solid #a9beff;
+}
+.sbw-arena :is(.sbw-site-header, .sbw-arena-hero) :is(a, button):focus-visible {
+  outline: 3px solid var(--arena-focus);
+  outline-offset: 3px;
+}
+.sbw-arena :is(.sbw-arena-agenda, .sbw-home-discover) :is(a, button):focus-visible {
+  outline: 3px solid var(--arena-cobalt);
+  outline-offset: 3px;
+}
+html[data-sbw-theme="dark"] .sbw-arena .sbw-home-discover :is(a, button):focus-visible { outline-color: var(--arena-focus); }
+.sbw-arena-agenda { color: var(--arena-ink); background: var(--arena-silver); }
+.sbw-arena-agenda__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .65rem 1.5rem;
+  padding-block: .9rem;
+}
+.sbw-arena-agenda .sbw-arena-label { color: #34445d; }
+.sbw-arena-agenda h2 { margin: 0; font-size: clamp(1.15rem, 2.4vw, 1.65rem); line-height: 1.15; }
+
+.sbw-arena .sbw-home-discover { width: min(1200px, calc(100% - 2 * var(--arena-gutter))); }
+body.sbw-arena .sbw-home-discover .sbw-section-heading :is(h2, p) { color: var(--arena-text); }
+.sbw-arena .sbw-home-discover .sbw-section-heading p { color: var(--arena-muted); }
+.sbw-arena .sbw-home-story-grid { gap: 0; border-block: 1px solid var(--arena-line); }
+body.sbw-arena .sbw-home-story {
+  border: 0;
+  border-radius: 0;
+  color: var(--arena-text);
+  background: transparent;
+}
+.sbw-arena .sbw-home-story + .sbw-home-story { border-inline-start: 1px solid var(--arena-line); }
+body.sbw-arena .sbw-home-person {
+  border: 1px solid var(--arena-line);
+  border-radius: 0;
+  background: var(--arena-raised);
+}
+.sbw-arena .sbw-home-person img { aspect-ratio: 5 / 3; }
+.sbw-arena .sbw-home-person span, .sbw-arena .sbw-home-story p { color: var(--arena-muted); }
+.sbw-arena .sbw-home-person strong, body.sbw-arena .sbw-home-story .sbw-kicker,
+body.sbw-arena .sbw-home-discover :is(.sbw-home-story a, .sbw-home-textlink) { color: var(--arena-text); }
+@media (max-width: 1199px) {
+  body.sbw-arena .sbw-site-header.is-menu-ready .sbw-site-nav { background: var(--arena-ink); }
+  body.sbw-arena .sbw-site-header.is-menu-ready .sbw-site-nav a:not(.sbw-site-nav__championship) { background: #171b21; }
+}
+@media (max-width: 820px) {
+  .sbw-arena .sbw-home-story + .sbw-home-story { border-inline-start: 0; border-block-start: 1px solid var(--arena-line); }
+  .sbw-arena-hero { align-items: end; min-height: 29rem; }
+  .sbw-arena-hero__media { inset: 0; }
+  .sbw-arena-hero__media img { object-position: 53% 18%; }
+  .sbw-arena-hero__media::before {
+    background: linear-gradient(0deg, #0b111b 3%, #0b111bf2 26%, #0b111ba8 54%, #0b111b20 79%),
+      linear-gradient(90deg, #0b111b77, transparent 65%);
+  }
+  .sbw-arena-hero__inner { padding-block: 7rem 2.8rem; }
+  .sbw-arena-hero h1 { font-size: clamp(3.15rem, 11vw, 5.8rem); }
+}
+@media (max-width: 480px) {
+  .sbw-arena-hero { min-height: 26rem; }
+  .sbw-arena-hero .sbw-arena-label span { display: none; }
+  .sbw-arena-hero h1 { font-size: clamp(2.62rem, 11vw, 3.5rem); }
+  .sbw-arena-agenda a { max-width: 45%; line-height: 1.35; }
+}
