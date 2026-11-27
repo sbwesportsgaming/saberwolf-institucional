@@ -28,9 +28,13 @@ body.sbw-arena.sbw-esports-page .sbw-home-shell {
   color: var(--arena-text);
   background: var(--arena-bg);
 }
-.sbw-arena-inner {
+.sbw-arena-inner,
+.sbw-arena .sbw-home-discover {
   width: min(1200px, calc(100% - 2 * var(--arena-gutter)));
   margin-inline: auto;
+}
+.sbw-arena .sbw-home-discover {
+  padding-inline: 0;
 }
 body.sbw-arena .sbw-site-header {
   background: var(--arena-ink);
@@ -175,7 +179,6 @@ html[data-sbw-theme="dark"] .sbw-arena .sbw-home-discover :is(a, button):focus-v
 .sbw-arena-agenda .sbw-arena-label { color: #34445d; }
 .sbw-arena-agenda h2 { margin: 0; font-size: clamp(1.15rem, 2.4vw, 1.65rem); line-height: 1.15; }
 
-.sbw-arena .sbw-home-discover { width: min(1200px, calc(100% - 2 * var(--arena-gutter))); }
 body.sbw-arena .sbw-home-discover .sbw-section-heading :is(h2, p) { color: var(--arena-text); }
 .sbw-arena .sbw-home-discover .sbw-section-heading p { color: var(--arena-muted); }
 .sbw-arena .sbw-home-story-grid { gap: 0; border-block: 1px solid var(--arena-line); }
