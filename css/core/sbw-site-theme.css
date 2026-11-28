@@ -170,6 +170,55 @@ body.sbw-esports-page .sbw-site-header :where(a, button):focus-visible {
 }
 
 
+/* Cabeçalho institucional grafite, inclusive com o tema escuro. */
+html body .sbw-site-header[data-sbw-site-header] {
+  background: #0a0d12;
+  border-bottom: 1px solid #35404e;
+}
+html body .sbw-site-header[data-sbw-site-header] .sbw-site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #f1f4fa;
+  font-size: clamp(1rem, 2.1vw, 1.25rem);
+  letter-spacing: -.025em;
+}
+.sbw-site-header[data-sbw-site-header] .sbw-site-brand img {
+  display: block;
+  width: 33px;
+  height: 40px;
+  object-fit: contain;
+}
+html body .sbw-site-header[data-sbw-site-header] .sbw-site-nav a:hover {
+  color: #f1f4fa;
+  text-decoration: underline;
+}
+html body .sbw-site-header[data-sbw-site-header] .sbw-site-nav__championship {
+  border: 1px solid #697586;
+  border-radius: 0;
+  color: #d8e0eb;
+  background: transparent;
+}
+html body .sbw-site-header[data-sbw-site-header] .sbw-theme-mount--dark-header {
+  --sbw-theme-panel: #171b21;
+  --sbw-theme-border: #697586;
+  --sbw-theme-focus: #a9beff;
+}
+html body .sbw-site-header[data-sbw-site-header] .sbw-site-menu-toggle {
+  background: #171b21;
+  border-color: #697586;
+}
+html body .sbw-site-header[data-sbw-site-header] :is(a, button):focus-visible {
+  outline: 3px solid #a9beff;
+  outline-offset: 3px;
+}
+@media (max-width: 1199px) {
+  html body .sbw-site-header[data-sbw-site-header].is-menu-ready .sbw-site-nav { background: #0a0d12; }
+  html body .sbw-site-header[data-sbw-site-header].is-menu-ready .sbw-site-nav a:not(.sbw-site-nav__championship) {
+    background: #171b21;
+  }
+}
+
 /* SaberWolf Esports — identidade compartilhada v1.6.84.3. */
 
 :root {

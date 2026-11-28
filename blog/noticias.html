@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <script src="../js/core/sbw-theme.js?v=20261021-black-1" data-sbw-theme-site="esports"></script>
   <link rel="stylesheet" href="../css/core/sbw-editorial.css?v=20261125-web-1">
-  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261012-site-1">
+  <link rel="stylesheet" href="../css/core/sbw-site-theme.css?v=20261127-header-1">
   <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-theme.css?v=20261020-theme-1">
   <link rel="stylesheet" href="../css/core/sbw-site-compliance.css?v=20261125-web-1">
   <link rel="stylesheet" href="../css/themes/dark/core/sbw-site-compliance.css?v=20261020-theme-1">
@@ -37,7 +37,8 @@
   <header class="sbw-site-header" data-sbw-site-header>
     <div class="sbw-site-header__inner">
       <a class="sbw-site-brand" href="../index.html" aria-label="SaberWolf Esports — início">
-        <span>SaberWolf <strong>Esports</strong></span>
+        <img src="../assets/images/sbw-esports-oficial-mobile.webp" width="33" height="40" alt="" />
+        <span>SaberWolf Esports</span>
       </a>
       <button
         class="sbw-site-menu-toggle"
@@ -49,15 +50,13 @@
         hidden
       ><span aria-hidden="true">☰</span></button>
       <nav class="sbw-site-nav" id="sbwSiteNavigation" aria-label="Navegação principal" data-sbw-site-nav>
-        <a href="../pages/sobre.html">Sobre</a>
-        <a href="../atletas/atletas-sbw.html">Atletas</a>
-        <a href="../creators/creators.html">Creators</a>
+        <a href="../index.html#equipe-sbw">Equipe</a>
         <a href="../comunidades/comunidades.html">Comunidades</a>
-        <a href="../blog/noticias.html" aria-current="page">Notícias e vídeos</a>
+        <a href="../blog/noticias.html" class="is-active" aria-current="page">Notícias e vídeos</a>
         <a href="../pages/loja.html">SBW Concept</a>
         <a href="../pages/parcerias.html">Parcerias</a>
         <a class="sbw-site-nav__championship" href="https://sbwchampionship.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SBW Championship em nova aba">
-          SBW Championship
+          SBW Championship <span aria-hidden="true">↗</span>
         </a>
       </nav>
     </div>

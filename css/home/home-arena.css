@@ -36,37 +36,6 @@ body.sbw-arena.sbw-esports-page .sbw-home-shell {
 .sbw-arena .sbw-home-discover {
   padding-inline: 0;
 }
-body.sbw-arena .sbw-site-header {
-  background: var(--arena-ink);
-  border-bottom: 1px solid #35404e;
-}
-.sbw-arena .sbw-site-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--arena-white);
-  font-size: clamp(1rem, 2.1vw, 1.25rem);
-  letter-spacing: -.025em;
-}
-.sbw-arena .sbw-site-brand img {
-  display: block;
-  width: 33px;
-  height: 40px;
-  object-fit: contain;
-}
-body.sbw-arena .sbw-site-nav a:hover { color: var(--arena-white); text-decoration: underline; }
-body.sbw-arena .sbw-site-nav .sbw-site-nav__championship {
-  border: 1px solid #697586;
-  border-radius: 0;
-  color: var(--arena-silver);
-  background: transparent;
-}
-body.sbw-arena .sbw-theme-mount--dark-header {
-  --sbw-theme-panel: #171b21;
-  --sbw-theme-border: #697586;
-  --sbw-theme-focus: var(--arena-focus);
-}
-body.sbw-arena .sbw-site-menu-toggle { background: #171b21; border-color: #697586; }
 body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--arena-white); border-color: var(--arena-focus); }
 
 .sbw-arena-hero {
@@ -159,7 +128,7 @@ body.sbw-arena .sbw-home-skip-link { background: var(--arena-ink); color: var(--
   background: var(--arena-cobalt);
   border: 1px solid #a9beff;
 }
-.sbw-arena :is(.sbw-site-header, .sbw-arena-hero) :is(a, button):focus-visible {
+.sbw-arena .sbw-arena-hero :is(a, button):focus-visible {
   outline: 3px solid var(--arena-focus);
   outline-offset: 3px;
 }
@@ -198,10 +167,6 @@ body.sbw-arena .sbw-home-person {
 .sbw-arena .sbw-home-person span, .sbw-arena .sbw-home-story p { color: var(--arena-muted); }
 .sbw-arena .sbw-home-person strong, body.sbw-arena .sbw-home-story .sbw-kicker,
 body.sbw-arena .sbw-home-discover :is(.sbw-home-story a, .sbw-home-textlink) { color: var(--arena-text); }
-@media (max-width: 1199px) {
-  body.sbw-arena .sbw-site-header.is-menu-ready .sbw-site-nav { background: var(--arena-ink); }
-  body.sbw-arena .sbw-site-header.is-menu-ready .sbw-site-nav a:not(.sbw-site-nav__championship) { background: #171b21; }
-}
 @media (max-width: 820px) {
   .sbw-arena .sbw-home-story + .sbw-home-story { border-inline-start: 0; border-block-start: 1px solid var(--arena-line); }
   .sbw-arena-hero { align-items: end; min-height: 29rem; }
